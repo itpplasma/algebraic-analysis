@@ -2,11 +2,11 @@
 
 ```yaml
 phase: private-package-extraction
-active_gate: SECOND-SLICE-PACKAGE-VERIFIED
+active_gate: SECOND-SLICE-INTEGRATED
 first_consumers: [Stafford38, Bjork]
-current_revision: fdb9561
-consumer_state: first slice integrated; second PBW/tower slice package-verified, consumer wiring pending
-consumer_revisions: Stafford38@bec70c7e; Bjork@da56106
+current_revision: 9903c91ea8b89b0f82e3dc17b735911f68adba1c
+consumer_state: first and second slices integrated; both consumers build cleanly
+consumer_revisions: Stafford38@pending-current-migration-commit; Bjork@ce63915f
 public_release: false
 reservoir: false
 ```
@@ -25,8 +25,8 @@ specific assembly remain downstream.
 
 ## Active gate
 
-`stafford38` has completed the inventory and the initial Ore/PBW consumer
-migration. The cleanup gate remains upstream in Stafford38; this package now
+`stafford38` has completed the inventory and both reviewed Ore/PBW consumer
+migrations. The remaining cleanup gate is upstream in Stafford38; this package
 stabilizes the extracted API and provenance. Do not copy either project
 wholesale, create generalized wrappers for unstable proof-specific modules, or
 import unpublished claims as axioms or trusted opaque declarations.
@@ -60,8 +60,8 @@ Success requires:
 
 ## Second extraction slice: PBW and commuting Ore towers
 
-The reviewed second slice is package-verified in the working tree and is
-ready for consumer migration. It moves the application-independent material
+The reviewed second slice is integrated and pinned by both consumers. It moves
+the application-independent material
 from Björk commit `414131f` into five neutral modules:
 
 ```text
@@ -69,9 +69,8 @@ LeftPBW -> Tower -> IteratedTower -> IteratedPBW
 RightPBW
 ```
 
-The package build and API tests pass with the standard Lean foundation only.
-The migration is not complete until Björk and Stafford38 pin the resulting
-package commit, build against it, and retain only import-only compatibility
+The package build, API tests, and both consumer builds pass with the standard
+Lean foundation only. The consumers retain only import-only compatibility
 modules at the old paths. The package owns no Stafford/Björk theorem, no
 literature assumption, and no project-specific bridge.
 
@@ -81,7 +80,7 @@ The boundary review is recorded in
 
 ## Later candidate layers
 
-1. iterated Ore towers, division, localization, and PBW bases;
+1. Ore intersections, division, and localization;
 2. universal/presented Weyl algebras and symplectic substitutions;
 3. filtrations, Rees objects, associated graded modules, and symbols;
 4. rank, torsion, finite length, unimodular and projective modules;
