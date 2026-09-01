@@ -4,9 +4,9 @@ Reusable Lean foundations for Ore and Weyl algebras, filtered rings and
 modules, algebraic differential operators, characteristic geometry, and
 related exact certificates.
 
-The repository is private and pre-release. It currently contains only the
-package boundary and build skeleton. Extraction from Stafford38 begins only
-after the Stafford cleanup gate in `PLAN.md` is complete.
+The repository is private and pre-release. It contains the first reviewed
+Ore/PBW extraction from Stafford38; downstream rewiring and removal of the
+former authorities are part of the same migration gate in `PLAN.md`.
 
 Planned downstream consumers:
 

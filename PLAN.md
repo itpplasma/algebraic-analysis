@@ -1,8 +1,8 @@
 # AlgebraicAnalysis plan
 
 ```yaml
-phase: private-package-bootstrap
-active_gate: WAIT-STAFFORD38-CLEAN
+phase: private-package-extraction
+active_gate: STAFFORD38-CLEAN
 first_consumers: [Stafford38, Bjork]
 public_release: false
 reservoir: false
@@ -22,21 +22,16 @@ specific assembly remain downstream.
 
 ## Active gate
 
-Do not extract source files yet. `stafford38` first completes
-`STAFFORD38-CLEAN`: one authoritative active Lean tree, an exact root/checker
-closure, removal of obsolete current-tree copies, and a machine-readable
-classification of modules.
-
-During this gate:
-
-- maintain only the package skeleton and extraction contract;
-- do not copy the Stafford or Björk trees wholesale;
-- do not create generalized wrappers for unstable proof-specific modules;
-- do not import unpublished claims as axioms or trusted opaque declarations.
+`stafford38` has completed the inventory and extraction manifest.  The only
+permitted work before its full cleanup gate closes is the already-declared
+initial Ore/PBW slice and its consumer migration.  Do not copy either project
+wholesale, create generalized wrappers for unstable proof-specific modules, or
+import unpublished claims as axioms or trusted opaque declarations.
 
 ## First extraction slice
 
-The initial vertical slice is already consumed by both Stafford38 and Björk:
+The initial vertical slice is already consumed by both Stafford38 and Björk;
+its source migration is now in progress:
 
 ```text
 derivation-Ore definitions
@@ -79,4 +74,3 @@ theorems and defect absorption stay in Bjork.
 - generated API documentation and downstream examples;
 - complete repository and Git-history privacy/copyright scan;
 - Reservoir remains disabled until explicit public-release approval.
-
