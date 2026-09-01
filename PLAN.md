@@ -80,6 +80,15 @@ The boundary review is recorded in
 `docs/extraction-review-ore-pbw.md`; declaration provenance is recorded in
 `docs/provenance.yaml`.
 
+## Third extraction slice: ring commutators
+
+`AlgebraicAnalysis/Commutator.lean` now owns the application-independent
+commutator definition and its product and Weyl-relation power identities.
+The source material was duplicated across Stafford38's symplectic
+compatibility layer and Björk's Ore escape layer; both consumers are being
+migrated to this one API. The slice is trust-zero and has package API tests.
+Its consumer pin is recorded only after both downstream builds pass.
+
 ## Later candidate layers
 
 1. Ore intersections, division, and localization;

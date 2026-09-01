@@ -14,6 +14,17 @@ open AlgebraicAnalysis.OreIteratedPBW
 
 noncomputable section
 
+example {A : Type*} [Ring A] (u v x : A) :
+    AlgebraicAnalysis.commutator (u * v) x =
+      u * AlgebraicAnalysis.commutator v x +
+        AlgebraicAnalysis.commutator u x * v := by
+  exact AlgebraicAnalysis.commutator_mul u v x
+
+example {A : Type*} [Ring A] (z x : A)
+    (h : AlgebraicAnalysis.commutator z x = 1) :
+    AlgebraicAnalysis.commutator (z ^ 3) x = 3 • z ^ 2 := by
+  simpa using AlgebraicAnalysis.commutator_pow z x h 3
+
 def zeroDerivation : OreDivisionDerivation ℚ where
   toFun := fun _ => 0
   map_zero' := by simp

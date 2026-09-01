@@ -143,3 +143,26 @@ extractions:
     consumers:
       - plasma/proj/bjork
     depends_on: [ore-iterated-tower]
+
+  - id: ring-commutator
+    source_repository: itpplasma/stafford38
+    source_revision: 03230cd7a1a4c14a13a7cb00dbd6dc0b1c542bba
+    source_path: proofs/weyl_symplectic.lean
+    secondary_sources:
+      - repository: plasma/proj/bjork
+        revision: 640b51d0dcdca33a518b490801e7ca7ef903dfad
+        path: Bjork/OreCommutatorDerivative.lean
+    target_path: AlgebraicAnalysis/Commutator.lean
+    target_namespace: AlgebraicAnalysis
+    declaration_scope: commutator, commutator_mul, commutator_pow
+    license: Apache-2.0
+    authorship: inherited repository contributions; preserve source history in both consumers
+    consumers:
+      - itpplasma/stafford38
+      - plasma/proj/bjork
+    depends_on: []
+    notes: >-
+      The package definition uses the common two-argument convention
+      `[u,v] = u*v - v*u`.  Björk's fixed-coordinate additive map and
+      Stafford's historical namespace remain compatibility surfaces; the
+      multiplication identities have one authoritative proof here.
