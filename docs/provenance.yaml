@@ -1,0 +1,72 @@
+schema_version: 1
+package: itpplasma/algebraic-analysis
+status: private-pre-release
+policy: >-
+  Each extracted declaration has one authoritative home in this package.
+  Downstream repositories may retain import-only compatibility modules during
+  a migration, but never a second declaration.
+
+extractions:
+  - id: ore-right-division
+    source_repository: itpplasma/stafford38
+    source_revision: 25dc12ccaba6ad1ff74db7f9be813fb64fb10782
+    source_path: proofs/ore_right_division.lean
+    target_path: AlgebraicAnalysis/Ore/RightDivision.lean
+    target_namespace: AlgebraicAnalysis.OreDivision
+    declaration_scope: all declarations in the source file under Stafford
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Stafford38
+    consumers:
+      - itpplasma/stafford38
+      - plasma/proj/bjork
+    notes: >-
+      The package file is a namespace-neutral extraction.  The source also
+      contains a generic faithful ambient and reverse-multiplication layer;
+      no presented Weyl theorem is imported by this module.
+
+  - id: ore-associativity
+    source_repository: itpplasma/stafford38
+    source_revision: 25dc12ccaba6ad1ff74db7f9be813fb64fb10782
+    source_path: Stafford38/Ore/Associativity.lean
+    target_path: AlgebraicAnalysis/Ore/Associativity.lean
+    target_namespace: AlgebraicAnalysis.OreAssociativity
+    declaration_scope: all declarations in the source file under Stafford38.OreAssociativity
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Stafford38
+    consumers:
+      - itpplasma/stafford38
+      - plasma/proj/bjork
+    depends_on: [ore-right-division]
+
+  - id: ore-right-quotient
+    source_repository: itpplasma/stafford38
+    source_revision: 25dc12ccaba6ad1ff74db7f9be813fb64fb10782
+    source_path: Stafford38/Ore/RightQuotient.lean
+    source_section: generic pre-ConcreteWeyl section
+    target_path: AlgebraicAnalysis/Ore/RightQuotient.lean
+    target_namespace: AlgebraicAnalysis.OreRightQuotient
+    declaration_scope: all declarations in the extracted generic section
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Stafford38
+    consumers:
+      - itpplasma/stafford38
+      - plasma/proj/bjork
+    depends_on: [ore-right-division, ore-associativity]
+    notes: >-
+      The concrete iterated-Weyl section remains in Stafford38.  The package
+      owns only the opposite-module, finite-window, and two-generator quotient
+      interfaces.
+
+  - id: ore-right-hilbert-basis
+    source_repository: itpplasma/stafford38
+    source_revision: 25dc12ccaba6ad1ff74db7f9be813fb64fb10782
+    source_path: Stafford38/Ore/DerivationOreRightHilbertBasis.lean
+    target_path: AlgebraicAnalysis/Ore/RightHilbertBasis.lean
+    target_namespace: AlgebraicAnalysis.OreDerivationRightHilbertBasis
+    declaration_scope: all generic declarations; concrete iterated-Weyl closure excluded
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Stafford38
+    consumers:
+      - itpplasma/stafford38
+      - plasma/proj/bjork
+    depends_on: [ore-right-division, ore-associativity, ore-right-quotient]
