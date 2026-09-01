@@ -1,0 +1,17 @@
+name = "algebraicAnalysis"
+version = "0.1.0"
+defaultTargets = ["AlgebraicAnalysis"]
+reservoir = false
+lintDriver = "batteries/runLinter"
+testDriver = "AlgebraicAnalysisTest"
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4"
+rev = "v4.16.0"
+
+[[lean_lib]]
+name = "AlgebraicAnalysis"
+
+[[lean_lib]]
+name = "AlgebraicAnalysisTest"
