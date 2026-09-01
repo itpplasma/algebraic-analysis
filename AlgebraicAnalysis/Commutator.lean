@@ -16,24 +16,24 @@ section
 variable {A : Type*} [Ring A]
 
 /-- The ring commutator, with the written multiplication order retained. -/
-def commutator (u v : A) : A := u * v - v * u
+def ringCommutator (u v : A) : A := u * v - v * u
 
-@[simp] theorem commutator_apply (u v : A) :
-    commutator u v = u * v - v * u := rfl
+@[simp] theorem ringCommutator_apply (u v : A) :
+    ringCommutator u v = u * v - v * u := rfl
 
 /-- Leibniz expansion in the first argument. -/
-theorem commutator_mul (u v x : A) :
-    commutator (u * v) x =
-      u * commutator v x + commutator u x * v := by
-  simp only [commutator]
+theorem ringCommutator_mul (u v x : A) :
+    ringCommutator (u * v) x =
+      u * ringCommutator v x + ringCommutator u x * v := by
+  simp only [ringCommutator]
   noncomm_ring
 
 /-- Iterated commutation with a Weyl-type relation. -/
-theorem commutator_pow (z x : A) (h : commutator z x = 1) :
-    ∀ n : ℕ, commutator (z ^ n) x = n • z ^ (n - 1)
-  | 0 => by simp [commutator]
+theorem ringCommutator_pow (z x : A) (h : ringCommutator z x = 1) :
+    ∀ n : ℕ, ringCommutator (z ^ n) x = n • z ^ (n - 1)
+  | 0 => by simp [ringCommutator]
   | n + 1 => by
-      rw [pow_succ, commutator_mul, h, commutator_pow z x h n]
+      rw [pow_succ, ringCommutator_mul, h, ringCommutator_pow z x h n]
       by_cases hn : n = 0
       · subst n
         simp

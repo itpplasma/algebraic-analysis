@@ -154,7 +154,7 @@ extractions:
         path: Bjork/OreCommutatorDerivative.lean
     target_path: AlgebraicAnalysis/Commutator.lean
     target_namespace: AlgebraicAnalysis
-    declaration_scope: commutator, commutator_mul, commutator_pow
+    declaration_scope: ringCommutator, ringCommutator_mul, ringCommutator_pow
     license: Apache-2.0
     authorship: inherited repository contributions; preserve source history in both consumers
     consumers:
