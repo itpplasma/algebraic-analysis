@@ -73,7 +73,7 @@ extractions:
 
   - id: ore-left-pbw
     source_repository: plasma/proj/bjork
-    source_revision: 414131f
+    source_revision: 414131fa8173e3622667dc0ae19ad9a197a88a99
     source_path: Bjork/OrePBW.lean
     target_path: AlgebraicAnalysis/Ore/LeftPBW.lean
     target_namespace: AlgebraicAnalysis.OreLeftPBW
@@ -90,7 +90,7 @@ extractions:
 
   - id: ore-right-pbw
     source_repository: plasma/proj/bjork
-    source_revision: 414131f
+    source_revision: 414131fa8173e3622667dc0ae19ad9a197a88a99
     source_path: Bjork/RightOrePBW.lean
     target_path: AlgebraicAnalysis/Ore/RightPBW.lean
     target_namespace: AlgebraicAnalysis.OreRightPBW
@@ -107,7 +107,7 @@ extractions:
 
   - id: ore-commuting-lift
     source_repository: plasma/proj/bjork
-    source_revision: 414131f
+    source_revision: 414131fa8173e3622667dc0ae19ad9a197a88a99
     source_path: Bjork/OreTower.lean
     target_path: AlgebraicAnalysis/Ore/Tower.lean
     target_namespace: AlgebraicAnalysis.OreTower
@@ -120,7 +120,7 @@ extractions:
 
   - id: ore-iterated-tower
     source_repository: plasma/proj/bjork
-    source_revision: 414131f
+    source_revision: 414131fa8173e3622667dc0ae19ad9a197a88a99
     source_path: Bjork/IteratedOreTower.lean
     target_path: AlgebraicAnalysis/Ore/IteratedTower.lean
     target_namespace: AlgebraicAnalysis.OreIteratedTower
@@ -133,7 +133,7 @@ extractions:
 
   - id: ore-iterated-pbw
     source_repository: plasma/proj/bjork
-    source_revision: 414131f
+    source_revision: 414131fa8173e3622667dc0ae19ad9a197a88a99
     source_path: Bjork/IteratedPBW.lean
     target_path: AlgebraicAnalysis/Ore/IteratedPBW.lean
     target_namespace: AlgebraicAnalysis.OreIteratedPBW
