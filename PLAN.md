@@ -34,7 +34,7 @@ import unpublished claims as axioms or trusted opaque declarations.
 ## First extraction slice
 
 The initial vertical slice is already consumed by both Stafford38 and Björk;
-its source migration is now in progress:
+its source migration is complete at the pinned revision above:
 
 ```text
 derivation-Ore definitions
@@ -42,6 +42,12 @@ derivation-Ore definitions
   -> normal form and PBW
   -> right Hilbert-basis/Noetherian theorem
 ```
+
+The slice is `FORMALIZED`: its declarations have a trust-zero audit with only
+the standard Lean/Mathlib foundation. This does not formalize literature
+inputs or theorem-specific bridges in the consumer repositories. Consumers
+keep those inputs as explicit hypotheses; this package exposes no project
+axioms for them.
 
 Success requires:
 
