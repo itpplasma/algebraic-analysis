@@ -24,6 +24,12 @@ universe u
 
 variable {B : Type u} [Ring B]
 
+/-- The right Hilbert-basis assertion for one derivation-Ore stage. -/
+def DerivationOreRightHilbertBasis : Prop :=
+  ∀ {B : Type u} [Ring B], IsNoetherianRing Bᵐᵒᵖ →
+    ∀ D : OreDivisionDerivation B,
+      IsNoetherianRing (NormalOre D)ᵐᵒᵖ
+
 @[simp] theorem rightScalar_smul_def (b : Bᵐᵒᵖ) (c : B) :
     b • c = c * b.unop := MulOpposite.smul_eq_mul_unop
 
@@ -536,9 +542,7 @@ theorem normalOre_op_isNoetherian_of_subsingleton
     (NormalOre D)ᵐᵒᵖ (NormalOre D)ᵐᵒᵖ
 
 theorem derivationOre_rightHilbertBasis :
-    ∀ {B : Type u} [Ring B], IsNoetherianRing Bᵐᵒᵖ →
-      ∀ D : OreDivisionDerivation B,
-        IsNoetherianRing (NormalOre D)ᵐᵒᵖ := by
+    DerivationOreRightHilbertBasis.{u} := by
   intro B _ hB D
   letI : IsNoetherianRing Bᵐᵒᵖ := hB
   by_cases hnt : Nontrivial B
