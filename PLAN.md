@@ -6,7 +6,7 @@ active_gate: SECOND-SLICE-INTEGRATED
 first_consumers: [Stafford38, Bjork]
 current_revision: 9903c91ea8b89b0f82e3dc17b735911f68adba1c
 consumer_state: first and second slices integrated; both consumers build cleanly
-consumer_revisions: Stafford38@pending-current-migration-commit; Bjork@ce63915f
+consumer_revisions: Stafford38@ff76c4b6; Bjork@ce63915f
 public_release: false
 reservoir: false
 ```
