@@ -25,9 +25,9 @@ specific assembly remain downstream.
 
 ## Active gate
 
-`stafford38` has completed the inventory and extraction manifest.  The only
-permitted work before its full cleanup gate closes is the already-declared
-initial Ore/PBW slice and its consumer migration.  Do not copy either project
+`stafford38` has completed the inventory and the initial Ore/PBW consumer
+migration. The cleanup gate remains upstream in Stafford38; this package now
+stabilizes the extracted API and provenance. Do not copy either project
 wholesale, create generalized wrappers for unstable proof-specific modules, or
 import unpublished claims as axioms or trusted opaque declarations.
 
