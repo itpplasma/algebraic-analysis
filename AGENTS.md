@@ -1,8 +1,9 @@
 # Agent rules
 
 - `PLAN.md` is the sole current plan.
-- The active gate is `WAIT-STAFFORD38-CLEAN`. Do not extract or duplicate
-  downstream modules before that gate closes.
+- The active gate is `FIRST-SLICE-INTEGRATED`. Do not extract or duplicate a
+  second downstream slice before its API and second-consumer boundary are
+  reviewed.
 - This repository owns reusable, application-independent, axiom-clean
   mathematics. Stafford- or Björk-specific assembly remains downstream.
 - A literature theorem is not a trusted fact until proved in Lean. Definitions
@@ -17,4 +18,3 @@
 - Preserve unrelated changes and stage explicit paths.
 - Keep the repository private until an explicit history, license, secret, and
   release audit passes.
-

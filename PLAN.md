@@ -2,8 +2,11 @@
 
 ```yaml
 phase: private-package-extraction
-active_gate: STAFFORD38-CLEAN
+active_gate: FIRST-SLICE-INTEGRATED
 first_consumers: [Stafford38, Bjork]
+current_revision: fdb9561
+consumer_state: first slice integrated and both consumers build cleanly
+consumer_revisions: Stafford38@bec70c7e; Bjork@da56106
 public_release: false
 reservoir: false
 ```
