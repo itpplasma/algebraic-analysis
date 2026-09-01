@@ -2,10 +2,10 @@
 
 ```yaml
 phase: private-package-extraction
-active_gate: FIRST-SLICE-INTEGRATED
+active_gate: SECOND-SLICE-PACKAGE-VERIFIED
 first_consumers: [Stafford38, Bjork]
 current_revision: fdb9561
-consumer_state: first slice integrated and both consumers build cleanly
+consumer_state: first slice integrated; second PBW/tower slice package-verified, consumer wiring pending
 consumer_revisions: Stafford38@bec70c7e; Bjork@da56106
 public_release: false
 reservoir: false
@@ -57,6 +57,27 @@ Success requires:
    oracles where computation is meaningful;
 4. Stafford38 and Björk both building against one pinned library revision;
 5. removal of the extracted downstream copies in the same integration wave.
+
+## Second extraction slice: PBW and commuting Ore towers
+
+The reviewed second slice is package-verified in the working tree and is
+ready for consumer migration. It moves the application-independent material
+from Björk commit `414131f` into five neutral modules:
+
+```text
+LeftPBW -> Tower -> IteratedTower -> IteratedPBW
+RightPBW
+```
+
+The package build and API tests pass with the standard Lean foundation only.
+The migration is not complete until Björk and Stafford38 pin the resulting
+package commit, build against it, and retain only import-only compatibility
+modules at the old paths. The package owns no Stafford/Björk theorem, no
+literature assumption, and no project-specific bridge.
+
+The boundary review is recorded in
+`docs/extraction-review-ore-pbw.md`; declaration provenance is recorded in
+`docs/provenance.yaml`.
 
 ## Later candidate layers
 

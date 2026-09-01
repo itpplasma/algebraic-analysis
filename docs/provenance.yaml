@@ -70,3 +70,76 @@ extractions:
       - itpplasma/stafford38
       - plasma/proj/bjork
     depends_on: [ore-right-division, ore-associativity, ore-right-quotient]
+
+  - id: ore-left-pbw
+    source_repository: plasma/proj/bjork
+    source_revision: 414131f
+    source_path: Bjork/OrePBW.lean
+    target_path: AlgebraicAnalysis/Ore/LeftPBW.lean
+    target_namespace: AlgebraicAnalysis.OreLeftPBW
+    declaration_scope: all generic left PBW declarations in the source file
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - plasma/proj/bjork
+      - itpplasma/stafford38
+    depends_on: [ore-associativity]
+    notes: >-
+      The package module changes only the namespace and import path.  It owns
+      the left normal-form basis, not any application-specific tower theorem.
+
+  - id: ore-right-pbw
+    source_repository: plasma/proj/bjork
+    source_revision: 414131f
+    source_path: Bjork/RightOrePBW.lean
+    target_path: AlgebraicAnalysis/Ore/RightPBW.lean
+    target_namespace: AlgebraicAnalysis.OreRightPBW
+    declaration_scope: all generic right PBW declarations in the source file
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - plasma/proj/bjork
+      - itpplasma/stafford38
+    depends_on: [ore-right-hilbert-basis]
+    notes: >-
+      Right-module orientation is retained explicitly; no left/right
+      identification is introduced by the extraction.
+
+  - id: ore-commuting-lift
+    source_repository: plasma/proj/bjork
+    source_revision: 414131f
+    source_path: Bjork/OreTower.lean
+    target_path: AlgebraicAnalysis/Ore/Tower.lean
+    target_namespace: AlgebraicAnalysis.OreTower
+    declaration_scope: all generic coefficientwise commuting-lift declarations
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - plasma/proj/bjork
+    depends_on: [ore-left-pbw]
+
+  - id: ore-iterated-tower
+    source_repository: plasma/proj/bjork
+    source_revision: 414131f
+    source_path: Bjork/IteratedOreTower.lean
+    target_path: AlgebraicAnalysis/Ore/IteratedTower.lean
+    target_namespace: AlgebraicAnalysis.OreIteratedTower
+    declaration_scope: all generic finite commuting derivation-Ore tower declarations
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - plasma/proj/bjork
+    depends_on: [ore-commuting-lift]
+
+  - id: ore-iterated-pbw
+    source_repository: plasma/proj/bjork
+    source_revision: 414131f
+    source_path: Bjork/IteratedPBW.lean
+    target_path: AlgebraicAnalysis/Ore/IteratedPBW.lean
+    target_namespace: AlgebraicAnalysis.OreIteratedPBW
+    declaration_scope: all generic field-linear PBW declarations for finite towers
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - plasma/proj/bjork
+    depends_on: [ore-iterated-tower]

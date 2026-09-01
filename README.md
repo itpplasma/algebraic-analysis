@@ -5,8 +5,9 @@ modules, algebraic differential operators, characteristic geometry, and
 related exact certificates.
 
 The repository is private and pre-release. It contains the first reviewed
-Ore/PBW extraction from Stafford38; downstream rewiring and removal of the
-former authorities are part of the same migration gate in `PLAN.md`.
+Ore/PBW extraction from Stafford38 and a package-verified PBW/tower extraction
+from Björk. Downstream rewiring and removal of the former authorities are
+part of the same migration gate in `PLAN.md`.
 
 Planned downstream consumers:
 

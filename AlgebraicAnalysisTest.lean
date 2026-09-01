@@ -6,6 +6,13 @@ open Polynomial
 open AlgebraicAnalysis
 open AlgebraicAnalysis.OreDivision
 open AlgebraicAnalysis.OreAssociativity
+open AlgebraicAnalysis.OreLeftPBW
+open AlgebraicAnalysis.OreRightPBW
+open AlgebraicAnalysis.OreTower
+open AlgebraicAnalysis.OreIteratedTower
+open AlgebraicAnalysis.OreIteratedPBW
+
+noncomputable section
 
 def zeroDerivation : OreDivisionDerivation ℚ where
   toFun := fun _ => 0
@@ -17,3 +24,21 @@ example (p q r : Polynomial ℚ) :
     rightMul zeroDerivation (rightMul zeroDerivation p q) r =
       rightMul zeroDerivation p (rightMul zeroDerivation q r) := by
   exact rightMul_assoc_of_ring zeroDerivation p q r
+
+example (D : OreDivisionDerivation ℚ) (n : ℕ) :
+    orePBWBasis D n = normalVariable D ^ n := by
+  exact orePBWBasis_apply D n
+
+example (D : OreDivisionDerivation ℚ) (n : ℕ) :
+    rightOrePBWBasis D n = rightPBWMonomial D n := by
+  exact rightOrePBWBasis_apply D n
+
+example (Ds : List (Derivation ℚ)) (hDs : PairwiseCommutes Ds) :
+    Function.Injective (iteratedNormalForm Ds hDs) := by
+  exact iteratedNormalForm_injective Ds hDs
+
+example (Ds : List (KDerivation ℚ)) (hDs : PairwiseCommutes Ds) :
+    Basis (exponentIndex Ds) ℚ (OreTower Ds hDs) := by
+  exact towerPBWBasis Ds hDs
+
+end
