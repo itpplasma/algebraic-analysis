@@ -4,9 +4,7 @@
 phase: private-package-extraction
 active_gate: SECOND-SLICE-INTEGRATED
 first_consumers: [Stafford38, Bjork]
-repository_head: a7276f5232a9deb6f197e259fd8a1188473a636a
 integrated_api_revision: 9903c91ea8b89b0f82e3dc17b735911f68adba1c
-consumer_heads: Stafford38@3e998dd7198316ee3deb5cb96616f20766723bb4; Bjork@e54deab23b663188fda277994eef95ed0131886e
 consumer_state: first and second slices integrated; both consumers build cleanly
 public_release: false
 reservoir: false
@@ -36,8 +34,9 @@ import unpublished claims as axioms or trusted opaque declarations.
 
 The initial vertical slice is already consumed by both Stafford38 and Björk.
 The second slice is also integrated. The consumers deliberately pin the
-immutable API revision above; the package repository head currently contains
-provenance synchronization after that integration wave:
+immutable API revision above. Historical source and integration revisions are
+in `docs/provenance.yaml`; live dependency synchronization is checked from
+the consumer `lakefile.toml` files rather than copied into this plan.
 
 ```text
 derivation-Ore definitions
