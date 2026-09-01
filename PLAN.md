@@ -2,10 +2,10 @@
 
 ```yaml
 phase: private-package-extraction
-active_gate: SECOND-SLICE-INTEGRATED
+active_gate: THIRD-SLICE-INTEGRATED
 first_consumers: [Stafford38, Bjork]
-integrated_api_revision: 9903c91ea8b89b0f82e3dc17b735911f68adba1c
-consumer_state: first and second slices integrated; both consumers build cleanly
+integrated_api_revision: 1f49fca2fbf858a8b095b1add7716d9da407d5ef
+consumer_state: first, second, and third slices integrated; both consumers build cleanly
 public_release: false
 reservoir: false
 ```
@@ -24,9 +24,9 @@ specific assembly remain downstream.
 
 ## Active gate
 
-`stafford38` has completed the inventory and both reviewed Ore/PBW consumer
-migrations. The remaining cleanup gate is upstream in Stafford38; this package
-stabilizes the extracted API and provenance. Do not copy either project
+`stafford38` has completed the inventory and the reviewed Ore/PBW and
+commutator consumer migrations. The remaining cleanup gate is upstream in
+Stafford38; this package stabilizes the extracted API and provenance. Do not copy either project
 wholesale, create generalized wrappers for unstable proof-specific modules, or
 import unpublished claims as axioms or trusted opaque declarations.
 
@@ -82,12 +82,12 @@ The boundary review is recorded in
 
 ## Third extraction slice: ring commutators
 
-`AlgebraicAnalysis/Commutator.lean` now owns the application-independent
-commutator definition and its product and Weyl-relation power identities.
-The source material was duplicated across Stafford38's symplectic
-compatibility layer and Björk's Ore escape layer; both consumers are being
-migrated to this one API. The slice is trust-zero and has package API tests.
-Its consumer pin is recorded only after both downstream builds pass.
+`AlgebraicAnalysis/Commutator.lean` owns the application-independent commutator
+definition and its product and Weyl-relation power identities. The source
+material was duplicated across Stafford38's symplectic compatibility layer and
+Björk's Ore escape layer. The slice is trust-zero, has package API tests, and
+is integrated at package revision `1f49fca`; Björk commit `d4e0cff` and
+Stafford38 commit `ef6bd310` both build against it.
 
 ## Later candidate layers
 
