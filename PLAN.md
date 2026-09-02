@@ -66,12 +66,13 @@ The current Björk-only module layer is also extracted and audited:
 12. finite generation of the fraction field of a finitely generated domain as
     an intermediate field, with a concrete rational-function-field API test.
 
-The neutral strict-filtration kernel is staged in the package: strictness of
+The neutral strict-filtration kernel is integrated in the package: strictness of
 a globally surjective filtration-preserving endomorphism implies
 surjectivity on every filtration subquotient.  This is a genuine reusable
 step in Stafford's noncharacteristic lane, but it does not prove the missing
 adapted-good-filtration theorem and is not advertised as such.  It will be
-pinned downstream when that construction supplies the strictness hypothesis.
+used directly downstream when that construction supplies the strictness
+hypothesis; the current consumer pins already contain the API.
 
 Monic right division now also gives the exact direct complement between a
 principal right ideal and its finite right-PBW remainder window. Thus a monic

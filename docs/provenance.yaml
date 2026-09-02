@@ -7,6 +7,26 @@ policy: >-
   a migration, but never a second declaration.
 
 extractions:
+  - id: strict-filtered-subquotient-surjectivity
+    source_repository: itpplasma/algebraic-analysis
+    source_revision: original-development
+    source_path: AlgebraicAnalysis/Module/FilteredStrictness.lean
+    target_path: AlgebraicAnalysis/Module/FilteredStrictness.lean
+    target_namespace: AlgebraicAnalysis.FilteredStrictness
+    declaration_scope: >-
+      strict filtered endomorphisms, filtration subquotients, their induced
+      maps, and surjectivity on every subquotient from global surjectivity and
+      strictness
+    license: Apache-2.0
+    authorship: original package development
+    consumers:
+      - itpplasma/stafford38
+    depends_on: []
+    notes: >-
+      The strictness hypothesis is explicit. This theorem does not construct
+      an adapted good filtration and does not prove noncharacteristic inverse
+      image or characteristic-support avoidance.
+
   - id: finite-type-domain-function-field
     source_repository: itpplasma/algebraic-analysis
     source_revision: original-development
