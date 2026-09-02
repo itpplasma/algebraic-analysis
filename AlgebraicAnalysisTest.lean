@@ -23,6 +23,9 @@ open AlgebraicAnalysis.FreeSummandInduction
 open AlgebraicAnalysis.TorsionProjectiveImage
 open AlgebraicAnalysis.FilteredSchreyer
 open AlgebraicAnalysis.InverseEulerRiccati
+open AlgebraicAnalysis.NoncommutativeDerivation
+open AlgebraicAnalysis.Splice
+open AlgebraicAnalysis.TwoSimplicity
 open OreLocalization
 open MulOpposite
 
@@ -161,5 +164,24 @@ example {A : Type*} {E : Type*} [Ring A] [AddCommGroup E]
         a = t + (MulOpposite.op x) • b :=
   range_add_lower_iff_preimage_add_rightMultiple
     phi L a C x ha hone hLx hstrict
+
+example {E : Type*} [Ring E] [Nontrivial E]
+    (d : E →+ E) (hd : IsDerivation d) (x : E)
+    (hx : ∀ y : E, Commute x y) (hdx : d x = 1) :
+    ¬ IsInnerDerivation d := by
+  exact not_inner_of_central_coordinate d hd x hx hdx
+
+example {R M : Type*} [Ring R] [AddCommGroup M] [Module R M]
+    {N N' U : Submodule R M}
+    (hNU : N ≤ U) (hNN' : N ⋖ N')
+    (hsup : N' ⊔ U = ⊤) (hUtop : U ≠ ⊤) :
+    IsCoatom U := by
+  exact isCoatom_of_covBy_sup_eq_top hNU hNN' hsup hUtop
+
+example {Λ Γ : Type*} [Ring Λ] [Ring Γ]
+    (ι : Λ →+* Γ) (hΛ : TwoSimple Λ)
+    (hquot : PrincipalRightQuotientTorsion ι) :
+    TwoSimple Γ := by
+  exact twoSimple_of_principalRightQuotientTorsion ι hΛ hquot
 
 end

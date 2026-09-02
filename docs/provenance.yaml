@@ -370,3 +370,61 @@ extractions:
       The strictness premise is explicit.  The canonical Weyl presentation and
       its unresolved strict producer remain downstream; no filtered
       cancellation or Stafford conclusion is asserted.
+
+  - id: noncommutative-central-derivation
+    source_repository: plasma/proj/bjork
+    source_revision: 942b78896acbc9bd79d156ae15da8ef1c6fd75d4
+    source_paths:
+      - Bjork/InnerDerivation.lean
+      - Bjork/StageCentral.lean
+    target_path: AlgebraicAnalysis/Derivation/Central.lean
+    target_namespace: AlgebraicAnalysis.NoncommutativeDerivation
+    declaration_scope: >-
+      additive Leibniz and innerness predicates, central-coordinate obstruction,
+      generated-subring commutation, fraction-presentation centrality, and the
+      central-coordinate non-innerness consumer
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - plasma/proj/bjork
+    depends_on: []
+    notes: >-
+      The fraction representation, denominator-unit, and centrality
+      hypotheses remain explicit.  No localization or differential-operator
+      realization is asserted.
+
+  - id: module-splice
+    source_repository: plasma/proj/bjork
+    source_revision: 942b78896acbc9bd79d156ae15da8ef1c6fd75d4
+    source_path: Bjork/Splice.lean
+    target_path: AlgebraicAnalysis/Module/Splice.lean
+    target_namespace: AlgebraicAnalysis.Splice
+    declaration_scope: >-
+      simple-layer maximality, maximal-submodule splice, and affine correction
+      in a simple quotient
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - plasma/proj/bjork
+    depends_on: []
+    notes: >-
+      The construction of the simple layer and all application-specific
+      correction data remain downstream.
+
+  - id: module-two-simplicity-transfer
+    source_repository: plasma/proj/bjork
+    source_revision: 942b78896acbc9bd79d156ae15da8ef1c6fd75d4
+    source_path: Bjork/TwoSimplicityTransfer.lean
+    target_path: AlgebraicAnalysis/Module/TwoSimplicity.lean
+    target_namespace: AlgebraicAnalysis.TwoSimplicity
+    declaration_scope: >-
+      abstract two-simple identity, finite torsion-free extension interface,
+      principal-right-quotient torsion interface, and its transfer theorem
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - plasma/proj/bjork
+    depends_on: []
+    notes: >-
+      The theorem transfers an explicitly supplied principal quotient torsion
+      statement.  It does not prove that statement from localization or rank.
