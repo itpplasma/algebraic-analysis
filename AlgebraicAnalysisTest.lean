@@ -26,6 +26,10 @@ open AlgebraicAnalysis.InverseEulerRiccati
 open AlgebraicAnalysis.NoncommutativeDerivation
 open AlgebraicAnalysis.Splice
 open AlgebraicAnalysis.TwoSimplicity
+open AlgebraicAnalysis.Escape
+open AlgebraicAnalysis.EscapeSpan
+open AlgebraicAnalysis.EscapeAssembly
+open AlgebraicAnalysis.RightCoordinates
 open OreLocalization
 open MulOpposite
 
@@ -183,5 +187,28 @@ example {Λ Γ : Type*} [Ring Λ] [Ring Γ]
     (hquot : PrincipalRightQuotientTorsion ι) :
     TwoSimple Γ := by
   exact twoSimple_of_principalRightQuotientTorsion ι hΛ hquot
+
+example {S ι : Type*} [Ring S] (v : ι →₀ S) (a b : S) :
+    rightCoordinateAction (rightCoordinateAction v a) b =
+      rightCoordinateAction v (a * b) := by
+  exact rightCoordinateAction_mul v a b
+
+example {S : Type*} [Ring S] {n : ℕ}
+    (H : Submodule Sᵐᵒᵖ (Fin n → S))
+    (hunit : ∀ i : Fin n, ∃ u : S, IsUnit u ∧
+      (Pi.single i u : Fin n → S) ∈ H) :
+    H = ⊤ := by
+  exact top_of_unit_singletons H hunit
+
+example {E S : Type*} [DivisionRing E] [CharZero E] [Ring S]
+    {n : ℕ} (D : CentralEscapeData (E := E) (S := S))
+    (p : Fin n → Polynomial E) (hp : ∀ i, p i ≠ 0)
+    (hstrict : StrictAnti (fun i => (p i).natDegree))
+    (H : Submodule Sᵐᵒᵖ (Fin n → S))
+    (hv : (fun i => D.normal (p i)) ∈ H)
+    (hleft : ∀ v : Fin n → S, v ∈ H →
+      (fun i => D.embed D.coordinate * v i) ∈ H) :
+    H = ⊤ := by
+  exact finite_tuple_escape D p hp hstrict H hv hleft
 
 end

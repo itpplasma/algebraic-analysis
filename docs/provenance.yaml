@@ -428,3 +428,77 @@ extractions:
     notes: >-
       The theorem transfers an explicitly supplied principal quotient torsion
       statement.  It does not prove that statement from localization or rank.
+
+  - id: central-escape-kernel
+    source_repository: plasma/proj/bjork
+    source_revision: 2b398f0d8969b552133f33885bceab1988dabdc7
+    source_path: Bjork/Escape.lean
+    target_path: AlgebraicAnalysis/Derivation/Escape.lean
+    target_namespace: AlgebraicAnalysis.Escape
+    declaration_scope: >-
+      additive right-coordinate commutator, central escape data, polynomial
+      derivative iteration, degree reduction, and unit production
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - plasma/proj/bjork
+    depends_on: []
+    notes: >-
+      The transport identity from a concrete Ore stage remains an explicit
+      hypothesis.  No module span, localization, simplicity, or Stafford
+      conclusion is asserted.
+
+  - id: central-escape-span
+    source_repository: plasma/proj/bjork
+    source_revision: 2b398f0d8969b552133f33885bceab1988dabdc7
+    source_path: Bjork/EscapeSpan.lean
+    target_path: AlgebraicAnalysis/Module/EscapeSpan.lean
+    target_namespace: AlgebraicAnalysis.EscapeSpan
+    declaration_scope: >-
+      right-sided finite-coordinate action, commutator stability, unit
+      singleton inversion, and top-generation of a finite free coordinate
+      module
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - plasma/proj/bjork
+    depends_on: [central-escape-kernel]
+    notes: >-
+      The submodule is explicitly an opposite-ring module, so all scalar
+      actions retain written right-sided order.
+
+  - id: central-escape-assembly
+    source_repository: plasma/proj/bjork
+    source_revision: 2b398f0d8969b552133f33885bceab1988dabdc7
+    source_path: Bjork/EscapeAssembly.lean
+    target_path: AlgebraicAnalysis/Module/EscapeAssembly.lean
+    target_namespace: AlgebraicAnalysis.EscapeAssembly
+    declaration_scope: >-
+      finite residual-coordinate elimination and finite-tuple escape under
+      explicit strict-degree and left-closure hypotheses
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - plasma/proj/bjork
+    depends_on: [central-escape-kernel, central-escape-span]
+    notes: >-
+      This is a conditional finite module theorem.  It does not construct a
+      global Stafford correction family.
+
+  - id: right-coordinate-primitives
+    source_repository: plasma/proj/bjork
+    source_revision: 2b398f0d8969b552133f33885bceab1988dabdc7
+    source_path: Bjork/StageFreeness.lean
+    target_path: AlgebraicAnalysis/Module/RightCoordinates.lean
+    target_namespace: AlgebraicAnalysis.RightCoordinates
+    declaration_scope: >-
+      coordinatewise right action on finitely supported vectors, pure-coordinate
+      decomposition, and top-generation from pure coordinate membership
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - plasma/proj/bjork
+    depends_on: []
+    notes: >-
+      The file intentionally does not assert freeness of an Ore localization;
+      it only supplies the generic free-coordinate model.

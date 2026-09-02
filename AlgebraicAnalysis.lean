@@ -1,6 +1,7 @@
 import AlgebraicAnalysis.Commutator
 import AlgebraicAnalysis.CommutatorRiccati
 import AlgebraicAnalysis.Derivation.Central
+import AlgebraicAnalysis.Derivation.Escape
 import AlgebraicAnalysis.Ore.RightHilbertBasis
 import AlgebraicAnalysis.Ore.RightIntersection
 import AlgebraicAnalysis.Ore.PrincipalRightIdeal
@@ -20,6 +21,9 @@ import AlgebraicAnalysis.Module.TorsionProjectiveImage
 import AlgebraicAnalysis.Module.FilteredSchreyer
 import AlgebraicAnalysis.Module.Splice
 import AlgebraicAnalysis.Module.TwoSimplicity
+import AlgebraicAnalysis.Module.EscapeSpan
+import AlgebraicAnalysis.Module.EscapeAssembly
+import AlgebraicAnalysis.Module.RightCoordinates
 
 /-!
 # AlgebraicAnalysis
