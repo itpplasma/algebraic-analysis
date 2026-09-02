@@ -1,5 +1,6 @@
 import AlgebraicAnalysis.Commutator
 import AlgebraicAnalysis.CommutatorRiccati
+import AlgebraicAnalysis.FieldTheory.FunctionField
 import AlgebraicAnalysis.Polynomial.DistinguishedVariable
 import AlgebraicAnalysis.Ore.ActiveCoordinate
 import AlgebraicAnalysis.Derivation.Central

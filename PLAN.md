@@ -63,6 +63,8 @@ The current Björk-only module layer is also extracted and audited:
 11. the ring/module-only filtered Schreyer equivalence, with explicit
     opposite-ring right multiplication and a separately stated strictness
     hypothesis.
+12. finite generation of the fraction field of a finitely generated domain as
+    an intermediate field, with a concrete rational-function-field API test.
 
 The neutral strict-filtration kernel is staged in the package: strictness of
 a globally surjective filtration-preserving endomorphism implies
@@ -143,6 +145,7 @@ These are candidates, not promises to extract wholesale:
 | rank, torsion, finite length, unimodular/projective modules | generic division-ring rank, denominator-torsion, unimodular-splitting, and projective-image layers are extracted; finite-length and two-functional/right-sided assemblies remain downstream |
 | inverse-Euler/Riccati calculus | generic ring identities are extracted; Weyl-specific applications remain downstream |
 | Poisson, Kähler, conormal, DVR and completion | keep theorem-specific until genuinely reusable |
+| affine function-field finiteness | generic fraction-field theorem integrated; component and boundary-place applications remain in Stafford38 |
 | certificate formats | extract only after a second checker consumes the format |
 | central derivation, module splice, two-simplicity transfer | integrated in the package; Björk retains import-only compatibility surfaces and application-specific assemblies |
 | central escape and right-coordinate primitives | integrated in the package; concrete Ore transport and escape/splice assemblies remain downstream |

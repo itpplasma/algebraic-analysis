@@ -35,10 +35,18 @@ open AlgebraicAnalysis.Escape
 open AlgebraicAnalysis.EscapeSpan
 open AlgebraicAnalysis.EscapeAssembly
 open AlgebraicAnalysis.RightCoordinates
+open AlgebraicAnalysis.FunctionField
 open OreLocalization
 open MulOpposite
 
 noncomputable section
+
+/-- Concrete function-field consumer: the rational function field is finitely
+generated as a field extension, although not as a polynomial algebra. -/
+example :
+    (⊤ : IntermediateField ℚ (FractionRing (Polynomial ℚ))).FG := by
+  exact top_fg_of_finiteType_fractionRing
+    ℚ (Polynomial ℚ) (FractionRing (Polynomial ℚ))
 
 example {A : Type*} [Ring A] (u v x : A) :
     AlgebraicAnalysis.ringCommutator (u * v) x =

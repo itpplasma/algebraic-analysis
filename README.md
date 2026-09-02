@@ -24,6 +24,11 @@ The polynomial layer contains a scheme-theoretic distinguished-axis lemma for
 homogeneous relations in prime ideals. It is generic commutative algebra; the
 Stafford symbol and support specialization remains downstream.
 
+The field-theory layer proves that the fraction field of a finitely generated
+domain is finitely generated as an intermediate field. This is the form used
+for affine component function fields; it does not incorrectly assert finite
+type as an algebra.
+
 The package contains the generic central-coordinate escape kernel, finite-tuple
 span consequences, and right-coordinate module primitives. The concrete Ore
 transport and application-specific correction assemblies remain in Björk.

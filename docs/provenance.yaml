@@ -7,6 +7,25 @@ policy: >-
   a migration, but never a second declaration.
 
 extractions:
+  - id: finite-type-domain-function-field
+    source_repository: itpplasma/algebraic-analysis
+    source_revision: original-development
+    source_path: AlgebraicAnalysis/FieldTheory/FunctionField.lean
+    target_path: AlgebraicAnalysis/FieldTheory/FunctionField.lean
+    target_namespace: AlgebraicAnalysis.FunctionField
+    declaration_scope: >-
+      finite generation, as an intermediate field, of any fraction field of a
+      finitely generated domain
+    license: Apache-2.0
+    authorship: original package development
+    consumers:
+      - itpplasma/stafford38
+    depends_on: []
+    notes: >-
+      The theorem is generic field theory. It does not construct an affine
+      component, a valuation, or a projective boundary chart, and it does not
+      claim that a transcendental fraction field is finite type as an algebra.
+
   - id: distinguished-variable-prime-relation
     source_repository: itpplasma/algebraic-analysis
     source_revision: original-development
