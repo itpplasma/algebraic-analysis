@@ -3,9 +3,9 @@
 ```yaml
 phase: private-package-extraction
 mission: reusable-trust-zero-algebraic-analysis
-active_gate: next-slice-audit
-integrated_api_revision: a0676c9e800b7c4783e8cf36e705ca82d6a719a1
-staged_slice: escape-and-right-coordinate-primitives
+active_gate: next-slice-selection
+integrated_api_revision: b9685539b4c0b80573d4139e196ad28b9b2ec7b0
+staged_slice: none
 consumers: [Stafford38, Bjork]
 public_release: false
 reservoir: false
@@ -68,11 +68,11 @@ and abstract two-simplicity transfer are integrated at the pinned revision
 above.  Their Björk source paths are now import-only compatibility surfaces;
 the application-specific hypotheses and assemblies remain in Björk.
 
-The next staged slice is the generic central-coordinate escape kernel,
-finite-tuple escape span, finite right-coordinate model, and their explicit
-right-sided module consequences.  The package copies are compiled and
-API-tested locally; Björk compatibility migration and the immutable package
-pin are the remaining integration steps for this slice.
+The generic central-coordinate escape kernel, finite-tuple escape span, finite
+right-coordinate model, and their explicit right-sided module consequences
+are integrated at the pinned revision above.  Björk imports them through
+compatibility aliases; concrete Ore transport and application-specific
+correction assemblies remain downstream.
 
 Provenance and extraction reviews are in
 [`docs/provenance.yaml`](docs/provenance.yaml) and
@@ -93,7 +93,7 @@ These are candidates, not promises to extract wholesale:
 | Poisson, Kähler, conormal, DVR and completion | keep theorem-specific until genuinely reusable |
 | certificate formats | extract only after a second checker consumes the format |
 | central derivation, module splice, two-simplicity transfer | integrated in the package; Björk retains import-only compatibility surfaces and application-specific assemblies |
-| central escape and right-coordinate primitives | staged for package integration; concrete Ore transport and escape/splice assemblies remain downstream |
+| central escape and right-coordinate primitives | integrated in the package; concrete Ore transport and escape/splice assemblies remain downstream |
 
 In particular, Björk's noncommutative flatness, rank-to-generator, finite-
 length, and unimodular/projective assemblies remain downstream. The extracted

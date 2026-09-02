@@ -15,10 +15,9 @@ inverse-Euler/Riccati commutator identities used by Stafford38. Current
 pins, provenance, and the distinction between shared and single-consumer
 slices are recorded in `PLAN.md` and `docs/provenance.yaml`.
 
-A staged private slice adds the generic central-coordinate escape kernel,
-finite-tuple span consequences, and right-coordinate module primitives. The
-concrete Ore transport and application-specific correction assemblies remain
-in Björk until their integration audit is complete.
+The package contains the generic central-coordinate escape kernel, finite-tuple
+span consequences, and right-coordinate module primitives. The concrete Ore
+transport and application-specific correction assemblies remain in Björk.
 
 The package also exposes the ring/module-only filtered Schreyer equivalence
 used to translate a lower-order right-ideal problem into a source relation;
