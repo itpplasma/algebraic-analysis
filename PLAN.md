@@ -4,7 +4,7 @@
 phase: private-package-extraction
 mission: reusable-trust-zero-algebraic-analysis
 active_gate: stable-api-and-second-consumer-review
-integrated_api_revision: 1f49fca2fbf858a8b095b1add7716d9da407d5ef
+integrated_api_revision: 415a9a5c489491835cb563ddb2fecfc979d3d510
 consumers: [Stafford38, Bjork]
 public_release: false
 reservoir: false
@@ -35,7 +35,9 @@ both downstream repositories at the pinned API revision:
 1. derivation-Ore definitions, associativity, normal forms, right quotient,
    and right Hilbert-basis/Noetherian infrastructure;
 2. left/right PBW bases and finite commuting Ore towers;
-3. the common ring-commutator definition and product/power identities.
+3. the common ring-commutator definition and product/power identities;
+4. the explicit common-right-multiple criterion and finite right-ideal
+   intersection theorem.
 
 Provenance and extraction reviews are in
 [`docs/provenance.yaml`](docs/provenance.yaml) and
@@ -48,7 +50,7 @@ These are candidates, not promises to extract wholesale:
 
 | Layer | Current disposition |
 | --- | --- |
-| Ore intersections, division, localization | audit API and sidedness; extract only a stable generic slice |
+| Ore intersections, division, localization | finite right-ideal intersection is extracted; audit the remaining localization/division layers for a stable generic slice |
 | presented Weyl/symplectic substitutions | keep downstream until a second application exists |
 | filtrations, Rees, graded and symbol modules | keep downstream while their interfaces are paper-specific |
 | rank, torsion, finite length, unimodular/projective modules | audit for independent consumers; no forced migration |

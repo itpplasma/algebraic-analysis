@@ -6,7 +6,8 @@ related exact certificates.
 
 The repository is private and pre-release. It contains the first reviewed
 Ore/PBW extraction from Stafford38 and a package-verified PBW/tower extraction
-from Björk. Both downstream projects build against the pinned API revision;
+from Björk, plus the generic finite right-Ore intersection primitive. Both
+downstream projects build against the pinned API revision;
 current pins and provenance are recorded in `PLAN.md` and `docs/provenance.yaml`.
 
 Planned downstream consumers:

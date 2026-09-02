@@ -144,6 +144,23 @@ extractions:
       - plasma/proj/bjork
     depends_on: [ore-iterated-tower]
 
+  - id: ore-right-finite-intersection
+    source_repository: plasma/proj/bjork
+    source_revision: 4bcc4b6368e64afa9224ba75afa153daef3ab0b7
+    source_path: Bjork/OreIntersection.lean
+    target_path: AlgebraicAnalysis/Ore/RightIntersection.lean
+    target_namespace: AlgebraicAnalysis.OreRightIntersection
+    declaration_scope: RightOreCondition and exists_mem_finset_rightIdeals
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - plasma/proj/bjork
+    depends_on: []
+    notes: >-
+      The theorem is an explicit finite-family right-ideal intersection
+      result.  It assumes the common-right-multiple condition directly and
+      does not assert localization, flatness, or any headline conjecture.
+
   - id: ring-commutator
     source_repository: itpplasma/stafford38
     source_revision: 03230cd7a1a4c14a13a7cb00dbd6dc0b1c542bba
