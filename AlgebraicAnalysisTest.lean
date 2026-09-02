@@ -311,4 +311,66 @@ example :
       norm_num at h'
     simp [MvPolynomial.coeff_add, MvPolynomial.coeff_X_pow, hne]
 
+example :
+    let F : ℕ → Submodule ℚ ℚ := fun n ↦ if n = 0 then ⊥ else ⊤
+    let neg : ℚ →ₗ[ℚ] ℚ := -LinearMap.id
+    ∃ hF : Monotone F,
+      ∃ hpres : ∀ n, ∀ x ∈ F n, neg x ∈ F n,
+        Function.Surjective
+          (AlgebraicAnalysis.FilteredStrictness.gradedQuotientMap
+            F hF neg hpres 0 1 (by omega)) := by
+  dsimp only
+  let F : ℕ → Submodule ℚ ℚ := fun n ↦ if n = 0 then ⊥ else ⊤
+  let neg : ℚ →ₗ[ℚ] ℚ := -LinearMap.id
+  have hF : Monotone F := by
+    intro m n hmn
+    by_cases hm : m = 0
+    · subst m
+      simp [F]
+    · have hn : n ≠ 0 := by omega
+      simp [F, hm, hn]
+  have hneg : Function.Surjective neg := by
+    intro y
+    exact ⟨-y, by simp [neg]⟩
+  have hpres : ∀ n, ∀ x ∈ F n, neg x ∈ F n := by
+    intro n x hx
+    by_cases hn : n = 0
+    · simp [F, hn] at hx ⊢
+      simp [hx, neg]
+    · simp [F, hn]
+  have hstrict : AlgebraicAnalysis.FilteredStrictness.IsStrict F neg := by
+    intro n
+    have hrange : LinearMap.range neg = ⊤ :=
+      LinearMap.range_eq_top.mpr hneg
+    by_cases hn : n = 0 <;> simp [F, hn, hrange]
+  exact ⟨hF, hpres,
+    AlgebraicAnalysis.FilteredStrictness.gradedQuotientMap_surjective
+      F hF neg hpres hstrict hneg 0 1 (by omega)⟩
+
+/-- Behavioral check: on the nonzero graded piece of the two-step filtration,
+the induced map is genuinely negation, not merely a map with the expected
+type. -/
+example :
+    let F : ℕ → Submodule ℚ ℚ := fun n ↦ if n = 0 then ⊥ else ⊤
+    let neg : ℚ →ₗ[ℚ] ℚ := -LinearMap.id
+    let hF : Monotone F := by
+      intro m n hmn
+      by_cases hm : m = 0
+      · subst m
+        simp [F]
+      · have hn : n ≠ 0 := by omega
+        simp [F, hm, hn]
+    let hpres : ∀ n, ∀ x ∈ F n, neg x ∈ F n := by
+      intro n x hx
+      by_cases hn : n = 0
+      · simp [F, hn] at hx ⊢
+        simp [hx, neg]
+      · simp [F, hn]
+    AlgebraicAnalysis.FilteredStrictness.gradedQuotientMap
+        F hF neg hpres 0 1 (by omega)
+        (Submodule.Quotient.mk
+          (⟨1, by simp [F]⟩ : F 1)) =
+      Submodule.Quotient.mk (⟨-1, by simp [F]⟩ : F 1) := by
+  rfl
+
 end

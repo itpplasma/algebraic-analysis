@@ -3,7 +3,7 @@
 ```yaml
 phase: private-package-extraction
 mission: reusable-trust-zero-algebraic-analysis
-active_gate: next-slice-selection
+active_gate: lane-a-adapted-filtration
 consumer_pins: authoritative in downstream lakefile.toml files
 staged_slice: none
 consumers: [Stafford38, Bjork]
@@ -62,6 +62,13 @@ The current Björk-only module layer is also extracted and audited:
 11. the ring/module-only filtered Schreyer equivalence, with explicit
     opposite-ring right multiplication and a separately stated strictness
     hypothesis.
+
+The neutral strict-filtration kernel is staged in the package: strictness of
+a globally surjective filtration-preserving endomorphism implies
+surjectivity on every filtration subquotient.  This is a genuine reusable
+step in Stafford's noncharacteristic lane, but it does not prove the missing
+adapted-good-filtration theorem and is not advertised as such.  It will be
+pinned downstream when that construction supplies the strictness hypothesis.
 
 The generic noncommutative derivation/centrality kernel, module splice lemmas,
 and abstract two-simplicity transfer are integrated at the pinned revision
@@ -124,7 +131,7 @@ These are candidates, not promises to extract wholesale:
 | --- | --- |
 | Ore intersections, division, localization | finite intersection, principal-right-ideal, and generic localization stages are extracted; audit only the remaining application-specific localization/flatness bridge |
 | presented Weyl/symplectic substitutions | keep downstream until a second application exists |
-| filtrations, Rees, graded and symbol modules | keep downstream while their interfaces are paper-specific; the generic filtered Schreyer criterion is extracted, while its canonical Weyl adapter remains downstream |
+| filtrations, Rees, graded and symbol modules | generic strict-surjection-on-subquotients and filtered Schreyer kernels are extracted; good Weyl filtrations, characteristic support, and the noncharacteristic adapted-filtration theorem remain downstream until their reusable interface is proved |
 | rank, torsion, finite length, unimodular/projective modules | generic division-ring rank, denominator-torsion, unimodular-splitting, and projective-image layers are extracted; finite-length and two-functional/right-sided assemblies remain downstream |
 | inverse-Euler/Riccati calculus | generic ring identities are extracted; Weyl-specific applications remain downstream |
 | Poisson, Kähler, conormal, DVR and completion | keep theorem-specific until genuinely reusable |
