@@ -1,7 +1,7 @@
 # Agent rules
 
 - `PLAN.md` is the sole current plan.
-- The active gate is `NEXT-SLICE-AUDIT`. The Ore/PBW/tower, right-ideal,
+- Consult `PLAN.md` for the active gate. The Ore/PBW/tower, right-ideal,
   localization, rank, denominator, unimodular-splitting, and projective-image
   slices, inverse-Euler/Riccati commutator identities, and the generic
   filtered-Schreyer criterion have passed

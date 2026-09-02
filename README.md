@@ -27,7 +27,7 @@ Stafford38.
 Planned downstream consumers:
 
 - `itpplasma/stafford38`;
-- `plasma/proj/bjork`;
+- `itpplasma/bjork`;
 - selected formal certificate layers from GhostTask.
 
 No theorem from the literature is treated as an axiomatically established
