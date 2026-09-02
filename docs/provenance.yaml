@@ -161,6 +161,28 @@ extractions:
       result.  It assumes the common-right-multiple condition directly and
       does not assert localization, flatness, or any headline conjecture.
 
+  - id: ore-principal-right-ideal
+    source_repository: plasma/proj/bjork
+    source_revision: c1ff997582bb9a3b9e3c1c78c54090bcb9a8ab9e
+    source_paths:
+      - Bjork/OreIdealDegree.lean
+      - Bjork/OreEuclideanPID.lean
+    target_path: AlgebraicAnalysis/Ore/PrincipalRightIdeal.lean
+    target_namespace: AlgebraicAnalysis.OrePrincipalRightIdeal
+    declaration_scope: >-
+      minimal-degree coefficient lemmas, monic-minimum lemmas, transported
+      right division, and the one-sided principal-right-ideal theorem
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - plasma/proj/bjork
+    depends_on: [ore-right-division, ore-associativity, ore-right-quotient]
+    notes: >-
+      The extraction permits noncommutative division-ring coefficients and
+      keeps written-order right ideals explicit.  It makes no simplicity,
+      localization, or left-PID claim.  Stafford38 is not imported solely to
+      create a second consumer.
+
   - id: ring-commutator
     source_repository: itpplasma/stafford38
     source_revision: 03230cd7a1a4c14a13a7cb00dbd6dc0b1c542bba

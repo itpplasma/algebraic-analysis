@@ -4,11 +4,12 @@ Reusable Lean foundations for Ore and Weyl algebras, filtered rings and
 modules, algebraic differential operators, characteristic geometry, and
 related exact certificates.
 
-The repository is private and pre-release. It contains the first reviewed
-Ore/PBW extraction from Stafford38 and a package-verified PBW/tower extraction
-from Björk, plus the generic finite right-Ore intersection primitive. Both
-downstream projects build against the pinned API revision;
-current pins and provenance are recorded in `PLAN.md` and `docs/provenance.yaml`.
+The repository is private and pre-release. It contains the reviewed
+Ore/PBW/tower foundations shared by Stafford38 and Björk, plus generic
+right-ideal primitives extracted from Björk: finite right-Ore intersections
+and the minimal-degree/principal-right-ideal stage. Current pins, provenance,
+and the distinction between shared and single-consumer slices are recorded in
+`PLAN.md` and `docs/provenance.yaml`.
 
 Planned downstream consumers:
 

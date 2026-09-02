@@ -4,7 +4,7 @@
 phase: private-package-extraction
 mission: reusable-trust-zero-algebraic-analysis
 active_gate: stable-api-and-second-consumer-review
-integrated_api_revision: 415a9a5c489491835cb563ddb2fecfc979d3d510
+integrated_api_revision: 437c41b7a4cc0e7c44506d92820c4bf961b6af9f
 consumers: [Stafford38, Bjork]
 public_release: false
 reservoir: false
@@ -29,15 +29,22 @@ opaque declaration.
 
 ## Integrated slices
 
-The following slices are complete, audited with `--trust=0`, and consumed by
-both downstream repositories at the pinned API revision:
+The following foundational slices are complete, audited with `--trust=0`, and
+consumed by both downstream repositories at the pinned API revision:
 
 1. derivation-Ore definitions, associativity, normal forms, right quotient,
    and right Hilbert-basis/Noetherian infrastructure;
 2. left/right PBW bases and finite commuting Ore towers;
-3. the common ring-commutator definition and product/power identities;
+3. the common ring-commutator definition and product/power identities.
+
+The package also contains two generic right-ideal slices extracted from
+Björk. They are audited and consumed by Björk; Stafford38 does not import them
+merely to manufacture a second consumer:
+
 4. the explicit common-right-multiple criterion and finite right-ideal
-   intersection theorem.
+   intersection theorem;
+5. the minimal-degree and right-principal-ideal stage for derivation Ore
+   normal forms over division rings.
 
 Provenance and extraction reviews are in
 [`docs/provenance.yaml`](docs/provenance.yaml) and
@@ -50,18 +57,17 @@ These are candidates, not promises to extract wholesale:
 
 | Layer | Current disposition |
 | --- | --- |
-| Ore intersections, division, localization | finite right-ideal intersection is extracted; audit the remaining localization/division layers for a stable generic slice |
+| Ore intersections, division, localization | finite intersection and principal-right-ideal stages are extracted; audit the remaining localization layer for a stable generic slice |
 | presented Weyl/symplectic substitutions | keep downstream until a second application exists |
 | filtrations, Rees, graded and symbol modules | keep downstream while their interfaces are paper-specific |
 | rank, torsion, finite length, unimodular/projective modules | audit for independent consumers; no forced migration |
 | Poisson, Kähler, conormal, DVR and completion | keep theorem-specific until genuinely reusable |
 | certificate formats | extract only after a second checker consumes the format |
 
-In particular, Björk's current `OreIdealDegree`, `OreEuclideanPID`, rank,
-localization, and unimodular files are not automatically package material:
-their present APIs are tied to the Björk namespace or have only one downstream
-consumer. A review record and a second real consumer are required before
-promotion.
+In particular, Björk's rank, localization, denominator, and unimodular files
+remain downstream: their present APIs are tied to the Björk namespace or have
+only one downstream consumer. A review record and a second real consumer are
+required before those layers are promoted.
 
 ## Integration rules
 
