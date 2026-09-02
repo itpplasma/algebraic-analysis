@@ -3,9 +3,9 @@
 ```yaml
 phase: private-package-extraction
 mission: reusable-trust-zero-algebraic-analysis
-active_gate: downstream-integration
+active_gate: next-slice-selection
 consumer_pins: authoritative in downstream lakefile.toml files
-staged_slice: distinguished-variable-prime-relation
+staged_slice: none
 consumers: [Stafford38, Bjork]
 public_release: false
 reservoir: false
@@ -102,8 +102,10 @@ The generic multivariable-polynomial layer now includes the exact
 scheme-theoretic kernel needed to exclude a punctured distinguished axis: a
 homogeneous relation with unit pure coefficient, together with all auxiliary
 variables in a prime, forces the distinguished variable into that prime. The
-package proof and concrete API consumer pass with `--trust=0`; downstream
-Stafford integration is the active gate.
+package proof and concrete API consumer pass with `--trust=0`. Stafford pins
+package commit `72840735ece8be006470e24d3acd6fa18a332cdb`; its concrete
+prime-spectrum specialization, independent consumer, root build, and review
+pass at consumer commit `57912cccef13eab199001168f21f76b8a88d32c1`.
 
 Provenance and extraction reviews are in
 [`docs/provenance.yaml`](docs/provenance.yaml) and
