@@ -18,6 +18,9 @@ open AlgebraicAnalysis.RankTorsion
 open AlgebraicAnalysis.RankExact
 open AlgebraicAnalysis.DenominatorTorsion
 open AlgebraicAnalysis.TriangularDenominator
+open AlgebraicAnalysis.Unimodular
+open AlgebraicAnalysis.FreeSummandInduction
+open AlgebraicAnalysis.TorsionProjectiveImage
 open OreLocalization
 open MulOpposite
 
@@ -115,5 +118,24 @@ example {R : Type*} [Ring R] [IsDomain R] {M : Type*}
     (hstep : ∀ i < n, StepClearance F i) {m : M} (hm : m ∈ F n) :
     ∃ s : R, s ≠ 0 ∧ (op s) • m ∈ F 0 := by
   exact filtration_clearance F n hstep hm
+
+example : AlgebraicAnalysis.Unimodular.IsUnimodular (R := ℤ) (N := ℤ) 1 := by
+  refine ⟨LinearMap.id, ?_⟩
+  rfl
+
+example : ∃ φ : ℤ →ₗ[ℤ] ℤ, Function.Surjective φ := by
+  apply (AlgebraicAnalysis.Unimodular.exists_unimodular_iff_surjective
+    (R := ℤ) (N := ℤ)).mp
+  exact ⟨1, LinearMap.id, rfl⟩
+
+example : ∃ q₁ : ℤ →ₗ[ℤ] ℤ, Function.Surjective q₁ := by
+  let q : ℤ × ℤ →ₗ[ℤ] ℤ := LinearMap.fst ℤ ℤ ℤ
+  have hkill : ∀ z : ℤ, q (0, z) = 0 := by
+    intro z
+    rfl
+  apply AlgebraicAnalysis.TorsionProjectiveImage.surjective_factor_first_of_surjective
+    q hkill
+  intro z
+  exact ⟨(z, 0), rfl⟩
 
 end

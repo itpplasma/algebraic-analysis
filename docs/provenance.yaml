@@ -261,6 +261,56 @@ extractions:
     depends_on: [ore-right-finite-intersection, module-denominator-torsion]
     notes: filtration hypotheses are explicit data; no arbitrary Ore-extension freeness is claimed.
 
+  - id: module-unimodular
+    source_repository: plasma/proj/bjork
+    source_revision: 2b398f0d8969b552133f33885bceab1988dabdc7
+    source_path: Bjork/Unimodular.lean
+    target_path: AlgebraicAnalysis/Module/Unimodular.lean
+    target_namespace: AlgebraicAnalysis.Unimodular
+    declaration_scope: >-
+      unimodular elements, kernel projections, splitting equivalences, free
+      rank-one cyclic summands, and projective kernels
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - plasma/proj/bjork
+    depends_on: []
+    notes: >-
+      No rank, two-simplicity, localization, or existence result for a
+      particular application is asserted.
+
+  - id: module-free-summand-induction
+    source_repository: plasma/proj/bjork
+    source_revision: 2b398f0d8969b552133f33885bceab1988dabdc7
+    source_path: Bjork/FreeSummandInduction.lean
+    target_path: AlgebraicAnalysis/Module/FreeSummandInduction.lean
+    target_namespace: AlgebraicAnalysis.FreeSummandInduction
+    declaration_scope: finite iteration of explicitly supplied unimodular splittings
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - plasma/proj/bjork
+    depends_on: [module-unimodular]
+    notes: no rank-to-generator or finite-length construction is asserted.
+
+  - id: module-torsion-projective-image
+    source_repository: plasma/proj/bjork
+    source_revision: 2b398f0d8969b552133f33885bceab1988dabdc7
+    source_path: Bjork/TorsionProjectiveImage.lean
+    target_path: AlgebraicAnalysis/Module/TorsionProjectiveImage.lean
+    target_namespace: AlgebraicAnalysis.TorsionProjectiveImage
+    declaration_scope: >-
+      product-factor linear-map factorization, surjectivity descent, and
+      projective left-ideal image under an explicit split
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - plasma/proj/bjork
+    depends_on: [module-free-summand-induction]
+    notes: >-
+      This is a terminal conditional module lemma; it does not construct the
+      split presentation or prove projectivity in a Stafford application.
+
   - id: ring-commutator
     source_repository: itpplasma/stafford38
     source_revision: 03230cd7a1a4c14a13a7cb00dbd6dc0b1c542bba

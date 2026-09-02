@@ -12,6 +12,9 @@ import AlgebraicAnalysis.Module.RankTorsion
 import AlgebraicAnalysis.Module.RankExact
 import AlgebraicAnalysis.Module.DenominatorTorsion
 import AlgebraicAnalysis.Module.TriangularDenominator
+import AlgebraicAnalysis.Module.Unimodular
+import AlgebraicAnalysis.Module.FreeSummandInduction
+import AlgebraicAnalysis.Module.TorsionProjectiveImage
 
 /-!
 # AlgebraicAnalysis

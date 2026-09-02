@@ -9,7 +9,8 @@ Ore/PBW/tower foundations shared by Stafford38 and Björk, plus generic
 right-ideal primitives extracted from Björk: finite right-Ore intersections
 and the minimal-degree/principal-right-ideal stage. It also contains the
 application-independent Ore-localization, localized rank, split-rank,
-denominator-torsion, and finite-filtration primitives used by Björk. Current
+denominator-torsion, finite-filtration, unimodular-splitting, and
+projective-image primitives used by Björk. Current
 pins, provenance, and the distinction between shared and single-consumer
 slices are recorded in `PLAN.md` and `docs/provenance.yaml`.
 

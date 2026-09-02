@@ -54,6 +54,8 @@ The current Björk-only module layer is also extracted and audited:
    additivity;
 8. explicit denominator clearance, finite common annihilators, and finite
    filtration composition.
+9. unimodular elements, free rank-one splitting, finite iteration of such
+   splittings, and the terminal projective-image factorization.
 
 Provenance and extraction reviews are in
 [`docs/provenance.yaml`](docs/provenance.yaml) and
@@ -69,7 +71,7 @@ These are candidates, not promises to extract wholesale:
 | Ore intersections, division, localization | finite intersection, principal-right-ideal, and generic localization stages are extracted; audit only the remaining application-specific localization/flatness bridge |
 | presented Weyl/symplectic substitutions | keep downstream until a second application exists |
 | filtrations, Rees, graded and symbol modules | keep downstream while their interfaces are paper-specific |
-| rank, torsion, finite length, unimodular/projective modules | generic division-ring rank and denominator-torsion layers are extracted; finite-length and unimodular/projective assemblies remain downstream |
+| rank, torsion, finite length, unimodular/projective modules | generic division-ring rank, denominator-torsion, unimodular-splitting, and projective-image layers are extracted; finite-length and two-functional/right-sided assemblies remain downstream |
 | Poisson, Kähler, conormal, DVR and completion | keep theorem-specific until genuinely reusable |
 | certificate formats | extract only after a second checker consumes the format |
 
