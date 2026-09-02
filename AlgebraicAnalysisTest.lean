@@ -8,6 +8,7 @@ open AlgebraicAnalysis.OreDivision
 open AlgebraicAnalysis.OreAssociativity
 open AlgebraicAnalysis.OreLeftPBW
 open AlgebraicAnalysis.OreRightPBW
+open AlgebraicAnalysis.OreRightIntersection
 open AlgebraicAnalysis.OreTower
 open AlgebraicAnalysis.OreIteratedTower
 open AlgebraicAnalysis.OreIteratedPBW
@@ -51,5 +52,23 @@ example (Ds : List (Derivation ℚ)) (hDs : PairwiseCommutes Ds) :
 example (Ds : List (KDerivation ℚ)) (hDs : PairwiseCommutes Ds) :
     Basis (exponentIndex Ds) ℚ (OreTower Ds hDs) := by
   exact towerPBWBasis Ds hDs
+
+example : RightOreCondition ℤ := by
+  intro a b ha hb
+  refine ⟨b, a, ?_, mul_ne_zero ha hb⟩
+  simp [mul_comm]
+
+example : ∃ x : ℤ, x ≠ 0 ∧
+    ∀ i ∈ (Finset.univ : Finset (Fin 2)),
+      x ∈ (fun _ : Fin 2 ↦ (⊤ : Submodule (ℤᵐᵒᵖ) ℤ)) i := by
+  apply exists_mem_finset_rightIdeals
+    (s := (Finset.univ : Finset (Fin 2)))
+    (I := fun _ : Fin 2 ↦ (⊤ : Submodule (ℤᵐᵒᵖ) ℤ))
+  · intro i hi
+    exact ⟨1, Submodule.mem_top, one_ne_zero⟩
+  · exact (by
+      intro a b ha hb
+      refine ⟨b, a, ?_, mul_ne_zero ha hb⟩
+      simp [mul_comm])
 
 end

@@ -1,5 +1,6 @@
 import AlgebraicAnalysis.Commutator
 import AlgebraicAnalysis.Ore.RightHilbertBasis
+import AlgebraicAnalysis.Ore.RightIntersection
 import AlgebraicAnalysis.Ore.LeftPBW
 import AlgebraicAnalysis.Ore.RightPBW
 import AlgebraicAnalysis.Ore.Tower
