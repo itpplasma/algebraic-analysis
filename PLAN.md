@@ -3,7 +3,7 @@
 ```yaml
 phase: private-package-extraction
 mission: reusable-trust-zero-algebraic-analysis
-active_gate: downstream-pin-and-next-slice
+active_gate: next-slice-selection
 consumer_pins: authoritative in downstream lakefile.toml files
 staged_slice: none
 consumers: [Stafford38, Bjork]
@@ -81,12 +81,13 @@ needed by the source-relative tower argument.  It is algebraic and
 application-independent.  It has passed the package API test and the pinned
 Björk consumer build and is now integrated as a private single-consumer slice.
 
-Two neutral literature-result interfaces are staged: stable freeness
+Two neutral literature-result interfaces are integrated: stable freeness
 of finite projective right modules and the data identifying a localized
 derivation-Ore extension.  They contain no theorem or axiom.  Björk owns the
 cited assumptions that instantiate them until those results are proved at
-trust zero.  Promotion requires advancing Björk's package pin, replacing its
-local copies by aliases, and replaying its build and axiom audit.
+trust zero.  Björk pins API commit
+`4aee85490013ad604425a74c5e847d588a2f7dea`; its compatibility aliases,
+full build, and axiom audit pass.
 
 Provenance and extraction reviews are in
 [`docs/provenance.yaml`](docs/provenance.yaml) and

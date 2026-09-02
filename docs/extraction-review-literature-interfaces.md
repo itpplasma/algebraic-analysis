@@ -27,9 +27,10 @@ differential-operator ring.
 ## Verification
 
 The package test consumes both public interfaces at their exact types.  Björk
-must still build after its package pin is advanced to the commit containing
-these modules and its local definition and existential result are replaced by
-compatibility aliases to this package.
+pins API commit `4aee85490013ad604425a74c5e847d588a2f7dea`, replaces its local
+definition and existential result by compatibility aliases, and passes both
+`lake build Bjork` and `research/check_axioms.sh` at consumer commit
+`8fdb37806ca502335342dc87abfbac348985542d`.
 
 An independent frozen-patch API audit returned `REPAIR` only because the
 first draft described the downstream replay as completed.  That wording was
