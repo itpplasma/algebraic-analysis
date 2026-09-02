@@ -7,6 +7,22 @@ policy: >-
   a migration, but never a second declaration.
 
 extractions:
+  - id: module-hyperplane-restriction
+    source_repository: itpplasma/stafford38
+    source_revision: dd4fd93d11497cf717a740252cc3e4a6072834a0
+    source_path: Stafford38/Characteristic/HyperplaneRestriction.lean
+    target_path: AlgebraicAnalysis/Module/HyperplaneRestriction.lean
+    target_namespace: AlgebraicAnalysis.HyperplaneRestriction
+    declaration_scope: all declarations in the source file
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Stafford38
+    consumers:
+      - itpplasma/stafford38
+    notes: >-
+      Only the generic finite-module determinant-trick kernel is extracted.
+      Filtered strictness, D-module inverse image, and characteristic-variety
+      comparison remain application-specific and are not claimed here.
+
   - id: ore-right-division
     source_repository: itpplasma/stafford38
     source_revision: 25dc12ccaba6ad1ff74db7f9be813fb64fb10782

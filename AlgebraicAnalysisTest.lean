@@ -191,6 +191,14 @@ example {B : Type*} [Ring B] (D : OreDivisionDerivation B)
           normalCoefficient D' (numeratorHom b) :=
   L
 
+example {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
+    [Module.Finite R M] {x : R}
+    (hx : Function.Surjective fun m : M ↦ x • m) :
+    Disjoint (Module.support R M)
+      (PrimeSpectrum.zeroLocus ({x} : Set R)) :=
+  AlgebraicAnalysis.HyperplaneRestriction.support_disjoint_zeroLocus_of_smul_surjective
+    hx
+
 example : AlgebraicAnalysis.Unimodular.IsUnimodular (R := ℤ) (N := ℤ) 1 := by
   refine ⟨LinearMap.id, ?_⟩
   rfl

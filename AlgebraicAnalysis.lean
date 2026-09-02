@@ -15,6 +15,7 @@ import AlgebraicAnalysis.Ore.IteratedTower
 import AlgebraicAnalysis.Ore.IteratedPBW
 import AlgebraicAnalysis.Module.RankTorsion
 import AlgebraicAnalysis.Module.StablyFree
+import AlgebraicAnalysis.Module.HyperplaneRestriction
 import AlgebraicAnalysis.Module.RankExact
 import AlgebraicAnalysis.Module.DenominatorTorsion
 import AlgebraicAnalysis.Module.TriangularDenominator

@@ -3,7 +3,7 @@
 ```yaml
 phase: private-package-extraction
 mission: reusable-trust-zero-algebraic-analysis
-active_gate: next-slice-selection
+active_gate: hyperplane-restriction-consumer-replay
 consumer_pins: authoritative in downstream lakefile.toml files
 staged_slice: none
 consumers: [Stafford38, Bjork]
@@ -88,6 +88,13 @@ cited assumptions that instantiate them until those results are proved at
 trust zero.  Björk pins API commit
 `4aee85490013ad604425a74c5e847d588a2f7dea`; its compatibility aliases,
 full build, and axiom audit pass.
+
+The finite-module hyperplane-restriction kernel is staged in the package:
+surjective scalar action is equivalent to vanishing degree-zero restriction,
+and the determinant trick excludes support over the corresponding principal
+hypersurface. This is generic commutative algebra; Stafford retains the
+filtered D-module comparison and characteristic-variety application until
+the pinned consumer replay passes.
 
 Provenance and extraction reviews are in
 [`docs/provenance.yaml`](docs/provenance.yaml) and
