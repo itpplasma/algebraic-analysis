@@ -3,7 +3,7 @@
 ```yaml
 phase: private-package-extraction
 mission: reusable-trust-zero-algebraic-analysis
-active_gate: stable-api-and-second-consumer-review
+active_gate: next-slice-audit
 integrated_api_revision: 437c41b8aaefdf3a7043cc2be862cdb443132530
 consumers: [Stafford38, Bjork]
 public_release: false
