@@ -4,7 +4,7 @@
 phase: private-package-extraction
 mission: reusable-trust-zero-algebraic-analysis
 active_gate: next-slice-audit
-integrated_api_revision: 90c638a4864c0bdd4959831ae3d8fc912c6c7494
+integrated_api_revision: 0636d0f74b48dd0ef845089d03fc070f7fc453a2
 consumers: [Stafford38, Bjork]
 public_release: false
 reservoir: false
