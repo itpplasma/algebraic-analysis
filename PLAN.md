@@ -4,8 +4,8 @@
 phase: private-package-extraction
 mission: reusable-trust-zero-algebraic-analysis
 active_gate: next-slice-audit
-integrated_api_revision: 0636d0f74b48dd0ef845089d03fc070f7fc453a2
-staged_slice: central-derivation-and-module-primitives
+integrated_api_revision: a0676c9e800b7c4783e8cf36e705ca82d6a719a1
+staged_slice: none
 consumers: [Stafford38, Bjork]
 public_release: false
 reservoir: false
@@ -63,10 +63,10 @@ The current Björk-only module layer is also extracted and audited:
     opposite-ring right multiplication and a separately stated strictness
     hypothesis.
 
-The next staged slice is the generic noncommutative derivation/centrality
-kernel, module splice lemmas, and abstract two-simplicity transfer.  Its
-source files remain compatibility surfaces in Björk until the package commit
-is pinned and the downstream audit passes.
+The generic noncommutative derivation/centrality kernel, module splice lemmas,
+and abstract two-simplicity transfer are integrated at the pinned revision
+above.  Their Björk source paths are now import-only compatibility surfaces;
+the application-specific hypotheses and assemblies remain in Björk.
 
 Provenance and extraction reviews are in
 [`docs/provenance.yaml`](docs/provenance.yaml) and
@@ -86,7 +86,7 @@ These are candidates, not promises to extract wholesale:
 | inverse-Euler/Riccati calculus | generic ring identities are extracted; Weyl-specific applications remain downstream |
 | Poisson, Kähler, conormal, DVR and completion | keep theorem-specific until genuinely reusable |
 | certificate formats | extract only after a second checker consumes the format |
-| central derivation, module splice, two-simplicity transfer | staged in the package; migrate the Björk compatibility surfaces after the pinned consumer build |
+| central derivation, module splice, two-simplicity transfer | integrated in the package; Björk retains import-only compatibility surfaces and application-specific assemblies |
 
 In particular, Björk's noncommutative flatness, rank-to-generator, finite-
 length, and unimodular/projective assemblies remain downstream. The extracted

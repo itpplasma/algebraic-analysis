@@ -1,7 +1,8 @@
 # Extraction review: central derivation and module primitives
 
-Status: staged for integration.  The package commit and downstream consumer
-pin must pass before this slice becomes the current API revision.
+Status: integrated.  The package API is authoritative at commit
+`a0676c9e800b7c4783e8cf36e705ca82d6a719a1`; Björk consumes that immutable
+revision through import-only compatibility surfaces.
 
 ## Scope
 
@@ -29,8 +30,8 @@ remain import-compatible, so there is one declaration home for each result.
 
 ## Checks
 
-The staged package consumer is `AlgebraicAnalysisTest.lean`.  Integration
-requires:
+The package consumer is `AlgebraicAnalysisTest.lean`; the downstream
+integration checks are:
 
 ```text
 lake build AlgebraicAnalysis AlgebraicAnalysisTest
