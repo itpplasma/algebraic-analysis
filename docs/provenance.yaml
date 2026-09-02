@@ -311,6 +311,24 @@ extractions:
       This is a terminal conditional module lemma; it does not construct the
       split presentation or prove projectivity in a Stafford application.
 
+  - id: commutator-inverse-euler
+    source_repository: itpplasma/stafford38
+    source_revision: 9858d57fd84e208447d940141c52c7511e7ff101
+    source_path: proofs/inverse_euler_riccati.lean
+    target_path: AlgebraicAnalysis/CommutatorRiccati.lean
+    target_namespace: AlgebraicAnalysis.InverseEulerRiccati
+    declaration_scope: >-
+      inverse-Euler/Riccati identities, iterated commutation, and factorial
+      commutator tower for an arbitrary ring
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Stafford38
+    consumers:
+      - itpplasma/stafford38
+    depends_on: [ring-commutator]
+    notes: >-
+      The theorem assumes the displayed two-sided inverse and Weyl-type
+      relation.  It does not prove either hypothesis or any Stafford result.
+
   - id: ring-commutator
     source_repository: itpplasma/stafford38
     source_revision: 03230cd7a1a4c14a13a7cb00dbd6dc0b1c542bba

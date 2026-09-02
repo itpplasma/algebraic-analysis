@@ -10,7 +10,8 @@ right-ideal primitives extracted from Björk: finite right-Ore intersections
 and the minimal-degree/principal-right-ideal stage. It also contains the
 application-independent Ore-localization, localized rank, split-rank,
 denominator-torsion, finite-filtration, unimodular-splitting, and
-projective-image primitives used by Björk. Current
+projective-image primitives used by Björk, together with generic
+inverse-Euler/Riccati commutator identities used by Stafford38. Current
 pins, provenance, and the distinction between shared and single-consumer
 slices are recorded in `PLAN.md` and `docs/provenance.yaml`.
 

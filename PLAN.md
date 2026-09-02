@@ -56,6 +56,8 @@ The current Björk-only module layer is also extracted and audited:
    filtration composition.
 9. unimodular elements, free rank-one splitting, finite iteration of such
    splittings, and the terminal projective-image factorization.
+10. inverse-Euler/Riccati identities for a Weyl-type relation and its
+    factorial commutator tower.
 
 Provenance and extraction reviews are in
 [`docs/provenance.yaml`](docs/provenance.yaml) and
@@ -72,6 +74,7 @@ These are candidates, not promises to extract wholesale:
 | presented Weyl/symplectic substitutions | keep downstream until a second application exists |
 | filtrations, Rees, graded and symbol modules | keep downstream while their interfaces are paper-specific |
 | rank, torsion, finite length, unimodular/projective modules | generic division-ring rank, denominator-torsion, unimodular-splitting, and projective-image layers are extracted; finite-length and two-functional/right-sided assemblies remain downstream |
+| inverse-Euler/Riccati calculus | generic ring identities are extracted; Weyl-specific applications remain downstream |
 | Poisson, Kähler, conormal, DVR and completion | keep theorem-specific until genuinely reusable |
 | certificate formats | extract only after a second checker consumes the format |
 

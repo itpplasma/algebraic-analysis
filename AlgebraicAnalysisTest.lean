@@ -21,6 +21,7 @@ open AlgebraicAnalysis.TriangularDenominator
 open AlgebraicAnalysis.Unimodular
 open AlgebraicAnalysis.FreeSummandInduction
 open AlgebraicAnalysis.TorsionProjectiveImage
+open AlgebraicAnalysis.InverseEulerRiccati
 open OreLocalization
 open MulOpposite
 
@@ -137,5 +138,14 @@ example : ∃ q₁ : ℤ →ₗ[ℤ] ℤ, Function.Surjective q₁ := by
     q hkill
   intro z
   exact ⟨(z, 0), rfl⟩
+
+example {A : Type*} [Ring A] (p z : A) :
+    AlgebraicAnalysis.InverseEulerRiccati.adIterate p 0 z = z := by
+  rfl
+
+example {A : Type*} [Ring A] (p z : A) :
+    AlgebraicAnalysis.InverseEulerRiccati.adIterate p 1 z =
+      AlgebraicAnalysis.ringCommutator p z := by
+  rfl
 
 end
