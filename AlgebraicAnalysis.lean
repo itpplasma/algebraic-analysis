@@ -16,6 +16,7 @@ import AlgebraicAnalysis.Module.TriangularDenominator
 import AlgebraicAnalysis.Module.Unimodular
 import AlgebraicAnalysis.Module.FreeSummandInduction
 import AlgebraicAnalysis.Module.TorsionProjectiveImage
+import AlgebraicAnalysis.Module.FilteredSchreyer
 
 /-!
 # AlgebraicAnalysis

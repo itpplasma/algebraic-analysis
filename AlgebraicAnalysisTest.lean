@@ -21,6 +21,7 @@ open AlgebraicAnalysis.TriangularDenominator
 open AlgebraicAnalysis.Unimodular
 open AlgebraicAnalysis.FreeSummandInduction
 open AlgebraicAnalysis.TorsionProjectiveImage
+open AlgebraicAnalysis.FilteredSchreyer
 open AlgebraicAnalysis.InverseEulerRiccati
 open OreLocalization
 open MulOpposite
@@ -147,5 +148,18 @@ example {A : Type*} [Ring A] (p z : A) :
     AlgebraicAnalysis.InverseEulerRiccati.adIterate p 1 z =
       AlgebraicAnalysis.ringCommutator p z := by
   rfl
+
+example {A : Type*} {E : Type*} [Ring A] [AddCommGroup E]
+    [Module Aᵐᵒᵖ E]
+    (phi : E →ₗ[Aᵐᵒᵖ] A) (L : AddSubgroup A)
+    (a : E) (C x : A)
+    (ha : phi a = 1 + C * x) (hone : (1 : A) ∈ L)
+    (hLx : ∀ z : A, z ∈ L → z * x ∈ L)
+    (hstrict : ∀ z : A, z * x ∈ L → z ∈ L) :
+    (∃ b : E, ∃ l : A, l ∈ L ∧ C = phi b + l) ↔
+      ∃ t b : E, phi t ∈ L ∧
+        a = t + (MulOpposite.op x) • b :=
+  range_add_lower_iff_preimage_add_rightMultiple
+    phi L a C x ha hone hLx hstrict
 
 end

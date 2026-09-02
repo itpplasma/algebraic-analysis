@@ -58,6 +58,9 @@ The current Björk-only module layer is also extracted and audited:
    splittings, and the terminal projective-image factorization.
 10. inverse-Euler/Riccati identities for a Weyl-type relation and its
     factorial commutator tower.
+11. the ring/module-only filtered Schreyer equivalence, with explicit
+    opposite-ring right multiplication and a separately stated strictness
+    hypothesis.
 
 Provenance and extraction reviews are in
 [`docs/provenance.yaml`](docs/provenance.yaml) and
@@ -72,7 +75,7 @@ These are candidates, not promises to extract wholesale:
 | --- | --- |
 | Ore intersections, division, localization | finite intersection, principal-right-ideal, and generic localization stages are extracted; audit only the remaining application-specific localization/flatness bridge |
 | presented Weyl/symplectic substitutions | keep downstream until a second application exists |
-| filtrations, Rees, graded and symbol modules | keep downstream while their interfaces are paper-specific |
+| filtrations, Rees, graded and symbol modules | keep downstream while their interfaces are paper-specific; the generic filtered Schreyer criterion is extracted, while its canonical Weyl adapter remains downstream |
 | rank, torsion, finite length, unimodular/projective modules | generic division-ring rank, denominator-torsion, unimodular-splitting, and projective-image layers are extracted; finite-length and two-functional/right-sided assemblies remain downstream |
 | inverse-Euler/Riccati calculus | generic ring identities are extracted; Weyl-specific applications remain downstream |
 | Poisson, Kähler, conormal, DVR and completion | keep theorem-specific until genuinely reusable |

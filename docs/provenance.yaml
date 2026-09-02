@@ -351,3 +351,22 @@ extractions:
       `[u,v] = u*v - v*u`.  Björk's fixed-coordinate additive map and
       Stafford's historical namespace remain compatibility surfaces; the
       multiplication identities have one authoritative proof here.
+
+  - id: module-filtered-schreyer
+    source_repository: itpplasma/stafford38
+    source_revision: 5fdf5f3c163e5302a72c493cf716842f8c5e2fd4
+    source_path: Stafford38/Characteristic/ExactFilteredSchreyerCriterion.lean
+    target_path: AlgebraicAnalysis/Module/FilteredSchreyer.lean
+    target_namespace: AlgebraicAnalysis.FilteredSchreyer
+    declaration_scope: >-
+      right-linear map compatibility and the exact lower-subgroup/source
+      relation equivalence for one distinguished right action
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Stafford38
+    consumers:
+      - itpplasma/stafford38
+    depends_on: []
+    notes: >-
+      The strictness premise is explicit.  The canonical Weyl presentation and
+      its unresolved strict producer remain downstream; no filtered
+      cancellation or Stafford conclusion is asserted.
