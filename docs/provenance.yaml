@@ -7,6 +7,25 @@ policy: >-
   a migration, but never a second declaration.
 
 extractions:
+  - id: distinguished-variable-prime-relation
+    source_repository: itpplasma/algebraic-analysis
+    source_revision: original-development
+    source_path: AlgebraicAnalysis/Polynomial/DistinguishedVariable.lean
+    target_path: AlgebraicAnalysis/Polynomial/DistinguishedVariable.lean
+    target_namespace: AlgebraicAnalysis.MvPolynomial
+    declaration_scope: >-
+      homogeneous-polynomial congruence modulo auxiliary variables and the
+      resulting distinguished-variable membership theorem for prime ideals
+    license: Apache-2.0
+    authorship: original package development
+    consumers:
+      - itpplasma/stafford38
+    depends_on: []
+    notes: >-
+      This is a generic commutative-algebra theorem. It does not assert that a
+      Stafford characteristic symbol meets its hypotheses and does not prove
+      filtered strictness or noncharacteristic restriction.
+
   - id: module-hyperplane-restriction
     source_repository: itpplasma/stafford38
     source_revision: dd4fd93d11497cf717a740252cc3e4a6072834a0

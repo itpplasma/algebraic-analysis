@@ -282,4 +282,33 @@ example {E S : Type*} [DivisionRing E] [CharZero E] [Ring S]
     H = ⊤ := by
   exact finite_tuple_escape D p hp hstrict H hv hleft
 
+example :
+    let P : MvPolynomial (Fin 2) ℚ :=
+      MvPolynomial.X 0 ^ 2 + MvPolynomial.X 1 ^ 2
+    P - MvPolynomial.monomial (Finsupp.single 0 2) 1 ∈
+      Ideal.span (MvPolynomial.X '' ({1} : Set (Fin 2))) := by
+  dsimp
+  apply AlgebraicAnalysis.MvPolynomial.sub_pureMonomial_mem_span_X
+  · simpa using ((MvPolynomial.isHomogeneous_X ℚ (0 : Fin 2)).pow 2).add
+      ((MvPolynomial.isHomogeneous_X ℚ (1 : Fin 2)).pow 2)
+  · intro i hi
+    have hi' := MvPolynomial.vars_add_subset
+      (MvPolynomial.X (0 : Fin 2) ^ 2 : MvPolynomial (Fin 2) ℚ)
+      (MvPolynomial.X (1 : Fin 2) ^ 2) hi
+    rw [Finset.mem_union] at hi'
+    rcases hi' with hi0 | hi1
+    · left
+      have := MvPolynomial.vars_pow
+        (MvPolynomial.X (0 : Fin 2) : MvPolynomial (Fin 2) ℚ) 2 hi0
+      simpa using this
+    · right
+      have := MvPolynomial.vars_pow
+        (MvPolynomial.X (1 : Fin 2) : MvPolynomial (Fin 2) ℚ) 2 hi1
+      simpa using this
+  · have hne : Finsupp.single (1 : Fin 2) 2 ≠ Finsupp.single 0 2 := by
+      intro h
+      have h' := congrArg (fun f => f (1 : Fin 2)) h
+      norm_num at h'
+    simp [MvPolynomial.coeff_add, MvPolynomial.coeff_X_pow, hne]
+
 end

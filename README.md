@@ -19,6 +19,10 @@ The module layer also contains the determinant-trick support exclusion for a
 finite module on which a chosen scalar acts surjectively. It does not assert
 the filtered noncharacteristic theorem needed by a D-module application.
 
+The polynomial layer contains a scheme-theoretic distinguished-axis lemma for
+homogeneous relations in prime ideals. It is generic commutative algebra; the
+Stafford symbol and support specialization remains downstream.
+
 The package contains the generic central-coordinate escape kernel, finite-tuple
 span consequences, and right-coordinate module primitives. The concrete Ore
 transport and application-specific correction assemblies remain in Björk.

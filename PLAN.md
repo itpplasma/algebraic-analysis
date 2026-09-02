@@ -3,9 +3,9 @@
 ```yaml
 phase: private-package-extraction
 mission: reusable-trust-zero-algebraic-analysis
-active_gate: next-slice-selection
+active_gate: downstream-integration
 consumer_pins: authoritative in downstream lakefile.toml files
-staged_slice: none
+staged_slice: distinguished-variable-prime-relation
 consumers: [Stafford38, Bjork]
 public_release: false
 reservoir: false
@@ -98,12 +98,21 @@ pins API commit `cac7a66d96392924b952fe1961a867e83e20ff9c`; its compatibility
 import, concrete consumers, trust-zero checker, and full root build pass at
 consumer commit `465e29aa16deb228801c1e30e4eb5ef072cc0778`.
 
+The generic multivariable-polynomial layer now includes the exact
+scheme-theoretic kernel needed to exclude a punctured distinguished axis: a
+homogeneous relation with unit pure coefficient, together with all auxiliary
+variables in a prime, forces the distinguished variable into that prime. The
+package proof and concrete API consumer pass with `--trust=0`; downstream
+Stafford integration is the active gate.
+
 Provenance and extraction reviews are in
 [`docs/provenance.yaml`](docs/provenance.yaml) and
 [`docs/extraction-review-ore-pbw.md`](docs/extraction-review-ore-pbw.md).
 The staged active-coordinate review is in
 [`docs/extraction-review-active-coordinate.md`](docs/extraction-review-active-coordinate.md).
 Package API tests and downstream builds are the integration evidence.
+The original distinguished-variable kernel is reviewed in
+[`docs/review-distinguished-variable.md`](docs/review-distinguished-variable.md).
 
 ## Candidate layers
 
