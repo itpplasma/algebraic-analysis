@@ -16,7 +16,9 @@ open AlgebraicAnalysis.OreTower
 open AlgebraicAnalysis.OreIteratedTower
 open AlgebraicAnalysis.OreIteratedPBW
 open AlgebraicAnalysis.OreStageLocalization
+open AlgebraicAnalysis.OreLocalizationExtension
 open AlgebraicAnalysis.RankTorsion
+open AlgebraicAnalysis.StablyFree
 open AlgebraicAnalysis.RankExact
 open AlgebraicAnalysis.DenominatorTorsion
 open AlgebraicAnalysis.TriangularDenominator
@@ -166,6 +168,28 @@ example {R : Type*} [Ring R] [IsDomain R] {M : Type*}
     (hstep : ∀ i < n, StepClearance F i) {m : M} (hm : m ∈ F n) :
     ∃ s : R, s ≠ 0 ∧ (op s) • m ∈ F 0 := by
   exact filtration_clearance F n hstep hm
+
+universe u
+
+example {R : Type u} [Ring R] (P : Type u)
+    [AddCommGroup P] [Module Rᵐᵒᵖ P]
+    (h : StablyFreeProjectives R)
+    (hP : Module.Projective Rᵐᵒᵖ P) (hfin : Module.Finite Rᵐᵒᵖ P) :
+    ∃ m n : ℕ,
+      Nonempty (P × (Fin m → Rᵐᵒᵖ) ≃ₗ[Rᵐᵒᵖ] (Fin n → Rᵐᵒᵖ)) :=
+  h P hP hfin
+
+example {B : Type*} [Ring B] (D : OreDivisionDerivation B)
+    (S : Submonoid B) [OreSet S]
+    [OreSet (S.map (normalCoefficient D).toMonoidHom)]
+    (L : IsDerivationOreLocalization D S) :
+    ∃ (D' : OreDivisionDerivation (B[S⁻¹]))
+      (e : (NormalOre D)[(S.map (normalCoefficient D).toMonoidHom)⁻¹] ≃+*
+        NormalOre D'),
+      ∀ b : B,
+        e (numeratorHom (normalCoefficient D b)) =
+          normalCoefficient D' (numeratorHom b) :=
+  L
 
 example : AlgebraicAnalysis.Unimodular.IsUnimodular (R := ℤ) (N := ℤ) 1 := by
   refine ⟨LinearMap.id, ?_⟩

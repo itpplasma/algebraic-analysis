@@ -524,3 +524,35 @@ extractions:
       and the derivation hypotheses remain fields of the data.  No presented
       Weyl algebra, ideal theorem, localization theorem, or headline
       Stafford/Björk claim is included.
+
+  - id: stable-free-projectives-interface
+    source_repository: itpplasma/bjork
+    source_revision: b04ba6310497f7c7b9560ed9ecb395be49c754c3
+    source_path: Bjork/Literature.lean
+    target_path: AlgebraicAnalysis/Module/StablyFree.lean
+    target_namespace: AlgebraicAnalysis.StablyFree
+    declaration_scope: abstract stable-freeness predicate for finite projective right modules
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - itpplasma/bjork
+    depends_on: []
+    notes: >-
+      This is only the neutral target proposition of the cited filtered
+      K-theory theorem. The package does not assert it for any ring.
+
+  - id: derivation-ore-localization-interface
+    source_repository: itpplasma/bjork
+    source_revision: b04ba6310497f7c7b9560ed9ecb395be49c754c3
+    source_path: Bjork/Literature.lean
+    target_path: AlgebraicAnalysis/Ore/LocalizationExtension.lean
+    target_namespace: AlgebraicAnalysis.OreLocalizationExtension
+    declaration_scope: proposition asserting extended derivation, localization equivalence, and coefficient compatibility data
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - itpplasma/bjork
+    depends_on: [ore-associativity, ore-localization-facts]
+    notes: >-
+      The package defines the exact output interface but proves no existence
+      theorem. Ore-ness of the image denominator set remains explicit.

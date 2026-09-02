@@ -19,10 +19,15 @@ The package contains the generic central-coordinate escape kernel, finite-tuple
 span consequences, and right-coordinate module primitives. The concrete Ore
 transport and application-specific correction assemblies remain in Björk.
 
-The active-coordinate Ore interface is currently staged from Björk's twist
-decomposition. It is available under `AlgebraicAnalysis.OreActiveCoordinate`
-and will be promoted after the pinned downstream replay; it contains no
-Stafford or Björk headline theorem.
+The active-coordinate Ore interface is available under
+`AlgebraicAnalysis.OreActiveCoordinate`. It has passed the package API and
+pinned Björk consumer builds and contains no Stafford or Björk headline
+theorem.
+
+The package also defines neutral target interfaces for stable freeness and
+localization of derivation-Ore extensions. These interfaces contain no axiom:
+downstream repositories remain responsible for clearly labelled literature
+assumptions and for replacing them with trust-zero proofs.
 
 The package also exposes the ring/module-only filtered Schreyer equivalence
 used to translate a lower-order right-ideal problem into a source relation;

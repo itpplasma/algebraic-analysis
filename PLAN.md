@@ -3,9 +3,9 @@
 ```yaml
 phase: private-package-extraction
 mission: reusable-trust-zero-algebraic-analysis
-active_gate: next-slice-selection
-integrated_api_revision: deae322ac2adcccda37ba84c98b972ef873a2d71
-staged_slice: ore-active-coordinate
+active_gate: downstream-pin-and-next-slice
+consumer_pins: authoritative in downstream lakefile.toml files
+staged_slice: none
 consumers: [Stafford38, Bjork]
 public_release: false
 reservoir: false
@@ -74,13 +74,19 @@ are integrated at the pinned revision above.  Björk imports them through
 compatibility aliases; concrete Ore transport and application-specific
 correction assemblies remain downstream.
 
-The next staged slice is the active-coordinate Ore interface from Björk's
+The active-coordinate Ore interface from Björk's
 twist decomposition.  It packages central-coordinate data, the differential
 Ore relation, finite normal-form expansions, and the coefficient commutation
 needed by the source-relative tower argument.  It is algebraic and
-application-independent, but currently has only Björk as a substantive
-consumer; it remains staged until the package and the pinned consumer build
-are replayed together.
+application-independent.  It has passed the package API test and the pinned
+Björk consumer build and is now integrated as a private single-consumer slice.
+
+Two neutral literature-result interfaces are staged: stable freeness
+of finite projective right modules and the data identifying a localized
+derivation-Ore extension.  They contain no theorem or axiom.  Björk owns the
+cited assumptions that instantiate them until those results are proved at
+trust zero.  Promotion requires advancing Björk's package pin, replacing its
+local copies by aliases, and replaying its build and axiom audit.
 
 Provenance and extraction reviews are in
 [`docs/provenance.yaml`](docs/provenance.yaml) and
