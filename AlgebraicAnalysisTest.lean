@@ -9,6 +9,7 @@ open AlgebraicAnalysis.OreAssociativity
 open AlgebraicAnalysis.OreLeftPBW
 open AlgebraicAnalysis.OreRightPBW
 open AlgebraicAnalysis.OreRightIntersection
+open AlgebraicAnalysis.OrePrincipalRightIdeal
 open AlgebraicAnalysis.OreTower
 open AlgebraicAnalysis.OreIteratedTower
 open AlgebraicAnalysis.OreIteratedPBW
@@ -70,5 +71,19 @@ example : ∃ x : ℤ, x ≠ 0 ∧
       intro a b ha hb
       refine ⟨b, a, ?_, mul_ne_zero ha hb⟩
       simp [mul_comm])
+
+example (a : NormalOre zeroDerivation) :
+    ∃ q r : Polynomial ℚ,
+      a = normalForm zeroDerivation
+          (rightMul zeroDerivation (Polynomial.X : Polynomial ℚ) q) +
+            normalForm zeroDerivation r ∧
+        (r = 0 ∨ r.natDegree < (Polynomial.X : Polynomial ℚ).natDegree) := by
+  exact normalOre_right_division zeroDerivation (Polynomial.X : Polynomial ℚ)
+    Polynomial.monic_X a
+
+example (I : Submodule (NormalOre zeroDerivation)ᵐᵒᵖ (NormalOre zeroDerivation)) :
+    ∃ a : NormalOre zeroDerivation,
+      I = normalOrePrincipalRightIdealElement zeroDerivation a := by
+  exact rightIdeal_isPrincipal zeroDerivation I
 
 end
