@@ -502,3 +502,25 @@ extractions:
     notes: >-
       The file intentionally does not assert freeness of an Ore localization;
       it only supplies the generic free-coordinate model.
+
+  - id: ore-active-coordinate
+    source_repository: itpplasma/bjork
+    source_revision: da5610624626bfdbb9a5003f85be308563d579dc7
+    source_path: Bjork/TwistDecomposition.lean
+    target_path: AlgebraicAnalysis/Ore/ActiveCoordinate.lean
+    target_namespace: AlgebraicAnalysis.OreActiveCoordinate
+    declaration_scope: >-
+      active-coordinate data, central-coordinate polynomial embedding,
+      differential-Ore and scalar commutation identities, finite normal-form
+      expansion, recombination, and source-relative expansion existence
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - itpplasma/bjork
+    depends_on: [ore-associativity]
+    notes: >-
+      This is a staged extraction.  The coefficient ring remains allowed to be
+      noncommutative, while the distinguished coordinate is explicitly central
+      and the derivation hypotheses remain fields of the data.  No presented
+      Weyl algebra, ideal theorem, localization theorem, or headline
+      Stafford/Björk claim is included.

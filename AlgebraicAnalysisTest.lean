@@ -6,6 +6,8 @@ open Polynomial
 open AlgebraicAnalysis
 open AlgebraicAnalysis.OreDivision
 open AlgebraicAnalysis.OreAssociativity
+open AlgebraicAnalysis.OreActiveCoordinate
+open AlgebraicAnalysis.OreActiveCoordinate.ActiveCoordinateData
 open AlgebraicAnalysis.OreLeftPBW
 open AlgebraicAnalysis.OreRightPBW
 open AlgebraicAnalysis.OreRightIntersection
@@ -51,6 +53,43 @@ def zeroDerivation : OreDivisionDerivation ℚ where
   map_zero' := by simp
   map_add' := by intro a b; simp
   leibniz' := by intro a b; simp
+
+def polynomialDerivation : OreDivisionDerivation (Polynomial ℚ) where
+  toFun := Polynomial.derivative
+  map_zero' := Polynomial.derivative_zero
+  map_add' := by intro p q; exact Polynomial.derivative_add
+  leibniz' := by intro p q; simpa [add_comm] using (Polynomial.derivative_mul (f := p) (g := q))
+
+def polynomialActiveCoordinate :
+    ActiveCoordinateData ℚ (Polynomial ℚ) where
+  derivation := polynomialDerivation
+  coordinate := Polynomial.X
+  coordinate_central := by
+    intro p
+    exact (commute_iff_eq _ _).2 (mul_comm _ _)
+  derivation_smul := by
+    intro a
+    simp [polynomialDerivation]
+  derivation_coordinate := by
+    simp [polynomialDerivation]
+
+example :
+    activeVariable polynomialActiveCoordinate *
+        coefficient polynomialActiveCoordinate Polynomial.X =
+      coefficient polynomialActiveCoordinate Polynomial.X *
+          activeVariable polynomialActiveCoordinate +
+        coefficient polynomialActiveCoordinate (algebraMap ℚ (Polynomial ℚ) 1) := by
+  exact ActiveCoordinateData.variable_mul_coordinate polynomialActiveCoordinate
+
+example (d : polynomialActiveCoordinate.Ore) :
+    ∃ p : Polynomial (Polynomial ℚ),
+      d = ∑ j ∈ p.support,
+        coefficient polynomialActiveCoordinate (p.coeff j) *
+            activeVariable polynomialActiveCoordinate ^ j ∧
+      ∀ n : ℕ, ∀ q : Polynomial ℚ,
+        Commute (coefficient polynomialActiveCoordinate (p.coeff n))
+          (coordinatePolynomial polynomialActiveCoordinate q) := by
+  exact ActiveCoordinateData.exists_active_expansion polynomialActiveCoordinate d
 
 example (p q r : Polynomial ℚ) :
     rightMul zeroDerivation (rightMul zeroDerivation p q) r =

@@ -1,5 +1,6 @@
 import AlgebraicAnalysis.Commutator
 import AlgebraicAnalysis.CommutatorRiccati
+import AlgebraicAnalysis.Ore.ActiveCoordinate
 import AlgebraicAnalysis.Derivation.Central
 import AlgebraicAnalysis.Derivation.Escape
 import AlgebraicAnalysis.Ore.RightHilbertBasis

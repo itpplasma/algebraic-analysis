@@ -5,7 +5,7 @@ phase: private-package-extraction
 mission: reusable-trust-zero-algebraic-analysis
 active_gate: next-slice-selection
 integrated_api_revision: deae322ac2adcccda37ba84c98b972ef873a2d71
-staged_slice: none
+staged_slice: ore-active-coordinate
 consumers: [Stafford38, Bjork]
 public_release: false
 reservoir: false
@@ -74,9 +74,19 @@ are integrated at the pinned revision above.  Björk imports them through
 compatibility aliases; concrete Ore transport and application-specific
 correction assemblies remain downstream.
 
+The next staged slice is the active-coordinate Ore interface from Björk's
+twist decomposition.  It packages central-coordinate data, the differential
+Ore relation, finite normal-form expansions, and the coefficient commutation
+needed by the source-relative tower argument.  It is algebraic and
+application-independent, but currently has only Björk as a substantive
+consumer; it remains staged until the package and the pinned consumer build
+are replayed together.
+
 Provenance and extraction reviews are in
 [`docs/provenance.yaml`](docs/provenance.yaml) and
 [`docs/extraction-review-ore-pbw.md`](docs/extraction-review-ore-pbw.md).
+The staged active-coordinate review is in
+[`docs/extraction-review-active-coordinate.md`](docs/extraction-review-active-coordinate.md).
 Package API tests and downstream builds are the integration evidence.
 
 ## Candidate layers
