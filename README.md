@@ -7,9 +7,11 @@ related exact certificates.
 The repository is private and pre-release. It contains the reviewed
 Ore/PBW/tower foundations shared by Stafford38 and Björk, plus generic
 right-ideal primitives extracted from Björk: finite right-Ore intersections
-and the minimal-degree/principal-right-ideal stage. Current pins, provenance,
-and the distinction between shared and single-consumer slices are recorded in
-`PLAN.md` and `docs/provenance.yaml`.
+and the minimal-degree/principal-right-ideal stage. It also contains the
+application-independent Ore-localization, localized rank, split-rank,
+denominator-torsion, and finite-filtration primitives used by Björk. Current
+pins, provenance, and the distinction between shared and single-consumer
+slices are recorded in `PLAN.md` and `docs/provenance.yaml`.
 
 Planned downstream consumers:
 

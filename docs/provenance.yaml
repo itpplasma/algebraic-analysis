@@ -183,6 +183,84 @@ extractions:
       localization, or left-PID claim.  Stafford38 is not imported solely to
       create a second consumer.
 
+  - id: ore-localization-facts
+    source_repository: plasma/proj/bjork
+    source_revision: 2b398f0d8969b552133f33885bceab1988dabdc7
+    source_path: Bjork/StageLocalization.lean
+    target_path: AlgebraicAnalysis/Ore/Localization.lean
+    target_namespace: AlgebraicAnalysis.OreStageLocalization
+    declaration_scope: >-
+      finite common left multiples, fraction representatives, numerator
+      injectivity, denominator units, and full Ore-fraction units
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - plasma/proj/bjork
+    depends_on: [ore-right-finite-intersection]
+    notes: >-
+      Generic Ore-localization facts only.  No flatness, Noetherianity, or
+      variety-specific localization statement is included.
+
+  - id: module-rank-torsion
+    source_repository: plasma/proj/bjork
+    source_revision: 2b398f0d8969b552133f33885bceab1988dabdc7
+    source_path: Bjork/RankTorsion.lean
+    target_path: AlgebraicAnalysis/Module/RankTorsion.lean
+    target_namespace: AlgebraicAnalysis.RankTorsion
+    declaration_scope: >-
+      division-ring rank identities and Ore-localized right-module torsion
+      criteria
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - plasma/proj/bjork
+    depends_on: [ore-localization-facts]
+    notes: >-
+      The noncommutative localization exactness/flatness theorem is not
+      asserted and remains a downstream open bridge.
+
+  - id: module-rank-exact
+    source_repository: plasma/proj/bjork
+    source_revision: 2b398f0d8969b552133f33885bceab1988dabdc7
+    source_path: Bjork/RankExact.lean
+    target_path: AlgebraicAnalysis/Module/RankExact.lean
+    target_namespace: AlgebraicAnalysis.RankExact
+    declaration_scope: rank additivity from explicit division-ring product and split equivalences
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - plasma/proj/bjork
+    depends_on: [module-rank-torsion]
+    notes: no localization exactness or flatness is assumed.
+
+  - id: module-denominator-torsion
+    source_repository: plasma/proj/bjork
+    source_revision: 2b398f0d8969b552133f33885bceab1988dabdc7
+    source_path: Bjork/DenominatorTorsion.lean
+    target_path: AlgebraicAnalysis/Module/DenominatorTorsion.lean
+    target_namespace: AlgebraicAnalysis.DenominatorTorsion
+    declaration_scope: explicit denominator clearance and quotient torsion
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - plasma/proj/bjork
+    depends_on: [ore-localization-facts]
+    notes: the triangular PBW reduction is not part of this module.
+
+  - id: module-triangular-denominator
+    source_repository: plasma/proj/bjork
+    source_revision: 2b398f0d8969b552133f33885bceab1988dabdc7
+    source_path: Bjork/TriangularDenominator.lean
+    target_path: AlgebraicAnalysis/Module/TriangularDenominator.lean
+    target_namespace: AlgebraicAnalysis.TriangularDenominator
+    declaration_scope: right annihilators, finite common denominators, and finite filtration clearance
+    license: Apache-2.0
+    authorship: inherited repository contribution; preserve source history in Bjork
+    consumers:
+      - plasma/proj/bjork
+    depends_on: [ore-right-finite-intersection, module-denominator-torsion]
+    notes: filtration hypotheses are explicit data; no arbitrary Ore-extension freeness is claimed.
+
   - id: ring-commutator
     source_repository: itpplasma/stafford38
     source_revision: 03230cd7a1a4c14a13a7cb00dbd6dc0b1c542bba

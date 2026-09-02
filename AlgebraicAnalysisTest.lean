@@ -13,6 +13,13 @@ open AlgebraicAnalysis.OrePrincipalRightIdeal
 open AlgebraicAnalysis.OreTower
 open AlgebraicAnalysis.OreIteratedTower
 open AlgebraicAnalysis.OreIteratedPBW
+open AlgebraicAnalysis.OreStageLocalization
+open AlgebraicAnalysis.RankTorsion
+open AlgebraicAnalysis.RankExact
+open AlgebraicAnalysis.DenominatorTorsion
+open AlgebraicAnalysis.TriangularDenominator
+open OreLocalization
+open MulOpposite
 
 noncomputable section
 
@@ -85,5 +92,28 @@ example (I : Submodule (NormalOre zeroDerivation)ᵐᵒᵖ (NormalOre zeroDeriva
     ∃ a : NormalOre zeroDerivation,
       I = normalOrePrincipalRightIdealElement zeroDerivation a := by
   exact rightIdeal_isPrincipal zeroDerivation I
+
+example {Q V W : Type} [DivisionRing Q]
+    [AddCommGroup V] [Module Q V] [AddCommGroup W] [Module Q W] :
+    Module.rank Q (V × W) = Module.rank Q V + Module.rank Q W := by
+  exact rank_prod_add
+
+example {R : Type*} [Ring R] [Nontrivial R] [NoZeroDivisors R]
+    {S : Submonoid R} [OreSet S] (s : Finset S) :
+    ∃ t : S, ∀ a ∈ s, ∃ u : R, (t : R) = u * (a : R) := by
+  exact exists_common_left_multiple s
+
+example {R M : Type*} [Ring R] [AddCommGroup M] [Module Rᵐᵒᵖ M]
+    (N : Submodule Rᵐᵒᵖ M)
+    (hclear : HasDenominatorClearance (R := R) N) :
+    DenominatorTorsion.IsTorsionRight (R := R) (M := M ⧸ N) := by
+  exact quotient_isTorsion_of_clearance N hclear
+
+example {R : Type*} [Ring R] [IsDomain R] {M : Type*}
+    [AddCommGroup M] [Module Rᵐᵒᵖ M]
+    (F : ℕ → Submodule Rᵐᵒᵖ M) (n : ℕ)
+    (hstep : ∀ i < n, StepClearance F i) {m : M} (hm : m ∈ F n) :
+    ∃ s : R, s ≠ 0 ∧ (op s) • m ∈ F 0 := by
+  exact filtration_clearance F n hstep hm
 
 end

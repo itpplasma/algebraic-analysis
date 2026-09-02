@@ -1,10 +1,10 @@
 # Agent rules
 
 - `PLAN.md` is the sole current plan.
-- The active gate is `NEXT-SLICE-AUDIT`. The PBW/tower and finite
-  right-intersection slices have passed package build and API tests; the
-  principal-right-ideal slice is now extracted for Björk and remains a
-  private single-consumer layer pending further API review.
+- The active gate is `NEXT-SLICE-AUDIT`. The Ore/PBW/tower, right-ideal,
+  localization, rank, and denominator slices have passed package build and
+  API tests; the module layer is currently a private single-consumer layer
+  pending further API review.
 - This repository owns reusable, application-independent, axiom-clean
   mathematics. Stafford- or Björk-specific assembly remains downstream.
 - A literature theorem is not a trusted fact until proved in Lean. Definitions

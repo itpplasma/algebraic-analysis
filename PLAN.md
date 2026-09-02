@@ -46,6 +46,15 @@ merely to manufacture a second consumer:
 5. the minimal-degree and right-principal-ideal stage for derivation Ore
    normal forms over division rings.
 
+The current Björk-only module layer is also extracted and audited:
+
+6. generic Ore-localization fraction, denominator, and full-fraction-ring
+   unit facts;
+7. division-ring rank, localized right-module torsion, and split rank
+   additivity;
+8. explicit denominator clearance, finite common annihilators, and finite
+   filtration composition.
+
 Provenance and extraction reviews are in
 [`docs/provenance.yaml`](docs/provenance.yaml) and
 [`docs/extraction-review-ore-pbw.md`](docs/extraction-review-ore-pbw.md).
@@ -57,17 +66,18 @@ These are candidates, not promises to extract wholesale:
 
 | Layer | Current disposition |
 | --- | --- |
-| Ore intersections, division, localization | finite intersection and principal-right-ideal stages are extracted; audit the remaining localization layer for a stable generic slice |
+| Ore intersections, division, localization | finite intersection, principal-right-ideal, and generic localization stages are extracted; audit only the remaining application-specific localization/flatness bridge |
 | presented Weyl/symplectic substitutions | keep downstream until a second application exists |
 | filtrations, Rees, graded and symbol modules | keep downstream while their interfaces are paper-specific |
-| rank, torsion, finite length, unimodular/projective modules | audit for independent consumers; no forced migration |
+| rank, torsion, finite length, unimodular/projective modules | generic division-ring rank and denominator-torsion layers are extracted; finite-length and unimodular/projective assemblies remain downstream |
 | Poisson, Kähler, conormal, DVR and completion | keep theorem-specific until genuinely reusable |
 | certificate formats | extract only after a second checker consumes the format |
 
-In particular, Björk's rank, localization, denominator, and unimodular files
-remain downstream: their present APIs are tied to the Björk namespace or have
-only one downstream consumer. A review record and a second real consumer are
-required before those layers are promoted.
+In particular, Björk's noncommutative flatness, rank-to-generator, finite-
+length, and unimodular/projective assemblies remain downstream. The extracted
+module layer is deliberately conditional and makes no flatness or headline
+cyclicity claim. A review record and a second real consumer are required before
+the single-consumer layer is promoted beyond private use.
 
 ## Integration rules
 
