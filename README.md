@@ -5,7 +5,8 @@ modules, algebraic differential operators, characteristic geometry, and
 related exact certificates.
 
 The repository is private and pre-release. It contains the reviewed
-Ore/PBW/tower foundations shared by Stafford38 and Björk, plus generic
+Ore/PBW/tower foundations shared by Stafford38 and Björk, including finite
+right-PBW bases for monic principal Ore quotients, plus generic
 right-ideal primitives extracted from Björk: finite right-Ore intersections
 and the minimal-degree/principal-right-ideal stage. It also contains the
 application-independent Ore-localization, localized rank, split-rank,

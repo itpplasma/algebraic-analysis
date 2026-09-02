@@ -10,6 +10,7 @@ open AlgebraicAnalysis.OreActiveCoordinate
 open AlgebraicAnalysis.OreActiveCoordinate.ActiveCoordinateData
 open AlgebraicAnalysis.OreLeftPBW
 open AlgebraicAnalysis.OreRightPBW
+open AlgebraicAnalysis.OreRightQuotient
 open AlgebraicAnalysis.OreRightIntersection
 open AlgebraicAnalysis.OrePrincipalRightIdeal
 open AlgebraicAnalysis.OreTower
@@ -51,6 +52,13 @@ example {A : Type*} [Ring A] (z x : A)
   simpa using AlgebraicAnalysis.ringCommutator_pow z x h 3
 
 def zeroDerivation : OreDivisionDerivation ℚ where
+  toFun := fun _ => 0
+  map_zero' := by simp
+  map_add' := by intro a b; simp
+  leibniz' := by intro a b; simp
+
+def matrixZeroDerivation :
+    OreDivisionDerivation (Matrix (Fin 2) (Fin 2) ℚ) where
   toFun := fun _ => 0
   map_zero' := by simp
   map_add' := by intro a b; simp
@@ -105,6 +113,115 @@ example (D : OreDivisionDerivation ℚ) (n : ℕ) :
 example (D : OreDivisionDerivation ℚ) (n : ℕ) :
     rightOrePBWBasis D n = rightPBWMonomial D n := by
   exact rightOrePBWBasis_apply D n
+
+def quadraticOrePolynomial : Polynomial ℚ := Polynomial.X ^ 2 + 1
+
+theorem quadraticOrePolynomial_monic : quadraticOrePolynomial.Monic := by
+  exact Polynomial.Monic.add_of_left (Polynomial.monic_X_pow 2)
+    (by simp [quadraticOrePolynomial])
+
+/-- Concrete rank-two consumer of monic principal-quotient freeness. -/
+example : Basis (Fin 2) ℚᵐᵒᵖ
+    (TwoGeneratorQuotient zeroDerivation quadraticOrePolynomial 0) := by
+  simpa [quadraticOrePolynomial,
+    Polynomial.natDegree_add_eq_left_of_degree_lt
+      (show (1 : Polynomial ℚ).degree <
+          (Polynomial.X ^ 2 : Polynomial ℚ).degree by simp)] using
+    monicPrincipalRightQuotientBasis zeroDerivation quadraticOrePolynomial
+      quadraticOrePolynomial_monic
+
+/-- Independent quotient oracle: in the same concrete quotient, `X² = -1`. -/
+example :
+    Submodule.Quotient.mk
+        (p := twoGeneratorCoeffSubmodule zeroDerivation quadraticOrePolynomial 0)
+        (normalForm zeroDerivation (Polynomial.X ^ 2)) =
+      -Submodule.Quotient.mk
+        (p := twoGeneratorCoeffSubmodule zeroDerivation quadraticOrePolynomial 0)
+        (normalForm zeroDerivation 1) := by
+  have hmem : normalForm zeroDerivation quadraticOrePolynomial ∈
+      twoGeneratorCoeffSubmodule zeroDerivation quadraticOrePolynomial 0 := by
+    change normalForm zeroDerivation quadraticOrePolynomial ∈
+      twoGeneratorRightIdeal zeroDerivation quadraticOrePolynomial 0
+    exact normalForm_H_mem_twoGeneratorRightIdeal
+      zeroDerivation quadraticOrePolynomial 0
+  have hzero :
+      Submodule.Quotient.mk
+          (p := twoGeneratorCoeffSubmodule zeroDerivation quadraticOrePolynomial 0)
+          (normalForm zeroDerivation quadraticOrePolynomial) = 0 :=
+    (Submodule.Quotient.mk_eq_zero
+      (twoGeneratorCoeffSubmodule zeroDerivation quadraticOrePolynomial 0)).2 hmem
+  rw [quadraticOrePolynomial, normalForm_add] at hzero
+  exact eq_neg_of_add_eq_zero_left hzero
+
+/-- Basis-sensitive noncommutative oracle: successive right coefficients are
+recovered in their written product order inside the opposite-ring
+coordinate. -/
+example (a b : Matrix (Fin 2) (Fin 2) ℚ) :
+    let H : Polynomial (Matrix (Fin 2) (Fin 2) ℚ) := Polynomial.X ^ 2 + 1
+    let hH : H.Monic := Polynomial.Monic.add_of_left
+      (Polynomial.monic_X_pow 2) (by simp [H])
+    let j : Fin H.natDegree := ⟨1, by
+      simpa [H, Polynomial.natDegree_add_eq_left_of_degree_lt
+        (show (1 : Polynomial (Matrix (Fin 2) (Fin 2) ℚ)).degree <
+          (Polynomial.X ^ 2).degree by simp)]⟩
+    (monicPrincipalRightQuotientBasis matrixZeroDerivation H hH).repr
+        (Submodule.Quotient.mk
+          (normalForm matrixZeroDerivation
+            (rightMul matrixZeroDerivation
+              (rightMul matrixZeroDerivation Polynomial.X (Polynomial.C a))
+              (Polynomial.C b)))) =
+      Finsupp.single j (MulOpposite.op (a * b)) := by
+  dsimp only
+  let H : Polynomial (Matrix (Fin 2) (Fin 2) ℚ) := Polynomial.X ^ 2 + 1
+  let hH : H.Monic := Polynomial.Monic.add_of_left
+    (Polynomial.monic_X_pow 2) (by simp [H])
+  let j : Fin H.natDegree := ⟨1, by
+    simpa [H, Polynomial.natDegree_add_eq_left_of_degree_lt
+      (show (1 : Polynomial (Matrix (Fin 2) (Fin 2) ℚ)).degree <
+        (Polynomial.X ^ 2).degree by simp)]⟩
+  let β := monicPrincipalRightQuotientBasis matrixZeroDerivation H hH
+  have hclass :
+      Submodule.Quotient.mk
+          (normalForm matrixZeroDerivation
+            (rightMul matrixZeroDerivation
+              (rightMul matrixZeroDerivation Polynomial.X (Polynomial.C a))
+              (Polynomial.C b))) =
+        MulOpposite.op (a * b) • β j := by
+    rw [normalForm_mul, normalForm_mul, normalForm_C, normalForm_C]
+    have hbj : β j = Submodule.Quotient.mk
+        (normalForm matrixZeroDerivation Polynomial.X) := by
+      simpa [β, j] using
+        (monicPrincipalRightQuotientBasis_apply matrixZeroDerivation H hH j)
+    rw [hbj]
+    change Submodule.Quotient.mk
+        (normalForm matrixZeroDerivation Polynomial.X *
+          normalCoefficient matrixZeroDerivation a *
+          normalCoefficient matrixZeroDerivation b) =
+      Submodule.Quotient.mk
+        (MulOpposite.op (a * b) • normalForm matrixZeroDerivation Polynomial.X)
+    rw [normalOre_op_smul_def, MulOpposite.unop_op,
+      map_mul, mul_assoc]
+  calc
+    β.repr (Submodule.Quotient.mk
+        (normalForm matrixZeroDerivation
+          (rightMul matrixZeroDerivation
+            (rightMul matrixZeroDerivation Polynomial.X (Polynomial.C a))
+            (Polynomial.C b)))) =
+        β.repr (MulOpposite.op (a * b) • β j) := congrArg β.repr hclass
+    _ = MulOpposite.op (a * b) • β.repr (β j) := by rw [map_smul]
+    _ = MulOpposite.op (a * b) • Finsupp.single j 1 := by rw [Basis.repr_self]
+    _ = Finsupp.single j (MulOpposite.op (a * b)) := by
+      rw [Finsupp.smul_single]
+      simp
+
+/-- The preceding product order is observable in the chosen coefficient
+ring: these two explicit matrices do not commute. -/
+example :
+    (!![0, 1; 0, 0] : Matrix (Fin 2) (Fin 2) ℚ) * !![0, 0; 1, 0] ≠
+      !![0, 0; 1, 0] * !![0, 1; 0, 0] := by
+  intro h
+  have h00 := congrFun (congrFun h (0 : Fin 2)) (0 : Fin 2)
+  norm_num [Matrix.mul_apply] at h00
 
 example (Ds : List (Derivation ℚ)) (hDs : PairwiseCommutes Ds) :
     Function.Injective (iteratedNormalForm Ds hDs) := by

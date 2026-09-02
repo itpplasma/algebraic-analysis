@@ -248,10 +248,130 @@ theorem rightMul_Xpow_degree_le
   rw [hX] at h
   exact h
 
+/-! ## Monic principal quotients -/
+
+/-- A vector in the first `N` right-PBW slots has a coefficient-left normal
+form of degree strictly less than `N`.  This is the converse, at the level
+needed for division, of `normalForm_mem_rightPBWWindow_of_degree_lt`. -/
+theorem exists_lowDegreePolynomial_eq_of_mem_rightPBWWindow
+    [Nontrivial B] (D : OreDivisionDerivation B) (N : ℕ)
+    {z : NormalOre D} (hz : z ∈ rightPBWWindow D N) :
+    ∃ r : Polynomial B,
+      (r = 0 ∨ r.natDegree < N) ∧ normalForm D r = z := by
+  change z ∈ Submodule.span Bᵐᵒᵖ
+    (Set.range fun j : Fin N ↦ normalForm D (Polynomial.X ^ (j : ℕ))) at hz
+  obtain ⟨c, hc⟩ := (mem_span_range_iff_exists_fun Bᵐᵒᵖ).mp hz
+  let r : Polynomial B := ∑ j : Fin N,
+    rightMul D (Polynomial.X ^ (j : ℕ)) (Polynomial.C (c j).unop)
+  refine ⟨r, ?_, ?_⟩
+  · by_cases hr : r = 0
+    · exact Or.inl hr
+    · exact Or.inr ((Polynomial.natDegree_lt_iff_degree_lt hr).mpr (by
+        rw [Polynomial.degree_lt_iff_coeff_zero]
+        intro m hm
+        change (Polynomial.lcoeff B m) (∑ j : Fin N,
+          rightMul D (Polynomial.X ^ (j : ℕ))
+            (Polynomial.C (c j).unop)) = 0
+        rw [map_sum]
+        apply Finset.sum_eq_zero
+        intro j hj
+        apply Polynomial.coeff_eq_zero_of_degree_lt
+        have hdeg := rightMul_degree_le D
+          (Polynomial.X ^ (j : ℕ)) (Polynomial.C (c j).unop)
+        rw [Polynomial.natDegree_X_pow, Polynomial.natDegree_C] at hdeg
+        exact lt_of_le_of_lt hdeg (by exact_mod_cast j.isLt.trans_le hm)))
+  · change normalFormAddHom D (∑ j : Fin N,
+      rightMul D (Polynomial.X ^ (j : ℕ))
+        (Polynomial.C (c j).unop)) = z
+    rw [map_sum, ← hc]
+    apply Finset.sum_congr rfl
+    intro j hj
+    change normalForm D (rightMul D (Polynomial.X ^ (j : ℕ))
+      (Polynomial.C (c j).unop)) = _
+    rw [normalForm_mul]
+    simp only [normalForm_C, normalOre_op_smul_def]
+
+/-- Monic right multiples and the finite right-PBW remainder window are exact
+complements.  Equivalently, monic right division is both exhaustive and
+unique as a decomposition over the opposite coefficient ring. -/
+theorem monicPrincipalRightIdeal_isCompl_rightPBWWindow
+    [Nontrivial B] (D : OreDivisionDerivation B)
+    (H : Polynomial B) (hH : H.Monic) :
+    IsCompl (twoGeneratorCoeffSubmodule D H 0)
+      (rightPBWWindow D H.natDegree) := by
+  apply IsCompl.of_le
+  · intro z hz
+    have hzI := hz.1
+    have hzW := hz.2
+    change z ∈ twoGeneratorRightIdeal D H 0 at hzI
+    rw [twoGeneratorRightIdeal, Submodule.mem_span_pair] at hzI
+    obtain ⟨a, b, hab⟩ := hzI
+    have hzeroTerm : b • normalForm D (0 : Polynomial B) = 0 := by
+      rw [normalForm_zero, smul_zero]
+    rw [hzeroTerm, add_zero] at hab
+    change normalForm D H * a.unop = z at hab
+    obtain ⟨q, hq⟩ := normalForm_surjective D a.unop
+    obtain ⟨r, hrsmall, hrz⟩ :=
+      exists_lowDegreePolynomial_eq_of_mem_rightPBWWindow D H.natDegree hzW
+    have hdecomp : r = rightMul D H q + 0 := by
+      apply normalForm_injective D
+      rw [normalForm_add, normalForm_zero, normalForm_mul, add_zero, hq]
+      exact hrz.trans hab.symm
+    have hzero := (right_division_unique D H r q 0 0 r hH
+      hdecomp (by simp [rightMul_zero]) (Or.inl rfl) hrsmall).2
+    have hr0 : r = 0 := hzero.symm
+    rw [← hrz, hr0, normalForm_zero]
+    exact Submodule.zero_mem _
+  · intro z hz
+    obtain ⟨p, rfl⟩ := normalForm_surjective D z
+    obtain ⟨q, r, hdecomp, hrsmall⟩ := right_division_exists D H p hH
+    rw [Submodule.mem_sup]
+    refine ⟨normalForm D (rightMul D H q),
+      normalForm_rightMul_H_mem_twoGeneratorCoeffSubmodule D H 0 q,
+      normalForm D r,
+      normalForm_mem_rightPBWWindow_of_degree_lt D r H.natDegree hrsmall,
+      ?_⟩
+    rw [← normalForm_add, ← hdecomp]
+
+/-- The basis of the finite right-PBW remainder window. -/
+def rightPBWWindowBasis [Nontrivial B]
+    (D : OreDivisionDerivation B) (N : ℕ) :
+    Basis (Fin N) Bᵐᵒᵖ (rightPBWWindow D N) :=
+  Basis.span ((rightOrePBW_linearIndependent D).comp
+    (fun j : Fin N ↦ (j : ℕ)) Fin.val_injective)
+
+/-- A monic principal right quotient of a derivation-Ore extension is free of
+rank `H.natDegree` over the opposite coefficient ring, with basis represented
+by `1, X, …, X^(H.natDegree-1)`.  The `0` second generator is only a literal
+encoding of the principal right ideal inside the existing quotient API. -/
+def monicPrincipalRightQuotientBasis [Nontrivial B]
+    (D : OreDivisionDerivation B) (H : Polynomial B) (hH : H.Monic) :
+    Basis (Fin H.natDegree) Bᵐᵒᵖ (TwoGeneratorQuotient D H 0) :=
+  (rightPBWWindowBasis D H.natDegree).map
+    (Submodule.quotientEquivOfIsCompl
+      (twoGeneratorCoeffSubmodule D H 0)
+      (rightPBWWindow D H.natDegree)
+      (monicPrincipalRightIdeal_isCompl_rightPBWWindow D H hH)).symm
+
+@[simp] theorem monicPrincipalRightQuotientBasis_apply [Nontrivial B]
+    (D : OreDivisionDerivation B) (H : Polynomial B) (hH : H.Monic)
+    (j : Fin H.natDegree) :
+    monicPrincipalRightQuotientBasis D H hH j =
+      Submodule.Quotient.mk (normalForm D (Polynomial.X ^ (j : ℕ))) := by
+  rw [monicPrincipalRightQuotientBasis, Basis.map_apply,
+    Submodule.quotientEquivOfIsCompl_symm_apply]
+  congr 1
+  simpa [rightPBWWindowBasis, rightPBWMonomial, rightPBWWindow] using
+    (Basis.span_apply ((rightOrePBW_linearIndependent D).comp
+      (fun j : Fin H.natDegree ↦ (j : ℕ)) Fin.val_injective) j)
+
 #print axioms rightPBWMonomial_op_smul
 #print axioms normalForm_mem_rightPBWWindow_of_degree_lt
 #print axioms rightPBWWindow_finite
 #print axioms rightMul_Xpow_top_coefficient
+#print axioms monicPrincipalRightIdeal_isCompl_rightPBWWindow
+#print axioms monicPrincipalRightQuotientBasis
+#print axioms monicPrincipalRightQuotientBasis_apply
 #print axioms rightPBWCombination_eq_zero
 #print axioms rightPBWCombination_injective
 #print axioms rightPBWMonomial_mem_span

@@ -34,7 +34,8 @@ The following foundational slices are complete, audited with `--trust=0`, and
 consumed by both downstream repositories at the pinned API revision:
 
 1. derivation-Ore definitions, associativity, normal forms, right quotient,
-   and right Hilbert-basis/Noetherian infrastructure;
+   monic principal-quotient freeness, and right Hilbert-basis/Noetherian
+   infrastructure;
 2. left/right PBW bases and finite commuting Ore towers;
 3. the common ring-commutator definition and product/power identities.
 
@@ -69,6 +70,13 @@ surjectivity on every filtration subquotient.  This is a genuine reusable
 step in Stafford's noncharacteristic lane, but it does not prove the missing
 adapted-good-filtration theorem and is not advertised as such.  It will be
 pinned downstream when that construction supplies the strictness hypothesis.
+
+Monic right division now also gives the exact direct complement between a
+principal right ideal and its finite right-PBW remainder window. Thus a monic
+degree-`N` Ore quotient is free of rank `N` over the opposite coefficient
+ring. This strengthens finite generation for the one-generator quotient; it
+does not make Stafford's further quotient by `x^N dA` free and does not supply
+the missing adapted-filtration strictness.
 
 The generic noncommutative derivation/centrality kernel, module splice lemmas,
 and abstract two-simplicity transfer are integrated at the pinned revision
