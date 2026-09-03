@@ -255,22 +255,19 @@ lemma rightMulMonomial_coeff_top (p : Polynomial B) (hp : p ≠ 0)
     intro i hi hne
     apply Finset.sum_eq_zero
     intro k hk
-    by_cases hEq : i - k + j = p.natDegree + j
-    · have hi_le : i ≤ p.natDegree := Polynomial.le_natDegree_of_mem_supp i hi
-      have hi_lt : i < p.natDegree := lt_of_le_of_ne hi_le hne
-      have hle : i - k + j ≤ i + j := by omega
-      omega
-    · simp [hEq]) (by simp [htop])]
+    have hi_le : i ≤ p.natDegree := Polynomial.le_natDegree_of_mem_supp i hi
+    have hi_lt : i < p.natDegree := lt_of_le_of_ne hi_le hne
+    have hne_sub : i - k ≠ p.natDegree := by omega
+    simp [hne_sub]) (by simp [htop])]
   rw [Finset.sum_eq_single 0 (by
     intro k hk hk0
-    by_cases hEq : p.natDegree - k + j = p.natDegree + j
-    · have hkpos : 0 < k := Nat.pos_of_ne_zero hk0
-      have hk_lt : k < p.natDegree + 1 := Finset.mem_range.mp hk
-      have hk_le : k ≤ p.natDegree := by omega
-      have hNpos : 0 < p.natDegree := lt_of_lt_of_le hkpos hk_le
-      have hlt : p.natDegree - k < p.natDegree := Nat.sub_lt hNpos hkpos
-      omega
-    · simp [hEq]) (by simp)]
+    have hkpos : 0 < k := Nat.pos_of_ne_zero hk0
+    have hk_lt : k < p.natDegree + 1 := Finset.mem_range.mp hk
+    have hk_le : k ≤ p.natDegree := by omega
+    have hNpos : 0 < p.natDegree := lt_of_lt_of_le hkpos hk_le
+    have hne_sub : p.natDegree - k ≠ p.natDegree :=
+      Nat.ne_of_lt (Nat.sub_lt hNpos hkpos)
+    simp [hne_sub]) (by simp)]
   rw [Nat.sub_zero]
   simp only [if_true, Nat.choose_zero_right, Function.iterate_zero_apply,
     one_nsmul, one_mul, Polynomial.leadingCoeff]
@@ -332,7 +329,10 @@ lemma rightMul_degree_eq [Nontrivial B] (d q : Polynomial B)
         (d.natDegree + q.natDegree : WithBot ℕ) := lt_of_not_ge hnot
     have hlt : (rightMul D d q).degree <
         ((d.natDegree + q.natDegree : ℕ) : WithBot ℕ) := by
-      simpa only [WithBot.coe_add] using hlt0
+      have heq : (d.natDegree + q.natDegree : WithBot ℕ) =
+          ((d.natDegree + q.natDegree : ℕ) : WithBot ℕ) :=
+        (WithBot.coe_add d.natDegree q.natDegree).symm
+      rwa [heq] at hlt0
     have hz := Polynomial.coeff_eq_zero_of_degree_lt hlt
     exact hq0 (by rw [← htop, hz])
   exact le_antisymm hle hge
@@ -348,9 +348,11 @@ theorem rightMul_injective [Nontrivial B] (d : Polynomial B) (hd : d.Monic) :
   rw [hz] at hdeg
   have hne : (⊥ : WithBot ℕ) ≠
       (d.natDegree + (q₁ - q₂).natDegree : WithBot ℕ) := by
-    simpa only [WithBot.coe_add] using
-      (WithBot.bot_ne_coe : (⊥ : WithBot ℕ) ≠
-        ((d.natDegree + (q₁ - q₂).natDegree : ℕ) : WithBot ℕ))
+    have heq : (d.natDegree + (q₁ - q₂).natDegree : WithBot ℕ) =
+        ((d.natDegree + (q₁ - q₂).natDegree : ℕ) : WithBot ℕ) :=
+      (WithBot.coe_add d.natDegree (q₁ - q₂).natDegree).symm
+    rw [heq]
+    exact WithBot.bot_ne_coe
   exact hne hdeg
 
 /-! The leading-degree theorem packages the strict filtered-intersection
@@ -597,7 +599,7 @@ lemma nsmul_mul_right (a u : A) (n : ℕ) :
 
 /-- The normal-order expansion of `x^n * embed b`. -/
 def expansion (b : B) (n : ℕ) : A :=
-  ∑ ij ∈ Finset.antidiagonal n,
+  ∑ ij ∈ Finset.HasAntidiagonal.antidiagonal n,
     n.choose ij.1 • term D O b ij.1 ij.2
 
 theorem pow_mul (b : B) (n : ℕ) :
@@ -611,13 +613,14 @@ theorem pow_mul (b : B) (n : ℕ) :
       rw [Finset.sum_add_distrib, expansion]
       rw [Finset.sum_antidiagonal_choose_succ_nsmul]
       have hsecond :
-          (∑ ij ∈ Finset.antidiagonal n,
+          (∑ ij ∈ Finset.HasAntidiagonal.antidiagonal n,
             n.choose ij.1 • term D O b (ij.1 + 1) ij.2) =
-            ∑ ij ∈ Finset.antidiagonal n,
+            ∑ ij ∈ Finset.HasAntidiagonal.antidiagonal n,
               n.choose ij.2 • term D O b (ij.1 + 1) ij.2 := by
         apply Finset.sum_congr rfl
         intro ij hij
-        have hsum : ij.1 + ij.2 = n := Finset.mem_antidiagonal.mp hij
+        have hsum : ij.1 + ij.2 = n :=
+          Finset.HasAntidiagonal.mem_antidiagonal.mp hij
         have hi : ij.1 ≤ n := by omega
         rw [← Nat.choose_symm hi]
         rw [show n - ij.1 = ij.2 by omega]
@@ -633,7 +636,7 @@ def reverseSignedTerm (b : B) (i j : ℕ) : A :=
 
 /-- The reverse normal-order expansion of `x^n * embed b`. -/
 def reverseExpansion (b : B) (n : ℕ) : A :=
-  ∑ ij ∈ Finset.antidiagonal n,
+  ∑ ij ∈ Finset.HasAntidiagonal.antidiagonal n,
     n.choose ij.1 • reverseSignedTerm D O b ij.1 ij.2
 
 lemma reverseTerm_mul (b : B) (i j : ℕ) :
@@ -670,13 +673,14 @@ theorem reverse_mul (b : B) (n : ℕ) :
       simp_rw [nsmul_add]
       unfold reverseExpansion
       have hsecond :
-          (∑ ij ∈ Finset.antidiagonal n,
+          (∑ ij ∈ Finset.HasAntidiagonal.antidiagonal n,
             n.choose ij.1 • reverseSignedTerm D O b (ij.1 + 1) ij.2) =
-            ∑ ij ∈ Finset.antidiagonal n,
+            ∑ ij ∈ Finset.HasAntidiagonal.antidiagonal n,
               n.choose ij.2 • reverseSignedTerm D O b (ij.1 + 1) ij.2 := by
         apply Finset.sum_congr rfl
         intro ij hij
-        have hsum : ij.1 + ij.2 = n := Finset.mem_antidiagonal.mp hij
+        have hsum : ij.1 + ij.2 = n :=
+          Finset.HasAntidiagonal.mem_antidiagonal.mp hij
         have hi : ij.1 ≤ n := by omega
         rw [← Nat.choose_symm hi]
         rw [show n - ij.1 = ij.2 by omega]
@@ -691,7 +695,7 @@ theorem commutator_pow_mul (p a : A) (m : ℕ) :
 
 theorem commutator_pow_mul_explicit (p a : A) (m : ℕ) :
     p ^ m * a =
-      ∑ ij ∈ Finset.antidiagonal m,
+      ∑ ij ∈ Finset.HasAntidiagonal.antidiagonal m,
         m.choose ij.1 • (((commutatorDerivation p)^[ij.1]) a * p ^ ij.2) := by
   simpa [OreAmbient.expansion, term, commutatorAmbient] using
     (commutator_pow_mul (A := A) p a m)

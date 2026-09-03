@@ -134,6 +134,7 @@ theorem localized_oreDiv_one_eq_zero_iff (m : M) :
     rw [← hv]
     simpa using huv.symm
   · rintro ⟨s, hs⟩
+    change (s : Rᵐᵒᵖ) • m = 0 at hs
     rw [← OreLocalization.zero_oreDiv (1 : (Rᵐᵒᵖ)⁰)]
     rw [OreLocalization.oreDiv_eq_iff]
     refine ⟨s, (s : Rᵐᵒᵖ), ?_, ?_⟩
@@ -157,13 +158,15 @@ theorem oreRank_zero_iff_rightTorsion :
     refine ⟨fun x y => ?_⟩
     have hzero : ∀ z : LocalizedRightModule R M, z = 0 := by
       intro z
-      induction' z using OreLocalization.ind with m s
-      rw [← OreLocalization.zero_oreDiv (s : (Rᵐᵒᵖ)⁰)]
-      obtain ⟨t, ht⟩ := h m
-      rw [OreLocalization.oreDiv_eq_iff]
-      refine ⟨t, (t : Rᵐᵒᵖ), ?_, ?_⟩
-      · simpa using ht.symm
-      · simp
+      induction z using OreLocalization.ind with
+      | _ m s =>
+          rw [← OreLocalization.zero_oreDiv (s : (Rᵐᵒᵖ)⁰)]
+          obtain ⟨t, ht⟩ := h m
+          change (t : Rᵐᵒᵖ) • m = 0 at ht
+          rw [OreLocalization.oreDiv_eq_iff]
+          refine ⟨t, (t : Rᵐᵒᵖ), ?_, ?_⟩
+          · simpa using ht.symm
+          · simp
     exact (hzero x).trans (hzero y).symm
 
 theorem oreRank_zero_iff_localized_torsion :
@@ -188,4 +191,3 @@ end OreLocalizedRightModules
 
 end RankTorsion
 end AlgebraicAnalysis
-

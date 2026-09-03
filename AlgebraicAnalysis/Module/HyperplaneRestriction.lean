@@ -24,7 +24,19 @@ abbrev Restriction (x : R) : Type _ :=
 theorem restriction_subsingleton_iff_smul_surjective {x : R} :
     Subsingleton (Restriction (M := M) x) ↔
       Function.Surjective fun m : M ↦ x • m := by
-  rw [Submodule.subsingleton_quotient_iff_eq_top]
+  have hquotient :
+      Subsingleton (Restriction (M := M) x) ↔
+        Ideal.span {x} • (⊤ : Submodule R M) = ⊤ := by
+    constructor
+    · intro h
+      apply Submodule.unique_quotient_iff_eq_top.mp
+      exact ⟨{
+        default := 0
+        uniq := fun y ↦ h.elim y 0 }⟩
+    · intro h
+      obtain ⟨hunique⟩ := Submodule.unique_quotient_iff_eq_top.mpr h
+      exact @Unique.instSubsingleton _ hunique
+  rw [hquotient]
   constructor
   · intro htop m
     have hm : m ∈ x • (⊤ : Submodule R M) := by

@@ -1,4 +1,6 @@
 import AlgebraicAnalysis.Ore.RightHilbertBasis
+import Mathlib.LinearAlgebra.Basis.Basic
+import Mathlib.LinearAlgebra.Finsupp.LinearCombination
 
 /-!
 # Right-coefficient PBW data for one derivation-Ore stage
@@ -12,6 +14,7 @@ degree induction, so no freeness or flatness assumption is introduced.
 namespace AlgebraicAnalysis.OreRightPBW
 
 open Polynomial
+open Module
 open AlgebraicAnalysis
 open AlgebraicAnalysis.OreDivision
 open AlgebraicAnalysis.OreAssociativity
@@ -155,10 +158,10 @@ lemma rightPBWMonomial_mem_span (D : OreDivisionDerivation B)
     Submodule.smul_mem _ _ hpow
   by_cases heven : Even ij.1
   · rw [heven.neg_one_pow]
-    simpa only [one_mul] using hscalar
+    simpa only [one_mul, rightPBWMonomial] using hscalar
   · have hodd : Odd ij.1 := Nat.not_even_iff_odd.mp heven
     rw [hodd.neg_one_pow]
-    simpa only [neg_one_mul] using
+    simpa only [neg_one_mul, rightPBWMonomial] using
       (Submodule.span Bᵐᵒᵖ (Set.range (rightPBWMonomial D))).neg_mem hscalar
 
 theorem rightPBW_span_eq_top (D : OreDivisionDerivation B) :
@@ -176,7 +179,7 @@ theorem rightPBW_span_eq_top (D : OreDivisionDerivation B) :
 theorem rightOrePBW_linearIndependent
     [Nontrivial B] (D : OreDivisionDerivation B) :
     LinearIndependent Bᵐᵒᵖ (rightPBWMonomial D) :=
-  (linearIndependent_iff_injective_linearCombination).2
+  (linearIndependent_iff_injective_finsuppLinearCombination).2
     (rightPBWCombination_injective D)
 
 def rightOrePBWBasis [Nontrivial B] (D : OreDivisionDerivation B) :
@@ -193,7 +196,7 @@ theorem rightOrePBWBasis_repr_symm_single [Nontrivial B]
     (D : OreDivisionDerivation B) (n : ℕ) (b : Bᵐᵒᵖ) :
     (rightOrePBWBasis D).repr.symm (Finsupp.single n b) =
       b • rightPBWMonomial D n := by
-  rw [Basis.repr_symm_single, rightOrePBWBasis_apply]
+  rw [(rightOrePBWBasis D).repr_symm_single, rightOrePBWBasis_apply]
 
 @[simp] theorem rightPBWMonomial_zero (D : OreDivisionDerivation B) :
     rightPBWMonomial D 0 = 1 := by
@@ -221,10 +224,8 @@ theorem normalForm_mem_rightPBWWindow_of_degree_lt
 theorem rightPBWWindow_finite
     [Nontrivial B] (D : OreDivisionDerivation B) (n : ℕ) :
     Module.Finite Bᵐᵒᵖ (rightPBWWindow D n) := by
-  letI : Module.Finite Bᵐᵒᵖ (rightPBWWindow D n) :=
-    Module.Finite.span_of_finite Bᵐᵒᵖ
-      (Set.finite_range (fun j : Fin n => rightPBWMonomial D (j : ℕ)))
-  exact inferInstance
+  exact Module.Finite.span_of_finite Bᵐᵒᵖ
+    (Set.finite_range (fun j : Fin n => rightPBWMonomial D (j : ℕ)))
 
 @[simp] theorem rightPBWMonomial_apply (D : OreDivisionDerivation B) (n : ℕ) :
     rightPBWMonomial D n = normalForm D (Polynomial.X ^ n) := rfl
@@ -260,7 +261,7 @@ theorem exists_lowDegreePolynomial_eq_of_mem_rightPBWWindow
       (r = 0 ∨ r.natDegree < N) ∧ normalForm D r = z := by
   change z ∈ Submodule.span Bᵐᵒᵖ
     (Set.range fun j : Fin N ↦ normalForm D (Polynomial.X ^ (j : ℕ))) at hz
-  obtain ⟨c, hc⟩ := (mem_span_range_iff_exists_fun Bᵐᵒᵖ).mp hz
+  obtain ⟨c, hc⟩ := (Submodule.mem_span_range_iff_exists_fun Bᵐᵒᵖ).mp hz
   let r : Polynomial B := ∑ j : Fin N,
     rightMul D (Polynomial.X ^ (j : ℕ)) (Polynomial.C (c j).unop)
   refine ⟨r, ?_, ?_⟩
@@ -361,7 +362,10 @@ def monicPrincipalRightQuotientBasis [Nontrivial B]
   rw [monicPrincipalRightQuotientBasis, Basis.map_apply,
     Submodule.quotientEquivOfIsCompl_symm_apply]
   congr 1
-  simpa [rightPBWWindowBasis, rightPBWMonomial, rightPBWWindow] using
+  change (((rightPBWWindowBasis D H.natDegree) j :
+    rightPBWWindow D H.natDegree) : NormalOre D) =
+      normalForm D (Polynomial.X ^ (j : ℕ))
+  exact congrArg Subtype.val
     (Basis.span_apply ((rightOrePBW_linearIndependent D).comp
       (fun j : Fin H.natDegree ↦ (j : ℕ)) Fin.val_injective) j)
 

@@ -51,23 +51,32 @@ variable {S : Submonoid R} [OreSet S]
 /-- Every element of an Ore localization has an explicit numerator/denominator form. -/
 theorem exists_fraction (x : R[S⁻¹]) :
     ∃ r : R, ∃ s : S, x = r /ₒ s := by
-  induction' x using OreLocalization.ind with r s
-  exact ⟨r, s, rfl⟩
+  induction x using OreLocalization.ind with
+  | _ r s => exact ⟨r, s, rfl⟩
 
 /-- A nonzero localized element has a representative with nonzero numerator. -/
 theorem exists_ne_zero_numerator {x : R[S⁻¹]} (hx : x ≠ 0) :
     ∃ r : R, r ≠ 0 ∧ ∃ s : S, x = r /ₒ s := by
-  induction' x using OreLocalization.ind with r s
-  refine ⟨r, ?_, s, rfl⟩
-  intro hr
-  apply hx
-  subst r
-  exact OreLocalization.zero_oreDiv' s
+  induction x using OreLocalization.ind with
+  | _ r s =>
+      refine ⟨r, ?_, s, rfl⟩
+      intro hr
+      apply hx
+      subst r
+      exact OreLocalization.zero_oreDiv' s
 
 /-- Under a right non-zero-divisor hypothesis, the numerator embedding is injective. -/
 theorem numerator_injective (hS : S ≤ nonZeroDivisorsRight R) :
     Function.Injective (OreLocalization.numeratorHom : R → R[S⁻¹]) :=
-  OreLocalization.numeratorHom_inj hS
+  OreLocalization.numeratorHom_inj <| by
+    intro s hs
+    rw [mem_nonZeroDivisorsLeft_iff]
+    intro y hsy
+    have hs0 : (s : R) ≠ 0 := by
+      intro hs0
+      have h1 : (1 : R) = 0 := hS hs 1 (by simp [hs0])
+      exact one_ne_zero h1
+    exact (mul_eq_zero.mp hsy).resolve_left hs0
 
 /-- Every chosen denominator becomes a unit in an Ore localization. -/
 theorem denominator_isUnit (s : S) :
@@ -84,22 +93,9 @@ variable [OreLocalization.OreSet R⁰]
 /-- Every nonzero numerator is a unit in the full Ore division-ring localization. -/
 theorem nonzero_numerator_isUnit {r : R} (hr : r ≠ 0) :
     IsUnit (OreLocalization.numeratorHom r : R[R⁰⁻¹]) := by
-  apply isUnit_iff_ne_zero.mpr
-  intro h
-  apply hr
-  have hS : R⁰ ≤ nonZeroDivisorsRight R := by
-    intro s hs
-    have hs0 : (s : R) ≠ 0 := by
-      intro hs0
-      have hone : (1 : R) = 0 := hs 1 (by simp [hs0])
-      exact one_ne_zero hone
-    rw [mem_nonZeroDivisorsRight_iff]
-    intro y hsy
-    exact (mul_eq_zero.mp hsy).resolve_left hs0
-  apply OreLocalization.numeratorHom_inj hS
-  exact h.trans (by
-    rw [OreLocalization.numeratorHom_apply]
-    exact (OreLocalization.zero_oreDiv' (1 : R⁰)).symm)
+  simpa using
+    (OreLocalization.numerator_isUnit
+      (⟨r, mem_nonZeroDivisors_of_ne_zero hr⟩ : R⁰))
 
 /-- Every nonzero element of the full Ore localization is a unit. -/
 theorem full_isUnit_of_ne_zero {x : R[R⁰⁻¹]} (hx : x ≠ 0) : IsUnit x :=
@@ -117,4 +113,3 @@ end FullFractionRing
 
 end OreStageLocalization
 end AlgebraicAnalysis
-

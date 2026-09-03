@@ -49,7 +49,7 @@ theorem finite_unimodular_splitting
   have hstep : ∀ i, M i ≃ₗ[R] M (i + 1) × R := by
     intro i
     exact (AlgebraicAnalysis.Unimodular.unimodularSplitEquiv (φ i) (x i)
-      (hx i)).trans ((hres i).symm.prod (LinearEquiv.refl R R))
+      (hx i)).trans ((hres i).symm.prodCongr (LinearEquiv.refl R R))
   intro n
   induction n with
   | zero =>
@@ -61,8 +61,8 @@ theorem finite_unimodular_splitting
           (LinearEquiv.refl R (Fin (n + 1) → R))
       let rearrange :=
         (LinearEquiv.prodAssoc R (M (n + 1)) R (Fin n → R)).trans
-          ((LinearEquiv.refl R (M (n + 1))).prod factors)
-      exact ⟨e.trans ((LinearEquiv.prod (hstep n)
+          ((LinearEquiv.refl R (M (n + 1))).prodCongr factors)
+      exact ⟨e.trans (((hstep n).prodCongr
         (LinearEquiv.refl R (Fin n → R))).trans rearrange)⟩
 
 #print axioms emptyFactorEquiv

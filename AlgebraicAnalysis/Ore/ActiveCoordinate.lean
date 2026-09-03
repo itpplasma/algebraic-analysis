@@ -100,10 +100,10 @@ theorem coefficient_commute_coordinatePolynomial (c : C)
     (p : Polynomial k) :
     Commute (coefficient A c) (coordinatePolynomial A p) := by
   induction p using Polynomial.induction_on' with
-  | h_add p q hp hq =>
+  | add p q hp hq =>
       rw [coordinatePolynomial, eval₂_add]
       exact hp.add_right hq
-  | h_monomial n a =>
+  | monomial n a =>
       rw [coordinatePolynomial, eval₂_monomial]
       exact (coefficient_commute_smul A c a).mul_right
         ((coefficient_commute_coordinate A c).pow_right n)

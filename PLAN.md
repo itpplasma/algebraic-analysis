@@ -3,7 +3,7 @@
 ```yaml
 phase: private-package-extraction
 mission: reusable-trust-zero-algebraic-analysis
-active_gate: lane-a-adapted-filtration
+active_gate: lean-mathlib-v4.33.1-migration
 consumer_pins: authoritative in downstream lakefile.toml files
 staged_slice: none
 consumers: [Stafford38, Bjork]
@@ -165,6 +165,15 @@ the single-consumer layer is promoted beyond private use.
 - require package build, tests, axiom audit, provenance, and consumer builds;
 - make one coherent extraction wave at a time and push it as an atomic change;
 - keep chronology and failed experiments in repository history, not this file.
+
+## Active migration gate
+
+The package is migrating from Lean/Mathlib v4.16.0 to v4.33.1 before the
+Stafford degree-zero divisor construction. The newer release supplies the
+Krull-height, Noether-normalization, and finite integral-closure APIs needed by
+that downstream route. Promotion requires the package build, package tests,
+trust-zero axiom audit, and exact downstream pin; this migration adds no
+Stafford-specific theorem here.
 
 ## Release gate
 

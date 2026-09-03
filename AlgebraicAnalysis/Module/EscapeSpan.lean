@@ -65,10 +65,9 @@ theorem commutatorVector_mem
     simpa only [op_smul_vector] using
       H.smul_mem (MulOpposite.op x) hv
   have hleft' : (fun i => x * v i) ∈ H := hleft v hv
-  have hsub : rightMulVector v x - (fun i => x * v i) ∈ H :=
-    H.sub_mem hright hleft'
-  simpa only [commutatorVector, rightMulVector, commutator_apply,
-    Pi.sub_apply] using hsub
+  change (fun i => v i * x - x * v i) ∈ H
+  change rightMulVector v x - (fun i => x * v i) ∈ H
+  exact H.sub_mem hright hleft'
 
 /-!
 The key right-sided module consequence.  A unit coordinate can be inverted
@@ -128,4 +127,3 @@ theorem top_of_unit_singletons
 
 end
 end AlgebraicAnalysis.EscapeSpan
-

@@ -27,9 +27,11 @@ noncomputable section
 set_option synthInstance.maxHeartbeats 100000
 set_option maxHeartbeats 600000
 
-variable {B : Type*} [Ring B]
+universe u
 
-abbrev Derivation (B : Type*) [Ring B] := OreDivisionDerivation B
+variable {B : Type u} [Ring B]
+
+abbrev Derivation (B : Type u) [Ring B] := OreDivisionDerivation B
 
 /-- Commutation of two coefficient derivations. -/
 def Commutes (D E : Derivation B) : Prop :=
@@ -75,13 +77,13 @@ their commutation proof avoids a circular definition of the tower type.
 -/
 structure TowerBuild (Ds : List (Derivation B))
     (hDs : PairwiseCommutes Ds) where
-  carrier : Type _
+  carrier : Type u
   ring : Ring carrier
   extend : ∀ (D : Derivation B), CommutesWith D Ds →
     OreDivisionDerivation carrier
   extend_commutes : ∀ (D E : Derivation B)
     (hD : CommutesWith D Ds) (hE : CommutesWith E Ds), Commutes D E →
-    Commutes (extend D hD) (extend E hE)
+    Commutes (B := carrier) (extend D hD) (extend E hE)
 
 def build : (Ds : List (Derivation B)) →
     (hDs : PairwiseCommutes Ds) → TowerBuild Ds hDs
@@ -119,7 +121,7 @@ def build : (Ds : List (Derivation B)) →
 
 /-- The carrier ring of the finite iterated tower. -/
 abbrev OreTower (Ds : List (Derivation B))
-    (hDs : PairwiseCommutes Ds) : Type _ := (build Ds hDs).carrier
+    (hDs : PairwiseCommutes Ds) : Type u := (build Ds hDs).carrier
 
 instance oreTowerRing (Ds : List (Derivation B))
     (hDs : PairwiseCommutes Ds) : Ring (OreTower Ds hDs) :=
@@ -143,7 +145,7 @@ theorem extendThrough_commutes (D E : Derivation B)
 
 /-- A nested polynomial carrier together with the ring instance it needs. -/
 structure PolynomialBuild (Ds : List (Derivation B)) where
-  carrier : Type _
+  carrier : Type u
   ring : Ring carrier
 
 def polynomialBuild : (Ds : List (Derivation B)) → PolynomialBuild Ds
@@ -157,7 +159,7 @@ def polynomialBuild : (Ds : List (Derivation B)) → PolynomialBuild Ds
               ring := inferInstance }
 
 /-- Nested coefficient-left polynomial data for the tower. -/
-abbrev iteratedPolynomial (Ds : List (Derivation B)) : Type _ :=
+abbrev iteratedPolynomial (Ds : List (Derivation B)) : Type u :=
   (polynomialBuild Ds).carrier
 
 instance iteratedPolynomialRing (Ds : List (Derivation B)) :
@@ -176,11 +178,17 @@ def iteratedNormalForm : (Ds : List (Derivation B)) →
       let hD : CommutesWith D Ds := pairwise_head hDs
       let e : P.carrier ≃+ T.carrier :=
         iteratedNormalForm Ds hDs.2
+      let pCoeff : AddMonoidAlgebra P.carrier ℕ ≃+ (ℕ →₀ P.carrier) :=
+        AddMonoidAlgebra.coeffAddEquiv
+      let tCoeff : AddMonoidAlgebra T.carrier ℕ ≃+ (ℕ →₀ T.carrier) :=
+        AddMonoidAlgebra.coeffAddEquiv
       let ep : Polynomial P.carrier ≃+
           Polynomial T.carrier :=
         (Polynomial.toFinsuppIso P.carrier).toAddEquiv.trans
-          ((Finsupp.mapRange.addEquiv e).trans
-            (Polynomial.toFinsuppIso T.carrier).toAddEquiv.symm)
+          (pCoeff.trans
+            ((Finsupp.mapRange.addEquiv (ι := ℕ) e).trans
+              (tCoeff.symm.trans
+                (Polynomial.toFinsuppIso T.carrier).toAddEquiv.symm)))
       exact ep.trans (normalFormAddEquiv (T.extend D hD))
 
 theorem iteratedNormalForm_injective (Ds : List (Derivation B))

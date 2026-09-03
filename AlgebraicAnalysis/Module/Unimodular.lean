@@ -55,9 +55,9 @@ def unimodularSplitMapInv (φ : N →ₗ[R] R) (x : N) :
       simp only [Prod.fst_add, Prod.snd_add, Submodule.coe_add, add_smul]
       abel
     map_smul' := by
-      intro r y
-      simp only [Prod.smul_mk, Submodule.coe_smul]
-      simp [smul_add, mul_smul]
+      rintro r ⟨y, s⟩
+      dsimp
+      rw [smul_add, mul_smul]
     }
 
 theorem unimodularSplitMap_left_inverse
@@ -85,10 +85,10 @@ theorem unimodularSplitMap_right_inverse
     rw [φ.map_add, φ.map_smul, LinearMap.mem_ker.mp y.2]
     simp [hx, smul_eq_mul]
   · simp only [LinearMap.comp_apply, unimodularSplitMap, LinearMap.prod_apply,
-      unimodularSplitMapInv, LinearMap.map_add, LinearMap.map_smul,
-      smul_eq_mul, mul_one, add_zero]
-    rw [LinearMap.mem_ker.mp y.2, zero_add, hx]
-    exact mul_one r
+      unimodularSplitMapInv]
+    change φ (y.1 + r • x) = r
+    rw [φ.map_add, φ.map_smul, LinearMap.mem_ker.mp y.2, hx]
+    simp [smul_eq_mul]
 
 /-- A unimodular element splits off a free rank-one factor. -/
 def unimodularSplitEquiv (φ : N →ₗ[R] R) (x : N) (hx : φ x = 1) :
@@ -134,6 +134,7 @@ theorem projective_ker_of_unimodular
   intro y
   apply Subtype.ext
   dsimp [unimodularKernelProjection]
+  change y.1 - φ y.1 • x = y.1
   rw [LinearMap.mem_ker.mp y.2, zero_smul, sub_zero]
 
 #print axioms exists_unimodular_iff_surjective

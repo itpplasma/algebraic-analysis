@@ -81,7 +81,7 @@ theorem principal_quotient_isTorsion (q : R) (hq : q ≠ 0) :
   let denR : R := unop (den : Rᵐᵒᵖ)
   have hOre' : x * denR = q * unop num := by
     have h := congrArg unop hOre
-    simpa only [unop_mul, unop_op] using h
+    simpa only [unop_mul, unop_op, denR, qop] using h
   refine ⟨denR, ?_, ?_⟩
   · intro hden
     have hden' : (den : Rᵐᵒᵖ) = 0 := by
@@ -103,4 +103,3 @@ end PrincipalRightIdeal
 
 end DenominatorTorsion
 end AlgebraicAnalysis
-

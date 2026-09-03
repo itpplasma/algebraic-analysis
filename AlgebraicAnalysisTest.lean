@@ -129,7 +129,7 @@ theorem quadraticOrePolynomial_monic : quadraticOrePolynomial.Monic := by
     (by simp [quadraticOrePolynomial])
 
 /-- Concrete rank-two consumer of monic principal-quotient freeness. -/
-example : Basis (Fin 2) ℚᵐᵒᵖ
+example : Module.Basis (Fin 2) ℚᵐᵒᵖ
     (TwoGeneratorQuotient zeroDerivation quadraticOrePolynomial 0) := by
   simpa [quadraticOrePolynomial,
     Polynomial.natDegree_add_eq_left_of_degree_lt
@@ -217,7 +217,7 @@ example (a b : Matrix (Fin 2) (Fin 2) ℚ) :
             (Polynomial.C b)))) =
         β.repr (MulOpposite.op (a * b) • β j) := congrArg β.repr hclass
     _ = MulOpposite.op (a * b) • β.repr (β j) := by rw [map_smul]
-    _ = MulOpposite.op (a * b) • Finsupp.single j 1 := by rw [Basis.repr_self]
+    _ = MulOpposite.op (a * b) • Finsupp.single j 1 := by rw [β.repr_self]
     _ = Finsupp.single j (MulOpposite.op (a * b)) := by
       rw [Finsupp.smul_single]
       simp
@@ -236,7 +236,7 @@ example (Ds : List (Derivation ℚ)) (hDs : PairwiseCommutes Ds) :
   exact iteratedNormalForm_injective Ds hDs
 
 example (Ds : List (KDerivation ℚ)) (hDs : PairwiseCommutes Ds) :
-    Basis (exponentIndex Ds) ℚ (OreTower Ds hDs) := by
+    Module.Basis (exponentIndex Ds) ℚ (OreTower Ds hDs) := by
   exact towerPBWBasis Ds hDs
 
 example : RightOreCondition ℤ := by

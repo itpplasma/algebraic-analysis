@@ -54,10 +54,10 @@ def coefficientDerivation (D : OreDivisionDerivation B) :
     coefficientDerivation D (C b * p) =
       C b * coefficientDerivation D p + C (D b) * p := by
   induction p using Polynomial.induction_on' with
-  | h_add p q hp hq =>
+  | add p q hp hq =>
       simp [map_add, hp, hq, mul_add, add_mul, add_assoc, add_left_comm,
         add_comm]
-  | h_monomial n a =>
+  | monomial n a =>
       simp [D.leibniz, mul_add, add_mul, mul_assoc]
 
 /-- Coefficients act by ordinary left multiplication. -/
@@ -138,15 +138,24 @@ lemma faithful_eval_apply_one (D : OreDivisionDerivation B)
   change (p.sum fun i b =>
     coefficientLeft b * (leftOreShift D) ^ i) 1 = p
   rw [Polynomial.sum_def]
-  have hsum := congrFun
-    (AddMonoidHom.coe_finset_sum
-      (fun n => coefficientLeft (p.coeff n) * (leftOreShift D) ^ n)
-      p.support) (1 : Polynomial B)
-  rw [hsum, Finset.sum_apply]
-  change (∑ n ∈ p.support,
-    C (p.coeff n) * (((leftOreShift D) ^ n) 1)) = p
-  simp_rw [leftOreShift_pow_apply_one]
-  simpa only [Polynomial.sum_def] using Polynomial.sum_C_mul_X_pow_eq p
+  calc
+    (∑ n ∈ p.support,
+        coefficientLeft (p.coeff n) * (leftOreShift D) ^ n) 1 =
+        (∑ n ∈ p.support,
+          ⇑(coefficientLeft (p.coeff n) * (leftOreShift D) ^ n)) 1 := by
+      exact congrFun
+        (AddMonoidHom.coe_finsetSum
+          (fun n => coefficientLeft (p.coeff n) * (leftOreShift D) ^ n)
+          p.support) (1 : Polynomial B)
+    _ = ∑ n ∈ p.support,
+        (coefficientLeft (p.coeff n) * (leftOreShift D) ^ n) 1 := by
+      exact Finset.sum_apply (1 : Polynomial B) p.support
+        (fun n => ⇑(coefficientLeft (p.coeff n) * (leftOreShift D) ^ n))
+    _ = ∑ n ∈ p.support,
+        C (p.coeff n) * (((leftOreShift D) ^ n) 1) := by rfl
+    _ = p := by
+      simp_rw [leftOreShift_pow_apply_one]
+      simpa only [Polynomial.sum_def] using Polynomial.sum_C_mul_X_pow_eq p
 
 theorem faithful_eval_injective (D : OreDivisionDerivation B) :
     Function.Injective (OreAmbient.eval D (faithfulAmbient D)) := by
@@ -389,9 +398,9 @@ theorem oreLift_unique (D : OreDivisionDerivation B) (O : OreAmbient B A D)
   rcases normalForm_surjective D z with ⟨p, rfl⟩
   rw [oreLift_normalForm]
   induction p using Polynomial.induction_on' with
-  | h_add p q hp hq =>
+  | add p q hp hq =>
       rw [normalForm_add, g.map_add, OreAmbient.eval_add, hp, hq]
-  | h_monomial n b =>
+  | monomial n b =>
       rw [normalForm_monomial, g.map_mul, g.map_pow, hCoefficient, hVariable,
         OreAmbient.eval_monomial]
 

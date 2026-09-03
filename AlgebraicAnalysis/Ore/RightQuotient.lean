@@ -76,7 +76,7 @@ instance normalOreOpModule (D : OreDivisionDerivation B) :
 theorem normalForm_monomial_reverse (D : OreDivisionDerivation B)
     (b : B) (n : ℕ) :
     normalForm D (monomial n b) =
-      ∑ ij ∈ Finset.antidiagonal n,
+      ∑ ij ∈ Finset.HasAntidiagonal.antidiagonal n,
         n.choose ij.1 •
           ((-1 : NormalOre D) ^ ij.1 *
             ((MulOpposite.op ((D^[ij.1]) b)) •
@@ -88,19 +88,19 @@ theorem normalForm_monomial_reverse (D : OreDivisionDerivation B)
   unfold OreAmbient.reverseExpansion OreAmbient.reverseSignedTerm
     OreAmbient.reverseTerm
   change _ = (faithfulRange D).subtype
-    (∑ ij ∈ Finset.antidiagonal n,
+    (∑ ij ∈ Finset.HasAntidiagonal.antidiagonal n,
       n.choose ij.1 •
         ((-1 : NormalOre D) ^ ij.1 *
           ((MulOpposite.op ((D^[ij.1]) b)) •
             normalForm D (X ^ ij.2))))
   have hsum :
       (faithfulRange D).subtype
-          (∑ ij ∈ Finset.antidiagonal n,
+          (∑ ij ∈ Finset.HasAntidiagonal.antidiagonal n,
             n.choose ij.1 •
               ((-1 : NormalOre D) ^ ij.1 *
                 ((MulOpposite.op ((D^[ij.1]) b)) •
                   normalForm D (X ^ ij.2)))) =
-        ∑ ij ∈ Finset.antidiagonal n,
+        ∑ ij ∈ Finset.HasAntidiagonal.antidiagonal n,
           (faithfulRange D).subtype
             (n.choose ij.1 •
               ((-1 : NormalOre D) ^ ij.1 *
@@ -143,7 +143,8 @@ lemma normalForm_monomial_mem_rightCoefficientWindow
   intro ij hij
   rw [← Nat.cast_smul_eq_nsmul Bᵐᵒᵖ]
   apply Submodule.smul_mem
-  have hijSum : ij.1 + ij.2 = j := Finset.mem_antidiagonal.mp hij
+  have hijSum : ij.1 + ij.2 = j :=
+    Finset.HasAntidiagonal.mem_antidiagonal.mp hij
   have hijLt : ij.2 < n := by omega
   have hpow : normalForm D (X ^ ij.2) ∈ rightCoefficientWindow D n := by
     apply Submodule.subset_span

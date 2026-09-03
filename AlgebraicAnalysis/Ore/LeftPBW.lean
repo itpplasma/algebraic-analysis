@@ -1,5 +1,6 @@
 import AlgebraicAnalysis.Ore.Associativity
 import Mathlib.Algebra.Polynomial.Basis
+import Mathlib.LinearAlgebra.Basis.Basic
 
 /-!
 # Left PBW basis for a derivation Ore extension
@@ -17,6 +18,7 @@ earlier stages.  Nothing in this file postulates such extensions.
 namespace AlgebraicAnalysis.OreLeftPBW
 
 open Polynomial
+open Module
 open AlgebraicAnalysis
 open AlgebraicAnalysis.OreDivision
 open AlgebraicAnalysis.OreAssociativity
@@ -39,9 +41,9 @@ theorem normalForm_smul_left (D : OreDivisionDerivation K)
     (c : K) (p : Polynomial K) :
     normalForm D (c • p) = c • normalForm D p := by
   induction p using Polynomial.induction_on' with
-  | h_add p q hp hq =>
+  | add p q hp hq =>
       rw [smul_add, normalForm_add, normalForm_add, hp, hq, smul_add]
-  | h_monomial n b =>
+  | monomial n b =>
       rw [Polynomial.smul_monomial, normalForm_monomial,
         normalForm_monomial]
       change normalCoefficient D (c * b) * normalVariable D ^ n =
@@ -77,7 +79,7 @@ theorem orePBW_repr_symm_single (D : OreDivisionDerivation K)
     (n : ℕ) (c : K) :
     (orePBWBasis D).repr.symm (Finsupp.single n c) =
       normalCoefficient D c * normalVariable D ^ n := by
-  rw [Basis.repr_symm_single, orePBWBasis_apply]
+  rw [(orePBWBasis D).repr_symm_single, orePBWBasis_apply]
   rfl
 
 #print axioms normalForm_smul_left

@@ -42,9 +42,9 @@ lemma coefficientDerivation_commute (E F : OreDivisionDerivation B)
     coefficientDerivation E (coefficientDerivation F p) =
       coefficientDerivation F (coefficientDerivation E p) := by
   induction p using Polynomial.induction_on' with
-  | h_add p q hp hq =>
+  | add p q hp hq =>
       rw [map_add, map_add, map_add, map_add, hp, hq]
-  | h_monomial i b =>
+  | monomial i b =>
       rw [coefficientDerivation_monomial, coefficientDerivation_monomial,
         coefficientDerivation_monomial, coefficientDerivation_monomial,
         hcomm]
@@ -63,9 +63,8 @@ lemma coefficientDerivation_rightTerm (D E : OreDivisionDerivation B)
   rw [OreDivisionDerivation.leibniz]
   rw [OreDivisionDerivation.map_nsmul]
   rw [iterate_apply_commute D E hcomm]
-  rw [← monomial_add]
-  congr 1
-  noncomm_ring
+  rw [map_add]
+  exact add_comm _ _
 
 lemma coefficientDerivation_rightMulMonomial (D E : OreDivisionDerivation B)
     (hcomm : ∀ b : B, D (E b) = E (D b)) (p : Polynomial B)
@@ -74,13 +73,13 @@ lemma coefficientDerivation_rightMulMonomial (D E : OreDivisionDerivation B)
       rightMulMonomial D (coefficientDerivation E p) b j +
         rightMulMonomial D p (E b) j := by
   induction p using Polynomial.induction_on' with
-  | h_add p q hp hq =>
+  | add p q hp hq =>
       rw [rightMulMonomial_add_left, map_add, hp, hq, map_add,
         rightMulMonomial_add_left D p q (E b) j]
       rw [rightMulMonomial_add_left D (coefficientDerivation E p)
         (coefficientDerivation E q) b j]
       abel
-  | h_monomial i a =>
+  | monomial i a =>
       simp [rightMulMonomial, Polynomial.sum_monomial_index, rightTerm_zero]
       exact coefficientDerivation_rightTerm D E hcomm i a b j
 
@@ -90,10 +89,10 @@ lemma coefficientDerivation_rightMul (D E : OreDivisionDerivation B)
       rightMul D (coefficientDerivation E p) q +
         rightMul D p (coefficientDerivation E q) := by
   induction q using Polynomial.induction_on' with
-  | h_add q r hq hr =>
+  | add q r hq hr =>
       rw [rightMul_add, map_add, hq, hr, map_add, rightMul_add, rightMul_add]
       abel
-  | h_monomial j b =>
+  | monomial j b =>
       simp only [rightMul_monomial, coefficientDerivation_monomial]
       exact coefficientDerivation_rightMulMonomial D E hcomm p b j
 

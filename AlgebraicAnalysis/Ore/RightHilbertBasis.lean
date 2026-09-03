@@ -31,7 +31,8 @@ def DerivationOreRightHilbertBasis : Prop :=
       IsNoetherianRing (NormalOre D)ᵐᵒᵖ
 
 @[simp] theorem rightScalar_smul_def (b : Bᵐᵒᵖ) (c : B) :
-    b • c = c * b.unop := MulOpposite.smul_eq_mul_unop
+    b • c = c * b.unop := by
+  rw [MulOpposite.smul_eq_mul_unop]
 
 private theorem rightScalar_top_span :
     Submodule.span Bᵐᵒᵖ ({1} : Set B) = ⊤ := by
@@ -122,7 +123,9 @@ def normalDegreeLE (D : OreDivisionDerivation B) (n : ℕ) :
         ((normalPolyEquiv D) (rightMul D p (Polynomial.C b.unop)))).degree ≤ _
       rw [(normalPolyEquiv D).symm_apply_apply]
       exact (rightMul_degree_le D p (Polynomial.C b.unop)).trans
-        (by simpa using Nat.cast_le.2 hpnat) }
+        (by
+          simp only [Polynomial.natDegree_C, Nat.cast_zero, add_zero]
+          exact_mod_cast hpnat) }
 
 /-- The `n`th coefficient functional on the degree window. -/
 def normalCoeffNth (D : OreDivisionDerivation B) (n : ℕ) :

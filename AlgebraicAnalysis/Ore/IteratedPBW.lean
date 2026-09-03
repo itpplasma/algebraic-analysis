@@ -1,4 +1,6 @@
 import AlgebraicAnalysis.Ore.IteratedTower
+import Mathlib.Algebra.Polynomial.Basis
+import Mathlib.LinearAlgebra.Basis.Basic
 
 /-!
 # Left-field PBW bases for the finite Ore tower
@@ -11,6 +13,7 @@ inside the Ore ring is used.
 namespace AlgebraicAnalysis.OreIteratedPBW
 
 open Polynomial
+open Module
 open AlgebraicAnalysis
 open AlgebraicAnalysis.OreDivision
 open AlgebraicAnalysis.OreAssociativity
@@ -44,51 +47,31 @@ def exponentIndex : List (KDerivation K) → Type
 
 instance polynomialKSMul (R : Type*) [Semiring R] [Module K R] :
     SMul K (Polynomial R) :=
-  ⟨fun c p => (Polynomial.toFinsuppIso R).symm (c •
-      (Polynomial.toFinsuppIso R) p)⟩
+  Polynomial.distribSMul.toSMul
 
 instance polynomialKModule (R : Type*) [Semiring R] [Module K R] :
-    Module K (Polynomial R) where
-  one_smul p := by
-    apply (Polynomial.toFinsuppIso R).injective
-    simp [polynomialKSMul]
-  mul_smul c d p := by
-    apply (Polynomial.toFinsuppIso R).injective
-    simp [polynomialKSMul, mul_smul]
-  smul_zero c := by
-    apply (Polynomial.toFinsuppIso R).injective
-    simp [polynomialKSMul]
-  smul_add c p q := by
-    apply (Polynomial.toFinsuppIso R).injective
-    simp [polynomialKSMul]
-  add_smul c d p := by
-    apply (Polynomial.toFinsuppIso R).injective
-    ext n
-    simp only [polynomialKSMul, AddEquiv.apply_symm_apply, Finsupp.add_apply,
-      add_smul]
-  zero_smul p := by
-    apply (Polynomial.toFinsuppIso R).injective
-    simp [polynomialKSMul]
+    Module K (Polynomial R) :=
+  Polynomial.module
 
 lemma polynomial_smul_eq_C_mul {R : Type*} [Ring R] [Module K R]
     (φ : K →+* R) (hφ : ∀ c : K, ∀ r : R, c • r = φ c * r)
     (c : K) (p : Polynomial R) :
     c • p = Polynomial.C (φ c) * p := by
   induction p using Polynomial.induction_on' with
-  | h_add p q hp hq =>
+  | add p q hp hq =>
       rw [smul_add, mul_add, hp, hq]
-  | h_monomial n r =>
+  | monomial n r =>
       apply (Polynomial.toFinsuppIso R).injective
-      simp [polynomialKSMul, Polynomial.toFinsuppIso, hφ]
+      simp [Polynomial.toFinsuppIso, hφ]
 
 def polynomialToFinsuppLinearEquiv {R : Type*} [Ring R]
     [Module K R] :
     Polynomial R ≃ₗ[K] (ℕ →₀ R) := by
   exact
-    { (Polynomial.toFinsuppIso R).toAddEquiv with
+    { (Polynomial.toFinsuppIso R).toAddEquiv.trans
+        (AddMonoidAlgebra.coeffLinearEquiv K).toAddEquiv with
       map_smul' := by
         intro c p
-        ext n
         rfl }
 
 def polynomialBasis (R : Type*) [Ring R] [Module K R]
@@ -97,7 +80,7 @@ def polynomialBasis (R : Type*) [Ring R] [Module K R]
   let e : Polynomial R ≃ₗ[K] (ℕ × ι →₀ K) :=
     (polynomialToFinsuppLinearEquiv (K := K)).trans
       ((Finsupp.mapRange.linearEquiv b.repr).trans
-        (Finsupp.finsuppProdLEquiv K).symm)
+        (Finsupp.curryLinearEquiv K).symm)
   exact Basis.ofRepr e
 
 def normalFormLinearEquivK {R : Type*} [Ring R]
@@ -116,13 +99,13 @@ def normalFormLinearEquivK {R : Type*} [Ring R]
         rw [polynomial_smul_eq_C_mul φ hφ]
         rw [hsmul, hψ]
         induction p using Polynomial.induction_on' with
-        | h_add p q hp hq =>
+        | add p q hp hq =>
             rw [mul_add, normalForm_add, hp, hq, normalForm_add]
             noncomm_ring
-        | h_monomial n b =>
+        | monomial n b =>
             rw [Polynomial.C_mul_monomial, normalForm_monomial]
             rw [normalForm_monomial]
-            simp [hψ, mul_assoc] }
+            simp [mul_assoc] }
 
 def towerPBWBasis : (Ds : List (KDerivation K)) →
     (hDs : PairwiseCommutes Ds) →
