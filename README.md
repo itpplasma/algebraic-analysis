@@ -4,58 +4,47 @@ Reusable Lean foundations for Ore and Weyl algebras, filtered rings and
 modules, algebraic differential operators, characteristic geometry, and
 related exact certificates.
 
-The repository is private and pre-release. It contains the reviewed
-Ore/PBW/tower foundations shared by Stafford38 and Björk, including finite
-right-PBW bases for monic principal Ore quotients, plus generic
-right-ideal primitives extracted from Björk: finite right-Ore intersections
-and the minimal-degree/principal-right-ideal stage. It also contains the
-application-independent Ore-localization, localized rank, split-rank,
-denominator-torsion, finite-filtration, unimodular-splitting, and
-projective-image primitives used by Björk, together with generic
-inverse-Euler/Riccati commutator identities used by Stafford38. Current
-pins, provenance, and the distinction between shared and single-consumer
-slices are recorded in `PLAN.md` and `docs/provenance.yaml`.
+The repository contains reviewed Ore/PBW/tower foundations, including finite
+right-PBW bases for monic principal Ore quotients and generic right-ideal
+primitives for finite right-Ore intersections and minimal-degree principal
+right ideals. It also contains application-independent Ore-localization,
+localized-rank, split-rank, denominator-torsion, finite-filtration,
+unimodular-splitting, projective-image, and inverse-Euler/Riccati commutator
+primitives. Dependency pins and provenance are recorded in
+`docs/provenance.yaml`.
 
 The module layer also contains the determinant-trick support exclusion for a
-finite module on which a chosen scalar acts surjectively. It does not assert
-the filtered noncharacteristic theorem needed by a D-module application.
+finite module on which a chosen scalar acts surjectively.
 
 The polynomial layer contains a scheme-theoretic distinguished-axis lemma for
-homogeneous relations in prime ideals. It is generic commutative algebra; the
-Stafford symbol and support specialization remains downstream.
+homogeneous relations in prime ideals. It is a generic commutative-algebra
+result with all hypotheses explicit.
 
 The field-theory layer proves that the fraction field of a finitely generated
-domain is finitely generated as an intermediate field. This is the form used
-for affine component function fields; it does not incorrectly assert finite
-type as an algebra.
+domain is finitely generated as an intermediate field, providing a precise
+finite-generation statement for fraction fields.
 
-The package contains the generic central-coordinate escape kernel, finite-tuple
-span consequences, and right-coordinate module primitives. The concrete Ore
-transport and application-specific correction assemblies remain in Björk.
+The package contains generic central-coordinate escape, finite-tuple span, and
+right-coordinate module primitives.
 
 The active-coordinate Ore interface is available under
-`AlgebraicAnalysis.OreActiveCoordinate`. It has passed the package API and
-pinned Björk consumer builds and contains no Stafford or Björk headline
-theorem.
+`AlgebraicAnalysis.OreActiveCoordinate`. It contains definitions and proofs
+for the coordinate and coefficient relations of an Ore extension.
 
 The package also defines neutral target interfaces for stable freeness and
-localization of derivation-Ore extensions. These interfaces contain no axiom:
-downstream repositories remain responsible for clearly labelled literature
-assumptions and for replacing them with trust-zero proofs.
+localization of derivation-Ore extensions. These interfaces contain no axiom;
+their hypotheses remain explicit at each use.
 
-The package also exposes the ring/module-only filtered Schreyer equivalence
-used to translate a lower-order right-ideal problem into a source relation;
-the Stafford-specific presentation and its strictness hypothesis remain in
-Stafford38.
+The package also exposes a ring/module-only filtered Schreyer equivalence for
+translating a lower-order right-ideal problem into a source relation. Its
+strictness hypothesis remains explicit.
 
-Planned downstream consumers:
+The package also exposes generic filtered two-term page and action lemmas,
+localization comparisons, support and finite-length arguments, and associated
+polynomial-action primitives. These statements keep finiteness, Noetherian,
+localization, and module hypotheses explicit.
 
-- `itpplasma/stafford38`;
-- `itpplasma/bjork`;
-- selected formal certificate layers from GhostTask.
-
-No theorem from the literature is treated as an axiomatically established
-fact. A theorem enters the public API only with an axiom-clean Lean proof.
+All theorems in the public API have axiom-clean Lean proofs.
 
 ## Build
 

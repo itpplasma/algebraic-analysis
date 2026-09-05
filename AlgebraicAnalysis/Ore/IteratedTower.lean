@@ -31,6 +31,7 @@ universe u
 
 variable {B : Type u} [Ring B]
 
+/-- A derivation used to build one stage of an iterated Ore tower. -/
 abbrev Derivation (B : Type u) [Ring B] := OreDivisionDerivation B
 
 /-- Commutation of two coefficient derivations. -/
@@ -77,14 +78,18 @@ their commutation proof avoids a circular definition of the tower type.
 -/
 structure TowerBuild (Ds : List (Derivation B))
     (hDs : PairwiseCommutes Ds) where
+  /-- The carrier type of the recursively built tower. -/
   carrier : Type u
+  /-- The ring structure on the tower carrier. -/
   ring : Ring carrier
+  /-- Extend a commuting coefficient derivation through the tower. -/
   extend : ∀ (D : Derivation B), CommutesWith D Ds →
     OreDivisionDerivation carrier
   extend_commutes : ∀ (D E : Derivation B)
     (hD : CommutesWith D Ds) (hE : CommutesWith E Ds), Commutes D E →
     Commutes (B := carrier) (extend D hD) (extend E hE)
 
+/-- Recursively construct the finite commuting derivation-Ore tower. -/
 def build : (Ds : List (Derivation B)) →
     (hDs : PairwiseCommutes Ds) → TowerBuild Ds hDs
   | [], _ =>
@@ -145,9 +150,12 @@ theorem extendThrough_commutes (D E : Derivation B)
 
 /-- A nested polynomial carrier together with the ring instance it needs. -/
 structure PolynomialBuild (Ds : List (Derivation B)) where
+  /-- The nested polynomial carrier. -/
   carrier : Type u
+  /-- The ring structure on the nested polynomial carrier. -/
   ring : Ring carrier
 
+/-- Recursively construct the nested polynomial coefficient carrier. -/
 def polynomialBuild : (Ds : List (Derivation B)) → PolynomialBuild Ds
   | [] =>
       { carrier := B

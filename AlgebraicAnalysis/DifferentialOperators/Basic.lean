@@ -13,6 +13,7 @@ namespace AlgebraicAnalysis.DifferentialOperators
 
 variable {k R : Type*} [CommRing k] [CommRing R] [Algebra k R]
 
+/-- `k`-linear endomorphisms of the `k`-algebra `R`. -/
 abbrev End := Module.End k R
 
 /-- Multiplication by an element of `R`, as a `k`-linear endomorphism. -/

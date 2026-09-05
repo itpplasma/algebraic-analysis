@@ -47,8 +47,11 @@ def commutator (x : S) : S →+ S where
 
 /-- Correct central-coordinate PBW data for a differential Ore stage. -/
 structure CentralEscapeData where
+  /-- Coefficient-left normal form for the Ore stage. -/
   normal : Polynomial E ≃+ S
+  /-- Ring embedding of coefficients into the Ore stage. -/
   embed : E →+* S
+  /-- The central coefficient coordinate used by the commutator. -/
   coordinate : E
   normal_C : ∀ a : E, normal (C a) = embed a
   embed_isUnit : ∀ {a : E}, a ≠ 0 → IsUnit (embed a)
@@ -102,6 +105,7 @@ lemma factorial_leadingCoeff_ne_zero [CharZero E] {p : Polynomial E} (hp : p ≠
     (Nat.cast_ne_zero.mpr (Nat.factorial_ne_zero _))
 
 /-- One commutator lowers a nonconstant PBW polynomial's degree. -/
+@[nolint unusedArguments]
 lemma ad_degree_reduction [CharZero E] {p : Polynomial E}
     (hpositive : p.natDegree ≠ 0) :
     (derivative p).natDegree < p.natDegree ∧

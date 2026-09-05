@@ -26,8 +26,10 @@ set_option maxHeartbeats 800000
 
 variable {K : Type*} [Field K]
 
+/-- A derivation of the field coefficient ring for an Ore stage. -/
 abbrev KDerivation (K : Type*) [Ring K] := OreDivisionDerivation K
 
+/-- The coefficient embedding into a finite iterated Ore tower. -/
 def towerCoefficient : (Ds : List (KDerivation K)) →
     (hDs : PairwiseCommutes Ds) → K →+* OreTower Ds hDs
   | [], _ => RingHom.id K
@@ -41,6 +43,7 @@ instance towerKModule (Ds : List (KDerivation K))
     (hDs : PairwiseCommutes Ds) : Module K (OreTower Ds hDs) :=
   Module.compHom (OreTower Ds hDs) (towerCoefficient Ds hDs)
 
+/-- The nested natural-number index type for tower monomials. -/
 def exponentIndex : List (KDerivation K) → Type
   | [] => PUnit
   | _ :: Ds => ℕ × exponentIndex Ds
@@ -64,6 +67,7 @@ lemma polynomial_smul_eq_C_mul {R : Type*} [Ring R] [Module K R]
       apply (Polynomial.toFinsuppIso R).injective
       simp [Polynomial.toFinsuppIso, hφ]
 
+/-- The coefficient-wise additive coordinates of a polynomial. -/
 def polynomialToFinsuppLinearEquiv {R : Type*} [Ring R]
     [Module K R] :
     Polynomial R ≃ₗ[K] (ℕ →₀ R) := by
@@ -74,6 +78,7 @@ def polynomialToFinsuppLinearEquiv {R : Type*} [Ring R]
         intro c p
         rfl }
 
+/-- Lift a coefficient basis to the standard polynomial basis. -/
 def polynomialBasis (R : Type*) [Ring R] [Module K R]
     (b : Basis ι K R) :
     Basis (ℕ × ι) K (Polynomial R) := by
@@ -83,6 +88,7 @@ def polynomialBasis (R : Type*) [Ring R] [Module K R]
         (Finsupp.curryLinearEquiv K).symm)
   exact Basis.ofRepr e
 
+/-- The tower normal form as a linear equivalence over the coefficient field. -/
 def normalFormLinearEquivK {R : Type*} [Ring R]
     (D : OreDivisionDerivation R) (φ : K →+* R)
     (ψ : K →+* NormalOre D)
@@ -107,6 +113,7 @@ def normalFormLinearEquivK {R : Type*} [Ring R]
             rw [normalForm_monomial]
             simp [mul_assoc] }
 
+/-- The PBW basis indexed by nested exponent tuples. -/
 def towerPBWBasis : (Ds : List (KDerivation K)) →
     (hDs : PairwiseCommutes Ds) →
     letI : Module K (OreTower Ds hDs) := towerKModule Ds hDs

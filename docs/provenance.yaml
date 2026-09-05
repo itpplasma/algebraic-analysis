@@ -1,6 +1,9 @@
 schema_version: 1
 package: itpplasma/algebraic-analysis
-status: private-pre-release
+provenance_policy: >-
+  Repository names, source paths, and consumer mappings below are historical
+  provenance records preserving the source of each declaration; they do not
+  assert current repository visibility or an active downstream location.
 policy: >-
   Each extracted declaration has one authoritative home in this package.
   Downstream repositories may retain import-only compatibility modules during
@@ -601,30 +604,65 @@ extractions:
 
   - id: two-generator-unit-transport
     source_repository: itpplasma/stafford38
-    source_revision: 1585e4c7
+    source_revision: 1585e4c70132ff27908b4ec85ac0c347efe082e2
     source_paths: [Stafford38/LocalizationCorollaries.lean, Stafford38/LeftDenominatorTransport.lean]
     target_path: AlgebraicAnalysis/RingTheory/TwoGeneratorIdentity.lean
+    target_namespace: AlgebraicAnalysis.TwoGeneratorIdentity
+    declaration_scope: >-
+      TwoGeneratorIdentity
+      TwoGeneratorIdentity.of_rightUnitClearing
+      TwoGeneratorIdentity.of_leftUnitClearing
+      TwoGeneratorIdentity.of_rightOreLocalization
     declaration_mapping:
       Stafford38.LocalizationCorollaries.S38: AlgebraicAnalysis.TwoGeneratorIdentity
       Stafford38.LocalizationCorollaries.s38_of_rightClearing: AlgebraicAnalysis.TwoGeneratorIdentity.of_rightUnitClearing
       Stafford38.LocalizationCorollaries.s38_of_leftUnitClearing: AlgebraicAnalysis.TwoGeneratorIdentity.of_leftUnitClearing
+      Stafford38.LocalizationCorollaries.s38_rightOreLocalization: AlgebraicAnalysis.TwoGeneratorIdentity.of_rightOreLocalization
     license: Apache-2.0
-    license_record: itpplasma/stafford38 commit 6b0d7e84
+    license_record: itpplasma/stafford38 commit 1585e4c70132ff27908b4ec85ac0c347efe082e2
     authorship: inherited Stafford38 contributions; source history retained upstream
     consumers: [itpplasma/stafford38]
-    notes: Generic transport only; no claim that every ring satisfies the identity.
+    compatibility_revision: be1754f12cc7a3a268a3036f295b1422685f058a
+    notes: >-
+      Generic transport only; no claim that every ring satisfies the identity.
+      At compatibility revision be1754f12cc7a3a268a3036f295b1422685f058a,
+      the Stafford38 files are aliases to this neutral API.
 
   - id: intrinsic-differential-operators
     source_repository: itpplasma/stafford38
-    source_revision: 1585e4c7
+    source_revision: 1585e4c70132ff27908b4ec85ac0c347efe082e2
     source_path: Stafford38/DifferentialOperators.lean
     target_path: AlgebraicAnalysis/DifferentialOperators/Basic.lean
-    declaration_mapping: All declaration suffixes preserved under AlgebraicAnalysis.DifferentialOperators in place of Stafford38.DifferentialOperators.
+    target_namespace: AlgebraicAnalysis.DifferentialOperators
+    declaration_scope: >-
+      End
+      multiplication
+      multiplication_apply
+      commutator
+      commutator_apply
+      order
+      mem_order_zero_iff
+      mem_order_succ_iff
+      mem_order_zero_iff_eq_multiplication
+      order_mono_step
+      order_mono
+      commutator_mul
+      mul_mem_order
+      algebra
+      mem_algebra_iff
+    declaration_mapping: >-
+      Stafford38.DifferentialOperators declarations map suffix-preservingly to
+      AlgebraicAnalysis.DifferentialOperators declarations.
     license: Apache-2.0
-    license_record: itpplasma/stafford38 commit 6b0d7e84
+    license_record: itpplasma/stafford38 commit 1585e4c70132ff27908b4ec85ac0c347efe082e2
     authorship: inherited Stafford38 contributions; source history retained upstream
     consumers: [itpplasma/stafford38]
-    notes: Intrinsic commutator filtration and finite-order algebra; no Weyl presentation or localization identification.
+    compatibility_revision: be1754f12cc7a3a268a3036f295b1422685f058a
+    notes: >-
+      Intrinsic commutator filtration and finite-order algebra; no Weyl
+      presentation or localization identification. At compatibility revision
+      be1754f12cc7a3a268a3036f295b1422685f058a, Stafford38/DifferentialOperators.lean
+      is an export alias to this neutral API.
 
   - id: stable-free-projectives-interface
     source_repository: itpplasma/bjork
@@ -657,3 +695,647 @@ extractions:
     notes: >-
       The package defines the exact output interface but proves no existence
       theorem. Ore-ness of the image denominator set remains explicit.
+
+  - id: filtered-two-term-basic
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/FilteredTwoTermPages.lean
+    target_path: AlgebraicAnalysis/Module/FilteredTwoTermPages.lean
+    target_namespace: AlgebraicAnalysis.FilteredTwoTermPages
+    declaration_scope: >-
+      FilteredTwoTerm
+      FilteredTwoTerm.cycles
+      FilteredTwoTerm.boundaries
+      FilteredTwoTerm.next_le
+      FilteredTwoTerm.boundaries_le
+      FilteredTwoTerm.SourcePage
+      FilteredTwoTerm.TargetPage
+      FilteredTwoTerm.drop
+      FilteredTwoTerm.drop_mk
+      FilteredTwoTerm.cycles_succ_le
+      FilteredTwoTerm.boundaries_le_succ
+      FilteredTwoTerm.drop_mk_eq_zero_of_mem_cycles_succ
+      FilteredTwoTerm.exists_cycles_succ_rep_of_drop_mk_eq_zero
+      FilteredTwoTerm.mem_boundaries_succ_rep
+      FilteredTwoTerm.exists_mem_boundaries_of_surjective
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: []
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: filtered-two-term-page-equivalences
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/FilteredTwoTermPageEquivalences.lean
+    target_path: AlgebraicAnalysis/Module/FilteredTwoTermPageEquivalences.lean
+    target_namespace: AlgebraicAnalysis.FilteredTwoTermPages
+    declaration_scope: >-
+      FilteredTwoTerm.sourceSuccMap
+      FilteredTwoTerm.sourceSuccMap_mk
+      FilteredTwoTerm.sourceSuccKernelMap
+      FilteredTwoTerm.sourceSuccEquivKerDrop
+      FilteredTwoTerm.targetSuccMap
+      FilteredTwoTerm.targetSuccMap_surjective
+      FilteredTwoTerm.ker_targetSuccMap_eq_range_drop
+      FilteredTwoTerm.targetCokernelMap
+      FilteredTwoTerm.targetSuccEquivCokerDrop
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: [filtered-two-term-basic]
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: filtered-two-term-page-actions
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/FilteredTwoTermPageActions.lean
+    target_path: AlgebraicAnalysis/Module/FilteredTwoTermPageActions.lean
+    target_namespace: AlgebraicAnalysis.FilteredTwoTermPages
+    declaration_scope: >-
+      FilteredTwoTerm.PageOperator
+      FilteredTwoTerm.PageOperator.comp
+      FilteredTwoTerm.PageOperator.reverseComp
+      FilteredTwoTerm.PageOperator.commute_apply
+      FilteredTwoTerm.PageOperator.sourceRestricted
+      FilteredTwoTerm.PageOperator.sourceMap
+      FilteredTwoTerm.PageOperator.sourceMap_mk
+      FilteredTwoTerm.PageOperator.sourcePageCast
+      FilteredTwoTerm.PageOperator.sourcePageCast_mk
+      FilteredTwoTerm.PageOperator.targetRestricted
+      FilteredTwoTerm.PageOperator.targetMap
+      FilteredTwoTerm.PageOperator.targetMap_mk
+      FilteredTwoTerm.PageOperator.targetPageCast
+      FilteredTwoTerm.PageOperator.targetPageCast_mk
+      FilteredTwoTerm.PageOperator.targetMapAtDrop
+      FilteredTwoTerm.PageOperator.targetMapAtDrop_mk
+      FilteredTwoTerm.PageOperator.targetMapAtDrop_eq_cast_targetMap
+      FilteredTwoTerm.PageOperator.targetMapAtDrop_drop
+      FilteredTwoTerm.PageOperator.targetMap_drop
+      FilteredTwoTerm.PageOperator.SameSymbol
+      FilteredTwoTerm.PageOperator.sourceMap_eq_of_sameSymbol
+      FilteredTwoTerm.PageOperator.targetMap_eq_of_sameSymbol
+      FilteredTwoTerm.PageOperator.targetMapAtDrop_eq_of_sameSymbol
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: [filtered-two-term-basic]
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: filtered-two-term-total-pages
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/FilteredTwoTermTotalPages.lean
+    target_path: AlgebraicAnalysis/Module/FilteredTwoTermTotalPages.lean
+    target_namespace: AlgebraicAnalysis.FilteredTwoTermPages
+    declaration_scope: >-
+      FilteredTwoTerm.SourceTotal
+      FilteredTwoTerm.TargetTotal
+      FilteredTwoTerm.totalDrop
+      FilteredTwoTerm.totalDrop_lof
+      FilteredTwoTerm.totalDrop_lof_mk
+      FilteredTwoTerm.sourceTotalSuccMap
+      FilteredTwoTerm.totalSourceSuccMap_injective
+      FilteredTwoTerm.range_totalSourceSuccMap
+      FilteredTwoTerm.sourceTotalSuccEquivKerDrop
+      FilteredTwoTerm.targetTotalSuccMap
+      FilteredTwoTerm.ker_totalTargetSuccMap
+      FilteredTwoTerm.targetTotalSuccEquivCokerDrop
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: [filtered-two-term-page-equivalences, filtered-two-term-page-actions]
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: filtered-two-term-total-actions
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/FilteredTwoTermTotalActions.lean
+    target_path: AlgebraicAnalysis/Module/FilteredTwoTermTotalActions.lean
+    target_namespace: AlgebraicAnalysis.FilteredTwoTermPages
+    declaration_scope: >-
+      FilteredTwoTerm.PageOperator.sourceTotalMap
+      FilteredTwoTerm.PageOperator.targetTotalMap
+      FilteredTwoTerm.PageOperator.sourceTotalMap_lof
+      FilteredTwoTerm.PageOperator.targetTotalMap_lof
+      FilteredTwoTerm.PageOperator.totalDrop_intertwines
+      FilteredTwoTerm.PageOperator.sourceTotalMap_commute_of_commutator_lowers
+      FilteredTwoTerm.PageOperator.targetTotalMap_commute_of_commutator_lowers
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: [filtered-two-term-total-pages]
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: filtered-two-term-boundary-exhaustion
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/FilteredTwoTermBoundaryExhaustion.lean
+    target_path: AlgebraicAnalysis/Module/FilteredTwoTermBoundaryExhaustion.lean
+    target_namespace: AlgebraicAnalysis.FilteredTwoTermPages
+    declaration_scope: >-
+      FilteredTwoTerm.targetBoundaryMap
+      FilteredTwoTerm.targetBoundaryMap_mk
+      FilteredTwoTerm.targetBoundaryMap_surjective
+      FilteredTwoTerm.targetBoundaryMap_ker_mono
+      FilteredTwoTerm.totalBoundaryMap
+      FilteredTwoTerm.totalBoundaryMap_lof
+      FilteredTwoTerm.totalBoundaryMap_surjective
+      FilteredTwoTerm.totalBoundaryMap_ker_mono
+      FilteredTwoTerm.totalBoundaryMap_eventually_zero
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: [filtered-two-term-total-pages]
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: filtered-two-term-boundary-naturality
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/FilteredTwoTermBoundaryNaturality.lean
+    target_path: AlgebraicAnalysis/Module/FilteredTwoTermBoundaryNaturality.lean
+    target_namespace: AlgebraicAnalysis.FilteredTwoTermPages
+    declaration_scope: >-
+      FilteredTwoTerm.PageOperator.targetBoundaryMap_naturality
+      FilteredTwoTerm.PageOperator.totalBoundaryMap_naturality
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: [filtered-two-term-total-actions, filtered-two-term-boundary-exhaustion]
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: filtered-two-term-successor-naturality
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/FilteredTwoTermSuccessorNaturality.lean
+    target_path: AlgebraicAnalysis/Module/FilteredTwoTermSuccessorNaturality.lean
+    target_namespace: AlgebraicAnalysis.FilteredTwoTermPages
+    declaration_scope: >-
+      FilteredTwoTerm.PageOperator.sourceTotalSuccMap_naturality
+      FilteredTwoTerm.PageOperator.targetTotalSuccMap_naturality
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: [filtered-two-term-total-actions]
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: commuting-polynomial-action
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/CommutingPolynomialAction.lean
+    target_path: AlgebraicAnalysis/Module/CommutingPolynomialAction.lean
+    target_namespace: AlgebraicAnalysis.CommutingPolynomialAction
+    declaration_scope: >-
+      commutingPolynomialAction
+      commutingPolynomialAction_apply_X
+      commutingPolynomialAction_apply_C
+      commutingPolynomialAction_intertwines
+      commutingPolynomialModule
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: []
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: base-localization-module-comparison
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/BaseLocalizationModuleComparison.lean
+    target_path: AlgebraicAnalysis/Module/BaseLocalizationModuleComparison.lean
+    target_namespace: AlgebraicAnalysis.BaseLocalizationModuleComparison
+    declaration_scope: >-
+      coefficientDenominator
+      localizedModule_isLocalizedOverBase
+      localizedModule_isLocalizedOverCoefficient
+      localizedModuleComparison
+      localizedModuleComparison_mkLinearMap
+      localizedModuleComparison_mk
+      localizedModuleComparison_natural
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: []
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: localized-kernel-cokernel-equivalences
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/LocalizedKernelCokernelEquivalences.lean
+    target_path: AlgebraicAnalysis/Module/LocalizedKernelCokernelEquivalences.lean
+    target_namespace: AlgebraicAnalysis.LocalizedKernelCokernelEquivalences
+    declaration_scope: >-
+      localizedMap
+      localizedMap_apply
+      localizedEquiv
+      localizedKernelEquiv
+      localizedCokernelEquiv
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: []
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: localized-minimal-support-avoidance
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/LocalizedMinimalSupportAvoidance.lean
+    target_path: AlgebraicAnalysis/Module/LocalizedMinimalSupportAvoidance.lean
+    target_namespace: AlgebraicAnalysis.LocalizedMinimalSupportAvoidance
+    declaration_scope: >-
+      annihilator_localizedModule
+      localized_minimalPrime_avoids
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: []
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: minimal-prime-finite-length-localization
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/MinimalPrimeFiniteLengthLocalization.lean
+    target_path: AlgebraicAnalysis/Module/MinimalPrimeFiniteLengthLocalization.lean
+    target_namespace: AlgebraicAnalysis.MinimalPrimeFiniteLengthLocalization
+    declaration_scope: >-
+      finiteLength_of_maximalIdeal_pow_smul_eq_bot
+      localizedModule_finite
+      localizedModule_nontrivial
+      maximalIdeal_le_radical_map_annihilator
+      map_annihilator_le_localized_annihilator
+      exists_maximalIdeal_pow_le_localized_annihilator
+      localizedModule_isFiniteLength
+      localizedModule_nontrivial_and_isFiniteLength
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: []
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: endomorphism-kernel-support
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/EndomorphismKernelSupport.lean
+    target_path: AlgebraicAnalysis/Module/EndomorphismKernelSupport.lean
+    target_namespace: AlgebraicAnalysis
+    declaration_scope: >-
+      endomorphism_kernel_support_subset_cokernel_support
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: []
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: endomorphism-kernel-support-over-base
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/EndomorphismKernelSupportOverBase.lean
+    target_path: AlgebraicAnalysis/Module/EndomorphismKernelSupportOverBase.lean
+    target_namespace: AlgebraicAnalysis
+    declaration_scope: >-
+      endomorphism_kernel_support_subset_cokernel_support_over_base
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: [endomorphism-kernel-support]
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: minimal-support-kernel-cokernel-lengths
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/MinimalSupportKernelCokernelLengths.lean
+    target_path: AlgebraicAnalysis/Module/MinimalSupportKernelCokernelLengths.lean
+    target_namespace: AlgebraicAnalysis
+    declaration_scope: >-
+      localized_kernel_and_cokernel_isFiniteLength
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: [endomorphism-kernel-support-over-base, minimal-prime-finite-length-localization]
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: principal-koszul-positivity
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/PrincipalKoszulPositivity.lean
+    target_path: AlgebraicAnalysis/Module/PrincipalKoszulPositivity.lean
+    target_namespace: AlgebraicAnalysis.PrincipalKoszulPositivity
+    declaration_scope: >-
+      exists_stable_kernel_power
+      exists_stable_kernel_power_smul
+      isArtinian_kernel_power
+      quotient_by_stable_kernel_power_injective
+      length_cokernel_eq_kernel_add_regular_quotient
+      scalar_range_ne_top_of_mem_maximalIdeal
+      length_cokernel_smul_gt_length_kernel_smul
+      length_cokernel_smul_gt_kernel_of_finite_torsion
+      length_cokernel_smul_gt_kernel_of_support_prime
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: [minimal-prime-finite-length-localization]
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: principal-koszul-finite-torsion
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/PrincipalKoszulFiniteTorsion.lean
+    target_path: AlgebraicAnalysis/Module/PrincipalKoszulFiniteTorsion.lean
+    target_namespace: AlgebraicAnalysis.PrincipalKoszulFiniteTorsion
+    declaration_scope: >-
+      isNoetherian_kernel_power
+      isFiniteLength_kernel_power
+      length_cokernel_gt_kernel_of_stable_power_and_nonzero
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: [principal-koszul-positivity]
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: stable-torsion-residual-support
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/StableTorsionResidualSupport.lean
+    target_path: AlgebraicAnalysis/Module/StableTorsionResidualSupport.lean
+    target_namespace: AlgebraicAnalysis.StableTorsionResidualSupport
+    declaration_scope: >-
+      residual_nontrivial_of_support
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: [principal-koszul-positivity]
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: principal-koszul-support-over-base
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/PrincipalKoszulSupportOverBase.lean
+    target_path: AlgebraicAnalysis/Module/PrincipalKoszulSupportOverBase.lean
+    target_namespace: AlgebraicAnalysis.PrincipalKoszulSupportOverBase
+    declaration_scope: >-
+      length_cokernel_gt_kernel_of_support_over_base
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: [stable-torsion-residual-support, principal-koszul-finite-torsion]
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: principal-koszul-minimal-support-positivity
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/PrincipalKoszulMinimalSupportPositivity.lean
+    target_path: AlgebraicAnalysis/Module/PrincipalKoszulMinimalSupportPositivity.lean
+    target_namespace: AlgebraicAnalysis.PrincipalKoszulMinimalSupportPositivity
+    declaration_scope: >-
+      length_cokernel_gt_kernel_of_minimal_support
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: [principal-koszul-support-over-base]
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: minimal-support-existence
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/MinimalSupportExistence.lean
+    target_path: AlgebraicAnalysis/Module/MinimalSupportExistence.lean
+    target_namespace: AlgebraicAnalysis.MinimalSupportExistence
+    declaration_scope: >-
+      exists_minimal_support_prime
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: []
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: base-localized-koszul-positivity
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/BaseLocalizedKoszulPositivity.lean
+    target_path: AlgebraicAnalysis/Module/BaseLocalizedKoszulPositivity.lean
+    target_namespace: AlgebraicAnalysis.BaseLocalizedKoszulPositivity
+    declaration_scope: >-
+      localized_length_cokernel_gt_kernel
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: [base-localization-module-comparison, localized-kernel-cokernel-equivalences, minimal-support-kernel-cokernel-lengths, localized-minimal-support-avoidance, principal-koszul-minimal-support-positivity]
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: two-term-page-length
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/TwoTermPageLength.lean
+    target_path: AlgebraicAnalysis/Module/TwoTermPageLength.lean
+    target_namespace: AlgebraicAnalysis.TwoTermPageLength
+    declaration_scope: >-
+      exists_boundary_eq_top_of_iSup_eq_top
+      twoTermPage_length_target_le_source
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: []
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: uniform-boundary-vanishing
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/UniformBoundaryVanishing.lean
+    target_path: AlgebraicAnalysis/Module/UniformBoundaryVanishing.lean
+    target_namespace: AlgebraicAnalysis
+    declaration_scope: >-
+      exists_uniform_zero_of_noetherian
+      exists_uniform_subsingleton_of_noetherian
+      exists_uniform_zero_localized
+      exists_uniform_subsingleton_localized
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: []
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: monic-annihilator-finite
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/Characteristic/MonicAnnihilatorFinite.lean
+    target_path: AlgebraicAnalysis/Module/MonicAnnihilatorFinite.lean
+    target_namespace: AlgebraicAnalysis.MonicAnnihilatorFinite
+    declaration_scope: >-
+      finite_of_monic_annihilator
+      finite_of_variable_annihilates
+      finite_kernel_and_cokernel_variable
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: []
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: finite-taylor-reconstruction
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/PolynomialOperatorTaylorProjection.lean
+    source_section: >-
+      lines 122-383, namespace Stafford.AllDegreeSliceTaylor.Field only
+    target_path: AlgebraicAnalysis/LinearAlgebra/FiniteTaylorReconstruction.lean
+    target_namespace: AlgebraicAnalysis.FiniteTaylorReconstruction
+    declaration_scope: >-
+      projectorMapG
+      reconstruction_all
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: []
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: coordinate-differential-generation
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/CoordinateDifferentialGeneration.lean
+    target_path: AlgebraicAnalysis/DifferentialOperators/CoordinateGeneration.lean
+    target_namespace: AlgebraicAnalysis.DifferentialOperators.CoordinateGeneration
+    declaration_scope: >-
+      mem_submodule_of_coordinates
+      mem_subalgebra_of_coordinates
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: [finite-taylor-reconstruction, intrinsic-differential-operators]
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: localized-polynomial-derivations
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/LocalizedPolynomialDerivations.lean
+    target_path: AlgebraicAnalysis/DifferentialOperators/LocalizedPolynomialDerivations.lean
+    target_namespace: AlgebraicAnalysis.DifferentialOperators.LocalizedPolynomialDerivations
+    declaration_scope: >-
+      extendDerivation
+      extendDerivation_compAlgebraMap
+      derivation_ext_of_compAlgebraMap_eq
+      PolynomialRing
+      localizedPderiv
+      localizedPderiv_compAlgebraMap
+      localizedPderiv_apply_algebraMap_X
+      localizedPderiv_comm
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: []
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: localized-polynomial-commutant
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/LocalizedPolynomialCommutant.lean
+    target_path: AlgebraicAnalysis/DifferentialOperators/LocalizedPolynomialCommutant.lean
+    target_namespace: AlgebraicAnalysis.DifferentialOperators.LocalizedPolynomialCommutant
+    declaration_scope: >-
+      eq_multiplication_of_commute_coordinate
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: [intrinsic-differential-operators]
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+  - id: right-Ore-localization-companion
+    source_repository: itpplasma/stafford38
+    source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    source_path: Stafford38/LocalizationCorollaries.lean
+    source_section: >-
+      oppositeSubmonoid, RightOreLocalization, rightNumeratorRingHom, rightOre_clear, and s38_rightOreLocalization; s38_of_rightClearing is already an upstream wrapper
+    target_path: AlgebraicAnalysis/Ore/RightLocalization.lean
+    target_namespace: AlgebraicAnalysis.OreRightLocalization
+    declaration_scope: >-
+      oppositeSubmonoid
+      RightOreLocalization
+      rightNumeratorRingHom
+      rightOre_clear
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: []
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+      Upstream equivalent: AlgebraicAnalysis/Ore/Localization.lean has left-Ore fraction helpers, but no opposite-ring right-localization API or these declarations
+
+  - id: split-lattice-presentation
+    source_repository: itpplasma/stafford38
+    source_revision: 895d7446496fdab6a974c49fe6876a9fec506d2d
+    source_path: Stafford38/Geometry/GeneralTangentLatticePresentation.lean
+    target_path: AlgebraicAnalysis/Module/SplitLatticePresentation.lean
+    target_namespace: AlgebraicAnalysis.SplitLatticePresentation
+    declaration_scope: >-
+      SplitMatrixPresentation
+      exists_splitMatrixPresentation
+      exists_splitMatrixPresentation_of_isComplemented
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit 895d7446496fdab6a974c49fe6876a9fec506d2d
+    authorship: inherited Stafford38 contribution; source history retained upstream
+    consumers:
+      - itpplasma/stafford38
+    depends_on: []
+    notes: >-
+      Mechanical namespace/import rewrite audited against the source section;
+      source file SHA-256 is 9a02154fe102930737533688dc81147e253f5a0ca8f66265ee2f68619dd01865.
+      The geometric tangent criterion and application-specific consumers remain downstream.

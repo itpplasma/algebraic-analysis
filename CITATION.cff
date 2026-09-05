@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "Cite the exact commit or released version of this formalization."
+title: "AlgebraicAnalysis: reusable Lean foundations for algebraic analysis"
+type: software
+authors:
+  - family-names: Albert
+    given-names: Christopher
+repository-code: "https://github.com/itpplasma/algebraic-analysis"
+license: Apache-2.0
+abstract: >-
+  Reusable Lean definitions and proofs for derivation-Ore extensions,
+  differential operators, filtered modules, localization, rank and length
+  arguments, and related algebraic-analysis interfaces with explicit
+  hypotheses.

@@ -43,10 +43,9 @@ theorem rightCoordinateAction_add_scalar (v : ι →₀ S) (a b : S) :
   ext i
   simp [rightCoordinateAction, mul_add]
 
-@[simp] theorem rightCoordinateAction_one (v : ι →₀ S) :
+@[simp, nolint simpNF] theorem rightCoordinateAction_one (v : ι →₀ S) :
     rightCoordinateAction v 1 = v := by
-  ext i
-  simp [rightCoordinateAction]
+  simpa only [rightCoordinateAction_eq_op_smul, MulOpposite.op_one, one_smul]
 
 /-- Written in right-sided order, successive coordinate actions multiply the
 scalars in the same order. -/

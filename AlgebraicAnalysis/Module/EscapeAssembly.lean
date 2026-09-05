@@ -39,9 +39,11 @@ lemma iterate_commutatorVector_mem
       rw [Function.iterate_succ_apply']
       exact commutatorVector_mem H x hleft ih
 
+/-- Coordinates whose index is below the current active degree. -/
 def knownCoordinates (m : ℕ) : Finset (Fin n) :=
   Finset.univ.filter (fun j => j.val < m)
 
+/-- Remove the currently known coordinate contributions from a vector. -/
 def residualVector (v : Fin n → S) (m : ℕ) : Fin n → S :=
   v - ∑ j ∈ knownCoordinates m, Pi.single j (v j)
 

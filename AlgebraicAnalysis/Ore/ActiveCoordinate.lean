@@ -35,7 +35,9 @@ the active derivation fixes ground scalars and differentiates the coordinate.
 -/
 structure ActiveCoordinateData (k C : Type*) [CommRing k] [Ring C]
     [Algebra k C] where
+  /-- The coefficient derivation defining the Ore relation. -/
   derivation : OreDivisionDerivation C
+  /-- The distinguished central coefficient coordinate. -/
   coordinate : C
   coordinate_central : ∀ c : C, Commute coordinate c
   derivation_smul : ∀ a : k, derivation (algebraMap k C a) = 0

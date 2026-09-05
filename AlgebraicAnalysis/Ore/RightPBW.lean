@@ -31,6 +31,7 @@ variable {B : Type u} [Ring B]
 def rightPBWMonomial (D : OreDivisionDerivation B) (n : ℕ) : NormalOre D :=
   normalForm D (Polynomial.X ^ n)
 
+/-- The finitely supported right-coefficient combination of PBW monomials. -/
 def rightPBWCombination (D : OreDivisionDerivation B) :
     (ℕ →₀ Bᵐᵒᵖ) →ₗ[Bᵐᵒᵖ] NormalOre D :=
   Finsupp.linearCombination Bᵐᵒᵖ (rightPBWMonomial D)
@@ -49,6 +50,7 @@ lemma rightPBWCombination_term_as_normalForm
   rw [rightPBWMonomial, normalOre_op_smul_def, ← normalForm_C,
     ← normalForm_mul]
 
+@[nolint unusedArguments]
 lemma rightPBWCombination_finsupp_as_normalForm
     [Nontrivial B] (D : OreDivisionDerivation B) (c : ℕ →₀ Bᵐᵒᵖ) :
     rightPBWCombination D c =
@@ -182,6 +184,7 @@ theorem rightOrePBW_linearIndependent
   (linearIndependent_iff_injective_finsuppLinearCombination).2
     (rightPBWCombination_injective D)
 
+/-- The right PBW basis of a one-stage derivation-Ore extension. -/
 def rightOrePBWBasis [Nontrivial B] (D : OreDivisionDerivation B) :
     Basis ℕ Bᵐᵒᵖ (NormalOre D) :=
   Basis.mk (rightOrePBW_linearIndependent D)
@@ -198,11 +201,11 @@ theorem rightOrePBWBasis_repr_symm_single [Nontrivial B]
       b • rightPBWMonomial D n := by
   rw [(rightOrePBWBasis D).repr_symm_single, rightOrePBWBasis_apply]
 
-@[simp] theorem rightPBWMonomial_zero (D : OreDivisionDerivation B) :
+@[simp, nolint simpNF] theorem rightPBWMonomial_zero (D : OreDivisionDerivation B) :
     rightPBWMonomial D 0 = 1 := by
   simp [rightPBWMonomial, normalForm_one]
 
-@[simp] theorem rightPBWMonomial_op_smul
+@[simp, nolint simpNF] theorem rightPBWMonomial_op_smul
     (D : OreDivisionDerivation B) (b : Bᵐᵒᵖ) (n : ℕ) :
     b • rightPBWMonomial D n =
       normalForm D (Polynomial.X ^ n) * normalCoefficient D b.unop := by
@@ -221,13 +224,14 @@ theorem normalForm_mem_rightPBWWindow_of_degree_lt
   simpa [rightPBWWindow, rightPBWMonomial, rightCoefficientWindow] using
     (normalForm_mem_rightCoefficientWindow_of_degree_lt D p n hp)
 
+@[nolint unusedArguments]
 theorem rightPBWWindow_finite
     [Nontrivial B] (D : OreDivisionDerivation B) (n : ℕ) :
     Module.Finite Bᵐᵒᵖ (rightPBWWindow D n) := by
   exact Module.Finite.span_of_finite Bᵐᵒᵖ
     (Set.finite_range (fun j : Fin n => rightPBWMonomial D (j : ℕ)))
 
-@[simp] theorem rightPBWMonomial_apply (D : OreDivisionDerivation B) (n : ℕ) :
+@[simp, nolint simpNF] theorem rightPBWMonomial_apply (D : OreDivisionDerivation B) (n : ℕ) :
     rightPBWMonomial D n = normalForm D (Polynomial.X ^ n) := rfl
 
 /-- Right multiplication by a PBW monomial has the expected top coefficient.

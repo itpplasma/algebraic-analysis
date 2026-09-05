@@ -1,4 +1,5 @@
 import Mathlib.RingTheory.OreLocalization.Ring
+import AlgebraicAnalysis.Ore.RightLocalization
 
 /-!
 # Two-generator identities and unit-denominator transport
@@ -82,5 +83,20 @@ theorem TwoGeneratorIdentity.of_leftUnitClearing
     (1 : L) = ui * ((u * q) * f r + f F * (u * q) * f t) * u := hm'''
     _ = q * (f r * u) + (ui * f F * u) * q * (f t * u) := by
       simp only [mul_add, add_mul, ← mul_assoc, hui, one_mul]
+
+/-- The two-generator identity is preserved by the right Ore localization
+implemented through the opposite ring. -/
+theorem TwoGeneratorIdentity.of_rightOreLocalization
+    {R : Type u} [Ring R] {S : Submonoid R}
+    [OreLocalization.OreSet
+      (AlgebraicAnalysis.OreRightLocalization.oppositeSubmonoid S)]
+    (hR : TwoGeneratorIdentity R) :
+    TwoGeneratorIdentity
+      (AlgebraicAnalysis.OreRightLocalization.RightOreLocalization R S) := by
+  apply TwoGeneratorIdentity.of_rightUnitClearing hR
+  intro q hq
+  rcases AlgebraicAnalysis.OreRightLocalization.rightOre_clear (S := S) q with
+    ⟨a, s, _, hs, hclear⟩
+  exact ⟨a, s, hs, hclear⟩
 
 end AlgebraicAnalysis
