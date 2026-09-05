@@ -5,7 +5,7 @@ phase: private-package-extraction
 mission: reusable-trust-zero-algebraic-analysis
 active_gate: lean-mathlib-v4.33.1-migration
 consumer_pins: authoritative in downstream lakefile.toml files
-staged_slice: none
+staged_slice: unit-denominator-transport-and-intrinsic-differential-operators-consumer-integration
 consumers: [Stafford38, Bjork]
 public_release: false
 reservoir: false
@@ -167,6 +167,14 @@ the single-consumer layer is promoted beyond private use.
 - keep chronology and failed experiments in repository history, not this file.
 
 ## Active migration gate
+
+The publication extraction adds the generic two-generator identity with right
+and left unit-denominator transport, and the intrinsic finite-order
+differential-operator algebra of a commutative algebra. The complete package
+and API-test build passes (8,748 jobs, 2026-09-05), including concrete
+multiplication and rational-field consumers. Downstream compatibility imports
+and the immutable consumer pin are being checked before integration. Concrete Weyl identifications and
+Stafford's theorem remain downstream.
 
 The package is migrating from Lean/Mathlib v4.16.0 to v4.33.1 before the
 Stafford degree-zero divisor construction. The newer release supplies the

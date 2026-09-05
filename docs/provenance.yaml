@@ -599,6 +599,33 @@ extractions:
       Weyl algebra, ideal theorem, localization theorem, or headline
       Stafford/Björk claim is included.
 
+  - id: two-generator-unit-transport
+    source_repository: itpplasma/stafford38
+    source_revision: 1585e4c7
+    source_paths: [Stafford38/LocalizationCorollaries.lean, Stafford38/LeftDenominatorTransport.lean]
+    target_path: AlgebraicAnalysis/RingTheory/TwoGeneratorIdentity.lean
+    declaration_mapping:
+      Stafford38.LocalizationCorollaries.S38: AlgebraicAnalysis.TwoGeneratorIdentity
+      Stafford38.LocalizationCorollaries.s38_of_rightClearing: AlgebraicAnalysis.TwoGeneratorIdentity.of_rightUnitClearing
+      Stafford38.LocalizationCorollaries.s38_of_leftUnitClearing: AlgebraicAnalysis.TwoGeneratorIdentity.of_leftUnitClearing
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit 6b0d7e84
+    authorship: inherited Stafford38 contributions; source history retained upstream
+    consumers: [itpplasma/stafford38]
+    notes: Generic transport only; no claim that every ring satisfies the identity.
+
+  - id: intrinsic-differential-operators
+    source_repository: itpplasma/stafford38
+    source_revision: 1585e4c7
+    source_path: Stafford38/DifferentialOperators.lean
+    target_path: AlgebraicAnalysis/DifferentialOperators/Basic.lean
+    declaration_mapping: All declaration suffixes preserved under AlgebraicAnalysis.DifferentialOperators in place of Stafford38.DifferentialOperators.
+    license: Apache-2.0
+    license_record: itpplasma/stafford38 commit 6b0d7e84
+    authorship: inherited Stafford38 contributions; source history retained upstream
+    consumers: [itpplasma/stafford38]
+    notes: Intrinsic commutator filtration and finite-order algebra; no Weyl presentation or localization identification.
+
   - id: stable-free-projectives-interface
     source_repository: itpplasma/bjork
     source_revision: b04ba6310497f7c7b9560ed9ecb395be49c754c3

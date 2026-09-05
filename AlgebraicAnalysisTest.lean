@@ -1,4 +1,6 @@
 import AlgebraicAnalysis
+import AlgebraicAnalysisTest.TwoGeneratorIdentity
+import AlgebraicAnalysisTest.DifferentialOperatorsBasic
 
 /-! Small API consumer for the first extracted Ore slice. -/
 
