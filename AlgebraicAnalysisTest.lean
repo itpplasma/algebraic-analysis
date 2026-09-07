@@ -48,6 +48,14 @@ open MulOpposite
 
 noncomputable section
 
+/-- API check for the generic central-coordinate faithfulness kernel. -/
+example {E S : Type*} [DivisionRing E] [Ring S] [CharZero E]
+    (D : CentralEscapeData (E := E) (S := S))
+    (action : S →+* AddMonoid.End E)
+    (haction : ∀ (a c : E), action (D.embed a) c = a * c) :
+    Function.Injective action :=
+  CentralEscapeData.regular_action_injective D action haction
+
 /-- Concrete function-field consumer: the rational function field is finitely
 generated as a field extension, although not as a polynomial algebra. -/
 example :

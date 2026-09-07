@@ -514,7 +514,8 @@ extractions:
     target_namespace: AlgebraicAnalysis.Escape
     declaration_scope: >-
       additive right-coordinate commutator, central escape data, polynomial
-      derivative iteration, degree reduction, and unit production
+      derivative iteration, degree reduction, unit production, and the
+      coefficient-action faithfulness kernel
     license: Apache-2.0
     authorship: inherited repository contribution; preserve source history in Bjork
     consumers:
@@ -522,8 +523,10 @@ extractions:
     depends_on: []
     notes: >-
       The transport identity from a concrete Ore stage remains an explicit
-      hypothesis.  No module span, localization, simplicity, or Stafford
-      conclusion is asserted.
+      hypothesis.  The faithfulness lemma is conditional only on a ring action
+      agreeing with coefficient multiplication; it does not assert that a
+      concrete Ore action has that formula.  No module span, localization,
+      simplicity, or Stafford conclusion is asserted.
 
   - id: central-escape-span
     source_repository: plasma/proj/bjork
