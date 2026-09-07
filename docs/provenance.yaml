@@ -666,7 +666,7 @@ extractions:
 
   - id: differential-operator-generator-membership
     source_repository: itpplasma/algebraic-analysis
-    source_revision: dfdd2da091a9d67e7a29cc7914f192d746a2400d
+    source_revision: 247f6ea124bfb911b577ac4da7d1c200288bc95f
     source_paths:
       - AlgebraicAnalysis/DifferentialOperators/Basic.lean
       - AlgebraicAnalysis/DifferentialOperators/CoordinateGeneration.lean
