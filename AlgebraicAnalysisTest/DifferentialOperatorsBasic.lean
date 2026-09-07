@@ -1,8 +1,10 @@
 import AlgebraicAnalysis.DifferentialOperators.Basic
+import AlgebraicAnalysis.DifferentialOperators.CoordinateGeneration
+import Mathlib.RingTheory.Derivation.Basic
 
 open AlgebraicAnalysis.DifferentialOperators
 
-variable {k R : Type*} [CommRing k] [CommRing R] [Algebra k R]
+variable {k R : Type*} [Field k] [CharZero k] [CommRing R] [Algebra k R]
 
 example (a x : R) : multiplication (k := k) a x = a * x := by
   rfl
@@ -28,4 +30,14 @@ example (P : End (k := k) (R := R))
     ∃ n, P ∈ order (k := k) (R := R) n := by
   exact (mem_algebra_iff P).1 hP
 
+example (a : R) :
+    multiplication (k := k) a ∈ algebra (k := k) (R := R) := by
+  exact multiplication_mem_algebra a
+
+example (D : Derivation k R R) :
+    D.toLinearMap ∈ algebra (k := k) (R := R) := by
+  exact AlgebraicAnalysis.DifferentialOperators.CoordinateGeneration.derivation_mem_algebra D
+
 #print axioms AlgebraicAnalysis.DifferentialOperators.mul_mem_order
+#print axioms AlgebraicAnalysis.DifferentialOperators.multiplication_mem_algebra
+#print axioms AlgebraicAnalysis.DifferentialOperators.CoordinateGeneration.derivation_mem_algebra

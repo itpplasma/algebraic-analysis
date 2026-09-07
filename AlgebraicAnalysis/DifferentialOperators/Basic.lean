@@ -184,4 +184,16 @@ def algebra : Subalgebra k (End (k := k) (R := R)) where
 @[simp] theorem mem_algebra_iff (P : End (k := k) (R := R)) :
     P ∈ algebra (k := k) (R := R) ↔ ∃ n, P ∈ order n := Iff.rfl
 
+/-! The two basic kinds of operators are finite-order without any geometric
+assumption.  Keeping these witnesses public lets a concrete carrier expose
+its coefficient and derivation generators through this neutral API. -/
+
+/-- Multiplication by a coefficient is an intrinsic differential operator of
+order zero. -/
+theorem multiplication_mem_algebra (a : R) :
+    multiplication (k := k) a ∈ algebra (k := k) (R := R) := by
+  refine ⟨0, (mem_order_zero_iff_eq_multiplication _).2 ?_⟩
+  ext x
+  simp [multiplication_apply]
+
 end AlgebraicAnalysis.DifferentialOperators

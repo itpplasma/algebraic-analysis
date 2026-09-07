@@ -237,8 +237,11 @@ private lemma projection_preserves_kernel (x y : R) (D : Derivation k R R)
   rw [delta_iterate_preserves_kernel x y a P hP, hpow]
   simp
 
+/-! A derivation is a finite-order operator.  This is exported separately from
+the coordinate-generation theorem so concrete carriers can expose their
+derivation generators without importing an application-specific predicate. -/
 omit [CharZero k] in
-private lemma derivation_mem_algebra (D : Derivation k R R) :
+theorem derivation_mem_algebra (D : Derivation k R R) :
     D.toLinearMap ∈ algebra (k := k) (R := R) := by
   refine ⟨1, ?_⟩
   rw [mem_order_succ_iff]

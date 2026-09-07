@@ -664,6 +664,28 @@ extractions:
       be1754f12cc7a3a268a3036f295b1422685f058a, Stafford38/DifferentialOperators.lean
       is an export alias to this neutral API.
 
+  - id: differential-operator-generator-membership
+    source_repository: itpplasma/algebraic-analysis
+    source_revision: dfdd2da091a9d67e7a29cc7914f192d746a2400d
+    source_paths:
+      - AlgebraicAnalysis/DifferentialOperators/Basic.lean
+      - AlgebraicAnalysis/DifferentialOperators/CoordinateGeneration.lean
+    target_path: AlgebraicAnalysis/DifferentialOperators
+    target_namespace: AlgebraicAnalysis.DifferentialOperators
+    declaration_scope: >-
+      multiplication_mem_algebra and the exported derivation_mem_algebra
+      witness that coefficient multiplications and derivations belong to the
+      intrinsic finite-order differential-operator algebra
+    license: Apache-2.0
+    authorship: original package development
+    consumers:
+      - itpplasma/bjork
+    depends_on: [intrinsic-differential-operators]
+    notes: >-
+      These are elementary finite-order witnesses, not a generation or
+      smoothness theorem; downstream carriers must still prove the relevant
+      coordinate-generation and localization hypotheses.
+
   - id: stable-free-projectives-interface
     source_repository: itpplasma/bjork
     source_revision: b04ba6310497f7c7b9560ed9ecb395be49c754c3
