@@ -104,6 +104,42 @@ lemma factorial_leadingCoeff_ne_zero [CharZero E] {p : Polynomial E} (hp : p ≠
   exact mul_ne_zero (leadingCoeff_ne_zero.mpr hp)
     (Nat.cast_ne_zero.mpr (Nat.factorial_ne_zero _))
 
+/-- Faithfulness of a differential-operator action from central-coordinate
+PBW data.  The action only needs to agree with left multiplication on the
+coefficient embedding; iterated commutators then recover a nonzero leading
+coefficient of every nonzero normal polynomial. -/
+lemma regular_action_injective [CharZero E]
+    (D : CentralEscapeData (E := E) (S := S))
+    (action : S →+* AddMonoid.End E)
+    (haction : ∀ (a c : E), action (D.embed a) c = a * c) :
+    Function.Injective action := by
+  apply (injective_iff_map_eq_zero action).mpr
+  intro z hz
+  obtain ⟨p, rfl⟩ := D.normal.surjective z
+  have hpzero : p = 0 := by
+    by_contra hp
+    have hzero : action (D.normal p) = 0 := hz
+    have hiter : ∀ m : ℕ,
+        action (((commutator (D.embed D.coordinate))^[m]) (D.normal p)) = 0 := by
+      intro m
+      induction m with
+      | zero => simpa using hzero
+      | succ m ih =>
+          rw [Function.iterate_succ_apply']
+          simp only [commutator_apply, map_sub, map_mul, ih,
+            zero_mul, mul_zero, sub_zero]
+    have hlast := hiter p.natDegree
+    rw [iterate_commutator_normal D p p.natDegree,
+      iterate_derivative_natDegree] at hlast
+    have hcoeff : (Nat.factorial p.natDegree) • p.leadingCoeff = 0 := by
+      have hvalue := congrArg (fun f : AddMonoid.End E => f 1) hlast
+      rw [D.normal_C, haction] at hvalue
+      change (Nat.factorial p.natDegree • p.leadingCoeff) * 1 = 0 at hvalue
+      simpa using hvalue
+    exact (factorial_leadingCoeff_ne_zero hp) hcoeff
+  rw [hpzero]
+  exact D.normal.map_zero
+
 /-- One commutator lowers a nonconstant PBW polynomial's degree. -/
 @[nolint unusedArguments]
 lemma ad_degree_reduction [CharZero E] {p : Polynomial E}
@@ -125,9 +161,9 @@ end CentralEscapeData
 
 /-! Axiom report for the proof-critical kernel. -/
 #print axioms CentralEscapeData.iterate_derivative_natDegree
+#print axioms CentralEscapeData.regular_action_injective
 #print axioms CentralEscapeData.ad_degree_reduction
 #print axioms CentralEscapeData.ad_unit_production
 
 end
 end AlgebraicAnalysis.Escape
-
