@@ -1271,14 +1271,22 @@ extractions:
     declaration_scope: >-
       mem_submodule_of_coordinates
       mem_subalgebra_of_coordinates
+      mem_submodule_of_coordinates'
+      mem_subalgebra_of_coordinates'
     license: Apache-2.0
     license_record: itpplasma/stafford38 commit c8a513d553b24c7c08da82f496c44dbbaeb1f2fc
     authorship: inherited Stafford38 contribution; source history retained upstream
     consumers:
       - itpplasma/stafford38
+      - itpplasma/global-stafford-formal
     depends_on: [finite-taylor-reconstruction, intrinsic-differential-operators]
     notes: >-
       Mechanical namespace/import rewrite audited against the source section; proof terms retained.
+      AA-1 (this repository's own change) adds `mem_submodule_of_coordinates'`
+      and `mem_subalgebra_of_coordinates'`, finite-order-only variants whose
+      `hcoordinate` hypothesis is required solely for operators already in
+      `algebra`; the original two declarations are now derived from them and
+      remain unchanged in statement.
   - id: localized-polynomial-derivations
     source_repository: itpplasma/stafford38
     source_revision: c8a513d553b24c7c08da82f496c44dbbaeb1f2fc

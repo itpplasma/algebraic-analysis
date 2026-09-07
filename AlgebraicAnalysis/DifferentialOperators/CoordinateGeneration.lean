@@ -264,14 +264,16 @@ private lemma projection_mem_algebra (x : R) (D : Derivation k R R) (m : ℕ)
     (delta_pow_mem_algebra x a P hP)
     ((algebra (k := k) (R := R)).pow_mem (derivation_mem_algebra D) a)
 
-/-- Every intrinsic finite-order differential operator belongs to any linear
-subspace containing all multiplications and stable under right composition by
-a finite dual coordinate frame.  No multiplicative closure of the subspace,
-or commutation hypothesis among the derivations, is required. -/
-theorem mem_submodule_of_coordinates
+/-- Finite-order variant: the coordinate-rigidity hypothesis is required only
+for operators in `algebra`.  Every intrinsic finite-order differential
+operator belongs to any linear subspace containing all multiplications and
+stable under right composition by a finite dual coordinate frame.  No
+multiplicative closure of the subspace, or commutation hypothesis among the
+derivations, is required. -/
+theorem mem_submodule_of_coordinates'
     {n : ℕ} (x : Fin n → R) (D : Fin n → Derivation k R R)
     (hdual : ∀ i j, D i (x j) = if i = j then 1 else 0)
-    (hcoordinate : ∀ P : Module.End k R,
+    (hcoordinate : ∀ P : Module.End k R, P ∈ algebra (k := k) (R := R) →
       (∀ i, commutator P (x i) = 0) →
         P = multiplication (P 1))
     (H : Submodule k (Module.End k R))
@@ -333,9 +335,44 @@ theorem mem_submodule_of_coordinates
   apply heliminate (List.ofFn fun i : Fin n => i)
     (List.nodup_ofFn.mpr fun _ _ h => h) ?_ P hP
   intro Q hQ hkern
-  rw [hcoordinate Q (fun i => by
+  rw [hcoordinate Q hQ (fun i => by
     simpa [delta] using hkern i (List.mem_ofFn.mpr ⟨i, rfl⟩))]
   exact hmul (Q 1)
+
+/-- Every intrinsic finite-order differential operator belongs to any linear
+subspace containing all multiplications and stable under right composition by
+a finite dual coordinate frame.  No multiplicative closure of the subspace,
+or commutation hypothesis among the derivations, is required. -/
+theorem mem_submodule_of_coordinates
+    {n : ℕ} (x : Fin n → R) (D : Fin n → Derivation k R R)
+    (hdual : ∀ i j, D i (x j) = if i = j then 1 else 0)
+    (hcoordinate : ∀ P : Module.End k R,
+      (∀ i, commutator P (x i) = 0) →
+        P = multiplication (P 1))
+    (H : Submodule k (Module.End k R))
+    (hmul : ∀ r : R, multiplication r ∈ H)
+    (hright : ∀ i Q, Q ∈ H → Q * (D i).toLinearMap ∈ H)
+    (P : Module.End k R)
+    (hP : P ∈ algebra (k := k) (R := R)) : P ∈ H :=
+  mem_submodule_of_coordinates' x D hdual (fun P _ h => hcoordinate P h) H
+    hmul hright P hP
+
+/-- Finite-order variant: the coordinate-rigidity hypothesis is required only
+for operators in `algebra`.  Subalgebras containing the coordinate
+derivations satisfy the weaker right-stability hypothesis automatically. -/
+theorem mem_subalgebra_of_coordinates'
+    {n : ℕ} (x : Fin n → R) (D : Fin n → Derivation k R R)
+    (hdual : ∀ i j, D i (x j) = if i = j then 1 else 0)
+    (hcoordinate : ∀ P : Module.End k R, P ∈ algebra (k := k) (R := R) →
+      (∀ i, commutator P (x i) = 0) →
+        P = multiplication (P 1))
+    (H : Subalgebra k (Module.End k R))
+    (hmul : ∀ r : R, multiplication r ∈ H)
+    (hder : ∀ i, (D i).toLinearMap ∈ H)
+    (P : Module.End k R)
+    (hP : P ∈ algebra (k := k) (R := R)) : P ∈ H := by
+  apply mem_submodule_of_coordinates' x D hdual hcoordinate H.toSubmodule
+    hmul (fun i Q hQ => H.mul_mem hQ (hder i)) P hP
 
 /-- Subalgebras containing the coordinate derivations satisfy the weaker
 right-stability hypothesis automatically. -/
@@ -349,12 +386,14 @@ theorem mem_subalgebra_of_coordinates
     (hmul : ∀ r : R, multiplication r ∈ H)
     (hder : ∀ i, (D i).toLinearMap ∈ H)
     (P : Module.End k R)
-    (hP : P ∈ algebra (k := k) (R := R)) : P ∈ H := by
-  apply mem_submodule_of_coordinates x D hdual hcoordinate H.toSubmodule
-    hmul (fun i Q hQ => H.mul_mem hQ (hder i)) P hP
+    (hP : P ∈ algebra (k := k) (R := R)) : P ∈ H :=
+  mem_subalgebra_of_coordinates' x D hdual (fun P _ h => hcoordinate P h) H
+    hmul hder P hP
 
 end
 end AlgebraicAnalysis.DifferentialOperators.CoordinateGeneration
 
 #print axioms AlgebraicAnalysis.DifferentialOperators.CoordinateGeneration.mem_submodule_of_coordinates
 #print axioms AlgebraicAnalysis.DifferentialOperators.CoordinateGeneration.mem_subalgebra_of_coordinates
+#print axioms AlgebraicAnalysis.DifferentialOperators.CoordinateGeneration.mem_submodule_of_coordinates'
+#print axioms AlgebraicAnalysis.DifferentialOperators.CoordinateGeneration.mem_subalgebra_of_coordinates'
