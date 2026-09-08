@@ -61,3 +61,8 @@ format, run the same linter from Lean source:
 ```sh
 lake env lean --run .lake/packages/batteries/scripts/runLinter.lean AlgebraicAnalysis
 ```
+
+## Release provenance
+
+The [release history](docs/release-history.md) records exact downstream pins.
+The [Zenodo metadata](.zenodo.json) describes v0.3.0.

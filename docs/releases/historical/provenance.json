@@ -1,0 +1,8 @@
+{
+  "version": "v0.2.0-source-faa64814",
+  "commit": "faa64814d5a310dc925e330af58e000f129f1098",
+  "archive": "algebraic-analysis-faa64814.tar.gz",
+  "sha256": "2c4d26d4551185ba132e8beda23820bd53bcbc9546102ed029f308b8cf408f68",
+  "mathlib": "db584cd6d46c92f209a44c0f1c829460d327499d",
+  "scope": "Original untagged Global Stafford dependency snapshot. Preserved as a source artifact in the v0.3.0 Zenodo archive; this does not create an extra historical release version."
+}

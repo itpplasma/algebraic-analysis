@@ -7,7 +7,8 @@ authors:
     given-names: Christopher
     orcid: "https://orcid.org/0000-0003-4773-416X"
     affiliation: "Graz University of Technology"
-version: v0.2.0
+version: v0.3.0
+date-released: "2026-09-08"
 repository-code: "https://github.com/itpplasma/algebraic-analysis"
 license: Apache-2.0
 abstract: >-
@@ -15,3 +16,15 @@ abstract: >-
   differential operators, filtered modules, localization, rank and length
   arguments, and related algebraic-analysis interfaces with explicit
   hypotheses.
+
+doi: 10.5281/zenodo.22666205
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22666205
+    description: Concept DOI
+  - type: doi
+    value: 10.5281/zenodo.22666206
+    description: Version DOI of v0.2.0
+  - type: doi
+    value: 10.5281/zenodo.22666361
+    description: Version DOI of the historical v0.1.0 source

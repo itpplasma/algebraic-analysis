@@ -1,0 +1,10 @@
+{
+  "doi": "10.5281/zenodo.22666361",
+  "conceptdoi": "10.5281/zenodo.22666205",
+  "version": "v0.1.0",
+  "commit": "2fdc928835347a2638b6c85a4bfa770e3f70ed9e",
+  "zenodo_file": "itpplasma/algebraic-analysis-v0.1.0.zip",
+  "archive_sha256": "169c1e5e5b274ebe2339a2065d5d3ab796c47034a2b6d5e74f401a6e7a59557f",
+  "git_blob_comparison": "all archived files match the exact commit",
+  "files": 103
+}

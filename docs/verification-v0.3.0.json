@@ -1,0 +1,980 @@
+{
+  "source_commit": "44921f5914c5dbd40d2d532c2867adce0f519cb9",
+  "scope": "Fresh public source clone with pinned dependency caches reused. Build, tests and linter completed before the later interference from another workspace. Publication metadata is added after the mathematical source commit. No Palomar registration or human proof audit is claimed.",
+  "lean_toolchain": "leanprover/lean4:v4.33.0",
+  "mathlib_commit": "db584cd6d46c92f209a44c0f1c829460d327499d",
+  "checks": {
+    "build": {
+      "command": "lake build AlgebraicAnalysis AlgebraicAnalysisTest",
+      "exit": 0
+    },
+    "test": {
+      "command": "lake test",
+      "exit": 0
+    },
+    "lint": {
+      "command": "lake env lean --run .lake/packages/batteries/scripts/runLinter.lean AlgebraicAnalysis",
+      "exit": 0
+    }
+  },
+  "source_scan": "No sorry, admit, axiom declarations, native_decide or Lean.ofReduceBool in library or test sources.",
+  "logged_axiom_reports": {
+    "AlgebraicAnalysis.FunctionField.top_fg_of_finiteType_fractionRing": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.MvPolynomial.sub_pureMonomial_mem_span_X": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.MvPolynomial.X_mem_of_homogeneous_mem_prime": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreStageLocalization.exists_common_left_multiple": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreStageLocalization.exists_fraction": [
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreStageLocalization.exists_ne_zero_numerator": [
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreStageLocalization.numerator_injective": [
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreStageLocalization.denominator_isUnit": [
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreStageLocalization.nonzero_numerator_isUnit": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreStageLocalization.full_isUnit_of_ne_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.RankTorsion.rank_quotient_add_rank": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.RankTorsion.rank_eq_zero_iff_subsingleton": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.RankTorsion.finrank_quotient_add_finrank": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.RankTorsion.rank_eq_of_surjective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.RankTorsion.finrank_eq_of_surjective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.RankTorsion.oreRank": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.RankTorsion.oreRank_eq_of_localizedLinearEquiv": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.RankTorsion.localized_oreDiv_one_eq_zero_iff": [
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.RankTorsion.oreRank_zero_iff_localized_subsingleton": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.RankTorsion.oreRank_zero_iff_rightTorsion": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.RankTorsion.oreRank_zero_iff_localized_torsion": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.HyperplaneRestriction.restriction_subsingleton_of_smul_surjective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.HyperplaneRestriction.restriction_subsingleton_iff_smul_surjective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.HyperplaneRestriction.exists_annihilator_sub_one_mem_span_of_smul_surjective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.HyperplaneRestriction.not_mem_support_of_smul_surjective_of_mem": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.HyperplaneRestriction.support_disjoint_zeroLocus_of_smul_surjective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.HyperplaneRestriction.support_disjoint_zeroLocus_of_restriction_subsingleton": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.HyperplaneRestriction.support_subset_compl_zeroLocus_of_smul_surjective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.sourceSuccEquivKerDrop": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.targetSuccEquivCokerDrop": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.PageOperator.sourceMap": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.PageOperator.targetMap": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.PageOperator.targetMapAtDrop_drop": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.PageOperator.targetMap_drop": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.PageOperator.targetMapAtDrop_eq_cast_targetMap": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.PageOperator.sourceMap_eq_of_sameSymbol": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.PageOperator.targetMap_eq_of_sameSymbol": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.PageOperator.targetMapAtDrop_eq_of_sameSymbol": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.totalDrop": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.totalDrop_lof": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.totalDrop_lof_mk": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "_private.AlgebraicAnalysis.Module.FilteredTwoTermTotalPages.0.AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.totalDrop_apply_component": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.sourceTotalSuccEquivKerDrop": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.targetTotalSuccEquivCokerDrop": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.PageOperator.sourceTotalMap_commute_of_commutator_lowers": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.PageOperator.targetTotalMap_commute_of_commutator_lowers": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.targetBoundaryMap": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.totalBoundaryMap_eventually_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.PageOperator.targetBoundaryMap_naturality": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.PageOperator.totalBoundaryMap_naturality": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.MinimalPrimeFiniteLengthLocalization.finiteLength_of_maximalIdeal_pow_smul_eq_bot": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.MinimalPrimeFiniteLengthLocalization.maximalIdeal_le_radical_map_annihilator": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.MinimalPrimeFiniteLengthLocalization.map_annihilator_le_localized_annihilator": [
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.MinimalPrimeFiniteLengthLocalization.exists_maximalIdeal_pow_le_localized_annihilator": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.MinimalPrimeFiniteLengthLocalization.localizedModule_isFiniteLength": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.MinimalPrimeFiniteLengthLocalization.localizedModule_nontrivial_and_isFiniteLength": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.endomorphism_kernel_support_subset_cokernel_support_over_base": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.localized_kernel_and_cokernel_isFiniteLength": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.PrincipalKoszulPositivity.length_cokernel_smul_gt_kernel_of_support_prime": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.PrincipalKoszulFiniteTorsion.isNoetherian_kernel_power": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.PrincipalKoszulFiniteTorsion.isFiniteLength_kernel_power": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.PrincipalKoszulFiniteTorsion.length_cokernel_gt_kernel_of_stable_power_and_nonzero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.StableTorsionResidualSupport.residual_nontrivial_of_support": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.PrincipalKoszulSupportOverBase.length_cokernel_gt_kernel_of_support_over_base": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.PrincipalKoszulMinimalSupportPositivity.length_cokernel_gt_kernel_of_minimal_support": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.MinimalSupportExistence.exists_minimal_support_prime": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.BaseLocalizedKoszulPositivity.localized_length_cokernel_gt_kernel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.TwoTermPageLength.exists_boundary_eq_top_of_iSup_eq_top": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.TwoTermPageLength.twoTermPage_length_target_le_source": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.exists_uniform_zero_of_noetherian": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.exists_uniform_subsingleton_of_noetherian": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.exists_uniform_zero_localized": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.exists_uniform_subsingleton_localized": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.DifferentialOperators.CoordinateGeneration.mem_submodule_of_coordinates": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.DifferentialOperators.CoordinateGeneration.mem_subalgebra_of_coordinates": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.TwoGeneratorIdentity.of_rightUnitClearing": [
+      "propext"
+    ],
+    "AlgebraicAnalysis.TwoGeneratorIdentity.of_leftUnitClearing": [
+      "Classical.choice",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredStrictness.gradedQuotientMap_surjective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.RankExact.rank_prod_add": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.RankExact.rank_add_of_linearEquiv_prod": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.RankExact.rank_add_of_split_exact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.RankExact.finrank_prod_add": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.RankExact.finrank_add_of_linearEquiv_prod": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.RankExact.oreRank_add_of_localized_prod_equiv": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.SplitLatticePresentation.exists_splitMatrixPresentation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.SplitLatticePresentation.exists_splitMatrixPresentation_of_isComplemented": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreAssociativity.rightMul_assoc_of_ring": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreAssociativity.normalVariable_mul_coefficient": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreAssociativity.oreLift": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreAssociativity.oreLift_unique": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.DifferentialOperators.mul_mem_order": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.DifferentialOperators.multiplication_mem_algebra": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.DifferentialOperators.CoordinateGeneration.derivation_mem_algebra": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreRightQuotient.normalOreOpModule": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreRightQuotient.normalCoefficient_injective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreRightQuotient.normalForm_monomial_reverse": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreRightQuotient.twoGeneratorQuotient_finite": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreDerivationRightHilbertBasis.rightScalar_smul_def": [
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreDerivationRightHilbertBasis.normalOre_rightIdeal_fg_of_op_noetherian": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreDerivationRightHilbertBasis.normalOre_op_isNoetherian_of_nontrivial": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreDerivationRightHilbertBasis.normalOre_op_isNoetherian_of_subsingleton": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreDerivationRightHilbertBasis.derivationOre_rightHilbertBasis": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreRightPBW.rightPBWMonomial_op_smul": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreRightPBW.normalForm_mem_rightPBWWindow_of_degree_lt": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreRightPBW.rightPBWWindow_finite": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreRightPBW.rightMul_Xpow_top_coefficient": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreRightPBW.monicPrincipalRightIdeal_isCompl_rightPBWWindow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreRightPBW.monicPrincipalRightQuotientBasis": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreRightPBW.monicPrincipalRightQuotientBasis_apply": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreRightPBW.rightPBWCombination_eq_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreRightPBW.rightPBWCombination_injective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreRightPBW.rightPBWMonomial_mem_span": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreRightPBW.rightPBW_span_eq_top": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreRightPBW.rightOrePBW_linearIndependent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreRightPBW.rightOrePBWBasis": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreRightPBW.rightOrePBWBasis_repr_symm_single": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "submodule_of_coordinates_from_finite_order": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "subalgebra_of_coordinates_from_finite_order": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.Splice.isCoatom_of_covBy_sup_eq_top": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.Splice.maximal_submodule_splice": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.Splice.exists_affine_correction_mod_simple_quotient": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.RightCoordinates.rightCoordinateAction_mul": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.RightCoordinates.rightCoordinateAction_single": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.RightCoordinates.rightCoordinate_decomposition": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.RightCoordinates.rightCoordinate_decomposition_action": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.RightCoordinates.rightCoordinate_eq_top_of_single_mem": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredSchreyer.map_rightSMul": [
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FilteredSchreyer.range_add_lower_iff_preimage_add_rightMultiple": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreRightIntersection.exists_mem_finset_rightIdeals": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.Unimodular.unimodularSplitMap_left_inverse": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.Unimodular.unimodularSplitMap_right_inverse": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.Unimodular.unimodular_split": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.Unimodular.unimodular_span_singleton_free": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.Unimodular.projective_ker_of_unimodular": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.NoncommutativeDerivation.not_isInnerDerivation_of_central": [
+      "propext"
+    ],
+    "AlgebraicAnalysis.NoncommutativeDerivation.commute_of_mem_subring_closure": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.NoncommutativeDerivation.not_inner_of_central_coordinate": [
+      "propext"
+    ],
+    "AlgebraicAnalysis.DenominatorTorsion.quotient_isTorsion_of_clearance": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.DenominatorTorsion.leftMulLinear": [
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.DenominatorTorsion.principalRightIdeal_mem": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.DenominatorTorsion.principal_quotient_isTorsion": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.InverseEulerRiccati.inverse_riccati": [
+      "propext"
+    ],
+    "AlgebraicAnalysis.InverseEulerRiccati.euler_commutator": [
+      "propext"
+    ],
+    "AlgebraicAnalysis.InverseEulerRiccati.iterated_commutator": [
+      "propext"
+    ],
+    "AlgebraicAnalysis.Escape.CentralEscapeData.iterate_derivative_natDegree": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.Escape.CentralEscapeData.regular_action_injective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.Escape.CentralEscapeData.ad_degree_reduction": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.Escape.CentralEscapeData.ad_unit_production": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreLeftPBW.normalForm_smul_left": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreLeftPBW.orePBWBasis_apply": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreLeftPBW.orePBW_repr_symm_single": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreActiveCoordinate.ActiveCoordinateData.variable_mul_coordinate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreActiveCoordinate.ActiveCoordinateData.variable_mul_smul": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreActiveCoordinate.ActiveCoordinateData.coefficient_commute_coordinate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreActiveCoordinate.ActiveCoordinateData.coefficient_commute_coordinatePolynomial": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreActiveCoordinate.ActiveCoordinateData.normalForm_eq_support_sum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreActiveCoordinate.ActiveCoordinateData.recombine_coordinate_polynomial": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreActiveCoordinate.ActiveCoordinateData.exists_active_expansion": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OrePrincipalRightIdeal.rightMul_C_left": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OrePrincipalRightIdeal.rightMul_coeff_C_top": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OrePrincipalRightIdeal.degree_lt_of_degree_le_of_coeff_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OrePrincipalRightIdeal.minimal_monic_member_commutes_coefficients": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OrePrincipalRightIdeal.exists_monic_minimal_member": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OrePrincipalRightIdeal.normalOre_right_division": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OrePrincipalRightIdeal.rightMul_C_degree_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OrePrincipalRightIdeal.exists_monic_minimal_right_member": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OrePrincipalRightIdeal.rightIdeal_eq_principal_of_nonzero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OrePrincipalRightIdeal.rightIdeal_isPrincipal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.TriangularDenominator.finite_vectors_common_annihilator": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.TriangularDenominator.filtration_clearance": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.TriangularDenominator.filtration_quotient_isTorsion": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FreeSummandInduction.emptyFactorEquiv": [
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.FreeSummandInduction.finite_unimodular_splitting": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.EscapeSpan.commutatorVector_mem": [
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.EscapeSpan.single_mem_of_unit_single_mem": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.EscapeSpan.top_of_unit_singletons": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreTower.iterate_apply_commute": [
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreTower.coefficientDerivation_commute": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreTower.coefficientDerivation_rightMul": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreTower.liftDerivation_apply_normalForm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreTower.liftDerivation_apply_coefficient": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreTower.liftDerivation_apply_variable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreTower.liftDerivation_commute": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.TorsionProjectiveImage.linearMap_product_factor_first": [
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.TorsionProjectiveImage.surjective_factor_first_of_surjective": [
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.TorsionProjectiveImage.projective_leftIdeal_image_of_terminal_split": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.EscapeAssembly.iterate_commutatorVector_mem": [
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.EscapeAssembly.finite_tuple_escape": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreIteratedTower.build": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreIteratedTower.extendThrough_commutes": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreIteratedTower.iteratedNormalForm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreIteratedTower.iteratedNormalForm_injective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreIteratedPBW.towerCoefficient": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreIteratedPBW.polynomialBasis": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreIteratedPBW.normalFormLinearEquivK": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AlgebraicAnalysis.OreIteratedPBW.towerPBWBasis": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "log_sha256": {
+    "build": "4745f168237866522141a8f66a2590950d1e87aaac00c16483a80ab20fc8fc2c",
+    "test": "417008c5dd029fe256bed15ac3ce276c8a5424a2456241d078a362e8a5fad21b",
+    "lint": "4fbe228d57377493c3e61c250db898f835465d5d7888e9594338d617da3b6517",
+    "mathlib_public_cache": "c3978c1d1d5452f394d1820b7c33fbddd86ac3afb3a027e15d17e3273b3e70c7"
+  }
+}
