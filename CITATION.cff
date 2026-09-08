@@ -17,7 +17,7 @@ abstract: >-
   arguments, and related algebraic-analysis interfaces with explicit
   hypotheses.
 
-doi: 10.5281/zenodo.22666205
+doi: 10.5281/zenodo.22666517
 identifiers:
   - type: doi
     value: 10.5281/zenodo.22666205
@@ -28,3 +28,6 @@ identifiers:
   - type: doi
     value: 10.5281/zenodo.22666361
     description: Version DOI of the historical v0.1.0 source
+  - type: doi
+    value: 10.5281/zenodo.22666517
+    description: Version v0.3.0

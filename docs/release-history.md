@@ -24,3 +24,5 @@ byte-for-byte in [the historical source archive](releases/historical/algebraic-a
 with its original commit and checksum in [provenance.json](releases/historical/provenance.json).
 This source archive is included in the v0.3.0 tagged tree so Zenodo preserves
 it along with the current release, without inventing a historical version tag.
+
+Version v0.3.0 is archived at https://doi.org/10.5281/zenodo.22666517. Every file in the deposited ZIP was checked against the Git blob at release commit `4aae47967f6ba02ffe2f639ab06564c9a9d1ecc8`; all 111 files match. The verification record is `docs/releases/historical/zenodo-22666517-verified.json`.
