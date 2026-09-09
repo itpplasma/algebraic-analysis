@@ -16,9 +16,11 @@ primitives. Dependency pins and provenance are recorded in
 The module layer also contains the determinant-trick support exclusion for a
 finite module on which a chosen scalar acts surjectively.
 
-The polynomial layer contains a scheme-theoretic distinguished-axis lemma for
-homogeneous relations in prime ideals. It is a generic commutative-algebra
-result with all hypotheses explicit.
+The polynomial layer contains the reusable `HessianAlgebra` library for
+polynomial self-maps, formal differentiation, affine and triangular inverses,
+coordinate transport, Hessians, and homogeneous support, together with a
+scheme-theoretic distinguished-axis lemma for homogeneous relations in prime
+ideals. These are generic results with all hypotheses explicit.
 
 The field-theory layer proves that the fraction field of a finitely generated
 domain is finitely generated as an intermediate field, providing a precise

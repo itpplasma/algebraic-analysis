@@ -10,3 +10,7 @@ Some declarations were extracted from the historical Stafford38 development
 repository under the Apache-2.0 project license. The exact source revisions,
 paths, declaration mappings, and historical downstream compatibility
 relationships are recorded in docs/provenance.yaml.
+
+The polynomial-map calculus was extracted from itpplasma/hc6-formal under
+Apache-2.0. Git history attributes the source module to Christopher Albert;
+the exact revision and declaration scope are recorded in docs/provenance.yaml.

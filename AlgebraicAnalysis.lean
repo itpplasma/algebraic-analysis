@@ -4,6 +4,16 @@ import AlgebraicAnalysis.DifferentialOperators.Basic
 import AlgebraicAnalysis.CommutatorRiccati
 import AlgebraicAnalysis.FieldTheory.FunctionField
 import AlgebraicAnalysis.Polynomial.DistinguishedVariable
+import HessianAlgebra.AffineInverse
+import HessianAlgebra.ConstantHessian
+import HessianAlgebra.CoordinateChange
+import HessianAlgebra.DerivativeKernel
+import HessianAlgebra.HessianCoordinateChange
+import HessianAlgebra.HomogeneousDifferential
+import HessianAlgebra.HomogeneousSubstitution
+import HessianAlgebra.HomogeneousSupport
+import HessianAlgebra.PolynomialMap
+import HessianAlgebra.TriangularInverse
 import AlgebraicAnalysis.Ore.ActiveCoordinate
 import AlgebraicAnalysis.Derivation.Central
 import AlgebraicAnalysis.Derivation.Escape

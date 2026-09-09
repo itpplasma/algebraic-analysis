@@ -5,6 +5,7 @@ import AlgebraicAnalysisTest.CoordinateGenerationFiniteOrder
 import AlgebraicAnalysisTest.FilteredTwoTermPublication
 import AlgebraicAnalysisTest.LocalizationLengthPublication
 import AlgebraicAnalysisTest.OperatorLocalizationPublication
+import AlgebraicAnalysisTest.PolynomialMap
 import AlgebraicAnalysisTest.SplitLatticePresentation
 
 /-! Small API consumer for the first extracted Ore slice. -/

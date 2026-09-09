@@ -10,6 +10,135 @@ policy: >-
   a migration, but never a second declaration.
 
 extractions:
+  - id: polynomial-map-calculus
+    source_repository: itpplasma/hc6-formal
+    source_revision: a8face8074577b7455bd577b33f3b8286ce75ca9
+    source_path: HessianAlgebra/PolynomialMap.lean
+    target_path: HessianAlgebra/PolynomialMap.lean
+    target_namespace: HessianAlgebra.PolynomialMap
+    declaration_scope: all declarations in the source file
+    license: Apache-2.0
+    authorship: Christopher Albert <albert@tugraz.at>
+    consumers:
+      - itpplasma/hc6-formal
+      - itpplasma/hc4-formal
+      - itpplasma/jc2-formal
+      - itpplasma/dc2-formal
+    depends_on: []
+    notes: >-
+      This is generic polynomial self-map calculus over an arbitrary field and
+      finite variable type. It contains no H6 hypothesis or application proof.
+      The downstream integration wave must replace the HC6 declaration body
+      with an import-only compatibility module before promotion.
+
+  - id: polynomial-derivative-kernel
+    source_repository: itpplasma/hc6-formal
+    source_revision: a8face8074577b7455bd577b33f3b8286ce75ca9
+    source_path: HessianAlgebra/DerivativeKernel.lean
+    target_path: HessianAlgebra/DerivativeKernel.lean
+    target_namespace: HessianAlgebra
+    declaration_scope: all declarations in the source file
+    license: Apache-2.0
+    authorship: Christopher Albert <albert@tugraz.at>
+    consumers: [itpplasma/hc6-formal, itpplasma/hc4-formal]
+    depends_on: []
+
+  - id: polynomial-affine-inverse
+    source_repository: itpplasma/hc6-formal
+    source_revision: a8face8074577b7455bd577b33f3b8286ce75ca9
+    source_path: HessianAlgebra/AffineInverse.lean
+    target_path: HessianAlgebra/AffineInverse.lean
+    target_namespace: HessianAlgebra.PolynomialMap
+    declaration_scope: all declarations in the source file
+    license: Apache-2.0
+    authorship: Christopher Albert <albert@tugraz.at>
+    consumers: [itpplasma/hc6-formal, itpplasma/hc4-formal]
+    depends_on: [polynomial-map-calculus]
+
+  - id: polynomial-coordinate-change
+    source_repository: itpplasma/hc6-formal
+    source_revision: a8face8074577b7455bd577b33f3b8286ce75ca9
+    source_path: HessianAlgebra/CoordinateChange.lean
+    target_path: HessianAlgebra/CoordinateChange.lean
+    target_namespace: HessianAlgebra.PolynomialMap
+    declaration_scope: all declarations in the source file
+    license: Apache-2.0
+    authorship: Christopher Albert <albert@tugraz.at>
+    consumers: [itpplasma/hc6-formal, itpplasma/hc4-formal, itpplasma/jc2-formal, itpplasma/dc2-formal]
+    depends_on: [polynomial-affine-inverse]
+
+  - id: polynomial-hessian-coordinate-change
+    source_repository: itpplasma/hc6-formal
+    source_revision: a8face8074577b7455bd577b33f3b8286ce75ca9
+    source_path: HessianAlgebra/HessianCoordinateChange.lean
+    target_path: HessianAlgebra/HessianCoordinateChange.lean
+    target_namespace: HessianAlgebra.PolynomialMap
+    declaration_scope: all declarations in the source file
+    license: Apache-2.0
+    authorship: Christopher Albert <albert@tugraz.at>
+    consumers: [itpplasma/hc6-formal, itpplasma/hc4-formal]
+    depends_on: [polynomial-coordinate-change]
+
+  - id: polynomial-triangular-inverse
+    source_repository: itpplasma/hc6-formal
+    source_revision: a8face8074577b7455bd577b33f3b8286ce75ca9
+    source_path: HessianAlgebra/TriangularInverse.lean
+    target_path: HessianAlgebra/TriangularInverse.lean
+    target_namespace: HessianAlgebra.PolynomialMap
+    declaration_scope: all declarations in the source file
+    license: Apache-2.0
+    authorship: Christopher Albert <albert@tugraz.at>
+    consumers: [itpplasma/hc6-formal, itpplasma/hc4-formal]
+    depends_on: [polynomial-coordinate-change]
+
+  - id: polynomial-constant-hessian
+    source_repository: itpplasma/hc6-formal
+    source_revision: a8face8074577b7455bd577b33f3b8286ce75ca9
+    source_path: HessianAlgebra/ConstantHessian.lean
+    target_path: HessianAlgebra/ConstantHessian.lean
+    target_namespace: HessianAlgebra.PolynomialMap
+    declaration_scope: all declarations in the source file
+    license: Apache-2.0
+    authorship: Christopher Albert <albert@tugraz.at>
+    consumers: [itpplasma/hc6-formal, itpplasma/hc4-formal]
+    depends_on: [polynomial-derivative-kernel, polynomial-affine-inverse]
+
+  - id: polynomial-homogeneous-differential
+    source_repository: itpplasma/hc6-formal
+    source_revision: a8face8074577b7455bd577b33f3b8286ce75ca9
+    source_path: HessianAlgebra/HomogeneousDifferential.lean
+    target_path: HessianAlgebra/HomogeneousDifferential.lean
+    target_namespace: HessianAlgebra.PolynomialMap
+    declaration_scope: all declarations in the source file
+    license: Apache-2.0
+    authorship: Christopher Albert <albert@tugraz.at>
+    consumers: [itpplasma/hc6-formal, itpplasma/hc4-formal]
+    depends_on: []
+
+  - id: polynomial-homogeneous-substitution
+    source_repository: itpplasma/hc6-formal
+    source_revision: a8face8074577b7455bd577b33f3b8286ce75ca9
+    source_path: HessianAlgebra/HomogeneousSubstitution.lean
+    target_path: HessianAlgebra/HomogeneousSubstitution.lean
+    target_namespace: HessianAlgebra
+    declaration_scope: all declarations in the source file
+    license: Apache-2.0
+    authorship: Christopher Albert <albert@tugraz.at>
+    consumers: [itpplasma/hc6-formal, itpplasma/hc4-formal]
+    depends_on: [polynomial-map-calculus]
+
+  - id: polynomial-homogeneous-support
+    source_repository: itpplasma/hc6-formal
+    source_revision: a8face8074577b7455bd577b33f3b8286ce75ca9
+    source_path: HessianAlgebra/HomogeneousSupport.lean
+    target_path: HessianAlgebra/HomogeneousSupport.lean
+    target_namespace: HessianAlgebra
+    declaration_scope: all declarations in the source file
+    license: Apache-2.0
+    authorship: Christopher Albert <albert@tugraz.at>
+    consumers: [itpplasma/hc6-formal, itpplasma/hc4-formal]
+    depends_on: [polynomial-homogeneous-substitution]
+
   - id: strict-filtered-subquotient-surjectivity
     source_repository: itpplasma/algebraic-analysis
     source_revision: original-development
