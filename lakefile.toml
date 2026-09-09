@@ -15,8 +15,7 @@ name = "AlgebraicAnalysis"
 
 [[lean_lib]]
 name = "HessianAlgebra"
-globs = [
-  "HessianAlgebra",
+roots = [
   "HessianAlgebra.AffineInverse",
   "HessianAlgebra.ConstantHessian",
   "HessianAlgebra.CoordinateChange",
