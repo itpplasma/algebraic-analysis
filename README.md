@@ -46,6 +46,18 @@ localization, and module hypotheses explicit.
 
 All theorems in the public API have axiom-clean Lean proofs.
 
+The package also contains a filtered-ring layer: ascending ring filtrations
+with their associated graded pieces and order function; good filtrations on
+modules, including existence for finitely generated modules and the comparison
+lemma that any two good filtrations squeeze each other after a bounded shift;
+Hilbert functions of filtrations by finite-dimensional subspaces, with growth
+degree valued in the extended reals and proved invariant under bounded shifts;
+and Gelfand-Kirillov dimension defined from that growth degree. The polynomial
+ring in `n` variables with its total-degree filtration is proved to have
+Gelfand-Kirillov dimension exactly `n`. The Bernstein inequality is stated as a
+named proposition and is deliberately not proved; it is the open target of this
+layer.
+
 Current documentation release: **v0.3.1**. Adds the literature/source index and
 module references; mathematical declarations and dependency pins are unchanged.
 
