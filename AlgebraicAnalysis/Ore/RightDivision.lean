@@ -11,6 +11,14 @@ and the leading-term fact which drives right division by a monic polynomial.
 
 The coefficient ring is allowed to be noncommutative.  No commutative
 polynomial division theorem is used.
+
+
+## References and proof context
+
+[Ore33] Øystein Ore, *Theory of Non-Commutative Polynomials*, Annals of Mathematics (2) 34 (1933), no. 3, 480–508.
+https://doi.org/10.2307/1968173
+
+Historical skew-polynomial context. This module implements the derivation case over possibly noncommutative coefficients. See docs/literature.md and docs/provenance.yaml.
 -/
 
 namespace AlgebraicAnalysis

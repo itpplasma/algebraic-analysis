@@ -7,6 +7,14 @@ Neutral extraction of the intrinsic finite-order differential-operator algebra
 from Stafford38 commit `1585e4c7`, originally
 `Stafford38/DifferentialOperators.lean`.  No Weyl presentation or
 application-specific hypothesis is used.
+
+
+## References and proof context
+
+[StacksD] The Stacks Project Authors, *Finite order differential operators*, The Stacks Project, Section 10.133, tag 09CH (accessed 2026-09-09).
+https://stacks.math.columbia.edu/tag/09CH
+
+Background for the recursive commutator definition. See docs/literature.md for mathematical context and docs/provenance.yaml for code ancestry.
 -/
 
 namespace AlgebraicAnalysis.DifferentialOperators

@@ -1,8 +1,8 @@
 {
   "title": "AlgebraicAnalysis: reusable Lean foundations for algebraic analysis",
   "upload_type": "software",
-  "version": "v0.3.0",
-  "description": "Reusable Lean 4 definitions and proofs for derivation-Ore extensions, differential operators, filtered modules, localization, rank and length arguments. Includes finite-order coordinate generation and regular-action faithfulness. Application-specific Stafford assembly remains downstream. Pins Lean v4.33.0 and official Mathlib v4.33.0.",
+  "version": "v0.3.1",
+  "description": "Reusable Lean 4 definitions and proofs for derivation-Ore extensions, differential operators, filtered modules, localization, rank and length arguments. Includes finite-order coordinate generation and regular-action faithfulness. Application-specific Stafford assembly remains downstream. Pins Lean v4.33.0 and official Mathlib v4.33.0. This documentation patch adds a prominent bibliography, source-to-Lean index and module references; mathematical declarations and dependency pins are unchanged.",
   "creators": [
     {
       "name": "Albert, Christopher",
@@ -17,6 +17,22 @@
       "identifier": "https://github.com/leanprover-community/mathlib4/tree/db584cd6d46c92f209a44c0f1c829460d327499d",
       "relation": "requires",
       "resource_type": "software"
+    },
+    {
+      "identifier": "https://doi.org/10.2307/1968173",
+      "relation": "cites"
+    },
+    {
+      "identifier": "https://stacks.math.columbia.edu/tag/09CH",
+      "relation": "cites"
+    },
+    {
+      "identifier": "https://doi.org/10.1007/978-0-8176-4523-6",
+      "relation": "cites"
+    },
+    {
+      "identifier": "https://doi.org/10.1112/jlms/s2-18.3.429",
+      "relation": "cites"
     }
   ]
 }

@@ -46,6 +46,23 @@ localization, and module hypotheses explicit.
 
 All theorems in the public API have axiom-clean Lean proofs.
 
+Current documentation release: **v0.3.1**. Adds the literature/source index and
+module references; mathematical declarations and dependency pins are unchanged.
+
+## Literature and source index
+
+**[Literature → proof ingredients → Lean modules](docs/literature.md)** is the
+starting point for tracing the mathematical foundations. It gives full
+citations, source roles, module links, and the distinction between proved
+imports, project constructions, background, and prior art.
+
+**[Ore33]** Øystein Ore, *[Theory of Non-Commutative Polynomials](https://doi.org/10.2307/1968173)*, Annals of Mathematics (2) 34 (1933), no. 3, 480–508. Historical foundation for skew polynomial rings. The library implements the derivation case with explicit coefficient order, rather than all skew-polynomial generality.
+
+**[StacksD]** The Stacks Project Authors, *[Finite order differential operators](https://stacks.math.columbia.edu/tag/09CH)*, The Stacks Project, Section 10.133, tag 09CH (accessed 2026-09-09). Background for the recursive commutator definition and localization of finite-order differential operators; Lean implementations and hypotheses are indexed below.
+
+**[HTT08]** Ryoshi Hotta, Kiyoshi Takeuchi, and Toshiyuki Tanisaki, *[D-Modules, Perverse Sheaves, and Representation Theory](https://doi.org/10.1007/978-0-8176-4523-6)*, Progress in Mathematics 236, Birkhäuser, 2008. Background for differential operators, good filtrations and characteristic varieties (Chapters 1–2). No claim of a line-by-line formalization of this book.
+
+
 ## Build
 
 ```sh
