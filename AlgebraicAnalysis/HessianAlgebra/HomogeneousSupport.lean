@@ -1,6 +1,7 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
+-- Modified by itpplasma/algebraic-analysis: package module path changed.
 
-import HessianAlgebra.HomogeneousSubstitution
+import AlgebraicAnalysis.HessianAlgebra.HomogeneousSubstitution
 
 /-! Degree support bounds under homogeneous substitution. -/
 

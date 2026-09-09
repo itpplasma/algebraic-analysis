@@ -1,6 +1,7 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
+-- Modified by itpplasma/algebraic-analysis: package module path changed.
 
-import HessianAlgebra.CoordinateChange
+import AlgebraicAnalysis.HessianAlgebra.CoordinateChange
 
 /-!
 Prefix substitution and the elementary triangular-coordinate automorphism.

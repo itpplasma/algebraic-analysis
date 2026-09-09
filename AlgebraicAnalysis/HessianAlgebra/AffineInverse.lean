@@ -1,6 +1,7 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
+-- Modified by itpplasma/algebraic-analysis: package module path changed.
 
-import HessianAlgebra.PolynomialMap
+import AlgebraicAnalysis.HessianAlgebra.PolynomialMap
 import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 
 /-! Explicit polynomial inverses for affine linear maps. -/

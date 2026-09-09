@@ -1,7 +1,8 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
+-- Modified by itpplasma/algebraic-analysis: package module path changed.
 
-import HessianAlgebra.DerivativeKernel
-import HessianAlgebra.AffineInverse
+import AlgebraicAnalysis.HessianAlgebra.DerivativeKernel
+import AlgebraicAnalysis.HessianAlgebra.AffineInverse
 
 /-! Affine gradients and actual inverses for constant Hessian polynomials. -/
 

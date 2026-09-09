@@ -5,8 +5,9 @@
 This review covers `HessianAlgebra/PolynomialMap.lean` in
 `itpplasma/hc6-formal` at source revision
 `a8face8074577b7455bd577b33f3b8286ce75ca9`. The targets retain their
-`HessianAlgebra/*.lean` paths and declaration names inside the common package,
-so existing consumers can migrate without source import or API renaming.
+`AlgebraicAnalysis/HessianAlgebra/*.lean` paths inside the common package while
+retaining declaration names in `HessianAlgebra`, so existing theorem names do
+not change. Downstream source imports must use the common-package module paths.
 
 The extracted declarations are polynomial substitution and partial
 derivatives, gradients and Hessians, polynomial two-sided inverses, the

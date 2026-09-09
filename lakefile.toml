@@ -14,18 +14,18 @@ rev = "db584cd6d46c92f209a44c0f1c829460d327499d"
 name = "AlgebraicAnalysis"
 
 [[lean_lib]]
-name = "HessianAlgebra"
+name = "AlgebraicAnalysisHessian"
 roots = [
-  "HessianAlgebra.AffineInverse",
-  "HessianAlgebra.ConstantHessian",
-  "HessianAlgebra.CoordinateChange",
-  "HessianAlgebra.DerivativeKernel",
-  "HessianAlgebra.HessianCoordinateChange",
-  "HessianAlgebra.HomogeneousDifferential",
-  "HessianAlgebra.HomogeneousSubstitution",
-  "HessianAlgebra.HomogeneousSupport",
-  "HessianAlgebra.PolynomialMap",
-  "HessianAlgebra.TriangularInverse",
+  "AlgebraicAnalysis.HessianAlgebra.AffineInverse",
+  "AlgebraicAnalysis.HessianAlgebra.ConstantHessian",
+  "AlgebraicAnalysis.HessianAlgebra.CoordinateChange",
+  "AlgebraicAnalysis.HessianAlgebra.DerivativeKernel",
+  "AlgebraicAnalysis.HessianAlgebra.HessianCoordinateChange",
+  "AlgebraicAnalysis.HessianAlgebra.HomogeneousDifferential",
+  "AlgebraicAnalysis.HessianAlgebra.HomogeneousSubstitution",
+  "AlgebraicAnalysis.HessianAlgebra.HomogeneousSupport",
+  "AlgebraicAnalysis.HessianAlgebra.PolynomialMap",
+  "AlgebraicAnalysis.HessianAlgebra.TriangularInverse",
 ]
 
 [[lean_lib]]
