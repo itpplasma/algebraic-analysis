@@ -32,3 +32,38 @@ Version v0.3.0 is archived at https://doi.org/10.5281/zenodo.22666517. Every fil
 Documentation patch: [literature/source index](literature.md), prominent README
 bibliography and module references. Mathematical code and Mathlib pin unchanged
 from v0.3.0; existing downstream pins remain valid.
+
+## v0.3.2
+
+Mathematics release at `8c1c96e09d15a39e80f31d28522e96a3a252425c`, on top of
+v0.3.1. Lean v4.33.0 and Mathlib
+`db584cd6d46c92f209a44c0f1c829460d327499d` are unchanged. Adds:
+
+- the filtered-ring layer (`RingFiltration`, `GoodFiltration`,
+  `HilbertFunction`, `GKDimension`): ascending exhaustive ring filtrations
+  with associated graded pieces, good filtrations with the comparison lemma,
+  Hilbert functions of finite-dimensional filtrations with a bounded-shift
+  invariant growth degree valued in the extended reals, and Gelfand–Kirillov
+  dimension from that growth degree, including the exact dimension count of
+  the total-degree filtration on a polynomial ring. The Bernstein inequality
+  is stated as a named proposition and deliberately left unproved as the open
+  target of the layer;
+- the shared `HessianAlgebra` package (`AlgebraicAnalysis.HessianAlgebra.*`):
+  generic polynomial self-map calculus, derivative kernel, affine and
+  triangular inverses, coordinate and Hessian transport, constant-Hessian and
+  homogeneous-support results extracted from `hc6-formal` (recorded in
+  `docs/provenance.yaml`), with stable package module paths.
+
+New downstream pins of this release commit:
+
+| Consumer | Exact library pin | Library version |
+| --- | --- | --- |
+| JC2 direct and doubled routes, `jc2-formal` | `8c1c96e09d15a39e80f31d28522e96a3a252425c` | v0.3.2 |
+| HC4 doubled-sector formalization, `hc4-formal` | `8c1c96e09d15a39e80f31d28522e96a3a252425c` | v0.3.2 |
+| HC6 formalization, `hc6-formal` | `8c1c96e09d15a39e80f31d28522e96a3a252425c` | v0.3.2 |
+| DC2 formalization, `dc2-formal` | `8c1c96e09d15a39e80f31d28522e96a3a252425c` | v0.3.2 |
+
+These are verified source pins in the listed repositories; an actual Palomar
+submission pin requires its receipt. The Zenodo deposit for this version and
+its DOI are recorded only after the release event and archival identifier are
+issued.

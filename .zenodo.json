@@ -1,8 +1,8 @@
 {
   "title": "AlgebraicAnalysis: reusable Lean foundations for algebraic analysis",
   "upload_type": "software",
-  "version": "v0.3.1",
-  "description": "Reusable Lean 4 definitions and proofs for derivation-Ore extensions, differential operators, filtered modules, localization, rank and length arguments. Includes finite-order coordinate generation and regular-action faithfulness. Application-specific Stafford assembly remains downstream. Pins Lean v4.33.0 and official Mathlib v4.33.0. This documentation patch adds a prominent bibliography, source-to-Lean index and module references; mathematical declarations and dependency pins are unchanged.",
+  "version": "v0.3.2",
+  "description": "Reusable Lean 4 definitions and proofs for derivation-Ore extensions, differential operators, filtered modules, localization, rank and length arguments. Includes finite-order coordinate generation, regular-action faithfulness, a filtered-ring layer with Hilbert functions and Gelfand-Kirillov dimension, and the shared HessianAlgebra package for polynomial self-map calculus. The Bernstein inequality is stated and left open as the target of the filtration layer. Application-specific Stafford assembly remains downstream. Pins Lean v4.33.0 and official Mathlib v4.33.0.",
   "creators": [
     {
       "name": "Albert, Christopher",

@@ -60,8 +60,10 @@ Gelfand-Kirillov dimension exactly `n`. The Bernstein inequality is stated as a
 named proposition and is deliberately not proved; it is the open target of this
 layer.
 
-Current documentation release: **v0.3.1**. Adds the literature/source index and
-module references; mathematical declarations and dependency pins are unchanged.
+Current documentation release: **v0.3.2**. Adds the filtered-ring, Hilbert-function and
+Gelfand–Kirillov layer, and the shared `HessianAlgebra` package for polynomial
+self-map calculus. Lean/Mathlib pins are unchanged from v0.3.1; the Bernstein
+inequality remains the stated open target of the filtration layer.
 
 ## Literature and source index
 

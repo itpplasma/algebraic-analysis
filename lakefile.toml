@@ -1,5 +1,5 @@
 name = "algebraicAnalysis"
-version = "0.3.1"
+version = "0.3.2"
 defaultTargets = ["AlgebraicAnalysis"]
 reservoir = false
 lintDriver = "batteries/runLinter"
