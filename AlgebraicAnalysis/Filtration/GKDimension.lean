@@ -41,8 +41,12 @@ computed in `ℝ≥0∞` so that a filtration of faster than polynomial growth r
 ## What is not proved here
 
 `BernsteinInequality` is *stated* and deliberately left unproved; it is the open target of this
-layer.  It is a `Prop`-valued definition, not a hypothesis of any theorem in this file, and
-nothing below depends on it.
+layer. It is a `Prop`-valued definition, not a hypothesis of any theorem in this file, and
+nothing below depends on it. Its field binder now carries `CharZero K`, which is essential:
+the characteristic-two first Weyl algebra has a nonzero finite module with a constant
+filtration satisfying the displayed hypotheses but with GK dimension zero. The
+pre-repair arbitrary-field counterexample remains recorded in
+`research/bernstein_characteristic_p_oracle.py`.
 
 ## Implementation notes
 
@@ -476,7 +480,8 @@ polynomial ring in `2 * n` variables, which has nonzero modules of Gelfand-Kiril
 dimension `0`.  The intended instance of the whole hypothesis package is the `n`-th Weyl
 algebra with its Bernstein filtration. -/
 def BernsteinInequality (n : ℕ) : Prop :=
-  ∀ (K : Type u) [Field K] (A : Type v) [Ring A] [Algebra K A] (FA : ℕ → Submodule K A),
+  ∀ (K : Type u) [Field K] [CharZero K] (A : Type v) [Ring A] [Algebra K A]
+    (FA : ℕ → Submodule K A),
     Monotone FA →
     (1 : A) ∈ FA 0 →
     (∀ i j, ∀ a ∈ FA i, ∀ b ∈ FA j, a * b ∈ FA (i + j)) →

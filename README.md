@@ -56,14 +56,19 @@ Hilbert functions of filtrations by finite-dimensional subspaces, with growth
 degree valued in the extended reals and proved invariant under bounded shifts;
 and Gelfand-Kirillov dimension defined from that growth degree. The polynomial
 ring in `n` variables with its total-degree filtration is proved to have
-Gelfand-Kirillov dimension exactly `n`. The Bernstein inequality is stated as a
+Gelfand–Kirillov dimension exactly `n`. The Bernstein inequality is stated as a
 named proposition and is deliberately not proved; it is the open target of this
-layer.
+layer. The current statement is also invalid over arbitrary fields: an
+independent characteristic-two Weyl-module oracle exhibits the missing
+characteristic-zero boundary.
 
 Current documentation release: **v0.3.2**. Adds the filtered-ring, Hilbert-function and
 Gelfand–Kirillov layer, and the shared `HessianAlgebra` package for polynomial
 self-map calculus. Lean/Mathlib pins are unchanged from v0.3.1; the Bernstein
-inequality remains the stated open target of the filtration layer.
+inequality remains the stated open target of the filtration layer; its
+definition now makes the required characteristic-zero field boundary explicit,
+but the theorem remains unproved.
+The machine-facing status and next valid work are in [PLAN.md](PLAN.md).
 
 ## Literature and source index
 

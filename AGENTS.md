@@ -14,3 +14,5 @@
 - Preserve unrelated changes and stage explicit paths.
 - Keep the repository private until an explicit history, license, secret, and
   release audit passes.
+- Keep `PLAN.md` current when a formal target is opened, repaired, or retired;
+  do not infer theorem completeness from module presence or a green build.
