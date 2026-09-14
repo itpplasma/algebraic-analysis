@@ -1,5 +1,6 @@
 import AlgebraicAnalysis.Commutator
 import AlgebraicAnalysis.RingTheory.TwoGeneratorIdentity
+import AlgebraicAnalysis.RingTheory.LaurentSeriesResidue
 import AlgebraicAnalysis.DifferentialOperators.Basic
 import AlgebraicAnalysis.CommutatorRiccati
 import AlgebraicAnalysis.FieldTheory.FunctionField
@@ -17,6 +18,7 @@ import AlgebraicAnalysis.HessianAlgebra.TriangularInverse
 import AlgebraicAnalysis.Ore.ActiveCoordinate
 import AlgebraicAnalysis.Derivation.Central
 import AlgebraicAnalysis.Derivation.Escape
+import AlgebraicAnalysis.Derivation.JacobianExactness
 import AlgebraicAnalysis.Ore.RightHilbertBasis
 import AlgebraicAnalysis.Ore.RightIntersection
 import AlgebraicAnalysis.Ore.PrincipalRightIdeal
