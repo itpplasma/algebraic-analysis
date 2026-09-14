@@ -30,14 +30,14 @@ example :
   apply Finset.sum_half_le_of_mem_finsuppAntidiag
   simp
 
-example : 7 - 4 ≤
-    7 + (∑ i ∈ ({0, 1} : Finset ℕ), max 0 (3 - (2 * i + 1))) - 2 * 3 := by
+example : 7 - 4 + 2 * 3 ≤
+    7 + (∑ i ∈ ({0, 1} : Finset ℕ), max 0 (3 - (2 * i + 1))) := by
   apply Finset.residual_exponent_lower_bound 3 7 4 {0, 1} (fun i => 2 * i + 1)
   · norm_num
   · omega
 
-example : 4 - 4 / 2 ≤
-    4 + (∑ i ∈ ({0, 1} : Finset ℕ), max 0 (3 - (2 * i + 1) / 2)) - 2 * 3 := by
+example : 4 - 4 / 2 + 2 * 3 ≤
+    4 + (∑ i ∈ ({0, 1} : Finset ℕ), max 0 (3 - (2 * i + 1) / 2)) := by
   apply Finset.residual_half_exponent_lower_bound 3 4 4 {0, 1} (fun i => 2 * i + 1)
   · norm_num
   · omega

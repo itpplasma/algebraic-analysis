@@ -62,7 +62,7 @@ theorem sum_max_zero_sub_add_sum_min_eq
 theorem residual_exponent_lower_bound
     {ι : Type*} (A B k : ℕ) (s : Finset ι) (f : ι → ℕ)
     (hsum : (∑ i ∈ s, f i) = k) (hk : k ≤ B) :
-    B - k ≤ B + (∑ i ∈ s, max 0 (A - f i)) - s.card * A := by
+    B - k + s.card * A ≤ B + (∑ i ∈ s, max 0 (A - f i)) := by
   classical
   have hcomp := sum_max_zero_sub_add_sum_min_eq A s f
   have hmin : (∑ i ∈ s, min A (f i)) ≤ k := by
@@ -73,8 +73,8 @@ theorem residual_exponent_lower_bound
 theorem residual_half_exponent_lower_bound
     {ι : Type*} (A B k : ℕ) (s : Finset ι) (f : ι → ℕ)
     (hsum : (∑ i ∈ s, f i) = k) (hk : k ≤ 2 * B) :
-    B - k / 2 ≤
-      B + (∑ i ∈ s, max 0 (A - f i / 2)) - s.card * A := by
+    B - k / 2 + s.card * A ≤
+      B + (∑ i ∈ s, max 0 (A - f i / 2)) := by
   classical
   have hsumHalf : (∑ i ∈ s, f i / 2) ≤ k / 2 := by
     apply (sum_half_le_half_sum s f).trans_eq
