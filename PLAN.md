@@ -17,6 +17,10 @@ their application-specific proof assembly.
   power-series truncation, with an exact coefficient formula and degree bound;
   its concrete windowing oracle is in
   `AlgebraicAnalysisTest/PowerSeriesReverseTrunc.lean`.
+- `Finset.sum_div_le_div_sum`, its `finsuppAntidiag` specialization, and the
+  two residual-exponent inequalities control accumulated floor and truncated
+  subtraction losses in finite filtered convolutions; concrete consumers are
+  in `AlgebraicAnalysisTest/Combinatorics/FiniteFloorSum.lean`.
 - `AlgebraicAnalysis.BernsteinInequality` is statement-only and remains open;
   its field binder now explicitly requires `CharZero K`.
 - The pre-repair arbitrary-field statement was false: the first Weyl algebra over
