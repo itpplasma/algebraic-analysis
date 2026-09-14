@@ -8,6 +8,7 @@ import AlgebraicAnalysisTest.OperatorLocalizationPublication
 import AlgebraicAnalysisTest.PolynomialMap
 import AlgebraicAnalysisTest.SplitLatticePresentation
 import AlgebraicAnalysisTest.JacobianExactness
+import AlgebraicAnalysisTest.BinomialSeriesRoot
 
 /-! Small API consumer for the first extracted Ore slice. -/
 

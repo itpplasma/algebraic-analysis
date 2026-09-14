@@ -1,6 +1,6 @@
 # AlgebraicAnalysis formal status
 
-Updated 2026-09-12. This repository owns reusable, application-independent
+Updated 2026-09-14. This repository owns reusable, application-independent
 Lean foundations; downstream Stafford, Björk, JC2, and Navier projects own
 their application-specific proof assembly.
 
@@ -9,6 +9,10 @@ their application-specific proof assembly.
 - The Ore/PBW, localization, filtered-module, support, rank, and Hessian
   foundations in the public API are proved with ordinary Lean/Mathlib axioms
   only.
+- `PowerSeries.subst_binomialSeries_div_pow` proves the arbitrary-tail
+  fractional-binomial root identity used by downstream Laurent expansions;
+  its concrete coefficient oracle is in
+  `AlgebraicAnalysisTest/BinomialSeriesRoot.lean`.
 - `AlgebraicAnalysis.BernsteinInequality` is statement-only and remains open;
   its field binder now explicitly requires `CharZero K`.
 - The pre-repair arbitrary-field statement was false: the first Weyl algebra over
