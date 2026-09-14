@@ -13,6 +13,10 @@ their application-specific proof assembly.
   fractional-binomial root identity used by downstream Laurent expansions;
   its concrete coefficient oracle is in
   `AlgebraicAnalysisTest/BinomialSeriesRoot.lean`.
+- `PowerSeries.reverseTrunc` packages fixed-degree exponent reversal after a
+  power-series truncation, with an exact coefficient formula and degree bound;
+  its concrete windowing oracle is in
+  `AlgebraicAnalysisTest/PowerSeriesReverseTrunc.lean`.
 - `AlgebraicAnalysis.BernsteinInequality` is statement-only and remains open;
   its field binder now explicitly requires `CharZero K`.
 - The pre-repair arbitrary-field statement was false: the first Weyl algebra over
