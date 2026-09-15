@@ -157,6 +157,57 @@ theorem LaurentSeries.normalizedMomentFactor_coeff_leading
     one_ne_zero
   simpa using h
 
+/-- Substituting a zero-constant tail preserves the identity saying that
+the `j`th power of exponent `-1/m` has exponent `-j/m`. -/
+theorem PowerSeries.subst_binomialSeries_neg_one_div_pow
+    (u : PowerSeries K) (hu : PowerSeries.constantCoeff u = 0)
+    (j m : ℕ) (hm : m ≠ 0) :
+    ((PowerSeries.binomialSeries K (-((1 : K) / (m : K)))).subst u) ^ j =
+      (PowerSeries.binomialSeries K (-((j : K) / (m : K)))).subst u := by
+  have huSubst : PowerSeries.HasSubst u :=
+    PowerSeries.HasSubst.of_constantCoeff_zero' hu
+  rw [← PowerSeries.subst_pow huSubst, PowerSeries.binomialSeries_pow_nat]
+  congr 2
+  field_simp
+
+/-- All normalized negative fractional-power rows are powers of the first
+row, so they belong to one coherent choice of `m`th root. -/
+theorem LaurentSeries.monicNegativeFractionalPower_eq_pow_one
+    (u : PowerSeries K) (hu : PowerSeries.constantCoeff u = 0)
+    (j m : ℕ) (hm : m ≠ 0) :
+    LaurentSeries.monicNegativeFractionalPower u j m =
+      (LaurentSeries.monicNegativeFractionalPower u 1 m) ^ j := by
+  rw [LaurentSeries.monicNegativeFractionalPower,
+    LaurentSeries.monicNegativeFractionalPower, mul_pow]
+  have hseries :=
+    PowerSeries.subst_binomialSeries_neg_one_div_pow u hu j m hm
+  have hmap := congrArg (HahnSeries.ofPowerSeries ℤ K) hseries
+  simp only [map_pow] at hmap
+  have hmap' :
+      (HahnSeries.ofPowerSeries ℤ K
+          ((PowerSeries.binomialSeries K
+            (-((1 : K) / (m : K)))).subst u)) ^ j =
+        HahnSeries.ofPowerSeries ℤ K
+          ((PowerSeries.binomialSeries K
+            (-((j : K) / (m : K)))).subst u) := by
+    simpa using hmap
+  simp only [Nat.cast_one]
+  rw [hmap']
+  have hsingle_pow (a : ℤ) (n : ℕ) :
+      (HahnSeries.single a (1 : K)) ^ n =
+        HahnSeries.single ((n : ℤ) * a) 1 := by
+    induction n with
+    | zero => simp
+    | succ n ih =>
+        rw [pow_succ, ih, HahnSeries.single_mul_single]
+        congr 2
+        · push_cast
+          ring
+        · simp
+  rw [hsingle_pow]
+  congr 2
+  simp
+
 /-- The normalized negative fractional power has the expected algebraic
 relation with its normalized monic Laurent series. -/
 theorem LaurentSeries.monicNegativeFractionalPower_pow_mul_normalizedMonicSeries_pow

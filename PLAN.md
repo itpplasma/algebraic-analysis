@@ -84,7 +84,8 @@ their application-specific proof assembly.
   leading coefficient is one when `u` has zero constant term, and proves the
   exact relation `root^m * (X⁻ᵐ(1+u))^j = 1` when `m ≠ 0`. It also proves that
   `(dF/ds)F^(-j/m)` starts in exponent `1-m+j` with coefficient `m`, the
-  diagonal input for equation (5). Nontrivial cubic coefficient,
+  diagonal input for equation (5), and that every `-j/m` row is the `j`th
+  power of the `-1/m` row. Nontrivial cubic coefficient,
   Laurent-orientation, root-relation, and moment-factor oracles are in
   `AlgebraicAnalysisTest/RingTheory/LaurentSeriesFractionalPower.lean`; the
   downstream consumer instantiates the normalized roots in equation (3).

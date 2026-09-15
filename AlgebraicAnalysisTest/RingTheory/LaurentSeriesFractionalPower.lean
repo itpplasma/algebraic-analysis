@@ -76,12 +76,21 @@ example :
   exact normalizedMomentFactor_coeff_leading PowerSeries.X (by simp) 2 3
     (by norm_num)
 
+/-- The separately constructed `-2/3` row agrees with the square of the
+constructed `-1/3` row. -/
+example :
+    monicNegativeFractionalPower (PowerSeries.X : PowerSeries ℚ) 2 3 =
+      (monicNegativeFractionalPower PowerSeries.X 1 3) ^ 2 := by
+  exact monicNegativeFractionalPower_eq_pow_one PowerSeries.X (by simp) 2 3
+    (by norm_num)
+
 #print axioms AlgebraicAnalysis.LaurentSeries.monicNegativeFractionalPower_coeff_eq_zero_of_lt
 #print axioms AlgebraicAnalysis.LaurentSeries.monicNegativeFractionalPower_coeff_self
 #print axioms PowerSeries.subst_binomialSeries_neg_div_pow_mul_one_add_pow
 #print axioms AlgebraicAnalysis.LaurentSeries.monicNegativeFractionalPower_pow_mul_normalizedMonicSeries_pow
 #print axioms AlgebraicAnalysis.LaurentSeries.monicNegativeFractionalPower_derivative_compatible
 #print axioms AlgebraicAnalysis.LaurentSeries.normalizedMomentFactor_coeff_leading
+#print axioms AlgebraicAnalysis.LaurentSeries.monicNegativeFractionalPower_eq_pow_one
 
 end
 
