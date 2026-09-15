@@ -41,6 +41,34 @@ example : polynomialPart ℚ ((RatFunc.X : ℚ⟮X⟯)⁻¹) = 0 := by
   have hk : -(k : ℤ) ≠ 1 := by omega
   simp [hk]
 
+/-- Removing the polynomial part of `X + X⁻¹` leaves exactly the proper
+fraction, whose Laurent order at infinity is one. -/
+example :
+    (atInfinity ℚ ((RatFunc.X : ℚ⟮X⟯) + RatFunc.X⁻¹) -
+      atInfinity ℚ
+        (algebraMap ℚ[X] ℚ⟮X⟯
+          (polynomialPart ℚ ((RatFunc.X : ℚ⟮X⟯) + RatFunc.X⁻¹)))).orderTop = 1 := by
+  have hpart :
+      polynomialPart ℚ ((RatFunc.X : ℚ⟮X⟯) + RatFunc.X⁻¹) = Polynomial.X := by
+    ext k
+    rw [← coeff_atInfinity_eq_polynomialPart, map_add, HahnSeries.coeff_add,
+      atInfinity_X, map_inv₀, atInfinity_X, HahnSeries.inv_single]
+    by_cases hk : k = 1
+    · subst k
+      norm_num [HahnSeries.coeff_single]
+    · have hneg : -(k : ℤ) ≠ 1 := by omega
+      have hfirst : -(k : ℤ) ≠ -1 := by omega
+      simp [hfirst, hneg,
+        Polynomial.coeff_X_of_ne_one (R := ℚ) hk]
+  rw [hpart]
+  change
+    (atInfinity ℚ ((RatFunc.X : ℚ⟮X⟯) + RatFunc.X⁻¹) -
+      atInfinity ℚ (RatFunc.X : ℚ⟮X⟯)).orderTop = 1
+  rw [map_add, map_inv₀]
+  ring_nf
+  rw [atInfinity_X]
+  simp [HahnSeries.inv_single]
+
 example :
     (atInfinity ℚ
       (algebraMap ℚ[X] ℚ⟮X⟯

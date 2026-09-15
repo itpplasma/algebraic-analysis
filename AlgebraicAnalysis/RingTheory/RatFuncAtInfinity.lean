@@ -217,4 +217,41 @@ theorem coeff_atInfinity_eq_polynomialPart (v : K⟮X⟯) (k : ℕ) :
     rw [coeff_atInfinity_div_algebraMap_eq_zero K hrem v.denom_ne_zero hdeg k,
       add_zero]
 
+/-- Removing the polynomial part of a rational function leaves a Laurent
+series of strictly positive order at infinity. -/
+theorem orderTop_atInfinity_sub_polynomialPart_pos (v : K⟮X⟯) :
+    (0 : WithTop ℤ) <
+      (atInfinity K v -
+        atInfinity K (algebraMap K[X] K⟮X⟯ (polynomialPart K v))).orderTop := by
+  have hle :
+      (1 : WithTop ℤ) ≤
+        (atInfinity K v -
+          atInfinity K (algebraMap K[X] K⟮X⟯ (polynomialPart K v))).orderTop := by
+    apply HahnSeries.le_orderTop_iff_forall.mpr
+    intro z hz
+    have hz0 : z ≤ 0 := by
+      have hz1 : z < 1 := by exact_mod_cast hz
+      omega
+    obtain ⟨k, rfl⟩ := Int.exists_eq_neg_ofNat hz0
+    rw [HahnSeries.coeff_sub, coeff_atInfinity_eq_polynomialPart,
+      coeff_atInfinity_algebraMap, sub_self]
+  exact lt_of_lt_of_le (by norm_num) hle
+
+/-- The degree of the polynomial part bounds the pole order of the Laurent
+expansion at infinity, including the zero and proper-fraction cases. -/
+theorem neg_natDegree_polynomialPart_le_orderTop_atInfinity (v : K⟮X⟯) :
+    (-(polynomialPart K v).natDegree : ℤ) ≤ (atInfinity K v).orderTop := by
+  apply HahnSeries.le_orderTop_iff_forall.mpr
+  intro z hz
+  have hz0 : z ≤ 0 := by
+    have hz' : z < -((polynomialPart K v).natDegree : ℤ) := by
+      exact_mod_cast hz
+    omega
+  obtain ⟨k, rfl⟩ := Int.exists_eq_neg_ofNat hz0
+  rw [coeff_atInfinity_eq_polynomialPart]
+  apply Polynomial.coeff_eq_zero_of_natDegree_lt
+  have hk : -(k : ℤ) < -((polynomialPart K v).natDegree : ℤ) := by
+    exact_mod_cast hz
+  omega
+
 end RatFunc

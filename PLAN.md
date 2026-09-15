@@ -26,7 +26,12 @@ their application-specific proof assembly.
   Laurent series, and `RatFunc.coeff_atInfinity_eq_polynomialPart` identifies
   its nonpositive Laurent coefficients with the Euclidean polynomial part;
   `RatFunc.order_atInfinity` identifies Laurent order with negative rational
-  degree and supplies the support bound for filtered diagonal substitutions.
+  degree. `RatFunc.orderTop_atInfinity_sub_polynomialPart_pos` proves that
+  removing the polynomial part leaves only strictly positive Laurent degrees,
+  while `RatFunc.neg_natDegree_polynomialPart_le_orderTop_atInfinity` bounds
+  the full expansion below by the polynomial-part degree. Together these
+  supply the truncation bounds for filtered diagonal substitutions and finite
+  products.
   The independent orientation and proper-fraction oracle is
   `AlgebraicAnalysisTest/RingTheory/RatFuncAtInfinity.lean`; the downstream
   consumer is `jc2-formal`'s cubic-chart expansion exchange.
