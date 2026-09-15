@@ -12,6 +12,7 @@ import AlgebraicAnalysisTest.JacobianExactness
 import AlgebraicAnalysisTest.BinomialSeriesRoot
 import AlgebraicAnalysisTest.RingTheory.RatFuncAtInfinity
 import AlgebraicAnalysisTest.RingTheory.LaurentDiagonal
+import AlgebraicAnalysisTest.RingTheory.LaurentSeriesCoefficientDerivation
 import AlgebraicAnalysisTest.RingTheory.PowerSeriesPrefixRoot
 import AlgebraicAnalysisTest.PowerSeriesReverseTrunc
 
