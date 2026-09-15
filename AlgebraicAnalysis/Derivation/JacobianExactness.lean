@@ -16,8 +16,8 @@ rational,
 
 where `J_(s,w)(F, G) = F_s G_w - F_w G_s` is the Jacobian. This file states
 and proves the underlying commutative-ring identity that makes (1) true,
-in the generality of two commuting derivations `ds dw : Derivation ℤ R R`
-on any commutative ring `R`, with `F^q` replaced by an arbitrary element
+in the generality of two commuting derivations `ds dw : Derivation A R R`
+over any commutative scalar ring `A`, with `F^q` replaced by an arbitrary element
 `Φ` satisfying the (necessary and, for `Φ = F^q` formally, sufficient)
 compatibility relation `ds Φ * dw F = dw Φ * ds F`.
 
@@ -30,7 +30,7 @@ automatically by the Leibniz rule.
 
 namespace AlgebraicAnalysis
 
-variable {R : Type*} [CommRing R]
+variable {A R : Type*} [CommRing A] [CommRing R] [Algebra A R]
 
 /-- The pure-algebra core of the moment identity (1) of
 `finite-moment-coordinates-all-m.md`, section 1: for two *commuting*
@@ -41,7 +41,7 @@ compatibility relation `ds Φ * dw F = dw Φ * ds F` that a formal power
 
 This is the Leibniz expansion of equation (1); no analytic input (residues,
 convergence, Laurent series) is used at this level of generality. -/
-theorem Derivation.jacobian_exact_of_commute (ds dw : Derivation ℤ R R)
+theorem Derivation.jacobian_exact_of_commute (ds dw : Derivation A R R)
     (hcomm : ∀ x : R, ds (dw x) = dw (ds x)) (F G Φ : R)
     (hΦ : ds Φ * dw F = dw Φ * ds F) :
     dw (G * ds F * Φ) - ds (G * dw F * Φ) =
@@ -61,7 +61,7 @@ theorem Derivation.jacobian_exact_of_commute (ds dw : Derivation ℤ R R)
 natural-number power: the compatibility relation `ds (F ^ k) * dw F =
 dw (F ^ k) * ds F` holds automatically by the Leibniz power rule, so no side
 hypothesis is needed. This is the integer-`q` case of equation (1). -/
-theorem Derivation.jacobian_exact_pow (ds dw : Derivation ℤ R R)
+theorem Derivation.jacobian_exact_pow (ds dw : Derivation A R R)
     (hcomm : ∀ x : R, ds (dw x) = dw (ds x)) (F G : R) (k : ℕ) :
     dw (G * ds F * F ^ k) - ds (G * dw F * F ^ k) =
       F ^ k * (ds F * dw G - dw F * ds G) := by
@@ -73,7 +73,7 @@ theorem Derivation.jacobian_exact_pow (ds dw : Derivation ℤ R R)
 /-- Corollary of `Derivation.jacobian_exact_of_commute` for `Φ = 1`
 (the `q = 0` case of equation (1)): the divergence identity for the bare
 products `G * ds F` and `G * dw F`. -/
-theorem Derivation.jacobian_exact_one (ds dw : Derivation ℤ R R)
+theorem Derivation.jacobian_exact_one (ds dw : Derivation A R R)
     (hcomm : ∀ x : R, ds (dw x) = dw (ds x)) (F G : R) :
     dw (G * ds F) - ds (G * dw F) = ds F * dw G - dw F * ds G := by
   have := Derivation.jacobian_exact_pow ds dw hcomm F G 0
