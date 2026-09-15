@@ -92,6 +92,16 @@ their application-specific proof assembly.
   Laurent-orientation, root-relation, and moment-factor oracles are in
   `AlgebraicAnalysisTest/RingTheory/LaurentSeriesFractionalPower.lean`; the
   downstream consumer instantiates the normalized roots in equation (3).
+- `LaurentSeries.normalizedMomentFactorCoefficientPolynomial` and its
+  evaluation theorem prove that every
+  coefficient of `(dF/ds)F^(-j/m)` is a multivariate polynomial over `ℚ` in
+  the positive coefficients of the zero-constant normalized monic tail. A
+  nonzero two-coefficient cubic oracle checks specialization, two exact
+  non-leading coefficients (including nonlinear dependence), and the leading
+  exponent orientation. The definitions remain algebraically total at `m=0`,
+  while their literal fractional-power interpretation requires `m≠0`. The
+  downstream `jc2-formal` adapter renames these universal coefficient variables
+  to its finite paper coefficients `D_i`.
 - `AlgebraicAnalysis.BernsteinInequality` is statement-only and remains open;
   its field binder now explicitly requires `CharZero K`.
 - The pre-repair arbitrary-field statement was false: the first Weyl algebra over
