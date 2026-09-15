@@ -60,6 +60,88 @@ def LaurentSeries.positiveTailWindow {N : ℕ} (t : Fin N → K) :
     LaurentSeries K :=
   ∑ k : Fin N, HahnSeries.single ((k : ℤ) + 1) (t k)
 
+@[simp]
+theorem LaurentSeries.positiveTailWindow_coeff_at
+    {N : ℕ} (t : Fin N → K) (k : Fin N) :
+    (LaurentSeries.positiveTailWindow t).coeff ((k : ℤ) + 1) = t k := by
+  rw [LaurentSeries.positiveTailWindow, HahnSeries.coeff_sum]
+  calc
+    (∑ i : Fin N,
+        ((HahnSeries.single ((i : ℤ) + 1)) (t i)).coeff ((k : ℤ) + 1)) =
+        ((HahnSeries.single ((k : ℤ) + 1)) (t k)).coeff ((k : ℤ) + 1) := by
+      apply Finset.sum_eq_single k
+      · intro b _hb hne
+        rw [HahnSeries.coeff_single_of_ne]
+        intro heq
+        apply hne
+        apply Fin.ext
+        exact_mod_cast (add_right_cancel heq).symm
+      · simp
+    _ = t k := by simp
+
+theorem LaurentSeries.positiveTailWindow_coeff_eq_zero_of_nonpos
+    {N : ℕ} (t : Fin N → K) (z : ℤ) (hz : z ≤ 0) :
+    (LaurentSeries.positiveTailWindow t).coeff z = 0 := by
+  rw [LaurentSeries.positiveTailWindow, HahnSeries.coeff_sum]
+  apply Finset.sum_eq_zero
+  intro k _hk
+  rw [HahnSeries.coeff_single_of_ne]
+  omega
+
+/-- The product of two Laurent series vanishes strictly below the sum of
+their lower coefficient bounds. -/
+theorem LaurentSeries.coeff_mul_eq_zero_of_lt_add
+    (f g : LaurentSeries K) (a b z : ℤ)
+    (hf : ∀ x : ℤ, x < a → f.coeff x = 0)
+    (hg : ∀ y : ℤ, y < b → g.coeff y = 0)
+    (hz : z < a + b) :
+    (f * g).coeff z = 0 := by
+  rw [HahnSeries.coeff_mul]
+  apply Finset.sum_eq_zero
+  intro ij hij
+  have hsum : ij.1 + ij.2 = z := (Finset.mem_antidiagonal.mp hij).2.2
+  by_cases hia : ij.1 < a
+  · rw [hf _ hia, zero_mul]
+  · have hia' : a ≤ ij.1 := le_of_not_gt hia
+    have hib : ij.2 < b := by omega
+    rw [hg _ hib, mul_zero]
+
+/-- If `T` has only positive exponents and `H` starts at exponent `1-N`, then
+the residue at infinity of `T * H` depends only on coefficients `1, …, N` of
+`T`. -/
+theorem LaurentSeries.residueAtInfinity_tail_eq_positiveTailWindow
+    (T H : LaurentSeries K) (N : ℕ)
+    (hT : ∀ z : ℤ, z ≤ 0 → T.coeff z = 0)
+    (hH : ∀ z : ℤ, z < 1 - (N : ℤ) → H.coeff z = 0) :
+    LaurentSeries.residueAtInfinity (T * H) =
+      LaurentSeries.residueAtInfinity
+        (LaurentSeries.positiveTailWindow
+          (fun k : Fin N => T.coeff ((k : ℤ) + 1)) * H) := by
+  let W := LaurentSeries.positiveTailWindow
+    (fun k : Fin N => T.coeff ((k : ℤ) + 1))
+  have hdiff : ∀ z : ℤ, z < (N : ℤ) + 1 → (T - W).coeff z = 0 := by
+    intro z hz
+    rw [HahnSeries.coeff_sub]
+    by_cases hz0 : z ≤ 0
+    · rw [hT _ hz0,
+        LaurentSeries.positiveTailWindow_coeff_eq_zero_of_nonpos _ _ hz0,
+        sub_zero]
+    · have hklt : z.toNat - 1 < N := by omega
+      let k : Fin N := ⟨z.toNat - 1, hklt⟩
+      have hk : (k : ℤ) + 1 = z := by
+        dsimp [k]
+        omega
+      rw [← hk, LaurentSeries.positiveTailWindow_coeff_at, sub_self]
+  have hprod : ((T - W) * H).coeff 1 = 0 := by
+    apply LaurentSeries.coeff_mul_eq_zero_of_lt_add
+      (T - W) H ((N : ℤ) + 1) (1 - (N : ℤ)) 1 hdiff hH
+    omega
+  rw [sub_mul, HahnSeries.coeff_sub] at hprod
+  rw [LaurentSeries.residueAtInfinity_apply,
+    LaurentSeries.residueAtInfinity_apply]
+  dsimp only [W] at hprod ⊢
+  linear_combination hprod
+
 /-- Residue pairing of a finite positive tail with a Laurent series. -/
 theorem LaurentSeries.residueAtInfinity_positiveTailWindow_mul
     {N : ℕ} (t : Fin N → K) (H : LaurentSeries K) :

@@ -78,9 +78,10 @@ their application-specific proof assembly.
   upper-unitriangular matrix. A concrete three-row oracle with arbitrary upper
   coefficients and a hostile missing-normalization control are in
   `AlgebraicAnalysisTest/RingTheory/LaurentSeriesMomentPairing.lean`; the
-  same module also supplies the explicit positive-tail coefficient pairing and
-  its last-coefficient triangular split. The downstream consumers are equations
-  (3) and (5) of `jc2-formal`'s finite-moment module.
+  same module also supplies the explicit positive-tail coefficient pairing,
+  its last-coefficient triangular split, and the support cutoff showing that a
+  residue only sees the required finite positive-tail window. The downstream
+  consumers are equations (3) and (5) of `jc2-formal`'s finite-moment module.
 - `LaurentSeries.monicNegativeFractionalPower` constructs the normalized
   expansion `X^j(1+u)^(-j/m)`, proves its lower coefficients vanish and its
   leading coefficient is one when `u` has zero constant term, and proves the
