@@ -5,6 +5,7 @@ import AlgebraicAnalysis.RingTheory.LaurentSeriesResidue
 import AlgebraicAnalysis.RingTheory.BinomialSeriesRoot
 import AlgebraicAnalysis.RingTheory.RatFuncAtInfinity
 import AlgebraicAnalysis.RingTheory.LaurentDiagonal
+import AlgebraicAnalysis.RingTheory.PowerSeriesLaurentSupport
 import AlgebraicAnalysis.RingTheory.PowerSeriesReverseTrunc
 import AlgebraicAnalysis.DifferentialOperators.Basic
 import AlgebraicAnalysis.CommutatorRiccati

@@ -42,6 +42,13 @@ their application-specific proof assembly.
   needed by downstream finite expansion exchange. Its concrete hostile
   orientation and power oracle is
   `AlgebraicAnalysisTest/RingTheory/LaurentDiagonal.lean`.
+- `PowerSeries.LaurentAffineLower` packages affine lower-support bounds for
+  power series with Laurent-series coefficients. Its same-slope and
+  mixed-slope product laws yield the inclusive finite-power truncation bound
+  in `LaurentAffineLower.pow_sub_coeff_zero_of_ge`; a threshold example and a
+  hostile below-threshold mixed term are checked in
+  `AlgebraicAnalysisTest/RingTheory/PowerSeriesLaurentSupport.lean`. The
+  downstream consumer is `jc2-formal`'s radial/infinity expansion exchange.
 - `AlgebraicAnalysis.BernsteinInequality` is statement-only and remains open;
   its field binder now explicitly requires `CharZero K`.
 - The pre-repair arbitrary-field statement was false: the first Weyl algebra over
