@@ -15,6 +15,23 @@ namespace PowerSeries
 
 variable {K : Type*} [CommRing K] [BinomialRing K]
 
+/-- Mapping the coefficient ring of a binomial series maps its exponent. -/
+theorem map_binomialSeries {L : Type*} [CommRing L] [BinomialRing L]
+    (f : K →+* L) (q : K) :
+    PowerSeries.map f (binomialSeries K q) = binomialSeries L (f q) := by
+  ext n
+  simp only [PowerSeries.coeff_map, PowerSeries.binomialSeries_coeff]
+  simp [smul_eq_mul, Ring.map_choose]
+
+/-- Coefficient-ring maps commute with a substituted binomial series. -/
+theorem map_subst_binomialSeries {L : Type*} [CommRing L] [BinomialRing L]
+    (f : K →+* L) (q : K) (u : K⟦X⟧) (hu : HasSubst u) :
+    PowerSeries.map f ((binomialSeries K q).subst u) =
+      (binomialSeries L (f q)).subst (PowerSeries.map f u) := by
+  change MvPowerSeries.map f ((binomialSeries K q).subst u) =
+    (binomialSeries L (f q)).subst (MvPowerSeries.map f u)
+  rw [PowerSeries.map_subst hu, map_binomialSeries]
+
 /-- An integral power of a binomial series multiplies its exponent. -/
 theorem binomialSeries_pow_nat (q : K) (m : ℕ) :
     (binomialSeries K q) ^ m = binomialSeries K ((m : K) * q) := by

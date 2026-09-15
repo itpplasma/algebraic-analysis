@@ -11,6 +11,7 @@ their application-specific proof assembly.
   only.
 - `PowerSeries.subst_binomialSeries_div_pow` proves the arbitrary-tail
   fractional-binomial root identity used by downstream Laurent expansions;
+  `PowerSeries.map_subst_binomialSeries` proves coefficient-ring naturality;
   its concrete coefficient oracle is in
   `AlgebraicAnalysisTest/BinomialSeriesRoot.lean`.
 - `PowerSeries.reverseTrunc` packages fixed-degree exponent reversal after a
