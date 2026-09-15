@@ -14,6 +14,21 @@ noncomputable section
 private def quadratic (a : ℚ) : ℚ⟦X⟧ :=
   mk fun n ↦ if n = 0 then 1 else if n = 1 then 2 else if n = 2 then a else 0
 
+private def sharedPrefix (tail : ℤ) : ℤ⟦X⟧ :=
+  mk fun n ↦ if n = 0 then 2 else if n = 1 then 3 else if n = 2 then 5 else tail
+
+/-- A concrete power coefficient depends only on the input prefix through that
+degree, even when the later coefficients differ. -/
+example : coeff 2 (sharedPrefix 7 ^ 4) = coeff 2 (sharedPrefix 11 ^ 4) := by
+  apply coeff_pow_eq_of_coeff_eq_of_le _ _ 4 2
+  intro i hi
+  interval_cases i <;> simp [sharedPrefix]
+
+/-- Hostile control: the two series used above genuinely differ after the
+shared prefix. -/
+example : coeff 3 (sharedPrefix 7) ≠ coeff 3 (sharedPrefix 11) := by
+  simp [sharedPrefix]
+
 /-- Equal square coefficients through degree two recover the quadratic
 coefficient once the common nonzero normalization is fixed. -/
 example (a b : ℚ)

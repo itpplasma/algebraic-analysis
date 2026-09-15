@@ -49,11 +49,14 @@ their application-specific proof assembly.
   hostile below-threshold mixed term are checked in
   `AlgebraicAnalysisTest/RingTheory/PowerSeriesLaurentSupport.lean`. The
   downstream consumer is `jc2-formal`'s radial/infinity expansion exchange.
-- `PowerSeries.coeff_eq_of_pow_coeff_eq_of_le` gives finite triangular
-  uniqueness for normalized power-series roots: equality of `n`-th-power
-  coefficients through `K` recovers the root coefficients through `K` when
-  the shared constant coefficient and `n` are nonzero in characteristic zero.
-  Concrete recovery and hostile missing-normalization oracles are in
+- `PowerSeries.coeff_pow_eq_of_coeff_eq_of_le` shows that equality of a finite
+  coefficient prefix is preserved at the corresponding coefficient by every
+  natural-number power. `PowerSeries.coeff_eq_of_pow_coeff_eq_of_le` gives the
+  converse finite triangular uniqueness for normalized power-series roots:
+  equality of `n`-th-power coefficients through `K` recovers the root
+  coefficients through `K` when the shared constant coefficient and `n` are
+  nonzero in characteristic zero. Concrete forward and recovery examples and
+  hostile controls are in
   `AlgebraicAnalysisTest/RingTheory/PowerSeriesPrefixRoot.lean`; the downstream
   consumer is `jc2-formal`'s finite radial/infinity expansion exchange.
 - `AlgebraicAnalysis.BernsteinInequality` is statement-only and remains open;

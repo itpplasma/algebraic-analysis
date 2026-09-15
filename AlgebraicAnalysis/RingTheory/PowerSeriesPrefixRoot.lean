@@ -17,6 +17,23 @@ namespace PowerSeries
 
 variable {R : Type*}
 
+/-- Agreement of power-series coefficients through a fixed degree is preserved
+at that degree by every natural-number power. -/
+theorem coeff_pow_eq_of_coeff_eq_of_le
+    [CommSemiring R] (f g : R⟦X⟧) (d n : ℕ)
+    (hcoeff : ∀ i, i ≤ n → coeff i f = coeff i g) :
+    coeff n (f ^ d) = coeff n (g ^ d) := by
+  induction d generalizing n with
+  | zero => simp
+  | succ d ih =>
+      rw [pow_succ, pow_succ, coeff_mul, coeff_mul]
+      apply Finset.sum_congr rfl
+      intro p hp
+      have hadd : p.1 + p.2 = n :=
+        Finset.HasAntidiagonal.mem_antidiagonal.mp hp
+      rw [ih p.1 (fun i hi ↦ hcoeff i (hi.trans (by omega))),
+        hcoeff p.2 (by omega)]
+
 private lemma coeff_mul_eq_of_left_coeff_eq_zero_below
     [CommSemiring R] {i : ℕ} {u v : R⟦X⟧}
     (hu : ∀ j, j < i → coeff j u = 0) :
