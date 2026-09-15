@@ -76,6 +76,12 @@ their application-specific proof assembly.
   coefficients and a hostile missing-normalization control are in
   `AlgebraicAnalysisTest/RingTheory/LaurentSeriesMomentPairing.lean`; the
   downstream consumer is equation (3) of `jc2-formal`'s finite-moment module.
+- `LaurentSeries.monicNegativeFractionalPower` constructs the normalized
+  expansion `X^j(1+u)^(-j/m)` and proves its lower coefficients vanish and its
+  leading coefficient is one when `u` has zero constant term. A nontrivial
+  `X²(1+X)^(-2/3)` coefficient oracle is in
+  `AlgebraicAnalysisTest/RingTheory/LaurentSeriesFractionalPower.lean`; the
+  downstream consumer instantiates the normalized roots in equation (3).
 - `AlgebraicAnalysis.BernsteinInequality` is statement-only and remains open;
   its field binder now explicitly requires `CharZero K`.
 - The pre-repair arbitrary-field statement was false: the first Weyl algebra over

@@ -14,6 +14,7 @@ import AlgebraicAnalysisTest.RingTheory.RatFuncAtInfinity
 import AlgebraicAnalysisTest.RingTheory.LaurentDiagonal
 import AlgebraicAnalysisTest.RingTheory.LaurentSeriesCoefficientDerivation
 import AlgebraicAnalysisTest.RingTheory.LaurentSeriesMomentPairing
+import AlgebraicAnalysisTest.RingTheory.LaurentSeriesFractionalPower
 import AlgebraicAnalysisTest.RingTheory.PowerSeriesPrefixRoot
 import AlgebraicAnalysisTest.PowerSeriesReverseTrunc
 
