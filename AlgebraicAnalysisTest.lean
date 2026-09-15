@@ -11,6 +11,7 @@ import AlgebraicAnalysisTest.SplitLatticePresentation
 import AlgebraicAnalysisTest.JacobianExactness
 import AlgebraicAnalysisTest.BinomialSeriesRoot
 import AlgebraicAnalysisTest.RingTheory.RatFuncAtInfinity
+import AlgebraicAnalysisTest.RingTheory.LaurentDiagonal
 import AlgebraicAnalysisTest.PowerSeriesReverseTrunc
 
 /-! Small API consumer for the first extracted Ore slice. -/

@@ -30,6 +30,11 @@ their application-specific proof assembly.
   The independent orientation and proper-fraction oracle is
   `AlgebraicAnalysisTest/RingTheory/RatFuncAtInfinity.lean`; the downstream
   consumer is `jc2-formal`'s cubic-chart expansion exchange.
+- `LaurentPolynomial.diagonalMap` gives the finite-support exponent regrading
+  `(ell, q) ↦ (ell - q, q)`; `affineDiagonal_monomial` includes arbitrary
+  affine shifts and fixes both exponent orientations. Its concrete hostile
+  orientation oracle is
+  `AlgebraicAnalysisTest/RingTheory/LaurentDiagonal.lean`.
 - `AlgebraicAnalysis.BernsteinInequality` is statement-only and remains open;
   its field binder now explicitly requires `CharZero K`.
 - The pre-repair arbitrary-field statement was false: the first Weyl algebra over
