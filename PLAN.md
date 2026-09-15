@@ -102,6 +102,15 @@ their application-specific proof assembly.
   while their literal fractional-power interpretation requires `m≠0`. The
   downstream `jc2-formal` adapter renames these universal coefficient variables
   to its finite paper coefficients `D_i`.
+- `RatFunc.atPoint` expands a rational function in the finite local parameter
+  `s = X - a`; `RatFunc.derivative` extends ordinary polynomial
+  differentiation through the fraction field, and `RatFunc.atPoint_derivative`
+  proves that the expansion intertwines the two derivatives. Hence
+  `RatFunc.residueAtPoint_derivative` gives zero residue for every rational
+  derivative at every finite point. Exact `1/X` residue, translated-coordinate,
+  and derivative hostile checks are in
+  `AlgebraicAnalysisTest/RingTheory/RatFuncAtPoint.lean`; the downstream
+  consumer is the cubic finite-moment endpoint in `jc2-formal`.
 - `AlgebraicAnalysis.BernsteinInequality` is statement-only and remains open;
   its field binder now explicitly requires `CharZero K`.
 - The pre-repair arbitrary-field statement was false: the first Weyl algebra over

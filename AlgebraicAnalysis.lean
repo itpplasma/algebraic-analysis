@@ -8,6 +8,7 @@ import AlgebraicAnalysis.RingTheory.LaurentSeriesFractionalPower
 import AlgebraicAnalysis.RingTheory.LaurentSeriesMomentPolynomial
 import AlgebraicAnalysis.RingTheory.BinomialSeriesRoot
 import AlgebraicAnalysis.RingTheory.RatFuncAtInfinity
+import AlgebraicAnalysis.RingTheory.RatFuncAtPoint
 import AlgebraicAnalysis.RingTheory.LaurentDiagonal
 import AlgebraicAnalysis.RingTheory.PowerSeriesLaurentSupport
 import AlgebraicAnalysis.RingTheory.PowerSeriesPrefixRoot
