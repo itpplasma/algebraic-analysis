@@ -59,10 +59,11 @@ their application-specific proof assembly.
   hostile controls are in
   `AlgebraicAnalysisTest/RingTheory/PowerSeriesPrefixRoot.lean`; the downstream
   consumer is `jc2-formal`'s finite radial/infinity expansion exchange.
-- `LaurentSeries.coefficientwiseDerivation` extends a coefficient-ring
-  derivation to Laurent series, commutes with the spectral derivative, and
-  commutes with coefficient-extraction residue. Its concrete coefficient and
-  API oracles are in
+- `LaurentSeries.spectralDerivation` packages the formal Laurent derivative
+  with its Leibniz rule, while `LaurentSeries.coefficientwiseDerivation`
+  extends a coefficient-ring derivation to Laurent series, commutes with the
+  spectral derivative, and commutes with coefficient-extraction residue. Its
+  concrete exponent/coefficient and API oracles are in
   `AlgebraicAnalysisTest/RingTheory/LaurentSeriesCoefficientDerivation.lean`;
   the downstream consumer is `jc2-formal`'s finite-moment identity.
 - `AlgebraicAnalysis.BernsteinInequality` is statement-only and remains open;

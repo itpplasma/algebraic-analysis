@@ -14,6 +14,12 @@ noncomputable section
 private def sample : LaurentSeries (Polynomial ℚ) :=
   HahnSeries.single (-1) (X ^ 2) + HahnSeries.single 2 (3 * X)
 
+/-- The spectral derivation shifts a negative Laurent exponent and multiplies
+by the original exponent. -/
+example :
+    (spectralDerivation (K := ℚ) (HahnSeries.single (-2) 3)).coeff (-3) = -6 := by
+  norm_num [spectralDerivation_apply, _root_.LaurentSeries.derivative_apply]
+
 /-- The coefficient derivation changes coefficients but preserves Laurent
 exponents, including the residue exponent. -/
 example :
@@ -40,6 +46,9 @@ example :
 #print axioms AlgebraicAnalysis.LaurentSeries.coefficientwiseDerivation_apply_coeff
 #print axioms AlgebraicAnalysis.LaurentSeries.derivative_coefficientwiseDerivation_commute
 #print axioms AlgebraicAnalysis.LaurentSeries.coefficientwiseDerivation_residue
+#print axioms AlgebraicAnalysis.LaurentSeries.derivative_mul
+#print axioms AlgebraicAnalysis.LaurentSeries.spectralDerivation
+#print axioms AlgebraicAnalysis.LaurentSeries.spectralDerivation_apply
 
 end
 

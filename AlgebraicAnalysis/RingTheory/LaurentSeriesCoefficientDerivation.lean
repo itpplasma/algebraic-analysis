@@ -29,6 +29,75 @@ namespace AlgebraicAnalysis
 
 variable {A R : Type*} [CommRing A] [CommRing R] [Algebra A R]
 
+/-- The formal Laurent derivative satisfies the Leibniz rule.  The proof uses
+the Euler operator `X d/dX`, whose support is contained in the original
+series support, and then recovers `d/dX` by multiplication by `X⁻¹`. -/
+theorem LaurentSeries.derivative_mul {K : Type*} [CommRing K]
+    (f g : LaurentSeries K) :
+    LaurentSeries.derivative ℤ (f * g) =
+      f * LaurentSeries.derivative ℤ g + g * LaurentSeries.derivative ℤ f := by
+  classical
+  let E (f : LaurentSeries K) : LaurentSeries K :=
+    HahnSeries.single 1 1 * LaurentSeries.derivative ℤ f
+  have hcoeff (f : LaurentSeries K) (n : ℤ) :
+      (E f).coeff n = n • f.coeff n := by
+    simp [E, HahnSeries.coeff_single_mul]
+  have hsupport (f : LaurentSeries K) : (E f).support ⊆ f.support := by
+    intro n hn
+    change (E f).coeff n ≠ 0 at hn
+    change f.coeff n ≠ 0
+    intro hzero
+    exact hn (by simp [hcoeff, hzero])
+  have hmul (f g : LaurentSeries K) : E (f * g) = f * E g + E f * g := by
+    ext n
+    rw [hcoeff, HahnSeries.coeff_add,
+      HahnSeries.coeff_mul_right' (x := f) (y := E g)
+        (s := g.support) g.isPWO_support (hsupport g),
+      HahnSeries.coeff_mul_left' (x := E f) (y := g)
+        (s := f.support) f.isPWO_support (hsupport f)]
+    rw [HahnSeries.coeff_mul, Finset.smul_sum, ← Finset.sum_add_distrib]
+    refine Finset.sum_congr rfl fun ij hij => ?_
+    have hijsum : ij.1 + ij.2 = n := (Finset.mem_antidiagonal.mp hij).2.2
+    rw [hcoeff, hcoeff, ← hijsum, add_smul]
+    simp only [zsmul_eq_mul]
+    ring
+  have hrecover (f : LaurentSeries K) :
+      LaurentSeries.derivative ℤ f = HahnSeries.single (-1) 1 * E f := by
+    ext n
+    simp [HahnSeries.coeff_single_mul, hcoeff, sub_neg_eq_add]
+  rw [hrecover, hmul, hrecover f, hrecover g]
+  ring
+
+/-- The formal Laurent derivative, packaged as an integer-linear
+derivation. -/
+noncomputable def LaurentSeries.spectralDerivation {K : Type*} [CommRing K] :
+    Derivation ℤ (LaurentSeries K) (LaurentSeries K) := by
+  let Ladd : LaurentSeries K →+ LaurentSeries K :=
+    { toFun := fun f => LaurentSeries.derivative ℤ f
+      map_zero' := by exact map_zero (LaurentSeries.derivative ℤ)
+      map_add' := by intro f g; exact map_add (LaurentSeries.derivative ℤ) f g }
+  let L : @LinearMap ℤ ℤ _ _ (RingHom.id ℤ)
+      (LaurentSeries K) (LaurentSeries K) _ _
+      Algebra.toModule (AddCommGroup.toIntModule (LaurentSeries K)) :=
+    @LinearMap.mk ℤ ℤ _ _ (RingHom.id ℤ)
+      (LaurentSeries K) (LaurentSeries K) _ _
+      Algebra.toModule (AddCommGroup.toIntModule (LaurentSeries K)) Ladd (by
+        intro z f
+        change Ladd ((Algebra.toModule : Module ℤ (LaurentSeries K)).smul z f) =
+          z • Ladd f
+        rw [int_smul_eq_zsmul (Algebra.toModule : Module ℤ (LaurentSeries K)) z f]
+        exact Ladd.map_zsmul z f)
+  exact Derivation.mk' L (by
+    intro f g
+    change LaurentSeries.derivative ℤ (f * g) =
+      f * LaurentSeries.derivative ℤ g + g * LaurentSeries.derivative ℤ f
+    exact LaurentSeries.derivative_mul f g)
+
+@[simp]
+theorem LaurentSeries.spectralDerivation_apply {K : Type*} [CommRing K]
+    (f : LaurentSeries K) :
+    LaurentSeries.spectralDerivation f = LaurentSeries.derivative K f := rfl
+
 /-- Extend a derivation of the coefficient ring coefficientwise to Laurent
 series. -/
 noncomputable def LaurentSeries.coefficientwiseDerivation
