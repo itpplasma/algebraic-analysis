@@ -17,7 +17,7 @@ private def sample : LaurentSeries (Polynomial ℚ) :=
 /-- The spectral derivation shifts a negative Laurent exponent and multiplies
 by the original exponent. -/
 example :
-    (spectralDerivation (K := ℚ) (HahnSeries.single (-2) 3)).coeff (-3) = -6 := by
+    (spectralDerivation ℚ (K := ℚ) (HahnSeries.single (-2) 3)).coeff (-3) = -6 := by
   norm_num [spectralDerivation_apply, _root_.LaurentSeries.derivative_apply]
 
 /-- The coefficient derivation changes coefficients but preserves Laurent

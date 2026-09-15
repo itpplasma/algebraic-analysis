@@ -68,35 +68,43 @@ theorem LaurentSeries.derivative_mul {K : Type*} [CommRing K]
   rw [hrecover, hmul, hrecover f, hrecover g]
   ring
 
-/-- The formal Laurent derivative, packaged as an integer-linear
-derivation. -/
-noncomputable def LaurentSeries.spectralDerivation {K : Type*} [CommRing K] :
-    Derivation ℤ (LaurentSeries K) (LaurentSeries K) := by
+/-- The formal Laurent derivative, packaged as a derivation over any scalar
+ring acting on the coefficient ring. -/
+noncomputable def LaurentSeries.spectralDerivation
+    (A : Type*) {K : Type*} [CommRing A] [CommRing K] [Algebra A K] :
+    Derivation A (LaurentSeries K) (LaurentSeries K) := by
   let Ladd : LaurentSeries K →+ LaurentSeries K :=
-    { toFun := fun f => LaurentSeries.derivative ℤ f
-      map_zero' := by exact map_zero (LaurentSeries.derivative ℤ)
-      map_add' := by intro f g; exact map_add (LaurentSeries.derivative ℤ) f g }
-  let L : @LinearMap ℤ ℤ _ _ (RingHom.id ℤ)
+    { toFun := fun f => LaurentSeries.derivative A f
+      map_zero' := by exact map_zero (LaurentSeries.derivative A)
+      map_add' := by intro f g; exact map_add (LaurentSeries.derivative A) f g }
+  let L : @LinearMap A A _ _ (RingHom.id A)
       (LaurentSeries K) (LaurentSeries K) _ _
-      Algebra.toModule (AddCommGroup.toIntModule (LaurentSeries K)) :=
-    @LinearMap.mk ℤ ℤ _ _ (RingHom.id ℤ)
+      Algebra.toModule HahnSeries.instModule :=
+    @LinearMap.mk A A _ _ (RingHom.id A)
       (LaurentSeries K) (LaurentSeries K) _ _
-      Algebra.toModule (AddCommGroup.toIntModule (LaurentSeries K)) Ladd (by
+      Algebra.toModule HahnSeries.instModule Ladd (by
         intro z f
-        change Ladd ((Algebra.toModule : Module ℤ (LaurentSeries K)).smul z f) =
-          z • Ladd f
-        rw [int_smul_eq_zsmul (Algebra.toModule : Module ℤ (LaurentSeries K)) z f]
-        exact Ladd.map_zsmul z f)
+        ext n
+        simp [Ladd, Algebra.smul_def]
+        have halg : algebraMap A (LaurentSeries K) z =
+            HahnSeries.C (algebraMap A K z) := by
+          rw [HahnSeries.algebraMap_apply']
+          ext k
+          cases k <;> simp [PowerSeries.algebraMap_apply]
+        rw [halg, HahnSeries.C_mul_eq_smul, HahnSeries.coeff_smul]
+        simp
+        ring)
   exact Derivation.mk' L (by
     intro f g
-    change LaurentSeries.derivative ℤ (f * g) =
-      f * LaurentSeries.derivative ℤ g + g * LaurentSeries.derivative ℤ f
+    change LaurentSeries.derivative A (f * g) =
+      f * LaurentSeries.derivative A g + g * LaurentSeries.derivative A f
     exact LaurentSeries.derivative_mul f g)
 
 @[simp]
-theorem LaurentSeries.spectralDerivation_apply {K : Type*} [CommRing K]
+theorem LaurentSeries.spectralDerivation_apply
+    (A : Type*) {K : Type*} [CommRing A] [CommRing K] [Algebra A K]
     (f : LaurentSeries K) :
-    LaurentSeries.spectralDerivation f = LaurentSeries.derivative K f := rfl
+    LaurentSeries.spectralDerivation A f = LaurentSeries.derivative K f := rfl
 
 /-- Extend a derivation of the coefficient ring coefficientwise to Laurent
 series. -/
