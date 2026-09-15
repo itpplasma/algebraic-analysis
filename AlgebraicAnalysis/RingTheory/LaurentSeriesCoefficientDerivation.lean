@@ -25,6 +25,8 @@ independent-variable commutation used by the downstream construction.
 For expansions at infinity in the coordinate `X = s⁻¹`, the paper's
 operators are exposed separately as `LaurentSeries.atInfinityDerivative`
 (`d/ds = -X² d/dX`) and `LaurentSeries.residueAtInfinity` (`[X¹]`).
+The mode-residue declaration proves the exact vanishing used in equation (5)
+from the natural-power rule and the inverse cancellation `j < m`.
 The current downstream consumer is `itpplasma/jc2-formal`, module
 `JC2Formal/Corner/Moments.lean`.
 -/
@@ -218,6 +220,28 @@ theorem LaurentSeries.atInfinityDerivative_mul
     LaurentSeries.derivative_mul]
   ring
 
+/-- The at-infinity derivative of a natural power. -/
+theorem LaurentSeries.atInfinityDerivative_pow
+    {K : Type*} [Field K] (x : LaurentSeries K) (n : ℕ) :
+    LaurentSeries.atInfinityDerivative (x ^ n) =
+      n • (x ^ (n - 1) * LaurentSeries.atInfinityDerivative x) := by
+  induction n with
+  | zero =>
+      have h := LaurentSeries.atInfinityDerivative_mul
+        (1 : LaurentSeries K) (1 : LaurentSeries K)
+      simp only [one_mul] at h
+      rw [pow_zero]
+      linear_combination -h
+  | succ n ih =>
+      rw [pow_succ, LaurentSeries.atInfinityDerivative_mul, ih]
+      cases n with
+      | zero => simp
+      | succ n =>
+          simp only [Nat.succ_sub_one, nsmul_eq_mul]
+          rw [pow_succ]
+          simp only [Nat.cast_add, Nat.cast_one]
+          ring
+
 /-- Paper residue in the coordinate `X = s⁻¹`: the coefficient of `X¹`. -/
 noncomputable def LaurentSeries.residueAtInfinity
     {K : Type*} [Field K] : LaurentSeries K →ₗ[K] K :=
@@ -238,6 +262,42 @@ theorem LaurentSeries.residueAtInfinity_atInfinityDerivative
     LaurentSeries.atInfinityDerivative_apply]
   simp [HahnSeries.coeff_single_mul, LaurentSeries.derivative_apply,
     LaurentSeries.hasseDeriv_coeff]
+
+/-- A Laurent mode built from a nonzero unit `x`, its power derivative, and
+an inverse power below the root degree has zero residue at infinity. -/
+theorem LaurentSeries.residueAtInfinity_mode_mul_eq_zero
+    {K : Type*} [Field K] [CharZero K]
+    (x : LaurentSeries K) (hx : x ≠ 0)
+    (m k j : ℕ) (hj : j < m) :
+    LaurentSeries.residueAtInfinity
+      (x ^ k * LaurentSeries.atInfinityDerivative (x ^ m) * (x⁻¹) ^ j) = 0 := by
+  have hjle : j ≤ k + (m - 1) := by omega
+  have hexp : k + (m - 1) - j = m + k - j - 1 := by omega
+  have hpow : x ^ k * x ^ (m - 1) * (x⁻¹) ^ j =
+      x ^ (m + k - j - 1) := by
+    rw [inv_pow, ← pow_add, ← pow_sub₀ x hx hjle, hexp]
+  have hat :
+      (m + k - j) •
+          (x ^ k * LaurentSeries.atInfinityDerivative (x ^ m) * (x⁻¹) ^ j) =
+        m • LaurentSeries.atInfinityDerivative (x ^ (m + k - j)) := by
+    rw [LaurentSeries.atInfinityDerivative_pow,
+      LaurentSeries.atInfinityDerivative_pow]
+    simp only [nsmul_eq_mul]
+    linear_combination
+      ((m + k - j : ℕ) : LaurentSeries K) *
+        ((m : ℕ) : LaurentSeries K) *
+        LaurentSeries.atInfinityDerivative x * hpow
+  have hres :
+      (m + k - j) • LaurentSeries.residueAtInfinity
+          (x ^ k * LaurentSeries.atInfinityDerivative (x ^ m) * (x⁻¹) ^ j) =
+        m • LaurentSeries.residueAtInfinity
+          (LaurentSeries.atInfinityDerivative (x ^ (m + k - j))) := by
+    rw [← map_nsmul, ← map_nsmul, hat]
+  simp only [LaurentSeries.residueAtInfinity_atInfinityDerivative,
+    nsmul_eq_mul, mul_zero] at hres
+  have hp : 0 < m + k - j := by omega
+  exact (mul_eq_zero.mp hres).resolve_left
+    (Nat.cast_ne_zero.mpr (Nat.ne_of_gt hp))
 
 /-- The at-infinity derivative commutes with coefficientwise
 differentiation. -/

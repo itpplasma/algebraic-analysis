@@ -66,7 +66,9 @@ their application-specific proof assembly.
   `LaurentSeries.atInfinityDerivative` and
   `LaurentSeries.residueAtInfinity` expose the separate `X = s⁻¹` convention
   used by expansions at infinity: `d/ds = -X² d/dX` and residue `[X¹]`; the
-  coefficient formula for the former is explicit. Their
+  coefficient formula and natural-power rule for the former are explicit.
+  A mode `x^k (d/ds)(x^m) x⁻ʲ` has zero residue whenever `x ≠ 0` and `j < m`.
+  Their
   concrete exponent/coefficient, hostile-orientation, and API oracles are in
   `AlgebraicAnalysisTest/RingTheory/LaurentSeriesCoefficientDerivation.lean`;
   the downstream consumer is `jc2-formal`'s finite-moment identity.

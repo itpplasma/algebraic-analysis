@@ -65,6 +65,27 @@ example (f : LaurentSeries ℚ) :
     residueAtInfinity (atInfinityDerivative f) = 0 := by
   exact residueAtInfinity_atInfinityDerivative f
 
+private def modeSample : LaurentSeries ℚ := HahnSeries.single 1 1
+
+/-- API oracle for the mode-residue range, on the nonconstant unit `X`. -/
+example :
+    residueAtInfinity
+      (modeSample ^ 0 * atInfinityDerivative (modeSample ^ 2) *
+        (modeSample⁻¹) ^ 1) = 0 := by
+  exact residueAtInfinity_mode_mul_eq_zero modeSample
+    (by simp [modeSample]) 2 0 1 (by omega)
+
+/-- Independent oracle: expand the same mode coefficientwise, without the
+mode-residue theorem. -/
+example :
+    residueAtInfinity
+      (modeSample ^ 0 * atInfinityDerivative (modeSample ^ 2) *
+        (modeSample⁻¹) ^ 1) = 0 := by
+  norm_num [modeSample, residueAtInfinity_apply,
+    atInfinityDerivative_apply, HahnSeries.coeff_single_mul,
+    _root_.LaurentSeries.derivative_apply,
+    _root_.LaurentSeries.hasseDeriv_coeff]
+
 example {K : Type*} [Field K] [Algebra ℚ K]
     (D : Derivation ℚ K K) (f : LaurentSeries K) :
     atInfinityDerivative (coefficientwiseDerivation D f) =
@@ -79,7 +100,9 @@ example {K : Type*} [Field K] [Algebra ℚ K]
 #print axioms AlgebraicAnalysis.LaurentSeries.spectralDerivation_apply
 #print axioms AlgebraicAnalysis.LaurentSeries.atInfinityDerivative
 #print axioms AlgebraicAnalysis.LaurentSeries.atInfinityDerivative_mul
+#print axioms AlgebraicAnalysis.LaurentSeries.atInfinityDerivative_pow
 #print axioms AlgebraicAnalysis.LaurentSeries.residueAtInfinity_atInfinityDerivative
+#print axioms AlgebraicAnalysis.LaurentSeries.residueAtInfinity_mode_mul_eq_zero
 #print axioms AlgebraicAnalysis.LaurentSeries.atInfinityDerivative_coefficientwiseDerivation_commute
 #print axioms AlgebraicAnalysis.LaurentSeries.coefficientwiseDerivation_residueAtInfinity
 
