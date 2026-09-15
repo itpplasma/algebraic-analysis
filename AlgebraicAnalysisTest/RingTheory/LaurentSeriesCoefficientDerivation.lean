@@ -43,12 +43,45 @@ example :
         (_root_.LaurentSeries.derivative (Polynomial ℚ) sample) := by
   exact derivative_coefficientwiseDerivation_commute _ _
 
+private def infinitySample : LaurentSeries ℚ :=
+  HahnSeries.single 1 7 + HahnSeries.single (-1) 11
+
+/-- Hostile orientation control: paper residue at `s = ∞` is `[X¹]` for
+`X = s⁻¹`, not the ordinary Laurent coefficient `[X⁻¹]`. -/
+example : residueAtInfinity infinitySample = 7 := by
+  norm_num [residueAtInfinity_apply, infinitySample]
+
+example : residue infinitySample = 11 := by
+  norm_num [residue_apply, infinitySample]
+
+/-- Under `d/ds = -X² d/dX`, `3X⁻²` maps to `6X⁻¹`. -/
+example :
+    (atInfinityDerivative (HahnSeries.single (-2) (3 : ℚ))).coeff (-1) = 6 := by
+  norm_num [atInfinityDerivative_apply, HahnSeries.coeff_single_mul,
+    _root_.LaurentSeries.derivative_apply,
+    _root_.LaurentSeries.hasseDeriv_coeff]
+
+example (f : LaurentSeries ℚ) :
+    residueAtInfinity (atInfinityDerivative f) = 0 := by
+  exact residueAtInfinity_atInfinityDerivative f
+
+example {K : Type*} [Field K] [Algebra ℚ K]
+    (D : Derivation ℚ K K) (f : LaurentSeries K) :
+    atInfinityDerivative (coefficientwiseDerivation D f) =
+      coefficientwiseDerivation D (atInfinityDerivative f) := by
+  exact atInfinityDerivative_coefficientwiseDerivation_commute D f
+
 #print axioms AlgebraicAnalysis.LaurentSeries.coefficientwiseDerivation_apply_coeff
 #print axioms AlgebraicAnalysis.LaurentSeries.derivative_coefficientwiseDerivation_commute
 #print axioms AlgebraicAnalysis.LaurentSeries.coefficientwiseDerivation_residue
 #print axioms AlgebraicAnalysis.LaurentSeries.derivative_mul
 #print axioms AlgebraicAnalysis.LaurentSeries.spectralDerivation
 #print axioms AlgebraicAnalysis.LaurentSeries.spectralDerivation_apply
+#print axioms AlgebraicAnalysis.LaurentSeries.atInfinityDerivative
+#print axioms AlgebraicAnalysis.LaurentSeries.atInfinityDerivative_mul
+#print axioms AlgebraicAnalysis.LaurentSeries.residueAtInfinity_atInfinityDerivative
+#print axioms AlgebraicAnalysis.LaurentSeries.atInfinityDerivative_coefficientwiseDerivation_commute
+#print axioms AlgebraicAnalysis.LaurentSeries.coefficientwiseDerivation_residueAtInfinity
 
 end
 
