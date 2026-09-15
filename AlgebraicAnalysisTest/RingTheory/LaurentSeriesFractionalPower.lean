@@ -42,16 +42,36 @@ example :
 
 /-- The same nontrivial row satisfies its exact algebraic root relation with
 the normalized cubic Laurent series. -/
+private noncomputable def cubicRoot : LaurentSeries ℚ :=
+  monicNegativeFractionalPower PowerSeries.X 2 3
+
+private noncomputable def cubicF : LaurentSeries ℚ :=
+  normalizedMonicSeries PowerSeries.X 3
+
+private theorem cubicRoot_relation : cubicRoot ^ 3 * cubicF ^ 2 = 1 := by
+  exact monicNegativeFractionalPower_pow_mul_normalizedMonicSeries_pow
+    PowerSeries.X (by simp) 2 3 (by norm_num)
+
 example :
     (monicNegativeFractionalPower (PowerSeries.X : PowerSeries ℚ) 2 3) ^ 3 *
         (normalizedMonicSeries (PowerSeries.X : PowerSeries ℚ) 3) ^ 2 = 1 := by
-  exact monicNegativeFractionalPower_pow_mul_normalizedMonicSeries_pow
-    PowerSeries.X (by simp) 2 3 (by norm_num)
+  exact cubicRoot_relation
+
+/-- Composition control: the concrete cubic root relation feeds the Laurent
+derivative-compatibility theorem without an additional power hypothesis. -/
+example :
+    LaurentSeries.spectralDerivation ℤ cubicRoot *
+        LaurentSeries.coefficientwiseDerivation (0 : Derivation ℤ ℚ ℚ) cubicF =
+      LaurentSeries.coefficientwiseDerivation (0 : Derivation ℤ ℚ ℚ) cubicRoot *
+        LaurentSeries.spectralDerivation ℤ cubicF := by
+  exact monicNegativeFractionalPower_derivative_compatible
+    (0 : Derivation ℤ ℚ ℚ) PowerSeries.X (by simp) 2 3 (by norm_num)
 
 #print axioms AlgebraicAnalysis.LaurentSeries.monicNegativeFractionalPower_coeff_eq_zero_of_lt
 #print axioms AlgebraicAnalysis.LaurentSeries.monicNegativeFractionalPower_coeff_self
 #print axioms PowerSeries.subst_binomialSeries_neg_div_pow_mul_one_add_pow
 #print axioms AlgebraicAnalysis.LaurentSeries.monicNegativeFractionalPower_pow_mul_normalizedMonicSeries_pow
+#print axioms AlgebraicAnalysis.LaurentSeries.monicNegativeFractionalPower_derivative_compatible
 
 end
 

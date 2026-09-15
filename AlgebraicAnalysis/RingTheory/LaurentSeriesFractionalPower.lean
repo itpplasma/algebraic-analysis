@@ -1,7 +1,9 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 
 import AlgebraicAnalysis.RingTheory.BinomialSeriesRoot
+import AlgebraicAnalysis.RingTheory.LaurentSeriesCoefficientDerivation
 import AlgebraicAnalysis.RingTheory.LaurentSeriesMomentPairing
+import Mathlib.Tactic.LinearCombination
 
 /-!
 # Normalized negative fractional powers at infinity
@@ -122,6 +124,60 @@ theorem LaurentSeries.monicNegativeFractionalPower_pow_mul_normalizedMonicSeries
         HahnSeries.single_mul_single]
       convert (show HahnSeries.single (0 : ℤ) (1 : K) = 1 by simp) using 1
       ring_nf
+
+/-- The normalized root and monic series satisfy the cross-derivative
+compatibility needed by the moment identity. -/
+theorem LaurentSeries.monicNegativeFractionalPower_derivative_compatible
+    {B : Type*} [CommRing B] [Algebra B K]
+    (dwK : Derivation B K K) (u : PowerSeries K)
+    (hu : PowerSeries.constantCoeff u = 0)
+    (j m : ℕ) (hm : m ≠ 0) :
+    LaurentSeries.spectralDerivation B
+          (LaurentSeries.monicNegativeFractionalPower u j m) *
+        LaurentSeries.coefficientwiseDerivation dwK
+          (LaurentSeries.normalizedMonicSeries u m) =
+      LaurentSeries.coefficientwiseDerivation dwK
+          (LaurentSeries.monicNegativeFractionalPower u j m) *
+        LaurentSeries.spectralDerivation B
+          (LaurentSeries.normalizedMonicSeries u m) := by
+  let F := LaurentSeries.normalizedMonicSeries u m
+  let Φ := LaurentSeries.monicNegativeFractionalPower u j m
+  let ds : Derivation B (LaurentSeries K) (LaurentSeries K) :=
+    LaurentSeries.spectralDerivation B
+  let dw : Derivation B (LaurentSeries K) (LaurentSeries K) :=
+    LaurentSeries.coefficientwiseDerivation dwK
+  have hroot : Φ ^ m * F ^ j = 1 :=
+    LaurentSeries.monicNegativeFractionalPower_pow_mul_normalizedMonicSeries_pow
+      u hu j m hm
+  have hds := congrArg ds hroot
+  have hdw := congrArg dw hroot
+  simp only [Derivation.leibniz, Derivation.leibniz_pow, smul_eq_mul,
+    nsmul_eq_mul, Derivation.map_one_eq_zero] at hds hdw
+  have hΦm : Φ ^ m ≠ 0 := by
+    intro h
+    rw [h, zero_mul] at hroot
+    exact zero_ne_one hroot
+  have hFj : F ^ j ≠ 0 := by
+    intro h
+    rw [h, mul_zero] at hroot
+    exact zero_ne_one hroot
+  have hΦ : Φ ≠ 0 := by
+    intro h
+    apply hΦm
+    simp [h, hm]
+  letI : CharZero (LaurentSeries K) :=
+    charZero_of_injective_algebraMap (R := K)
+      (algebraMap K (LaurentSeries K)).injective
+  have hmL : (m : LaurentSeries K) ≠ 0 := Nat.cast_ne_zero.mpr hm
+  have hpref :
+      (m : LaurentSeries K) * Φ ^ (m - 1) * F ^ j ≠ 0 := by
+    exact mul_ne_zero (mul_ne_zero hmL (pow_ne_zero _ hΦ)) hFj
+  have hzero :
+      ((m : LaurentSeries K) * Φ ^ (m - 1) * F ^ j) *
+        (ds Φ * dw F - dw Φ * ds F) = 0 := by
+    linear_combination (dw F) * hds - (ds F) * hdw
+  change ds Φ * dw F = dw Φ * ds F
+  exact sub_eq_zero.mp ((mul_eq_zero.mp hzero).resolve_left hpref)
 
 end
 
