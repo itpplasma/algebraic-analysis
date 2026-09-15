@@ -23,7 +23,9 @@ their application-specific proof assembly.
   in `AlgebraicAnalysisTest/Combinatorics/FiniteFloorSum.lean`.
 - `RatFunc.atInfinity` constructs the variable-inversion homomorphism into
   Laurent series, and `RatFunc.coeff_atInfinity_eq_polynomialPart` identifies
-  its nonpositive Laurent coefficients with the Euclidean polynomial part.
+  its nonpositive Laurent coefficients with the Euclidean polynomial part;
+  `RatFunc.order_atInfinity` identifies Laurent order with negative rational
+  degree and supplies the support bound for filtered diagonal substitutions.
   The independent orientation and proper-fraction oracle is
   `AlgebraicAnalysisTest/RingTheory/RatFuncAtInfinity.lean`; the downstream
   consumer is `jc2-formal`'s cubic-chart expansion exchange.

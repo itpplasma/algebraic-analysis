@@ -26,6 +26,14 @@ example :
   rw [map_inv₀, atInfinity_X, HahnSeries.inv_single]
   norm_num [HahnSeries.coeff_single]
 
+example : (atInfinity ℚ (RatFunc.X : ℚ⟮X⟯)).order = -1 := by
+  rw [order_atInfinity ℚ _ RatFunc.X_ne_zero]
+  simp
+
+example : (atInfinity ℚ ((RatFunc.X : ℚ⟮X⟯)⁻¹)).order = 1 := by
+  rw [order_atInfinity ℚ _ (inv_ne_zero RatFunc.X_ne_zero)]
+  simp
+
 example : polynomialPart ℚ ((RatFunc.X : ℚ⟮X⟯)⁻¹) = 0 := by
   ext k
   rw [← coeff_atInfinity_eq_polynomialPart]

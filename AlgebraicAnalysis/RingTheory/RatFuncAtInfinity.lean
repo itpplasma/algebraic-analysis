@@ -2,6 +2,7 @@
 
 import Mathlib.Algebra.Polynomial.Reverse
 import Mathlib.FieldTheory.RatFunc.AsPolynomial
+import Mathlib.FieldTheory.RatFunc.Degree
 import Mathlib.RingTheory.LaurentSeries
 
 /-!
@@ -173,6 +174,15 @@ private theorem coeff_atInfinity_div_algebraMap_eq_zero {p q : K[X]}
   apply HahnSeries.coeff_eq_zero_of_lt_order
   rw [order_atInfinity_div_algebraMap K hp hq]
   omega
+
+/-- The Laurent order of a nonzero rational function at infinity is the
+negative of its rational-function degree. -/
+theorem order_atInfinity (v : K⟮X⟯) (hv : v ≠ 0) :
+    (atInfinity K v).order = -v.intDegree := by
+  unfold RatFunc.intDegree
+  conv_lhs => rw [← RatFunc.num_div_denom v]
+  rw [order_atInfinity_div_algebraMap K (RatFunc.num_ne_zero hv) v.denom_ne_zero]
+  ring
 
 /-- The Euclidean polynomial part of a rational function. -/
 def polynomialPart (v : K⟮X⟯) : K[X] := v.num / v.denom
