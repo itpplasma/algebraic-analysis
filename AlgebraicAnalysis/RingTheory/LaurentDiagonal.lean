@@ -118,6 +118,65 @@ theorem affineDiagonal_monomial (A B ell q : ℤ) :
       congr 2
       ring
 
+private theorem coeff_scalar_outer_inner_monomial
+    (d : R) (u v a b : ℤ) :
+    ((C ((C d : _root_.LaurentPolynomial R) * T v) * T u :
+        Iterated R).coeff a).coeff b =
+      if u = a ∧ v = b then d else 0 := by
+  rw [← single_eq_C_mul_T, AddMonoidAlgebra.coeff_single,
+    Finsupp.single_apply]
+  by_cases hua : u = a
+  · subst a
+    simp only [if_pos, true_and]
+    rw [← single_eq_C_mul_T, AddMonoidAlgebra.coeff_single,
+      Finsupp.single_apply]
+  · simp [hua]
+
+/-- Coefficient transport under affine diagonal regrading.  The output
+coefficient at `(a, b)` is the input coefficient at
+`(a + b - B + A, b - B)`. -/
+theorem affineDiagonal_coeff (A B : ℤ) (p : Iterated R) (a b : ℤ) :
+    ((affineDiagonal A B p).coeff a).coeff b =
+      (p.coeff (a + b - B + A)).coeff (b - B) := by
+  induction p using LaurentPolynomial.induction_on' with
+  | add p q hp hq =>
+      rw [show affineDiagonal A B (p + q) =
+          affineDiagonal A B p + affineDiagonal A B q by
+            simp [affineDiagonal, mul_add]]
+      simp [hp, hq]
+  | C_mul_T ell c =>
+      induction c using LaurentPolynomial.induction_on' with
+      | add c d hc hd =>
+          rw [show C (c + d) * T ell =
+              C c * T ell + C d * T ell by rw [map_add, add_mul]]
+          rw [show affineDiagonal A B (C c * T ell + C d * T ell) =
+              affineDiagonal A B (C c * T ell) +
+                affineDiagonal A B (C d * T ell) by
+                simp [affineDiagonal, mul_add]]
+          simp [hc, hd]
+      | C_mul_T q d =>
+          rw [show C ((C d : _root_.LaurentPolynomial R) * T q) * T ell =
+              (C (C d) : Iterated R) * C (T q) * T ell by rw [map_mul]]
+          rw [show affineDiagonal A B
+                ((C (C d) : Iterated R) * C (T q) * T ell) =
+              (C (C d) : Iterated R) *
+                affineDiagonal A B (C (T q) * T ell) by
+                simp [affineDiagonal, map_mul, diagonalMap, innerDiagonalMap]
+                ac_rfl]
+          rw [affineDiagonal_monomial]
+          rw [show (C (C d) : Iterated R) *
+                  (T (ell - q - A) * C (T (B + q))) =
+                C ((C d : _root_.LaurentPolynomial R) * T (B + q)) *
+                  T (ell - q - A) by
+                rw [map_mul]
+                ac_rfl]
+          rw [show (C (C d) : Iterated R) * C (T q) * T ell =
+                C ((C d : _root_.LaurentPolynomial R) * T q) * T ell by
+                rw [map_mul]]
+          rw [coeff_scalar_outer_inner_monomial,
+            coeff_scalar_outer_inner_monomial]
+          split <;> split <;> simp_all <;> omega
+
 /-- Taking a natural power scales both affine shifts. -/
 theorem affineDiagonal_pow (A B : ℤ) (p : Iterated R) (n : ℕ) :
     (affineDiagonal A B p) ^ n =

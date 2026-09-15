@@ -55,4 +55,31 @@ example :
         (((C (T (-4)) : Iterated ℚ) * T 7) ^ 2) := by
   exact affineDiagonal_pow 2 3 _ 2
 
+/-- A concrete coefficient is recovered at the inverse affine index. -/
+example :
+    ((affineDiagonal (R := ℚ) 2 3
+        ((C (T (-4)) : Iterated ℚ) * T 7)).coeff 9).coeff
+          (-1) = 1 := by
+  rw [affineDiagonal_coeff]
+  have hmono :
+      (C (T (-4)) * T 7 : Iterated ℚ) =
+        .single 7 (T (-4) : _root_.LaurentPolynomial ℚ) :=
+    (single_eq_C_mul_T _ _).symm
+  rw [hmono, AddMonoidAlgebra.coeff_single]
+  norm_num [Finsupp.single_apply, T_apply]
+
+/-- Hostile coefficient control: the same inner degree at the wrong outer
+degree vanishes. -/
+example :
+    ((affineDiagonal (R := ℚ) 2 3
+        ((C (T (-4)) : Iterated ℚ) * T 7)).coeff 8).coeff
+          (-1) = 0 := by
+  rw [affineDiagonal_coeff]
+  have hmono :
+      (C (T (-4)) * T 7 : Iterated ℚ) =
+        .single 7 (T (-4) : _root_.LaurentPolynomial ℚ) :=
+    (single_eq_C_mul_T _ _).symm
+  rw [hmono, AddMonoidAlgebra.coeff_single]
+  norm_num [Finsupp.single_apply]
+
 end LaurentPolynomial
