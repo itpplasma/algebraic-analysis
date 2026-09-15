@@ -49,6 +49,13 @@ their application-specific proof assembly.
   hostile below-threshold mixed term are checked in
   `AlgebraicAnalysisTest/RingTheory/PowerSeriesLaurentSupport.lean`. The
   downstream consumer is `jc2-formal`'s radial/infinity expansion exchange.
+- `PowerSeries.coeff_eq_of_pow_coeff_eq_of_le` gives finite triangular
+  uniqueness for normalized power-series roots: equality of `n`-th-power
+  coefficients through `K` recovers the root coefficients through `K` when
+  the shared constant coefficient and `n` are nonzero in characteristic zero.
+  Concrete recovery and hostile missing-normalization oracles are in
+  `AlgebraicAnalysisTest/RingTheory/PowerSeriesPrefixRoot.lean`; the downstream
+  consumer is `jc2-formal`'s finite radial/infinity expansion exchange.
 - `AlgebraicAnalysis.BernsteinInequality` is statement-only and remains open;
   its field binder now explicitly requires `CharZero K`.
 - The pre-repair arbitrary-field statement was false: the first Weyl algebra over
