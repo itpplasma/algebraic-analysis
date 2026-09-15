@@ -14,9 +14,10 @@ and with coefficient-extraction residue.
 The interface is extracted from `itpplasma/jc2` at revision
 `4a98d94ac3fbdbed7f4b4995c687e3870386e9bc`, originally from
 `research/general-pq-carry-20260911/finite-moment-coordinates-all-m.md`,
-equation (2).  Both repositories are Apache-2.0.  Authorship follows the
-source repository history (Christopher Albert); this file supplies the Lean
-implementation.  The declaration mapping is the note's assertion that
+equation (2). This Lean implementation is Apache-2.0; the source repository's
+license is not asserted here. Authorship follows the source repository history
+(Christopher Albert); this file supplies the Lean implementation. The
+declaration mapping is the note's assertion that
 coefficient extraction commutes with the coefficient-field derivation to
 `LaurentSeries.coefficientwiseDerivation_residue`, with
 `LaurentSeries.derivative_coefficientwiseDerivation_commute` recording the

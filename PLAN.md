@@ -69,6 +69,13 @@ their application-specific proof assembly.
   concrete exponent/coefficient, hostile-orientation, and API oracles are in
   `AlgebraicAnalysisTest/RingTheory/LaurentSeriesCoefficientDerivation.lean`;
   the downstream consumer is `jc2-formal`'s finite-moment identity.
+- `LaurentSeries.residueAtInfinity_monicPairing_injective` proves that the
+  finite residue pairing between normalized leading terms `X¹,…,Xⁿ` and the
+  polynomial spectral window `1,X⁻¹,…,X⁻⁽ⁿ⁻¹⁾` is injective, via its
+  upper-unitriangular matrix. A concrete three-row oracle with arbitrary upper
+  coefficients and a hostile missing-normalization control are in
+  `AlgebraicAnalysisTest/RingTheory/LaurentSeriesMomentPairing.lean`; the
+  downstream consumer is equation (3) of `jc2-formal`'s finite-moment module.
 - `AlgebraicAnalysis.BernsteinInequality` is statement-only and remains open;
   its field binder now explicitly requires `CharZero K`.
 - The pre-repair arbitrary-field statement was false: the first Weyl algebra over
