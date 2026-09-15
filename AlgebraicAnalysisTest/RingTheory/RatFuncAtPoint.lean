@@ -28,4 +28,13 @@ example :
       (RatFunc.derivative ℚ (RatFunc.X : RatFunc ℚ)⁻¹) = 0 := by
   exact RatFunc.residueAtPoint_derivative ℚ 0 _
 
+/-- Independent simple-root oracle: for `M = X + X²` at zero, the formula
+predicts residue `-2`. -/
+example :
+    RatFunc.residueAtPoint ℚ 0
+      ((algebraMap ℚ[X] (RatFunc ℚ) (X + X ^ 2))⁻¹ ^ 2) = -2 := by
+  convert RatFunc.residueAtPoint_inverse_sq_algebraMap ℚ
+    (X + X ^ 2) 0 (by simp) (by norm_num) using 1
+  norm_num
+
 end RatFuncAtPointTest

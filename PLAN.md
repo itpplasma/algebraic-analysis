@@ -107,8 +107,11 @@ their application-specific proof assembly.
   differentiation through the fraction field, and `RatFunc.atPoint_derivative`
   proves that the expansion intertwines the two derivatives. Hence
   `RatFunc.residueAtPoint_derivative` gives zero residue for every rational
-  derivative at every finite point. Exact `1/X` residue, translated-coordinate,
-  and derivative hostile checks are in
+  derivative at every finite point, while
+  `RatFunc.residueAtPoint_inverse_sq_algebraMap` computes
+  `Res_a(1/M²) = -M''(a)/M'(a)³` at a simple root. Exact `1/X` residue,
+  translated-coordinate, derivative hostile, and nonzero second-derivative
+  checks are in
   `AlgebraicAnalysisTest/RingTheory/RatFuncAtPoint.lean`; the downstream
   consumer is the cubic finite-moment endpoint in `jc2-formal`.
 - `AlgebraicAnalysis.BernsteinInequality` is statement-only and remains open;
