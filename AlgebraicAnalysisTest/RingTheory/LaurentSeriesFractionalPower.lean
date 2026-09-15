@@ -67,11 +67,21 @@ example :
   exact monicNegativeFractionalPower_derivative_compatible
     (0 : Derivation ℤ ℚ ℚ) PowerSeries.X (by simp) 2 3 (by norm_num)
 
+/-- For `F=X⁻³(1+X)`, the factor `(dF/ds)F^(-2/3)` starts at `X⁰`
+with coefficient three. -/
+example :
+    (atInfinityDerivative
+          (normalizedMonicSeries (PowerSeries.X : PowerSeries ℚ) 3) *
+        monicNegativeFractionalPower PowerSeries.X 2 3).coeff 0 = 3 := by
+  exact normalizedMomentFactor_coeff_leading PowerSeries.X (by simp) 2 3
+    (by norm_num)
+
 #print axioms AlgebraicAnalysis.LaurentSeries.monicNegativeFractionalPower_coeff_eq_zero_of_lt
 #print axioms AlgebraicAnalysis.LaurentSeries.monicNegativeFractionalPower_coeff_self
 #print axioms PowerSeries.subst_binomialSeries_neg_div_pow_mul_one_add_pow
 #print axioms AlgebraicAnalysis.LaurentSeries.monicNegativeFractionalPower_pow_mul_normalizedMonicSeries_pow
 #print axioms AlgebraicAnalysis.LaurentSeries.monicNegativeFractionalPower_derivative_compatible
+#print axioms AlgebraicAnalysis.LaurentSeries.normalizedMomentFactor_coeff_leading
 
 end
 

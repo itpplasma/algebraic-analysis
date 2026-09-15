@@ -198,6 +198,16 @@ theorem LaurentSeries.atInfinityDerivative_apply
     LaurentSeries.atInfinityDerivative f =
       -(HahnSeries.single 2 1 * LaurentSeries.derivative ℤ f) := rfl
 
+/-- Coefficient formula for `d/ds = -X² d/dX` in the coordinate
+`X = s⁻¹`. -/
+theorem LaurentSeries.atInfinityDerivative_coeff
+    {K : Type*} [Field K] (f : LaurentSeries K) (z : ℤ) :
+    (LaurentSeries.atInfinityDerivative f).coeff z =
+      -((z - 1 : ℤ) : K) * f.coeff (z - 1) := by
+  simp [LaurentSeries.atInfinityDerivative, HahnSeries.coeff_single_mul,
+    LaurentSeries.derivative_apply, LaurentSeries.hasseDeriv_coeff]
+  ring_nf
+
 /-- The at-infinity derivative satisfies the Leibniz rule. -/
 theorem LaurentSeries.atInfinityDerivative_mul
     {K : Type*} [Field K] (f g : LaurentSeries K) :

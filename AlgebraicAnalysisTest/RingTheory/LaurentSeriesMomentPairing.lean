@@ -41,6 +41,23 @@ example (q r : Fin 3 → ℚ)
   exact residueAtInfinity_monicPairing_injective sampleRoot
     sampleRoot_low sampleRoot_diag (funext h)
 
+/-- A finite positive tail pairs by the reversed coefficient window. -/
+example (t : Fin 3 → ℚ) (H : LaurentSeries ℚ) :
+    residueAtInfinity (positiveTailWindow t * H) =
+      t 0 * H.coeff 0 + t 1 * H.coeff (-1) + t 2 * H.coeff (-2) := by
+  rw [residueAtInfinity_positiveTailWindow_mul]
+  simp [Fin.sum_univ_succ]
+  ring
+
+/-- The last tail coefficient has the exact triangular diagonal `-5`. -/
+example (t : Fin 3 → ℚ) (H : LaurentSeries ℚ)
+    (hlead : H.coeff (-2) = 5) :
+    -residueAtInfinity (positiveTailWindow t * H) =
+      -(5 * t 2) -
+        ∑ k ∈ (Finset.univ.erase (2 : Fin 3)),
+          t k * H.coeff (-(k : ℤ)) := by
+  exact residueAtInfinity_positiveTailWindow_mul_triangular 2 t H 5 hlead
+
 /-- Hostile control: derivative compatibility alone cannot replace the
 leading normalization, since the zero family annihilates every window. -/
 example :
@@ -57,6 +74,9 @@ example :
 #print axioms AlgebraicAnalysis.LaurentSeries.momentPairingMatrix_injective
 #print axioms AlgebraicAnalysis.LaurentSeries.residueAtInfinity_monicPairing_injective
 #print axioms AlgebraicAnalysis.LaurentSeries.spectralPolynomialWindow_eq_zero_of_pairings
+#print axioms AlgebraicAnalysis.LaurentSeries.residueAtInfinity_positiveTailWindow_mul
+#print axioms AlgebraicAnalysis.LaurentSeries.residueAtInfinity_positiveTailWindow_mul_triangular
+#print axioms AlgebraicAnalysis.LaurentSeries.coeff_mul_of_leadingTerms
 
 end
 

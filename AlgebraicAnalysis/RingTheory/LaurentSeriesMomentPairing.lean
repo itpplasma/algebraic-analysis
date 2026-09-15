@@ -16,7 +16,7 @@ residue at infinity, with the finite spectral window
 The interface is extracted from `itpplasma/jc2` at revision
 `4a7add6104d021c2f2f3b0e903f66d15096b56c9`, file
 `research/general-pq-carry-20260911/finite-moment-coordinates-all-m.md`,
-equation (3), graph node `direct-finite-moment-coordinates-all-m`. This Lean
+equations (3) and (5), graph node `direct-finite-moment-coordinates-all-m`. This Lean
 implementation is Apache-2.0; the source repository's
 license is not asserted here. Authorship follows the source repository history
 (Christopher Albert); this file supplies the reusable Lean implementation.
@@ -53,6 +53,82 @@ theorem LaurentSeries.residueAtInfinity_mul_spectralPolynomialWindow
     HahnSeries.coeff_sum]
   simp [LaurentSeries.momentPairingMatrix, Matrix.mulVec, dotProduct,
     HahnSeries.coeff_mul_single, sub_neg_eq_add]
+
+/-- The first `N` positive Laurent coefficients, representing
+`t₁X + ⋯ + t_N X^N`. -/
+def LaurentSeries.positiveTailWindow {N : ℕ} (t : Fin N → K) :
+    LaurentSeries K :=
+  ∑ k : Fin N, HahnSeries.single ((k : ℤ) + 1) (t k)
+
+/-- Residue pairing of a finite positive tail with a Laurent series. -/
+theorem LaurentSeries.residueAtInfinity_positiveTailWindow_mul
+    {N : ℕ} (t : Fin N → K) (H : LaurentSeries K) :
+    LaurentSeries.residueAtInfinity
+        (LaurentSeries.positiveTailWindow t * H) =
+      ∑ k : Fin N, t k * H.coeff (-(k : ℤ)) := by
+  rw [LaurentSeries.residueAtInfinity_apply,
+    LaurentSeries.positiveTailWindow, Finset.sum_mul,
+    HahnSeries.coeff_sum]
+  apply Finset.sum_congr rfl
+  intro k hk
+  simp [HahnSeries.coeff_single_mul]
+
+/-- Split the last coefficient from a finite positive-tail residue pairing.
+When `c = m`, its negation is the triangular `-m t_N` term in equation (5)
+of the all-`m` moment calculation. -/
+theorem LaurentSeries.residueAtInfinity_positiveTailWindow_mul_triangular
+    (N : ℕ) (t : Fin (N + 1) → K) (H : LaurentSeries K) (c : K)
+    (hlead : H.coeff (-(N : ℤ)) = c) :
+    -LaurentSeries.residueAtInfinity
+        (LaurentSeries.positiveTailWindow t * H) =
+      -(c * t (Fin.last N)) -
+        ∑ k ∈ (Finset.univ.erase (Fin.last N)),
+          t k * H.coeff (-(k : ℤ)) := by
+  rw [LaurentSeries.residueAtInfinity_positiveTailWindow_mul]
+  have hmem : Fin.last N ∈ (Finset.univ : Finset (Fin (N + 1))) :=
+    Finset.mem_univ _
+  have hlast : H.coeff (-((Fin.last N : Fin (N + 1)) : ℤ)) = c := by
+    simpa using hlead
+  rw [← Finset.sum_erase_add Finset.univ
+    (fun k : Fin (N + 1) => t k * H.coeff (-(k : ℤ))) hmem, hlast]
+  ring
+
+/-- The coefficient of a product at the sum of two exact leading exponents. -/
+theorem LaurentSeries.coeff_mul_of_leadingTerms
+    (f g : LaurentSeries K) (a b : ℤ) (A B : K)
+    (hflow : ∀ z : ℤ, z < a → f.coeff z = 0)
+    (hfa : f.coeff a = A) (hA : A ≠ 0)
+    (hglow : ∀ z : ℤ, z < b → g.coeff z = 0)
+    (hgb : g.coeff b = B) (hB : B ≠ 0) :
+    (f * g).coeff (a + b) = A * B := by
+  have hfcoeff : f.coeff a ≠ 0 := hfa.symm ▸ hA
+  have hgcoeff : g.coeff b ≠ 0 := hgb.symm ▸ hB
+  have hfne : f ≠ 0 := HahnSeries.ne_zero_of_coeff_ne_zero hfcoeff
+  have hgne : g ≠ 0 := HahnSeries.ne_zero_of_coeff_ne_zero hgcoeff
+  have hforderTop : f.orderTop = (a : WithTop ℤ) := by
+    apply le_antisymm
+    · exact HahnSeries.orderTop_le_of_coeff_ne_zero hfcoeff
+    · rw [HahnSeries.le_orderTop_iff_forall]
+      intro z hz
+      apply hflow z
+      exact_mod_cast hz
+  have hgorderTop : g.orderTop = (b : WithTop ℤ) := by
+    apply le_antisymm
+    · exact HahnSeries.orderTop_le_of_coeff_ne_zero hgcoeff
+    · rw [HahnSeries.le_orderTop_iff_forall]
+      intro z hz
+      apply hglow z
+      exact_mod_cast hz
+  have hforder : f.order = a := by
+    apply WithTop.coe_eq_coe.mp
+    exact (HahnSeries.order_eq_orderTop_of_ne_zero hfne).trans hforderTop
+  have hgorder : g.order = b := by
+    apply WithTop.coe_eq_coe.mp
+    exact (HahnSeries.order_eq_orderTop_of_ne_zero hgne).trans hgorderTop
+  rw [← hforder, ← hgorder, HahnSeries.coeff_mul_order_add_order,
+    HahnSeries.leadingCoeff_of_ne_zero hfne,
+    HahnSeries.leadingCoeff_of_ne_zero hgne]
+  simpa [hforderTop, hgorderTop] using congrArg₂ (· * ·) hfa hgb
 
 /-- Leading coefficient one and no lower exponents make the finite moment
 pairing matrix injective. No coefficient of the input window is inverted. -/

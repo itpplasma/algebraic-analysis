@@ -18,7 +18,7 @@ the leading conditions consumed by the finite Laurent moment pairing.
 The interface is extracted from `itpplasma/jc2` at revision
 `4a7add6104d021c2f2f3b0e903f66d15096b56c9`, file
 `research/general-pq-carry-20260911/finite-moment-coordinates-all-m.md`,
-equation (3), graph node `direct-finite-moment-coordinates-all-m`. This Lean
+equations (3) and (5), graph node `direct-finite-moment-coordinates-all-m`. This Lean
 implementation is Apache-2.0; the source repository's license is not asserted
 here. Authorship follows the source repository history (Christopher Albert);
 this file supplies the reusable Lean implementation. The downstream consumer
@@ -85,6 +85,77 @@ theorem LaurentSeries.monicNegativeFractionalPower_coeff_self
   exact
     LaurentSeries.monicNegativeFractionalPower_rootSeries_constantCoeff
       u hu j m
+
+omit [CharZero K] in
+/-- The normalized monic Laurent series has no term below `X⁻ᵐ`. -/
+theorem LaurentSeries.normalizedMonicSeries_coeff_eq_zero_of_lt
+    (u : PowerSeries K) (m : ℕ) (z : ℤ) (hz : z < -(m : ℤ)) :
+    (LaurentSeries.normalizedMonicSeries u m).coeff z = 0 := by
+  rw [LaurentSeries.normalizedMonicSeries, HahnSeries.coeff_single_mul]
+  simp only [one_mul]
+  apply LaurentSeries.ofPowerSeries_coeff_of_neg
+  omega
+
+omit [CharZero K] in
+/-- A zero-constant tail gives leading coefficient one at `X⁻ᵐ`. -/
+theorem LaurentSeries.normalizedMonicSeries_coeff_leading
+    (u : PowerSeries K) (hu : PowerSeries.constantCoeff u = 0) (m : ℕ) :
+    (LaurentSeries.normalizedMonicSeries u m).coeff (-(m : ℤ)) = 1 := by
+  rw [LaurentSeries.normalizedMonicSeries, HahnSeries.coeff_single_mul]
+  simp only [one_mul, sub_self]
+  rw [show (0 : ℤ) = (0 : ℕ) by rfl,
+    HahnSeries.ofPowerSeries_apply_coeff,
+    PowerSeries.coeff_zero_eq_constantCoeff_apply]
+  simp [hu]
+
+omit [CharZero K] in
+/-- `dF/ds` has leading exponent `1-m` for a normalized monic series. -/
+theorem LaurentSeries.normalizedMonicSeries_atInfinityDerivative_coeff_eq_zero_of_lt
+    (u : PowerSeries K) (m : ℕ) (z : ℤ)
+    (hz : z < 1 - (m : ℤ)) :
+    (LaurentSeries.atInfinityDerivative
+        (LaurentSeries.normalizedMonicSeries u m)).coeff z = 0 := by
+  rw [LaurentSeries.atInfinityDerivative_coeff]
+  rw [LaurentSeries.normalizedMonicSeries_coeff_eq_zero_of_lt
+    u m (z - 1) (by omega)]
+  simp
+
+omit [CharZero K] in
+/-- The leading coefficient of `dF/ds` is `m`. -/
+theorem LaurentSeries.normalizedMonicSeries_atInfinityDerivative_coeff_leading
+    (u : PowerSeries K) (hu : PowerSeries.constantCoeff u = 0) (m : ℕ) :
+    (LaurentSeries.atInfinityDerivative
+        (LaurentSeries.normalizedMonicSeries u m)).coeff
+      (1 - (m : ℤ)) = (m : K) := by
+  rw [LaurentSeries.atInfinityDerivative_coeff]
+  rw [show 1 - (m : ℤ) - 1 = -(m : ℤ) by omega,
+    LaurentSeries.normalizedMonicSeries_coeff_leading u hu m]
+  push_cast
+  ring
+
+/-- The moment factor `(dF/ds) F^(-j/m)` starts in exponent `1-m+j`
+with coefficient `m`. -/
+theorem LaurentSeries.normalizedMomentFactor_coeff_leading
+    (u : PowerSeries K) (hu : PowerSeries.constantCoeff u = 0)
+    (j m : ℕ) (hm : m ≠ 0) :
+    (LaurentSeries.atInfinityDerivative
+          (LaurentSeries.normalizedMonicSeries u m) *
+        LaurentSeries.monicNegativeFractionalPower u j m).coeff
+      (1 - (m : ℤ) + (j : ℤ)) = (m : K) := by
+  have h := LaurentSeries.coeff_mul_of_leadingTerms
+    (LaurentSeries.atInfinityDerivative
+      (LaurentSeries.normalizedMonicSeries u m))
+    (LaurentSeries.monicNegativeFractionalPower u j m)
+    (1 - (m : ℤ)) (j : ℤ) (m : K) 1
+    (LaurentSeries.normalizedMonicSeries_atInfinityDerivative_coeff_eq_zero_of_lt
+      u m)
+    (LaurentSeries.normalizedMonicSeries_atInfinityDerivative_coeff_leading
+      u hu m)
+    (by exact_mod_cast (Nat.cast_ne_zero.mpr hm))
+    (LaurentSeries.monicNegativeFractionalPower_coeff_eq_zero_of_lt u j m)
+    (LaurentSeries.monicNegativeFractionalPower_coeff_self u hu j m)
+    one_ne_zero
+  simpa using h
 
 /-- The normalized negative fractional power has the expected algebraic
 relation with its normalized monic Laurent series. -/

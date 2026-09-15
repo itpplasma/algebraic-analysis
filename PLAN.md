@@ -65,7 +65,8 @@ their application-specific proof assembly.
   spectral derivative, and commutes with coefficient-extraction residue.
   `LaurentSeries.atInfinityDerivative` and
   `LaurentSeries.residueAtInfinity` expose the separate `X = s⁻¹` convention
-  used by expansions at infinity: `d/ds = -X² d/dX` and residue `[X¹]`. Their
+  used by expansions at infinity: `d/ds = -X² d/dX` and residue `[X¹]`; the
+  coefficient formula for the former is explicit. Their
   concrete exponent/coefficient, hostile-orientation, and API oracles are in
   `AlgebraicAnalysisTest/RingTheory/LaurentSeriesCoefficientDerivation.lean`;
   the downstream consumer is `jc2-formal`'s finite-moment identity.
@@ -75,12 +76,16 @@ their application-specific proof assembly.
   upper-unitriangular matrix. A concrete three-row oracle with arbitrary upper
   coefficients and a hostile missing-normalization control are in
   `AlgebraicAnalysisTest/RingTheory/LaurentSeriesMomentPairing.lean`; the
-  downstream consumer is equation (3) of `jc2-formal`'s finite-moment module.
+  same module also supplies the explicit positive-tail coefficient pairing and
+  its last-coefficient triangular split. The downstream consumers are equations
+  (3) and (5) of `jc2-formal`'s finite-moment module.
 - `LaurentSeries.monicNegativeFractionalPower` constructs the normalized
   expansion `X^j(1+u)^(-j/m)`, proves its lower coefficients vanish and its
   leading coefficient is one when `u` has zero constant term, and proves the
-  exact relation `root^m * (X⁻ᵐ(1+u))^j = 1` when `m ≠ 0`. Nontrivial cubic
-  coefficient, Laurent-orientation, and root-relation oracles are in
+  exact relation `root^m * (X⁻ᵐ(1+u))^j = 1` when `m ≠ 0`. It also proves that
+  `(dF/ds)F^(-j/m)` starts in exponent `1-m+j` with coefficient `m`, the
+  diagonal input for equation (5). Nontrivial cubic coefficient,
+  Laurent-orientation, root-relation, and moment-factor oracles are in
   `AlgebraicAnalysisTest/RingTheory/LaurentSeriesFractionalPower.lean`; the
   downstream consumer instantiates the normalized roots in equation (3).
 - `AlgebraicAnalysis.BernsteinInequality` is statement-only and remains open;
