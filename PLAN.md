@@ -1,6 +1,6 @@
 # AlgebraicAnalysis formal status
 
-Updated 2026-09-14. This repository owns reusable, application-independent
+Updated 2026-09-15. This repository owns reusable, application-independent
 Lean foundations; downstream Stafford, Björk, JC2, and Navier projects own
 their application-specific proof assembly.
 
@@ -21,6 +21,12 @@ their application-specific proof assembly.
   two residual-exponent inequalities control accumulated floor and truncated
   subtraction losses in finite filtered convolutions; concrete consumers are
   in `AlgebraicAnalysisTest/Combinatorics/FiniteFloorSum.lean`.
+- `RatFunc.atInfinity` constructs the variable-inversion homomorphism into
+  Laurent series, and `RatFunc.coeff_atInfinity_eq_polynomialPart` identifies
+  its nonpositive Laurent coefficients with the Euclidean polynomial part.
+  The independent orientation and proper-fraction oracle is
+  `AlgebraicAnalysisTest/RingTheory/RatFuncAtInfinity.lean`; the downstream
+  consumer is `jc2-formal`'s cubic-chart expansion exchange.
 - `AlgebraicAnalysis.BernsteinInequality` is statement-only and remains open;
   its field binder now explicitly requires `CharZero K`.
 - The pre-repair arbitrary-field statement was false: the first Weyl algebra over
