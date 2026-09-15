@@ -32,8 +32,10 @@ their application-specific proof assembly.
   consumer is `jc2-formal`'s cubic-chart expansion exchange.
 - `LaurentPolynomial.diagonalMap` gives the finite-support exponent regrading
   `(ell, q) ↦ (ell - q, q)`; `affineDiagonal_monomial` includes arbitrary
-  affine shifts and fixes both exponent orientations. Its concrete hostile
-  orientation oracle is
+  affine shifts and fixes both exponent orientations. `affineDiagonal_pow`
+  proves that taking a natural power scales both affine shifts, the exact law
+  needed by downstream finite expansion exchange. Its concrete hostile
+  orientation and power oracle is
   `AlgebraicAnalysisTest/RingTheory/LaurentDiagonal.lean`.
 - `AlgebraicAnalysis.BernsteinInequality` is statement-only and remains open;
   its field binder now explicitly requires `CharZero K`.

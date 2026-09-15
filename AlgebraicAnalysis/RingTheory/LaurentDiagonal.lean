@@ -118,4 +118,15 @@ theorem affineDiagonal_monomial (A B ell q : ℤ) :
       congr 2
       ring
 
+/-- Taking a natural power scales both affine shifts. -/
+theorem affineDiagonal_pow (A B : ℤ) (p : Iterated R) (n : ℕ) :
+    (affineDiagonal A B p) ^ n =
+      affineDiagonal (n * A) (n * B) (p ^ n) := by
+  rw [affineDiagonal, affineDiagonal, map_pow]
+  rw [mul_pow]
+  congr 1
+  rw [mul_pow, T_pow, ← map_pow C, T_pow]
+  congr 2
+  ring
+
 end LaurentPolynomial

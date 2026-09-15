@@ -39,4 +39,20 @@ example :
     (fun p : _root_.LaurentPolynomial ℚ => p.coeff (-1)) hz
   norm_num [T_apply] at hm1
 
+/-- Powers multiply both affine shifts and preserve the concrete orientation. -/
+example :
+    (affineDiagonal (R := ℚ) 2 3
+        ((C (T (-4)) : Iterated ℚ) * T 7)) ^ 2 =
+      (T 18 : Iterated ℚ) * C (T (-2)) := by
+  rw [affineDiagonal_monomial, mul_pow, T_pow, ← map_pow C, T_pow]
+  norm_num
+
+/-- API oracle for the shift-scaling power law. -/
+example :
+    (affineDiagonal (R := ℚ) 2 3
+        ((C (T (-4)) : Iterated ℚ) * T 7)) ^ 2 =
+      affineDiagonal 4 6
+        (((C (T (-4)) : Iterated ℚ) * T 7) ^ 2) := by
+  exact affineDiagonal_pow 2 3 _ 2
+
 end LaurentPolynomial
