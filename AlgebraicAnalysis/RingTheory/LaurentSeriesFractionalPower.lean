@@ -37,6 +37,13 @@ def LaurentSeries.monicNegativeFractionalPower
     HahnSeries.ofPowerSeries ℤ K
       ((PowerSeries.binomialSeries K (-((j : K) / (m : K)))).subst u)
 
+/-- The normalized monic Laurent series `X⁻ᵐ (1+u)` associated to a
+zero-constant tail. -/
+def LaurentSeries.normalizedMonicSeries
+    (u : PowerSeries K) (m : ℕ) : LaurentSeries K :=
+  HahnSeries.single (-(m : ℤ)) 1 *
+    HahnSeries.ofPowerSeries ℤ K (1 + u)
+
 private theorem LaurentSeries.monicNegativeFractionalPower_rootSeries_constantCoeff
     (u : PowerSeries K) (hu : PowerSeries.constantCoeff u = 0)
     (j m : ℕ) :
@@ -76,6 +83,45 @@ theorem LaurentSeries.monicNegativeFractionalPower_coeff_self
   exact
     LaurentSeries.monicNegativeFractionalPower_rootSeries_constantCoeff
       u hu j m
+
+/-- The normalized negative fractional power has the expected algebraic
+relation with its normalized monic Laurent series. -/
+theorem LaurentSeries.monicNegativeFractionalPower_pow_mul_normalizedMonicSeries_pow
+    (u : PowerSeries K) (hu : PowerSeries.constantCoeff u = 0)
+    (j m : ℕ) (hm : m ≠ 0) :
+    (LaurentSeries.monicNegativeFractionalPower u j m) ^ m *
+        (LaurentSeries.normalizedMonicSeries u m) ^ j = 1 := by
+  have hseries :=
+    PowerSeries.subst_binomialSeries_neg_div_pow_mul_one_add_pow
+      u hu j m hm
+  have hmap := congrArg (HahnSeries.ofPowerSeries ℤ K) hseries
+  simp only [map_mul, map_pow, map_one] at hmap
+  have hsingle_pow (a : ℤ) (n : ℕ) :
+      (HahnSeries.single a (1 : K)) ^ n =
+        HahnSeries.single ((n : ℤ) * a) 1 := by
+    induction n with
+    | zero => simp
+    | succ n ih =>
+        rw [pow_succ, ih, HahnSeries.single_mul_single]
+        congr 2
+        · push_cast
+          ring
+        · simp
+  rw [LaurentSeries.monicNegativeFractionalPower,
+    LaurentSeries.normalizedMonicSeries, mul_pow, mul_pow]
+  calc
+    _ =
+        ((HahnSeries.single (j : ℤ) (1 : K)) ^ m *
+          (HahnSeries.single (-(m : ℤ)) (1 : K)) ^ j) *
+        ((HahnSeries.ofPowerSeries ℤ K
+            ((PowerSeries.binomialSeries K
+              (-((j : K) / (m : K)))).subst u)) ^ m *
+          (HahnSeries.ofPowerSeries ℤ K (1 + u)) ^ j) := by ring
+    _ = 1 := by
+      rw [hmap, mul_one, hsingle_pow, hsingle_pow,
+        HahnSeries.single_mul_single]
+      convert (show HahnSeries.single (0 : ℤ) (1 : K) = 1 by simp) using 1
+      ring_nf
 
 end
 

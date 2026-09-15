@@ -79,6 +79,22 @@ theorem subst_binomialSeries_div_pow
     u hu m j ((j : L) / (m : L))
   field_simp
 
+/-- The negative fractional binomial series is the multiplicative inverse of
+the corresponding positive power after taking the denominator power. -/
+theorem subst_binomialSeries_neg_div_pow_mul_one_add_pow
+    (u : L⟦X⟧) (hu : constantCoeff u = 0) (j m : ℕ) (hm : m ≠ 0) :
+    ((binomialSeries L (-((j : L) / (m : L)))).subst u) ^ m *
+        (1 + u) ^ j = 1 := by
+  have huSubst : HasSubst u := HasSubst.of_constantCoeff_zero' hu
+  have hprod :
+      (binomialSeries L (-((j : L) / (m : L)))).subst u *
+          (binomialSeries L ((j : L) / (m : L))).subst u = 1 := by
+    rw [← subst_mul huSubst, ← binomialSeries_add]
+    simp only [neg_add_cancel, binomialSeries_zero]
+    rw [← coe_substAlgHom huSubst]
+    simp
+  rw [← subst_binomialSeries_div_pow u hu j m hm, ← mul_pow, hprod, one_pow]
+
 end Field
 
 end PowerSeries
