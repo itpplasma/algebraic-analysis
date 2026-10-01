@@ -35,6 +35,10 @@ from v0.3.0; existing downstream pins remain valid.
 
 ## v0.3.2
 
+Archived at [10.5281/zenodo.22710109](https://doi.org/10.5281/zenodo.22710109).
+All 131 deposited files match the signed tag `v0.3.2`; see the
+[archive receipt](releases/zenodo-22710109-verified.json).
+
 Mathematics release at `8c1c96e09d15a39e80f31d28522e96a3a252425c`, on top of
 v0.3.1. Lean v4.33.0 and Mathlib
 `db584cd6d46c92f209a44c0f1c829460d327499d` are unchanged. Adds:
