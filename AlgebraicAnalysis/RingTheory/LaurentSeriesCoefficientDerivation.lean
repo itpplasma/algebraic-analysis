@@ -1,6 +1,9 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 
-import AlgebraicAnalysis.RingTheory.LaurentSeriesResidue
+module
+public import AlgebraicAnalysis.RingTheory.LaurentSeriesResidue
+
+@[expose] public section
 
 /-!
 # Coefficientwise derivations of Laurent series

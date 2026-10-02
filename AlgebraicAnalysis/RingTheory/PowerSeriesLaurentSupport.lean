@@ -1,6 +1,9 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 
-import Mathlib.RingTheory.LaurentSeries
+module
+public import Mathlib.RingTheory.LaurentSeries
+
+@[expose] public section
 
 /-!
 # Affine support bounds for power series with Laurent coefficients

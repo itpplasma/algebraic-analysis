@@ -1,6 +1,9 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 
-import Mathlib.Algebra.Polynomial.Laurent
+module
+public import Mathlib.Algebra.Polynomial.Laurent
+
+@[expose] public section
 
 /-!
 # Diagonal regrading of iterated Laurent polynomials

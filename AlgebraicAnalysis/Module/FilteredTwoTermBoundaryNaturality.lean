@@ -1,5 +1,8 @@
-import AlgebraicAnalysis.Module.FilteredTwoTermTotalActions
-import AlgebraicAnalysis.Module.FilteredTwoTermBoundaryExhaustion
+module
+public import AlgebraicAnalysis.Module.FilteredTwoTermTotalActions
+public import AlgebraicAnalysis.Module.FilteredTwoTermBoundaryExhaustion
+
+@[expose] public section
 
 /-!
 # Naturality of the target boundary maps

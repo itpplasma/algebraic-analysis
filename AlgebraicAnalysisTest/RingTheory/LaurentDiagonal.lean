@@ -1,7 +1,10 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 
-import AlgebraicAnalysis.RingTheory.LaurentDiagonal
-import Mathlib.Tactic
+module
+public import AlgebraicAnalysis.RingTheory.LaurentDiagonal
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! Concrete orientation oracle for the affine diagonal Laurent regrading. -/
 

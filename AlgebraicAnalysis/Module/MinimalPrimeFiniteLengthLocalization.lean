@@ -1,10 +1,13 @@
-import Mathlib.RingTheory.FiniteLength
-import Mathlib.Algebra.Module.Torsion.Basic
-import Mathlib.RingTheory.Finiteness.Ideal
-import Mathlib.RingTheory.Ideal.MinimalPrime.Localization
-import Mathlib.RingTheory.Localization.Finiteness
-import Mathlib.RingTheory.Noetherian.Basic
-import Mathlib.RingTheory.Support
+module
+public import Mathlib.RingTheory.FiniteLength
+public import Mathlib.Algebra.Module.Torsion.Basic
+public import Mathlib.RingTheory.Finiteness.Ideal
+public import Mathlib.RingTheory.Ideal.MinimalPrime.Localization
+public import Mathlib.RingTheory.Localization.Finiteness
+public import Mathlib.RingTheory.Noetherian.Basic
+public import Mathlib.RingTheory.Support
+
+@[expose] public section
 
 /-!
 # Finite length at a minimal prime of a finite module
@@ -80,7 +83,7 @@ theorem finiteLength_of_maximalIdeal_pow_smul_eq_bot
                   exact p.smul_mem a hx }
             left_inv := by intro p; ext; rfl
             right_inv := by intro p; ext; rfl }
-        exact ⟨e.symm.toOrderEmbedding.wellFounded hQartinianQuot.wf⟩
+        exact e.symm.strictMono.wellFoundedLT
       rw [isFiniteLength_iff_isNoetherian_isArtinian]
       exact ⟨inferInstance,
         (isArtinian_iff_submodule_quotient N).mpr

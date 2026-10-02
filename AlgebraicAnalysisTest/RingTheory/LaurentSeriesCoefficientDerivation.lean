@@ -1,8 +1,11 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 
-import AlgebraicAnalysis.RingTheory.LaurentSeriesCoefficientDerivation
-import Mathlib.Algebra.Polynomial.Derivation
-import Mathlib.Tactic
+module
+public import AlgebraicAnalysis.RingTheory.LaurentSeriesCoefficientDerivation
+public import Mathlib.Algebra.Polynomial.Derivation
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! Concrete coefficient, residue, and commutation oracles. -/
 

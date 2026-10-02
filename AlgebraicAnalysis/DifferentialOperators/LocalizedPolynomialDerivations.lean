@@ -1,6 +1,9 @@
-import Mathlib.RingTheory.Etale.Kaehler
-import Mathlib.RingTheory.Kaehler.Polynomial
-import Mathlib.RingTheory.Derivation.Lie
+module
+public import Mathlib.RingTheory.Etale.Kaehler
+public import Mathlib.RingTheory.Kaehler.Polynomial
+public import Mathlib.RingTheory.Derivation.Lie
+
+@[expose] public section
 
 /-!
 # Derivations through localizations

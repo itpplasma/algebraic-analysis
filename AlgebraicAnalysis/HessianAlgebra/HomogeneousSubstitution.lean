@@ -1,8 +1,11 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 -- Modified by itpplasma/algebraic-analysis: package module path changed.
 
-import AlgebraicAnalysis.HessianAlgebra.PolynomialMap
-import Mathlib.RingTheory.MvPolynomial.Homogeneous
+module
+public import AlgebraicAnalysis.HessianAlgebra.PolynomialMap
+public import Mathlib.RingTheory.MvPolynomial.Homogeneous
+
+@[expose] public section
 
 /-! Homogeneous components commute with substitutions by linear homogeneous maps. -/
 

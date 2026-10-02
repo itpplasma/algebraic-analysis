@@ -1,10 +1,13 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 
-import AlgebraicAnalysis.DifferentialOperators.LocalizedPolynomialDerivations
-import AlgebraicAnalysis.RingTheory.LaurentSeriesCoefficientDerivation
-import AlgebraicAnalysis.RingTheory.LaurentSeriesResidue
-import Mathlib.Algebra.Polynomial.Taylor
-import Mathlib.FieldTheory.RatFunc.Basic
+module
+public import AlgebraicAnalysis.DifferentialOperators.LocalizedPolynomialDerivations
+public import AlgebraicAnalysis.RingTheory.LaurentSeriesCoefficientDerivation
+public import AlgebraicAnalysis.RingTheory.LaurentSeriesResidue
+public import Mathlib.Algebra.Polynomial.Taylor
+public import Mathlib.FieldTheory.RatFunc.Basic
+
+@[expose] public section
 
 /-!
 # Rational functions at a finite point
@@ -196,8 +199,7 @@ private theorem residue_inverse_sq_X_mul {K : Type*} [Field K]
     ring
   rw [heq, LaurentSeries.residue_apply, HahnSeries.coeff_single_mul]
   norm_num
-  rw [← map_pow]
-  exact HahnSeries.ofPowerSeries_apply_coeff (Γ := ℤ) (u⁻¹ ^ 2) 1
+  exact HahnSeries.ofPowerSeries_apply_coeff (Γ := ℤ) ((u ^ 2)⁻¹) 1
 
 /-- At a simple root `a` of a polynomial `M`, the residue of `1 / M²` is
 `-M''(a) / M'(a)³`. -/

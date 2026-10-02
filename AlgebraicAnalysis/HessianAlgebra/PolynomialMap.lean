@@ -1,7 +1,10 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 -- Modified by itpplasma/algebraic-analysis: package module path changed.
 
-import Mathlib.Algebra.MvPolynomial.PDeriv
+module
+public import Mathlib.Algebra.MvPolynomial.PDeriv
+
+@[expose] public section
 
 /-!
 Calculus for polynomial self maps.  The coefficient field and the finite set

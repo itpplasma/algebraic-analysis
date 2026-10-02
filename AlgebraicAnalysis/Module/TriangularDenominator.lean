@@ -1,4 +1,7 @@
-import AlgebraicAnalysis.Ore.RightIntersection
+module
+public import AlgebraicAnalysis.Ore.RightIntersection
+
+@[expose] public section
 
 /-!
 # Generic finite triangular denominator arguments

@@ -1,7 +1,10 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 
-import AlgebraicAnalysis.RingTheory.RatFuncAtInfinity
-import Mathlib.Tactic
+module
+public import AlgebraicAnalysis.RingTheory.RatFuncAtInfinity
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! Concrete orientation and proper-fraction oracles for rational expansion at infinity. -/
 

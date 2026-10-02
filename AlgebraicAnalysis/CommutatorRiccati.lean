@@ -1,5 +1,8 @@
-import Mathlib
-import AlgebraicAnalysis.Commutator
+module
+public import Mathlib
+public import AlgebraicAnalysis.Commutator
+
+@[expose] public section
 
 /-!
 # Inverse-Euler/Riccati commutator identities

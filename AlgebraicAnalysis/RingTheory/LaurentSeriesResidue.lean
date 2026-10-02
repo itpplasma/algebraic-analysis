@@ -1,5 +1,8 @@
-import Mathlib.RingTheory.LaurentSeries
-import Mathlib.RingTheory.PowerSeries.Derivative
+module
+public import Mathlib.RingTheory.LaurentSeries
+public import Mathlib.RingTheory.PowerSeries.Derivative
+
+@[expose] public section
 
 /-!
 # The residue of a Laurent series
@@ -88,12 +91,12 @@ here is matching up the `ℕ`-indexed and `ℤ`-indexed coefficient conventions,
 including that both sides vanish at every negative index. -/
 theorem LaurentSeries.derivative_ofPowerSeries (f : PowerSeries K) :
     LaurentSeries.derivative K (HahnSeries.ofPowerSeries ℤ K f) =
-      HahnSeries.ofPowerSeries ℤ K (PowerSeries.derivative K f) := by
+      HahnSeries.ofPowerSeries ℤ K (PowerSeries.derivative (R := K) f) := by
   ext n
   rw [LaurentSeries.derivative_apply, LaurentSeries.hasseDeriv_coeff]
   simp only [Nat.cast_one]
   rcases lt_or_ge n 0 with hn | hn
-  · rw [LaurentSeries.ofPowerSeries_coeff_of_neg (PowerSeries.derivative K f) hn]
+  · rw [LaurentSeries.ofPowerSeries_coeff_of_neg (PowerSeries.derivative (R := K) f) hn]
     rcases eq_or_lt_of_le (by omega : n + 1 ≤ 0) with h1 | h1
     · rw [h1]
       simp

@@ -1,6 +1,9 @@
-import Mathlib.Algebra.Module.LocalizedModule.Basic
-import Mathlib.RingTheory.Localization.Module
-import Mathlib.RingTheory.Noetherian.Filter
+module
+public import Mathlib.Algebra.Module.LocalizedModule.Basic
+public import Mathlib.RingTheory.Localization.Module
+public import Mathlib.RingTheory.Noetherian.Filter
+
+@[expose] public section
 
 /-!
 # Uniform vanishing of an ascending family of boundary maps

@@ -1,5 +1,8 @@
-import Mathlib.Algebra.Polynomial.Reverse
-import Mathlib.RingTheory.PowerSeries.Trunc
+module
+public import Mathlib.Algebra.Polynomial.Reverse
+public import Mathlib.RingTheory.PowerSeries.Trunc
+
+@[expose] public section
 
 /-!
 # Fixed-degree reversal of a power-series truncation

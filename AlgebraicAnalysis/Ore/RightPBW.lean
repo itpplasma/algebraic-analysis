@@ -1,6 +1,9 @@
-import AlgebraicAnalysis.Ore.RightHilbertBasis
-import Mathlib.LinearAlgebra.Basis.Basic
-import Mathlib.LinearAlgebra.Finsupp.LinearCombination
+module
+public import AlgebraicAnalysis.Ore.RightHilbertBasis
+public import Mathlib.LinearAlgebra.Basis.Basic
+public import Mathlib.LinearAlgebra.Finsupp.LinearCombination
+
+@[expose] public section
 
 /-!
 # Right-coefficient PBW data for one derivation-Ore stage

@@ -1,6 +1,9 @@
-import AlgebraicAnalysis.Module.FilteredTwoTermBoundaryNaturality
-import AlgebraicAnalysis.Module.FilteredTwoTermSuccessorNaturality
-import AlgebraicAnalysis.Module.CommutingPolynomialAction
+module
+public import AlgebraicAnalysis.Module.FilteredTwoTermBoundaryNaturality
+public import AlgebraicAnalysis.Module.FilteredTwoTermSuccessorNaturality
+public import AlgebraicAnalysis.Module.CommutingPolynomialAction
+
+@[expose] public section
 
 /-! A concrete filtered zero differential and identity page action consumer. -/
 

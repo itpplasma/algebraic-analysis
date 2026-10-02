@@ -1,4 +1,7 @@
-import AlgebraicAnalysis.RingTheory.PowerSeriesReverseTrunc
+module
+public import AlgebraicAnalysis.RingTheory.PowerSeriesReverseTrunc
+
+@[expose] public section
 
 /-!
 Independent behavioral check for fixed-degree power-series reversal.  The

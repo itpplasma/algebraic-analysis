@@ -1,5 +1,8 @@
-import Mathlib.RingTheory.LocalRing.Module
-import Mathlib.LinearAlgebra.Matrix.Basis
+module
+public import Mathlib.RingTheory.LocalRing.Module
+public import Mathlib.LinearAlgebra.Matrix.Basis
+
+@[expose] public section
 
 /-!
 # Matrix coordinates for a finite-rank direct summand

@@ -1,6 +1,9 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 
-import AlgebraicAnalysis.RingTheory.LaurentSeriesMomentPolynomial
+module
+public import AlgebraicAnalysis.RingTheory.LaurentSeriesMomentPolynomial
+
+@[expose] public section
 
 namespace AlgebraicAnalysisTest.LaurentSeriesMomentPolynomial
 

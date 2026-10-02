@@ -1,8 +1,14 @@
 # AlgebraicAnalysis formal status
 
-Updated 2026-09-15. This repository owns reusable, application-independent
+This repository owns reusable, application-independent
 Lean foundations; downstream Stafford, Björk, JC2, and Navier projects own
 their application-specific proof assembly.
+
+The build uses Lean 4.35.0-rc3 and official Mathlib revision
+`c55e6e786f49471c72fbddbec5415808896aec1e`. The full library, Hessian, and
+test targets pass; independently imported core declarations use only the
+standard Lean axioms. The toolchain migration changes exports and API usage
+without changing the mathematical statements.
 
 ## Current boundary
 

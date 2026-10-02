@@ -1,4 +1,9 @@
-import AlgebraicAnalysis.Ore.Associativity
+module
+public import AlgebraicAnalysis.Ore.Associativity
+public import Mathlib.Algebra.Module.MinimalAxioms
+public import Mathlib.RingTheory.Finiteness.Basic
+
+@[expose] public section
 
 /-!
 # Finite right quotients over noncommutative Ore coefficients

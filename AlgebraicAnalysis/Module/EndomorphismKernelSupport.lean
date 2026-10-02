@@ -1,5 +1,8 @@
-import Mathlib.RingTheory.Support
-import Mathlib.RingTheory.Noetherian.Orzech
+module
+public import Mathlib.RingTheory.Support
+public import Mathlib.RingTheory.Noetherian.Orzech
+
+@[expose] public section
 
 /-!
 # Kernel support is contained in cokernel support

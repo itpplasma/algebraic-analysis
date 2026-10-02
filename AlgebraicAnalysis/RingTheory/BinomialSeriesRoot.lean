@@ -1,5 +1,8 @@
-import Mathlib.RingTheory.PowerSeries.Binomial
-import Mathlib.RingTheory.PowerSeries.Substitution
+module
+public import Mathlib.RingTheory.PowerSeries.Binomial
+public import Mathlib.RingTheory.PowerSeries.Substitution
+
+@[expose] public section
 
 /-!
 # Fractional binomial roots after substitution

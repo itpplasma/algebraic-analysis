@@ -1,6 +1,9 @@
-import AlgebraicAnalysis.DifferentialOperators.Basic
-import AlgebraicAnalysis.LinearAlgebra.FiniteTaylorReconstruction
-import Mathlib.RingTheory.Derivation.Basic
+module
+public import AlgebraicAnalysis.DifferentialOperators.Basic
+public import AlgebraicAnalysis.LinearAlgebra.FiniteTaylorReconstruction
+public import Mathlib.RingTheory.Derivation.Basic
+
+@[expose] public section
 
 /-!
 # Generation from coordinates and coordinate derivations

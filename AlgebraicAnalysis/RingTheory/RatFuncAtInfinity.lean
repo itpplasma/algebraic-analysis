@@ -1,9 +1,12 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 
-import Mathlib.Algebra.Polynomial.Reverse
-import Mathlib.FieldTheory.RatFunc.AsPolynomial
-import Mathlib.FieldTheory.RatFunc.Degree
-import Mathlib.RingTheory.LaurentSeries
+module
+public import Mathlib.Algebra.Polynomial.Reverse
+public import Mathlib.FieldTheory.RatFunc.AsPolynomial
+public import Mathlib.FieldTheory.RatFunc.Degree
+public import Mathlib.RingTheory.LaurentSeries
+
+@[expose] public section
 
 /-!
 # Rational functions at infinity
@@ -21,7 +24,7 @@ namespace RatFunc
 
 variable (K : Type*) [Field K]
 
-private def invertPolynomial : K[X] →+* K⟮X⟯ :=
+def invertPolynomial : K[X] →+* K⟮X⟯ :=
   Polynomial.eval₂RingHom (algebraMap K K⟮X⟯) (RatFunc.X⁻¹)
 
 private theorem invertPolynomial_ne_zero {p : K[X]} (hp : p ≠ 0) :
@@ -45,7 +48,7 @@ private theorem invertPolynomial_ne_zero {p : K[X]} (hp : p ≠ 0) :
     simpa only [map_zero] using hmap
   exact hp (Polynomial.reflect_eq_zero_iff.mp hz)
 
-private theorem invertPolynomial_injective : Function.Injective (invertPolynomial K) := by
+theorem invertPolynomial_injective : Function.Injective (invertPolynomial K) := by
   intro p q hpq
   apply sub_eq_zero.mp
   by_contra hp0
@@ -98,7 +101,7 @@ theorem coeff_atInfinity_algebraMap (p : K[X]) (k : ℕ) :
   induction p using Polynomial.induction_on' with
   | add p q hp hq =>
       rw [map_add, map_add, HahnSeries.coeff_add, hp, hq]
-      rfl
+      rw [Polynomial.coeff_add]
   | monomial n a =>
       rw [atInfinity_algebraMap]
       simp only [invertPolynomial, Polynomial.coe_eval₂RingHom,

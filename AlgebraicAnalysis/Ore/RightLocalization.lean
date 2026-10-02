@@ -1,6 +1,9 @@
-import Mathlib.RingTheory.OreLocalization.Ring
-import Mathlib.Algebra.Ring.Opposite
-import Mathlib.Algebra.Group.Units.Opposite
+module
+public import Mathlib.RingTheory.OreLocalization.Ring
+public import Mathlib.Algebra.Ring.Opposite
+public import Mathlib.Algebra.Group.Units.Opposite
+
+@[expose] public section
 
 /-!
 # Right Ore localization

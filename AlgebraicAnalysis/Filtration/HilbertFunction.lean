@@ -1,11 +1,14 @@
 -- SPDX-License-Identifier: Apache-2.0
-import Mathlib.LinearAlgebra.Dimension.DivisionRing
-import Mathlib.LinearAlgebra.Dimension.RankNullity
-import Mathlib.LinearAlgebra.Dimension.Constructions
-import Mathlib.Analysis.Polynomial.Basic
-import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
-import Mathlib.Order.Filter.AtTopBot.Archimedean
-import Mathlib.Data.EReal.Basic
+module
+public import Mathlib.LinearAlgebra.Dimension.DivisionRing
+public import Mathlib.LinearAlgebra.Dimension.RankNullity
+public import Mathlib.LinearAlgebra.Dimension.Constructions
+public import Mathlib.Analysis.Polynomial.Basic
+public import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
+public import Mathlib.Order.Filter.AtTopBot.Archimedean
+public import Mathlib.Data.EReal.Basic
+
+@[expose] public section
 
 /-!
 # Hilbert functions of filtered modules and their growth degree

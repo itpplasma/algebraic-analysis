@@ -1,4 +1,7 @@
-import AlgebraicAnalysis.Module.EscapeSpan
+module
+public import AlgebraicAnalysis.Module.EscapeSpan
+
+@[expose] public section
 
 /-!
 # Finite-tuple central-coordinate escape

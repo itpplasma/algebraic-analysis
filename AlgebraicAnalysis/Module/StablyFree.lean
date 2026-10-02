@@ -1,4 +1,7 @@
-import Mathlib.RingTheory.Finiteness.Projective
+module
+public import Mathlib.RingTheory.Finiteness.Projective
+
+@[expose] public section
 
 /-!
 # Stable freeness interface for projective modules

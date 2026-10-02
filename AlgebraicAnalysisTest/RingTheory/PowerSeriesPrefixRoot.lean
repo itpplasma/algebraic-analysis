@@ -1,7 +1,10 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 
-import AlgebraicAnalysis.RingTheory.PowerSeriesPrefixRoot
-import Mathlib.Tactic
+module
+public import AlgebraicAnalysis.RingTheory.PowerSeriesPrefixRoot
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! Concrete prefix-recovery and hostile normalization oracles. -/
 

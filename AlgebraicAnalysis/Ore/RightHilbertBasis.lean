@@ -1,5 +1,9 @@
-import AlgebraicAnalysis.Ore.RightQuotient
-import Mathlib.RingTheory.Noetherian.Filter
+module
+public import AlgebraicAnalysis.Ore.RightQuotient
+public import Mathlib.RingTheory.Noetherian.Filter
+public import Mathlib.RingTheory.Noetherian.Basic
+
+@[expose] public section
 
 /-!
 # The derivation-Ore right Hilbert-basis theorem

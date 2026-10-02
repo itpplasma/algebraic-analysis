@@ -1,8 +1,11 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 -- Modified by itpplasma/algebraic-analysis: package module path changed.
 
-import Mathlib.Algebra.MvPolynomial.PDeriv
-import Mathlib.RingTheory.MvPolynomial.Homogeneous
+module
+public import Mathlib.Algebra.MvPolynomial.PDeriv
+public import Mathlib.RingTheory.MvPolynomial.Homogeneous
+
+@[expose] public section
 
 /-! Formal partial derivatives preserve the homogeneous grading with degree shift. -/
 

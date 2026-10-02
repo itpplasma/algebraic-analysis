@@ -1,7 +1,10 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 
-import AlgebraicAnalysis.RingTheory.PowerSeriesLaurentSupport
-import Mathlib.Tactic
+module
+public import AlgebraicAnalysis.RingTheory.PowerSeriesLaurentSupport
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! Concrete threshold and hostile below-threshold oracles. -/
 

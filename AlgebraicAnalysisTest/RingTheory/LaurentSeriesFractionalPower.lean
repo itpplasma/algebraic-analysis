@@ -1,7 +1,10 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 
-import AlgebraicAnalysis.RingTheory.LaurentSeriesFractionalPower
-import Mathlib.Tactic
+module
+public import AlgebraicAnalysis.RingTheory.LaurentSeriesFractionalPower
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! Concrete leading-term and nontrivial-binomial controls. -/
 

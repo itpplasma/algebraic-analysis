@@ -1,4 +1,7 @@
-import AlgebraicAnalysis.Module.FreeSummandInduction
+module
+public import AlgebraicAnalysis.Module.FreeSummandInduction
+
+@[expose] public section
 
 /-!
 # A projective-image terminal module lemma

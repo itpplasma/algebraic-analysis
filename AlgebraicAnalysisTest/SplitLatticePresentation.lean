@@ -1,4 +1,7 @@
-import AlgebraicAnalysis.Module.SplitLatticePresentation
+module
+public import AlgebraicAnalysis.Module.SplitLatticePresentation
+
+@[expose] public section
 
 /-!
 # Concrete consumer for split lattice presentations

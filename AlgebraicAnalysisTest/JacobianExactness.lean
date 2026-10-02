@@ -1,6 +1,9 @@
-import AlgebraicAnalysis.Derivation.JacobianExactness
-import AlgebraicAnalysis.RingTheory.LaurentSeriesResidue
-import Mathlib.Algebra.MvPolynomial.PDeriv
+module
+public import AlgebraicAnalysis.Derivation.JacobianExactness
+public import AlgebraicAnalysis.RingTheory.LaurentSeriesResidue
+public import Mathlib.Algebra.MvPolynomial.PDeriv
+
+@[expose] public section
 
 /-! Independent tests for `Derivation.jacobian_exact_of_commute`
 (`AlgebraicAnalysis/Derivation/JacobianExactness.lean`) and for

@@ -1,4 +1,7 @@
-import AlgebraicAnalysis.Module.Unimodular
+module
+public import AlgebraicAnalysis.Module.Unimodular
+
+@[expose] public section
 
 /-!
 # Finite iteration of unimodular splittings

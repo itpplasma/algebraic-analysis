@@ -1,4 +1,7 @@
-import AlgebraicAnalysis.Derivation.Escape
+module
+public import AlgebraicAnalysis.Derivation.Escape
+
+@[expose] public section
 
 /-!
 # Right-sided span consequences of escape

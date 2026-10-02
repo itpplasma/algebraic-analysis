@@ -1,4 +1,7 @@
-import Mathlib.Algebra.Module.LocalizedModule.Submodule
+module
+public import Mathlib.Algebra.Module.LocalizedModule.Submodule
+
+@[expose] public section
 
 /-!
 # Kernel and cokernel equivalences for module localization

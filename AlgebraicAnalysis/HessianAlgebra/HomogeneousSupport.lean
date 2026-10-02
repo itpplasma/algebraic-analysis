@@ -1,7 +1,10 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 -- Modified by itpplasma/algebraic-analysis: package module path changed.
 
-import AlgebraicAnalysis.HessianAlgebra.HomogeneousSubstitution
+module
+public import AlgebraicAnalysis.HessianAlgebra.HomogeneousSubstitution
+
+@[expose] public section
 
 /-! Degree support bounds under homogeneous substitution. -/
 
@@ -18,15 +21,15 @@ variable {K : Type*} {σ : Type*} [Field K] [Fintype σ] [DecidableEq σ]
 preserved by substitution by degree-one homogeneous polynomials. -/
 theorem support_degree_predicate_substitute (g : σ → MvPolynomial σ K)
     (hg : ∀ i, (g i).IsHomogeneous 1) (H : MvPolynomial σ K)
-    (Q : ℕ → Prop) (hQ : ∀ e, coeff e H ≠ 0 → Q e.degree) :
-    ∀ e, coeff e (PolynomialMap.substitute g H) ≠ 0 → Q e.degree := by
+    (Q : ℕ → Prop) (hQ : ∀ e, H.coeff e ≠ 0 → Q e.degree) :
+    ∀ e, (PolynomialMap.substitute g H).coeff e ≠ 0 → Q e.degree := by
   intro e he
   by_contra hnot
   have hz : homogeneousComponent e.degree H = 0 := by
     apply homogeneousComponent_eq_zero'
     intro f hf hdeg
     exact hnot (hdeg ▸ hQ f (mem_support_iff.mp hf))
-  have hz' := congrArg (coeff e) (homogeneousComponent_substitute g hg e.degree H)
+  have hz' := congrArg (fun p => p.coeff e) (homogeneousComponent_substitute g hg e.degree H)
   rw [hz, (PolynomialMap.substitute g).map_zero] at hz'
   exact he (by simpa [coeff_homogeneousComponent] using hz')
 

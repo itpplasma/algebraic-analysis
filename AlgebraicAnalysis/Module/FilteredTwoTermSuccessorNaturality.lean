@@ -1,4 +1,7 @@
-import AlgebraicAnalysis.Module.FilteredTwoTermTotalActions
+module
+public import AlgebraicAnalysis.Module.FilteredTwoTermTotalActions
+
+@[expose] public section
 
 /-!
 # Naturality of the total successor maps

@@ -1,9 +1,12 @@
-import AlgebraicAnalysis.LinearAlgebra.FiniteTaylorReconstruction
-import AlgebraicAnalysis.DifferentialOperators.CoordinateGeneration
-import AlgebraicAnalysis.DifferentialOperators.LocalizedPolynomialDerivations
-import AlgebraicAnalysis.DifferentialOperators.LocalizedPolynomialCommutant
-import AlgebraicAnalysis.Ore.RightLocalization
-import AlgebraicAnalysis.RingTheory.TwoGeneratorIdentity
+module
+public import AlgebraicAnalysis.LinearAlgebra.FiniteTaylorReconstruction
+public import AlgebraicAnalysis.DifferentialOperators.CoordinateGeneration
+public import AlgebraicAnalysis.DifferentialOperators.LocalizedPolynomialDerivations
+public import AlgebraicAnalysis.DifferentialOperators.LocalizedPolynomialCommutant
+public import AlgebraicAnalysis.Ore.RightLocalization
+public import AlgebraicAnalysis.RingTheory.TwoGeneratorIdentity
+
+@[expose] public section
 
 /-!
 # Independent operator and localization consumers

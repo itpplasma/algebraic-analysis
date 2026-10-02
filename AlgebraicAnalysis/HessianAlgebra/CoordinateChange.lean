@@ -1,8 +1,11 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 -- Modified by itpplasma/algebraic-analysis: package module path changed.
 
-import AlgebraicAnalysis.HessianAlgebra.AffineInverse
-import Mathlib.Data.Matrix.Basic
+module
+public import AlgebraicAnalysis.HessianAlgebra.AffineInverse
+public import Mathlib.Data.Matrix.Basic
+
+@[expose] public section
 
 /-! Polynomial substitution identities for invertible linear changes of source coordinates. -/
 

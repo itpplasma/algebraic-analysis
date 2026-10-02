@@ -1,7 +1,10 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
-import Mathlib.Algebra.Algebra.Operations
-import Mathlib.LinearAlgebra.Span.Basic
-import Mathlib.RingTheory.Finiteness.Defs
+module
+public import Mathlib.Algebra.Algebra.Operations
+public import Mathlib.LinearAlgebra.Span.Basic
+public import Mathlib.RingTheory.Finiteness.Defs
+
+@[expose] public section
 
 /-!
 # Good filtrations on modules over a filtered ring

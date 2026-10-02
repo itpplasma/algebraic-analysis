@@ -1,0 +1,40 @@
+'AlgebraicAnalysis.OreAssociativity.rightMul_assoc_of_ring' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AlgebraicAnalysis.OreRightPBW.rightOrePBWBasis' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AlgebraicAnalysis.OreRightQuotient.twoGeneratorQuotient_finite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AlgebraicAnalysis.OreIteratedTower.build' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AlgebraicAnalysis.OreIteratedTower.iteratedNormalForm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AlgebraicAnalysis.SplitLatticePresentation.exists_splitMatrixPresentation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.sourceSuccEquivKerDrop' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AlgebraicAnalysis.FilteredTwoTermPages.FilteredTwoTerm.targetSuccEquivCokerDrop' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AlgebraicAnalysis.FunctionField.top_fg_of_finiteType_fractionRing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AlgebraicAnalysis.MvPolynomial.X_mem_of_homogeneous_mem_prime' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PowerSeries.subst_binomialSeries_div_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RatFunc.coeff_atInfinity_algebraMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RatFunc.residueAtPoint_derivative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AlgebraicAnalysis.PrincipalKoszulSupportOverBase.length_cokernel_gt_kernel_of_support_over_base' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AlgebraicAnalysis.StableTorsionResidualSupport.residual_nontrivial_of_support' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AlgebraicAnalysis.LocalizedMinimalSupportAvoidance.localized_minimalPrime_avoids' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AlgebraicAnalysis.MinimalPrimeFiniteLengthLocalization.localizedModule_nontrivial_and_isFiniteLength' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AlgebraicAnalysis.MinimalSupportExistence.exists_minimal_support_prime' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

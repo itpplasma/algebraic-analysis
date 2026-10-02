@@ -1,4 +1,7 @@
-import AlgebraicAnalysis.Ore.LeftPBW
+module
+public import AlgebraicAnalysis.Ore.LeftPBW
+
+@[expose] public section
 
 /-!
 # Commuting derivations and the next Ore stage

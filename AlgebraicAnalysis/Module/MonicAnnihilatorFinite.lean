@@ -1,7 +1,10 @@
-import Mathlib.RingTheory.AdjoinRoot
-import Mathlib.Algebra.Module.Torsion.Basic
-import Mathlib.RingTheory.Finiteness.Basic
-import Mathlib.RingTheory.Polynomial.Basic
+module
+public import Mathlib.RingTheory.AdjoinRoot
+public import Mathlib.Algebra.Module.Torsion.Basic
+public import Mathlib.RingTheory.Finiteness.Basic
+public import Mathlib.RingTheory.Polynomial.Basic
+
+@[expose] public section
 
 /-!
 # Finiteness from a monic annihilator

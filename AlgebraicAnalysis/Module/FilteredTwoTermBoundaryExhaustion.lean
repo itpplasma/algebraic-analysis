@@ -1,5 +1,8 @@
-import AlgebraicAnalysis.Module.FilteredTwoTermTotalPages
-import Mathlib.Algebra.DirectSum.Module
+module
+public import AlgebraicAnalysis.Module.FilteredTwoTermTotalPages
+public import Mathlib.Algebra.DirectSum.Module
+
+@[expose] public section
 
 /-!
 # Boundary exhaustion on the total target pages

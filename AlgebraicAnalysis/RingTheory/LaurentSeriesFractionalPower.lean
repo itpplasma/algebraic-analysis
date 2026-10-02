@@ -1,9 +1,12 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 
-import AlgebraicAnalysis.RingTheory.BinomialSeriesRoot
-import AlgebraicAnalysis.RingTheory.LaurentSeriesCoefficientDerivation
-import AlgebraicAnalysis.RingTheory.LaurentSeriesMomentPairing
-import Mathlib.Tactic.LinearCombination
+module
+public import AlgebraicAnalysis.RingTheory.BinomialSeriesRoot
+public import AlgebraicAnalysis.RingTheory.LaurentSeriesCoefficientDerivation
+public import AlgebraicAnalysis.RingTheory.LaurentSeriesMomentPairing
+public import Mathlib.Tactic.LinearCombination
+
+@[expose] public section
 
 /-!
 # Normalized negative fractional powers at infinity

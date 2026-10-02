@@ -1,4 +1,9 @@
-import Mathlib
+module
+public import Mathlib.LinearAlgebra.Quotient.Defs
+public import Mathlib.Algebra.Polynomial.BigOperators
+public import Mathlib.Tactic.NoncommRing
+
+@[expose] public section
 
 /-!
 # Right division in a coefficient-left derivation Ore model

@@ -1,7 +1,10 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 
-import AlgebraicAnalysis.RingTheory.RatFuncAtPoint
-import Mathlib.Tactic
+module
+public import AlgebraicAnalysis.RingTheory.RatFuncAtPoint
+public import Mathlib.Tactic
+
+@[expose] public section
 
 noncomputable section
 

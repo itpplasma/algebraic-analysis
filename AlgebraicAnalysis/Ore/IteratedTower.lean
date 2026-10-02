@@ -1,4 +1,7 @@
-import AlgebraicAnalysis.Ore.Tower
+module
+public import AlgebraicAnalysis.Ore.Tower
+
+@[expose] public section
 
 /-!
 # Finite iterated derivation-Ore towers

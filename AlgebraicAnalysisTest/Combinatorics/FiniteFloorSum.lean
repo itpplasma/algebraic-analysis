@@ -1,7 +1,10 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 
-import AlgebraicAnalysis.Combinatorics.FiniteFloorSum
-import Mathlib.Tactic
+module
+public import AlgebraicAnalysis.Combinatorics.FiniteFloorSum
+public import Mathlib.Tactic
+
+@[expose] public section
 
 open scoped BigOperators
 

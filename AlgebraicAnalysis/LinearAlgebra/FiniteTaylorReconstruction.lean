@@ -1,7 +1,10 @@
-import Mathlib.Algebra.Module.LinearMap.End
-import Mathlib.Data.Nat.Factorial.Cast
-import Mathlib.Data.Nat.Choose.Basic
-import Mathlib.Tactic
+module
+public import Mathlib.Algebra.Module.LinearMap.End
+public import Mathlib.Data.Nat.Factorial.Cast
+public import Mathlib.Data.Nat.Choose.Basic
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-!
 # Finite Taylor reconstruction

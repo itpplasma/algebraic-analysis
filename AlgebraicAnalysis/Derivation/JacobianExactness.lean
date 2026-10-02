@@ -1,5 +1,8 @@
-import Mathlib.RingTheory.Derivation.Basic
-import Mathlib.Tactic.LinearCombination
+module
+public import Mathlib.RingTheory.Derivation.Basic
+public import Mathlib.Tactic.LinearCombination
+
+@[expose] public section
 
 /-!
 # Exactness of the Jacobian divergence identity

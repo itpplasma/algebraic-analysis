@@ -1,5 +1,8 @@
-import Mathlib.RingTheory.Ideal.MinimalPrime.Basic
-import Mathlib.RingTheory.Support
+module
+public import Mathlib.RingTheory.Ideal.MinimalPrime.Basic
+public import Mathlib.RingTheory.Support
+
+@[expose] public section
 
 /-!
 # Existence of a minimal support prime

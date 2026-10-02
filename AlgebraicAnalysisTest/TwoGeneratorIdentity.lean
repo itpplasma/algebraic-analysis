@@ -1,5 +1,8 @@
-import Mathlib.Algebra.Ring.Rat
-import AlgebraicAnalysis.RingTheory.TwoGeneratorIdentity
+module
+public import Mathlib.Algebra.Ring.Rat
+public import AlgebraicAnalysis.RingTheory.TwoGeneratorIdentity
+
+@[expose] public section
 
 /-! Concrete and abstract consumers of unit-denominator transport. -/
 

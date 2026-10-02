@@ -1,8 +1,11 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 
-import Mathlib.Algebra.Order.Antidiag.Finsupp
-import Mathlib.Algebra.Order.Sub.Basic
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
+module
+public import Mathlib.Algebra.Order.Antidiag.Finsupp
+public import Mathlib.Algebra.Order.Sub.Basic
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+
+@[expose] public section
 
 /-!
 # Finite sums of natural-number quotients

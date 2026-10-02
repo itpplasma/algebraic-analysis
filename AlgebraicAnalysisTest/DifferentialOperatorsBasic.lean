@@ -1,6 +1,9 @@
-import AlgebraicAnalysis.DifferentialOperators.Basic
-import AlgebraicAnalysis.DifferentialOperators.CoordinateGeneration
-import Mathlib.RingTheory.Derivation.Basic
+module
+public import AlgebraicAnalysis.DifferentialOperators.Basic
+public import AlgebraicAnalysis.DifferentialOperators.CoordinateGeneration
+public import Mathlib.RingTheory.Derivation.Basic
+
+@[expose] public section
 
 open AlgebraicAnalysis.DifferentialOperators
 

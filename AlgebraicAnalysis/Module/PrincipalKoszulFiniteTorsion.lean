@@ -1,4 +1,7 @@
-import AlgebraicAnalysis.Module.PrincipalKoszulPositivity
+module
+public import AlgebraicAnalysis.Module.PrincipalKoszulPositivity
+
+@[expose] public section
 
 /-!
 # Finite power torsion for a principal Koszul endomorphism

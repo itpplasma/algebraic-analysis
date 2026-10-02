@@ -1,5 +1,8 @@
-import AlgebraicAnalysis.Module.EndomorphismKernelSupport
-import Mathlib.RingTheory.Ideal.Maps
+module
+public import AlgebraicAnalysis.Module.EndomorphismKernelSupport
+public import Mathlib.RingTheory.Ideal.Maps
+
+@[expose] public section
 
 /-!
 # Kernel support over a base ring

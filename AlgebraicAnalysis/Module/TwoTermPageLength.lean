@@ -1,6 +1,9 @@
-import Mathlib.RingTheory.Length
-import Mathlib.LinearAlgebra.Isomorphisms
-import Mathlib.Tactic
+module
+public import Mathlib.RingTheory.Length
+public import Mathlib.LinearAlgebra.Isomorphisms
+public import Mathlib.Tactic
+
+@[expose] public section
 
 namespace AlgebraicAnalysis.TwoTermPageLength
 

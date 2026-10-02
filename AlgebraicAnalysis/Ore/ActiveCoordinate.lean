@@ -1,4 +1,7 @@
-import AlgebraicAnalysis.Ore.Associativity
+module
+public import AlgebraicAnalysis.Ore.Associativity
+
+@[expose] public section
 
 /-!
 # Active-coordinate decomposition in a derivation Ore extension

@@ -1,5 +1,8 @@
-import Mathlib.RingTheory.OreLocalization.Ring
-import AlgebraicAnalysis.Ore.RightLocalization
+module
+public import Mathlib.RingTheory.OreLocalization.Ring
+public import AlgebraicAnalysis.Ore.RightLocalization
+
+@[expose] public section
 
 /-!
 # Two-generator identities and unit-denominator transport

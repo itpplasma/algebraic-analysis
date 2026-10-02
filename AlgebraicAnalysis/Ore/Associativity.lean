@@ -1,4 +1,8 @@
-import AlgebraicAnalysis.Ore.RightDivision
+module
+public import AlgebraicAnalysis.Ore.RightDivision
+public import Mathlib.Algebra.Ring.Subring.Basic
+
+@[expose] public section
 
 /-!
 # Associativity of derivation Ore normal forms over a noncommutative ring

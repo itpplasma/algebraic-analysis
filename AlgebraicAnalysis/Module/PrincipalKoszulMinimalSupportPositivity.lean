@@ -1,5 +1,8 @@
-import AlgebraicAnalysis.Module.PrincipalKoszulSupportOverBase
-import Mathlib.RingTheory.Support
+module
+public import AlgebraicAnalysis.Module.PrincipalKoszulSupportOverBase
+public import Mathlib.RingTheory.Support
+
+@[expose] public section
 
 /-!
 # Principal Koszul positivity from minimal support

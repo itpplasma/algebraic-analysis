@@ -1,6 +1,9 @@
-import AlgebraicAnalysis.Ore.Associativity
-import Mathlib.Algebra.Polynomial.Basis
-import Mathlib.LinearAlgebra.Basis.Basic
+module
+public import AlgebraicAnalysis.Ore.Associativity
+public import Mathlib.Algebra.Polynomial.Basis
+public import Mathlib.LinearAlgebra.Basis.Basic
+
+@[expose] public section
 
 /-!
 # Left PBW basis for a derivation Ore extension

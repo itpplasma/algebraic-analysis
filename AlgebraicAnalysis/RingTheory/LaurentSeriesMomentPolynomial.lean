@@ -1,6 +1,9 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 
-import AlgebraicAnalysis.RingTheory.LaurentSeriesFractionalPower
+module
+public import AlgebraicAnalysis.RingTheory.LaurentSeriesFractionalPower
+
+@[expose] public section
 
 /-!
 # Polynomial dependence of normalized Laurent moment coefficients
@@ -23,36 +26,36 @@ namespace AlgebraicAnalysis
 
 noncomputable section
 
-private abbrev UniversalCoeffPoly := MvPolynomial ℕ ℚ
+abbrev UniversalCoeffPoly := MvPolynomial ℕ ℚ
 
-private def universalCoefficientTail : PowerSeries UniversalCoeffPoly :=
+def universalCoefficientTail : PowerSeries UniversalCoeffPoly :=
   PowerSeries.mk
     (fun n => if _h : n = 0 then 0 else MvPolynomial.X (n - 1))
 
-private def universalNegativeFractionalRoot (j m : ℕ) :
+def universalNegativeFractionalRoot (j m : ℕ) :
     PowerSeries UniversalCoeffPoly :=
   (PowerSeries.binomialSeries UniversalCoeffPoly
       (algebraMap ℚ UniversalCoeffPoly (-((j : ℚ) / (m : ℚ))))).subst
     universalCoefficientTail
 
-private def universalNegativeFractionalFactor (j m : ℕ) :
+def universalNegativeFractionalFactor (j m : ℕ) :
     LaurentSeries UniversalCoeffPoly :=
   HahnSeries.single (j : ℤ) 1 *
     HahnSeries.ofPowerSeries ℤ UniversalCoeffPoly
       (universalNegativeFractionalRoot j m)
 
-private def universalNormalizedMonicSeries (m : ℕ) :
+def universalNormalizedMonicSeries (m : ℕ) :
     LaurentSeries UniversalCoeffPoly :=
   HahnSeries.single (-(m : ℤ)) 1 *
     HahnSeries.ofPowerSeries ℤ UniversalCoeffPoly
       (1 + universalCoefficientTail)
 
-private def universalAtInfinityDerivative (m : ℕ) :
+def universalAtInfinityDerivative (m : ℕ) :
     LaurentSeries UniversalCoeffPoly :=
   -(HahnSeries.single 2 1 *
     LaurentSeries.derivative ℤ (universalNormalizedMonicSeries m))
 
-private def universalMomentFactor (j m : ℕ) :
+def universalMomentFactor (j m : ℕ) :
     LaurentSeries UniversalCoeffPoly :=
   universalAtInfinityDerivative m * universalNegativeFractionalFactor j m
 

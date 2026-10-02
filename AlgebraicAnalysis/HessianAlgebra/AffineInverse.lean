@@ -1,8 +1,12 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 -- Modified by itpplasma/algebraic-analysis: package module path changed.
 
-import AlgebraicAnalysis.HessianAlgebra.PolynomialMap
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+module
+public import AlgebraicAnalysis.HessianAlgebra.PolynomialMap
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import Mathlib.Algebra.MvPolynomial.CommRing
+
+@[expose] public section
 
 /-! Explicit polynomial inverses for affine linear maps. -/
 
@@ -48,11 +52,25 @@ lemma affine_twoSidedInverse (A : Matrix σ σ K) (b : σ → K)
     simp_rw [hmatrix]
     simp [Matrix.one_apply]
   · intro i
-    simp [substitute, affine, affineInverse]
-    simp_rw [Finset.mul_sum]
+    simp [substitute, affine, affineInverse, MvPolynomial.eval₂_sub]
+    have hExpand (x : σ) :
+        C ((A⁻¹) i x) * (∑ j, C (A x j) * X j) =
+          ∑ j, C ((A⁻¹) i x) * C (A x j) * X j := by
+      simpa [mul_assoc] using Finset.mul_sum (Finset.univ : Finset σ)
+        (fun j => C (A x j) * X j) (C ((A⁻¹) i x))
+    simp_rw [hExpand]
+    have hprod (x j : σ) :
+        (C ((A⁻¹) i x) : Poly) * C (A x j) =
+          C ((A⁻¹) i x * A x j) := by
+      exact (map_mul (C : K →+* Poly) _ _).symm
+    simp_rw [hprod]
     rw [Finset.sum_comm]
-    simp_rw [← mul_assoc, ← map_mul]
-    simp_rw [← Finset.sum_mul]
+    have hsum (j : σ) :
+        ∑ x, C ((A⁻¹) i x * A x j) * X j =
+          (∑ x, C ((A⁻¹) i x * A x j)) * X j := by
+      exact (Finset.sum_mul (Finset.univ : Finset σ)
+        (fun x => C ((A⁻¹) i x * A x j)) (X j)).symm
+    simp_rw [hsum]
     have hC (j : σ) :
         (∑ x, (C ((A⁻¹) i x * A x j) : Poly)) =
           C (∑ x, (A⁻¹) i x * A x j) := by

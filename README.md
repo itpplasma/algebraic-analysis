@@ -4,6 +4,11 @@ Reusable Lean foundations for Ore and Weyl algebras, filtered rings and
 modules, algebraic differential operators, characteristic geometry, and
 related exact certificates.
 
+The current source uses Lean **4.35.0-rc3** and official Mathlib revision
+`c55e6e786f49471c72fbddbec5415808896aec1e`. The library, Hessian, and test
+targets pass on these pins; the migration preserves their mathematical
+statements.
+
 The repository contains reviewed Ore/PBW/tower foundations, including finite
 right-PBW bases for monic principal Ore quotients and generic right-ideal
 primitives for finite right-Ore intersections and minimal-degree principal
@@ -62,9 +67,9 @@ layer. The current statement is also invalid over arbitrary fields: an
 independent characteristic-two Weyl-module oracle exhibits the missing
 characteristic-zero boundary.
 
-Current documentation release: **v0.3.2**. Adds the filtered-ring, Hilbert-function and
+Latest archived release: **v0.3.2**. It contains the filtered-ring, Hilbert-function and
 Gelfand–Kirillov layer, and the shared `HessianAlgebra` package for polynomial
-self-map calculus. Lean/Mathlib pins are unchanged from v0.3.1; the Bernstein
+self-map calculus. That archive uses the same Lean/Mathlib pins as v0.3.1; the Bernstein
 inequality remains the stated open target of the filtration layer; its
 definition now makes the required characteristic-zero field boundary explicit,
 but the theorem remains unproved.

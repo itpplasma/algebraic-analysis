@@ -1,5 +1,8 @@
-import AlgebraicAnalysis.Module.FilteredTwoTermPages
-import Mathlib.LinearAlgebra.Isomorphisms
+module
+public import AlgebraicAnalysis.Module.FilteredTwoTermPages
+public import Mathlib.LinearAlgebra.Isomorphisms
+
+@[expose] public section
 
 /-!
 # Successor equivalences for the filtered two-term pages
@@ -20,19 +23,19 @@ namespace FilteredTwoTerm
 
 variable (K : FilteredTwoTerm k M)
 
-private abbrev sourceDenominator (r : ℕ) (p : ℤ) :
+abbrev sourceDenominator (r : ℕ) (p : ℤ) :
     Submodule k (K.cycles r p) :=
   (K.G (p + 1)).comap (K.cycles r p).subtype
 
-private abbrev targetDenominator (r : ℕ) (p : ℤ) :
+abbrev targetDenominator (r : ℕ) (p : ℤ) :
     Submodule k (K.G p) :=
   (K.boundaries r p).comap (K.G p).subtype
 
-private def sourceSuccInclusion (r : ℕ) (p : ℤ) :
+def sourceSuccInclusion (r : ℕ) (p : ℤ) :
     K.cycles (r + 1) p →ₗ[k] K.cycles r p :=
   Submodule.inclusion (K.cycles_succ_le r p)
 
-private theorem sourceSuccInclusion_denominator (r : ℕ) (p : ℤ) :
+theorem sourceSuccInclusion_denominator (r : ℕ) (p : ℤ) :
     K.sourceDenominator (r + 1) p ≤
       (K.sourceDenominator r p).comap (K.sourceSuccInclusion r p) := by
   intro x hx
@@ -50,7 +53,7 @@ def sourceSuccMap (r : ℕ) (p : ℤ) :
       Submodule.Quotient.mk (K.sourceSuccInclusion r p x) :=
   Submodule.mapQ_apply _ _ _ _
 
-private theorem drop_sourceSuccMap_eq_zero (r : ℕ) (p : ℤ)
+theorem drop_sourceSuccMap_eq_zero (r : ℕ) (p : ℤ)
     (x : K.SourcePage (r + 1) p) :
     K.drop r p (K.sourceSuccMap r p x) = 0 := by
   refine Submodule.Quotient.induction_on (K.sourceDenominator (r + 1) p) x ?_
@@ -65,7 +68,7 @@ def sourceSuccKernelMap (r : ℕ) (p : ℤ) :
   (K.sourceSuccMap r p).codRestrict (LinearMap.ker (K.drop r p))
     (K.drop_sourceSuccMap_eq_zero r p)
 
-private theorem sourceSuccMap_injective (r : ℕ) (p : ℤ) :
+theorem sourceSuccMap_injective (r : ℕ) (p : ℤ) :
     Function.Injective (K.sourceSuccMap r p) := by
   intro a b
   revert b
@@ -79,7 +82,7 @@ private theorem sourceSuccMap_injective (r : ℕ) (p : ℤ) :
     (Submodule.Quotient.eq (K.sourceDenominator r p)).1 hab
   exact hmem
 
-private theorem sourceSuccKernelMap_surjective (r : ℕ) (p : ℤ) :
+theorem sourceSuccKernelMap_surjective (r : ℕ) (p : ℤ) :
     Function.Surjective (K.sourceSuccKernelMap r p) := by
   rintro ⟨y, hy⟩
   obtain ⟨x, rfl⟩ := Submodule.Quotient.mk_surjective
@@ -112,7 +115,7 @@ def targetSuccMap (r : ℕ) (p : ℤ) :
     intro x hx
     exact K.boundaries_le_succ r p hx)
 
-@[simp] private theorem targetSuccMap_mk (r : ℕ) (p : ℤ)
+@[simp] theorem targetSuccMap_mk (r : ℕ) (p : ℤ)
     (x : K.G p) :
     K.targetSuccMap r p (Submodule.Quotient.mk x) =
       Submodule.Quotient.mk x :=
@@ -125,7 +128,7 @@ theorem targetSuccMap_surjective (r : ℕ) (p : ℤ) :
     (K.targetDenominator (r + 1) p) y
   exact ⟨Submodule.Quotient.mk x, K.targetSuccMap_mk r p x⟩
 
-private theorem targetSuccMap_drop_eq_zero (r : ℕ) (p : ℤ)
+theorem targetSuccMap_drop_eq_zero (r : ℕ) (p : ℤ)
     (x : K.SourcePage r p) :
     K.targetSuccMap r (p + r) (K.drop r p x) = 0 := by
   refine Submodule.Quotient.induction_on (K.sourceDenominator r p) x ?_
@@ -142,13 +145,13 @@ private theorem targetSuccMap_drop_eq_zero (r : ℕ) (p : ℤ)
   rw [hind]
   exact z.property.1
 
-private theorem range_drop_le_ker_targetSuccMap (r : ℕ) (p : ℤ) :
+theorem range_drop_le_ker_targetSuccMap (r : ℕ) (p : ℤ) :
     LinearMap.range (K.drop r p) ≤
       LinearMap.ker (K.targetSuccMap r (p + r)) := by
   rintro _ ⟨x, rfl⟩
   exact LinearMap.mem_ker.mpr (K.targetSuccMap_drop_eq_zero r p x)
 
-private theorem ker_targetSuccMap_le_range_drop (r : ℕ) (p : ℤ) :
+theorem ker_targetSuccMap_le_range_drop (r : ℕ) (p : ℤ) :
     LinearMap.ker (K.targetSuccMap r (p + r)) ≤
       LinearMap.range (K.drop r p) := by
   intro y hy
@@ -192,14 +195,14 @@ def targetCokernelMap (r : ℕ) (p : ℤ) :
   (LinearMap.range (K.drop r p)).liftQ (K.targetSuccMap r (p + r))
     (K.range_drop_le_ker_targetSuccMap r p)
 
-private theorem targetCokernelMap_injective (r : ℕ) (p : ℤ) :
+theorem targetCokernelMap_injective (r : ℕ) (p : ℤ) :
     Function.Injective (K.targetCokernelMap r p) := by
   rw [← LinearMap.ker_eq_bot]
   exact Submodule.ker_liftQ_eq_bot _ _
     (K.range_drop_le_ker_targetSuccMap r p)
     (K.ker_targetSuccMap_eq_range_drop r p).le
 
-private theorem targetCokernelMap_surjective (r : ℕ) (p : ℤ) :
+theorem targetCokernelMap_surjective (r : ℕ) (p : ℤ) :
     Function.Surjective (K.targetCokernelMap r p) := by
   intro y
   obtain ⟨x, rfl⟩ := K.targetSuccMap_surjective r (p + r) y

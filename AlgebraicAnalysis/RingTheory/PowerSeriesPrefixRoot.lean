@@ -1,8 +1,11 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 
-import Mathlib.Algebra.BigOperators.NatAntidiagonal
-import Mathlib.Algebra.Ring.GeomSum
-import Mathlib.RingTheory.PowerSeries.Basic
+module
+public import Mathlib.Algebra.BigOperators.NatAntidiagonal
+public import Mathlib.Algebra.Ring.GeomSum
+public import Mathlib.RingTheory.PowerSeries.Basic
+
+@[expose] public section
 
 /-!
 # Finite coefficient uniqueness for power-series roots

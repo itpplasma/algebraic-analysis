@@ -1,7 +1,10 @@
-import AlgebraicAnalysis.Module.BaseLocalizationModuleComparison
-import AlgebraicAnalysis.Module.LocalizedKernelCokernelEquivalences
-import AlgebraicAnalysis.Module.MonicAnnihilatorFinite
-import AlgebraicAnalysis.Module.TwoTermPageLength
+module
+public import AlgebraicAnalysis.Module.BaseLocalizationModuleComparison
+public import AlgebraicAnalysis.Module.LocalizedKernelCokernelEquivalences
+public import AlgebraicAnalysis.Module.MonicAnnihilatorFinite
+public import AlgebraicAnalysis.Module.TwoTermPageLength
+
+@[expose] public section
 
 /-!
 # Concrete consumers for localization and finite-module endpoints

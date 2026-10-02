@@ -1,13 +1,16 @@
-import AlgebraicAnalysis.HessianAlgebra.AffineInverse
-import AlgebraicAnalysis.HessianAlgebra.ConstantHessian
-import AlgebraicAnalysis.HessianAlgebra.CoordinateChange
-import AlgebraicAnalysis.HessianAlgebra.DerivativeKernel
-import AlgebraicAnalysis.HessianAlgebra.HessianCoordinateChange
-import AlgebraicAnalysis.HessianAlgebra.HomogeneousDifferential
-import AlgebraicAnalysis.HessianAlgebra.HomogeneousSubstitution
-import AlgebraicAnalysis.HessianAlgebra.HomogeneousSupport
-import AlgebraicAnalysis.HessianAlgebra.PolynomialMap
-import AlgebraicAnalysis.HessianAlgebra.TriangularInverse
+module
+public import AlgebraicAnalysis.HessianAlgebra.AffineInverse
+public import AlgebraicAnalysis.HessianAlgebra.ConstantHessian
+public import AlgebraicAnalysis.HessianAlgebra.CoordinateChange
+public import AlgebraicAnalysis.HessianAlgebra.DerivativeKernel
+public import AlgebraicAnalysis.HessianAlgebra.HessianCoordinateChange
+public import AlgebraicAnalysis.HessianAlgebra.HomogeneousDifferential
+public import AlgebraicAnalysis.HessianAlgebra.HomogeneousSubstitution
+public import AlgebraicAnalysis.HessianAlgebra.HomogeneousSupport
+public import AlgebraicAnalysis.HessianAlgebra.PolynomialMap
+public import AlgebraicAnalysis.HessianAlgebra.TriangularInverse
+
+@[expose] public section
 
 /-!
 Behavioral tests for the extracted polynomial-map API.  The expected values
@@ -42,7 +45,7 @@ example : affine (1 : M) 0 0 = (X 0 : P) := by
 example : affineInverse (1 : M) 0 1 = (X 1 : P) := by
   simp [affineInverse, Matrix.one_apply]
 
-example : (C 7 : P) = C (coeff 0 (C 7 : P)) := by
+example : (C 7 : P) = C ((C 7 : P).coeff 0) := by
   exact HessianAlgebra.eq_constant_of_pderiv_eq_zero (C 7 : P) (by simp)
 
 example : homogeneousComponent 2

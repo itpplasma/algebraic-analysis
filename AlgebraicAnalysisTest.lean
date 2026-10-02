@@ -1,24 +1,27 @@
-import AlgebraicAnalysis
-import AlgebraicAnalysisTest.Combinatorics.FiniteFloorSum
-import AlgebraicAnalysisTest.TwoGeneratorIdentity
-import AlgebraicAnalysisTest.DifferentialOperatorsBasic
-import AlgebraicAnalysisTest.CoordinateGenerationFiniteOrder
-import AlgebraicAnalysisTest.FilteredTwoTermPublication
-import AlgebraicAnalysisTest.LocalizationLengthPublication
-import AlgebraicAnalysisTest.OperatorLocalizationPublication
-import AlgebraicAnalysisTest.PolynomialMap
-import AlgebraicAnalysisTest.SplitLatticePresentation
-import AlgebraicAnalysisTest.JacobianExactness
-import AlgebraicAnalysisTest.BinomialSeriesRoot
-import AlgebraicAnalysisTest.RingTheory.RatFuncAtInfinity
-import AlgebraicAnalysisTest.RingTheory.RatFuncAtPoint
-import AlgebraicAnalysisTest.RingTheory.LaurentDiagonal
-import AlgebraicAnalysisTest.RingTheory.LaurentSeriesCoefficientDerivation
-import AlgebraicAnalysisTest.RingTheory.LaurentSeriesMomentPairing
-import AlgebraicAnalysisTest.RingTheory.LaurentSeriesFractionalPower
-import AlgebraicAnalysisTest.RingTheory.LaurentSeriesMomentPolynomial
-import AlgebraicAnalysisTest.RingTheory.PowerSeriesPrefixRoot
-import AlgebraicAnalysisTest.PowerSeriesReverseTrunc
+module
+public import AlgebraicAnalysis
+public import AlgebraicAnalysisTest.Combinatorics.FiniteFloorSum
+public import AlgebraicAnalysisTest.TwoGeneratorIdentity
+public import AlgebraicAnalysisTest.DifferentialOperatorsBasic
+public import AlgebraicAnalysisTest.CoordinateGenerationFiniteOrder
+public import AlgebraicAnalysisTest.FilteredTwoTermPublication
+public import AlgebraicAnalysisTest.LocalizationLengthPublication
+public import AlgebraicAnalysisTest.OperatorLocalizationPublication
+public import AlgebraicAnalysisTest.PolynomialMap
+public import AlgebraicAnalysisTest.SplitLatticePresentation
+public import AlgebraicAnalysisTest.JacobianExactness
+public import AlgebraicAnalysisTest.BinomialSeriesRoot
+public import AlgebraicAnalysisTest.RingTheory.RatFuncAtInfinity
+public import AlgebraicAnalysisTest.RingTheory.RatFuncAtPoint
+public import AlgebraicAnalysisTest.RingTheory.LaurentDiagonal
+public import AlgebraicAnalysisTest.RingTheory.LaurentSeriesCoefficientDerivation
+public import AlgebraicAnalysisTest.RingTheory.LaurentSeriesMomentPairing
+public import AlgebraicAnalysisTest.RingTheory.LaurentSeriesFractionalPower
+public import AlgebraicAnalysisTest.RingTheory.LaurentSeriesMomentPolynomial
+public import AlgebraicAnalysisTest.RingTheory.PowerSeriesPrefixRoot
+public import AlgebraicAnalysisTest.PowerSeriesReverseTrunc
+
+@[expose] public section
 
 /-! Small API consumer for the first extracted Ore slice. -/
 
@@ -462,7 +465,7 @@ example :
       intro h
       have h' := congrArg (fun f => f (1 : Fin 2)) h
       norm_num at h'
-    simp [MvPolynomial.coeff_add, MvPolynomial.coeff_X_pow, hne]
+    simp [MvPolynomial.coeff_X_pow, hne]
 
 example :
     let F : ℕ → Submodule ℚ ℚ := fun n ↦ if n = 0 then ⊥ else ⊤

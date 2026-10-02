@@ -1,5 +1,8 @@
-import Mathlib.RingTheory.Finiteness.Nakayama
-import Mathlib.RingTheory.Support
+module
+public import Mathlib.RingTheory.Finiteness.Nakayama
+public import Mathlib.RingTheory.Support
+
+@[expose] public section
 
 /-!
 # Algebraic hyperplane restriction

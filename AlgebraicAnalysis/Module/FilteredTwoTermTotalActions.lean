@@ -1,4 +1,7 @@
-import AlgebraicAnalysis.Module.FilteredTwoTermTotalPages
+module
+public import AlgebraicAnalysis.Module.FilteredTwoTermTotalPages
+
+@[expose] public section
 
 /-!
 # Total direct-sum actions on filtered two-term pages

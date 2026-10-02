@@ -1,6 +1,9 @@
-import AlgebraicAnalysis.Module.FilteredTwoTermPageEquivalences
-import AlgebraicAnalysis.Module.FilteredTwoTermPageActions
-import Mathlib.Algebra.DirectSum.Module
+module
+public import AlgebraicAnalysis.Module.FilteredTwoTermPageEquivalences
+public import AlgebraicAnalysis.Module.FilteredTwoTermPageActions
+public import Mathlib.Algebra.DirectSum.Module
+
+@[expose] public section
 
 /-!
 # Total direct sums of the filtered two-term pages

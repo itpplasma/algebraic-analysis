@@ -1,8 +1,11 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 -- Modified by itpplasma/algebraic-analysis: package module path changed.
 
-import AlgebraicAnalysis.HessianAlgebra.CoordinateChange
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+module
+public import AlgebraicAnalysis.HessianAlgebra.CoordinateChange
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+
+@[expose] public section
 
 /-! Hessian and Hessian-determinant identities under linear substitution. -/
 

@@ -1,6 +1,9 @@
-import AlgebraicAnalysis.Ore.IteratedTower
-import Mathlib.Algebra.Polynomial.Basis
-import Mathlib.LinearAlgebra.Basis.Basic
+module
+public import AlgebraicAnalysis.Ore.IteratedTower
+public import Mathlib.Algebra.Polynomial.Basis
+public import Mathlib.LinearAlgebra.Basis.Basic
+
+@[expose] public section
 
 /-!
 # Left-field PBW bases for the finite Ore tower

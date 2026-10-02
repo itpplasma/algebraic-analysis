@@ -1,5 +1,8 @@
-import AlgebraicAnalysis.RingTheory.BinomialSeriesRoot
-import Mathlib.FieldTheory.RatFunc.Basic
+module
+public import AlgebraicAnalysis.RingTheory.BinomialSeriesRoot
+public import Mathlib.FieldTheory.RatFunc.Basic
+
+@[expose] public section
 
 /-!
 Independent API and coefficient checks for substituted fractional binomial

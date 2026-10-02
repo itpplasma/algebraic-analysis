@@ -1,5 +1,8 @@
-import AlgebraicAnalysis.Module.FilteredTwoTermPages
-import Mathlib.LinearAlgebra.Isomorphisms
+module
+public import AlgebraicAnalysis.Module.FilteredTwoTermPages
+public import Mathlib.LinearAlgebra.Isomorphisms
+
+@[expose] public section
 
 /-!
 # Filtered operators on two-term pages
@@ -70,7 +73,7 @@ def reverseComp {e : ℤ} (Q : K.PageOperator e) : K.PageOperator (d + e) where
     have hQ := Q.shift (p - d) (P.g x) hP
     simpa [sub_eq_add_neg, add_assoc, add_comm, add_left_comm] using hQ
 
-private theorem coe_castG {p q : ℤ} (h : p = q) (x : K.G p) :
+theorem coe_castG {p q : ℤ} (h : p = q) (x : K.G p) :
     ((h ▸ x : K.G q) : M) = (x : M) := by
   subst q
   rfl
@@ -90,7 +93,7 @@ def sourceRestricted (r : ℕ) (p : ℤ) :
     have hindex : p + (r : ℤ) - d = p - d + (r : ℤ) := by omega
     rwa [hindex] at h)
 
-private theorem sourceRestricted_denominator (r : ℕ) (p : ℤ) :
+theorem sourceRestricted_denominator (r : ℕ) (p : ℤ) :
     (K.G (p + 1)).comap (K.cycles r p).subtype ≤
       ((K.G (p - d + 1)).comap (K.cycles r (p - d)).subtype).comap
         (P.sourceRestricted r p) := by
@@ -129,7 +132,7 @@ def targetRestricted (p : ℤ) : K.G p →ₗ[k] K.G (p - d) :=
   (P.g.comp (K.G p).subtype).codRestrict (K.G (p - d))
     (fun x => P.shift p (x : M) x.property)
 
-private theorem maps_boundaries (r : ℕ) (p : ℤ) {x : M}
+theorem maps_boundaries (r : ℕ) (p : ℤ) {x : M}
     (hx : x ∈ K.boundaries r p) : P.g x ∈ K.boundaries r (p - d) := by
   rcases Submodule.mem_sup.mp hx with ⟨a, ha, e, he, rfl⟩
   rw [map_add]
@@ -148,7 +151,7 @@ private theorem maps_boundaries (r : ℕ) (p : ℤ) {x : M}
     rw [hindex] at h
     exact ⟨0, Submodule.zero_mem _, P.g e, h, by simp⟩
 
-private theorem targetRestricted_denominator (r : ℕ) (p : ℤ) :
+theorem targetRestricted_denominator (r : ℕ) (p : ℤ) :
     (K.boundaries r p).comap (K.G p).subtype ≤
       ((K.boundaries r (p - d)).comap (K.G (p - d)).subtype).comap
         (P.targetRestricted p) := by
@@ -179,7 +182,7 @@ def targetPageCast (r : ℕ) {p q : ℤ} (h : p = q) :
   subst q
   rfl
 
-private def targetRestrictedAtDrop (r : ℕ) (p : ℤ) :
+def targetRestrictedAtDrop (r : ℕ) (p : ℤ) :
     K.G (p + r) →ₗ[k] K.G (p - d + r) :=
   (P.g.comp (K.G (p + r)).subtype).codRestrict (K.G (p - d + r)) (by
     intro x
@@ -187,7 +190,7 @@ private def targetRestrictedAtDrop (r : ℕ) (p : ℤ) :
     have hindex : p + (r : ℤ) - d = p - d + (r : ℤ) := by omega
     rwa [hindex] at h)
 
-private theorem targetRestrictedAtDrop_denominator (r : ℕ) (p : ℤ) :
+theorem targetRestrictedAtDrop_denominator (r : ℕ) (p : ℤ) :
     (K.boundaries r (p + r)).comap (K.G (p + r)).subtype ≤
       ((K.boundaries r (p - d + r)).comap (K.G (p - d + r)).subtype).comap
         (P.targetRestrictedAtDrop r p) := by

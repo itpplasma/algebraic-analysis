@@ -1,4 +1,7 @@
-import Mathlib.LinearAlgebra.Quotient.Basic
+module
+public import Mathlib.LinearAlgebra.Quotient.Basic
+
+@[expose] public section
 
 /-!
 # Strict filtered endomorphisms

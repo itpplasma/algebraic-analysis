@@ -1,5 +1,8 @@
-import AlgebraicAnalysis.Module.RankTorsion
-import Mathlib.LinearAlgebra.Dimension.DivisionRing
+module
+public import AlgebraicAnalysis.Module.RankTorsion
+public import Mathlib.LinearAlgebra.Dimension.DivisionRing
+
+@[expose] public section
 
 /-!
 # Rank additivity for split sequences

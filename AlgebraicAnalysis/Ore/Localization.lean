@@ -1,4 +1,7 @@
-import Mathlib.RingTheory.OreLocalization.Ring
+module
+public import Mathlib.RingTheory.OreLocalization.Ring
+
+@[expose] public section
 
 /-!
 # Generic Ore-localization facts

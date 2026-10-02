@@ -1,5 +1,8 @@
-import AlgebraicAnalysis.Module.PrincipalKoszulPositivity
-import Mathlib.RingTheory.Support
+module
+public import AlgebraicAnalysis.Module.PrincipalKoszulPositivity
+public import Mathlib.RingTheory.Support
+
+@[expose] public section
 
 /-!
 # Support detects the residual after stable scalar torsion
@@ -20,7 +23,7 @@ universe u v
 variable {R : Type u} {E : Type v}
 variable [CommRing R] [AddCommGroup E] [Module R E]
 
-private abbrev scalarEnd (x : R) : E →ₗ[R] E := LinearMap.lsmul R E x
+abbrev scalarEnd (x : R) : E →ₗ[R] E := LinearMap.lsmul R E x
 
 @[nolint unusedArguments]
 theorem residual_nontrivial_of_support

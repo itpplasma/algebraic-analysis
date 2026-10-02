@@ -1,7 +1,10 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 
-import AlgebraicAnalysis.RingTheory.LaurentSeriesMomentPairing
-import Mathlib.Tactic
+module
+public import AlgebraicAnalysis.RingTheory.LaurentSeriesMomentPairing
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! Concrete unit-triangular and missing-normalization controls. -/
 

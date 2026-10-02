@@ -1,12 +1,15 @@
 -- SPDX-License-Identifier: Apache-2.0
-import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
-import Mathlib.Data.Nat.Choose.Bounds
-import Mathlib.Data.Nat.Choose.Sum
-import Mathlib.Algebra.Order.Antidiag.FinsuppEquiv
-import Mathlib.RingTheory.MvPolynomial.Basic
-import Mathlib.LinearAlgebra.Dimension.StrongRankCondition
-import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
-import Mathlib.LinearAlgebra.Quotient.Basic
+module
+public import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
+public import Mathlib.Data.Nat.Choose.Bounds
+public import Mathlib.Data.Nat.Choose.Sum
+public import Mathlib.Algebra.Order.Antidiag.FinsuppEquiv
+public import Mathlib.RingTheory.MvPolynomial.Basic
+public import Mathlib.LinearAlgebra.Dimension.StrongRankCondition
+public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+public import Mathlib.LinearAlgebra.Quotient.Basic
+
+@[expose] public section
 
 /-!
 # Gelfand-Kirillov dimension of a filtered module

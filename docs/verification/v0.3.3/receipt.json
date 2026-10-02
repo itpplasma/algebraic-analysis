@@ -1,0 +1,39 @@
+{
+  "scope": "AlgebraicAnalysis v0.3.3 RC3 migration; no Stafford terminal theorem claim",
+  "source_base": "7a78c4be02238fc89d4c5fce01b39e898383ef05",
+  "source_tree_before_receipt": "55c93dae1c6feec1f7b07a26b7bc39550acb27ac",
+  "source_patch_sha256_before_receipt": "623b698635af33e0451865c51f66a095abca74250423f98eb2cba8715673d2f5",
+  "lean_toolchain": "leanprover/lean4:v4.35.0-rc3",
+  "lean_commit": "470d5ce1400764999581fd26d5d72b00d990b0f4",
+  "mathlib_commit": "c55e6e786f49471c72fbddbec5415808896aec1e",
+  "checks": [
+    {
+      "command": "lake build AlgebraicAnalysis AlgebraicAnalysisHessian AlgebraicAnalysisTest",
+      "exit_code": 0,
+      "build_jobs": 9081
+    },
+    {
+      "command": "lake test",
+      "exit_code": 0
+    },
+    {
+      "command": "lake env lean --trust=0 IndependentConsumer.lean",
+      "exit_code": 0,
+      "axiom_reports": 18,
+      "behavioral_examples": 5
+    }
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "cache_scope": "Pinned official Mathlib cache; library targets rebuilt under RC3. Subsequent library test and consumer replay reuse that RC3 build. No end-to-end Palomar resource claim.",
+  "files": {
+    "IndependentConsumer.lean": "2aca03399b8172ec2914b624348cb3f62f58ca9af3a686799239f202a9692eb0",
+    "independent-review.md": "5cff716cfb39ff3fdd3f1ed3d2715f8d752fa1165e6a1dd70017b597e4772a9f",
+    "build.log.gz": "2afee4e91131b5347f4b86b6a2257831c8a7124e5730a27892ddf55eb000a627",
+    "test.log.gz": "e808bb6bc011cb9460233542cf74a0f2b586c755bc6518da8f0896931f5382a6",
+    "independent-consumer.log": "289bcdce3567e5c4085e053e924ca3b7b06e7c8f8fb08481a373ca601a91affb"
+  }
+}

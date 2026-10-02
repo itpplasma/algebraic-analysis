@@ -1,4 +1,7 @@
-import Mathlib.Algebra.Algebra.Subalgebra.Basic
+module
+public import Mathlib.Algebra.Algebra.Subalgebra.Basic
+
+@[expose] public section
 
 /-!
 # Finite-order differential operators

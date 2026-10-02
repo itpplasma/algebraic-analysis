@@ -1,7 +1,10 @@
 /- SPDX-License-Identifier: Apache-2.0 -/
 -- Modified by itpplasma/algebraic-analysis: package module path changed.
-import Mathlib.Algebra.MvPolynomial.PDeriv
-import Mathlib.Tactic
+module
+public import Mathlib.Algebra.MvPolynomial.PDeriv
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! The common kernel of formal partial derivatives in characteristic zero. -/
 namespace HessianAlgebra
@@ -10,7 +13,7 @@ open MvPolynomial
 variable {σ K : Type*} [Field K] [CharZero K]
 
 theorem eq_constant_of_pderiv_eq_zero (f : MvPolynomial σ K)
-    (h : ∀ i, pderiv i f = 0) : f = C (coeff 0 f) := by
+    (h : ∀ i, pderiv i f = 0) : f = C (f.coeff 0) := by
   classical
   ext d
   by_cases hd : d = 0
@@ -30,15 +33,15 @@ theorem eq_constant_of_pderiv_eq_zero (f : MvPolynomial σ K)
       · subst j
         simpa using Nat.one_le_iff_ne_zero.mpr hi
       · simp [Finsupp.single_apply, hj]
-    have hc := congrArg (coeff e) (h i)
+    have hc := congrArg (fun p => p.coeff e) (h i)
     rw [coeff_pderiv, he] at hc
     have hn : (e i : K) + 1 ≠ 0 := by
       exact_mod_cast Nat.succ_ne_zero (e i)
-    have hz : coeff d f = 0 := (mul_eq_zero.mp (by simpa using hc)).resolve_right hn
+    have hz : f.coeff d = 0 := (mul_eq_zero.mp (by simpa using hc)).resolve_right hn
     simp [hz, hd, Ne.symm hd]
 
 theorem eq_zero_of_pderiv_eq_zero (f : MvPolynomial σ K)
-    (h : ∀ i, pderiv i f = 0) (h0 : coeff 0 f = 0) : f = 0 := by
+    (h : ∀ i, pderiv i f = 0) (h0 : f.coeff 0 = 0) : f = 0 := by
   rw [eq_constant_of_pderiv_eq_zero f h, h0, map_zero]
 
 end HessianAlgebra

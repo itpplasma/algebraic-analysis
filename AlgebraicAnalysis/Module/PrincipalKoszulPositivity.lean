@@ -1,6 +1,9 @@
-import AlgebraicAnalysis.Module.MinimalPrimeFiniteLengthLocalization
-import Mathlib.RingTheory.Length
-import Mathlib.RingTheory.Noetherian.Defs
+module
+public import AlgebraicAnalysis.Module.MinimalPrimeFiniteLengthLocalization
+public import Mathlib.RingTheory.Length
+public import Mathlib.RingTheory.Noetherian.Defs
+
+@[expose] public section
 
 /-!
 # Positivity for a principal Koszul quotient
@@ -23,7 +26,7 @@ variable {R : Type u} {E : Type v}
 variable [CommRing R]
 variable [AddCommGroup E] [Module R E]
 
-private abbrev scalarEnd (x : R) : E →ₗ[R] E := LinearMap.lsmul R E x
+abbrev scalarEnd (x : R) : E →ₗ[R] E := LinearMap.lsmul R E x
 
 /--
 The `x`-power torsion in a Noetherian module is already the kernel of one

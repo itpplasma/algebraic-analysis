@@ -1,4 +1,8 @@
-import AlgebraicAnalysis.Ore.RightQuotient
+module
+public import AlgebraicAnalysis.Ore.RightQuotient
+public import Mathlib.RingTheory.TwoSidedIdeal.Basic
+
+@[expose] public section
 
 /-!
 # Principal right ideals in a derivation Ore normal form

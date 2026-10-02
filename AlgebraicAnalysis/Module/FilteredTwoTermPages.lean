@@ -1,5 +1,8 @@
-import Mathlib.LinearAlgebra.Quotient.Basic
-import Mathlib.Tactic
+module
+public import Mathlib.LinearAlgebra.Quotient.Basic
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-!
 # Pages of a filtered two-term complex
@@ -69,12 +72,12 @@ instance targetPageAddCommGroup (r : ℕ) (p : ℤ) : AddCommGroup (K.TargetPage
   inferInstanceAs (AddCommGroup
     (K.G p ⧸ (K.boundaries r p).comap (K.G p).subtype))
 
-private def restrictedDrop (r : ℕ) (p : ℤ) :
+def restrictedDrop (r : ℕ) (p : ℤ) :
     K.cycles r p →ₗ[k] K.G (p + r) :=
   (K.f.comp (K.cycles r p).subtype).codRestrict (K.G (p + r))
     (fun x => x.property.2)
 
-private theorem drop_denominator (r : ℕ) (p : ℤ) :
+theorem drop_denominator (r : ℕ) (p : ℤ) :
     (K.G (p + 1)).comap (K.cycles r p).subtype ≤
       ((K.boundaries r (p + r)).comap (K.G (p + r)).subtype).comap
         (K.restrictedDrop r p) := by

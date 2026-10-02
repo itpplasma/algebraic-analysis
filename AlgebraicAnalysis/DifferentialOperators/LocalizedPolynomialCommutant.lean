@@ -1,5 +1,8 @@
-import AlgebraicAnalysis.DifferentialOperators.Basic
-import Mathlib.RingTheory.Kaehler.Polynomial
+module
+public import AlgebraicAnalysis.DifferentialOperators.Basic
+public import Mathlib.RingTheory.Kaehler.Polynomial
+
+@[expose] public section
 
 /-!
 # The polynomial commutant after localization

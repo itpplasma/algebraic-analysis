@@ -1,8 +1,11 @@
-import AlgebraicAnalysis.Module.BaseLocalizationModuleComparison
-import AlgebraicAnalysis.Module.LocalizedKernelCokernelEquivalences
-import AlgebraicAnalysis.Module.MinimalSupportKernelCokernelLengths
-import AlgebraicAnalysis.Module.LocalizedMinimalSupportAvoidance
-import AlgebraicAnalysis.Module.PrincipalKoszulMinimalSupportPositivity
+module
+public import AlgebraicAnalysis.Module.BaseLocalizationModuleComparison
+public import AlgebraicAnalysis.Module.LocalizedKernelCokernelEquivalences
+public import AlgebraicAnalysis.Module.MinimalSupportKernelCokernelLengths
+public import AlgebraicAnalysis.Module.LocalizedMinimalSupportAvoidance
+public import AlgebraicAnalysis.Module.PrincipalKoszulMinimalSupportPositivity
+
+@[expose] public section
 
 namespace AlgebraicAnalysis.BaseLocalizedKoszulPositivity
 

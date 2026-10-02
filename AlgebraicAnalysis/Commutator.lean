@@ -1,4 +1,8 @@
-import Mathlib
+module
+public import Mathlib.Tactic.NoncommRing
+public import Mathlib.Algebra.Module.NatInt
+
+@[expose] public section
 
 /-!
 # Ring commutators

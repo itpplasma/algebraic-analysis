@@ -1,6 +1,9 @@
-import Mathlib.Algebra.Algebra.Operations
-import Mathlib.LinearAlgebra.Quotient.Bilinear
-import Mathlib.RingTheory.Finiteness.Subalgebra
+module
+public import Mathlib.Algebra.Algebra.Operations
+public import Mathlib.LinearAlgebra.Quotient.Bilinear
+public import Mathlib.RingTheory.Finiteness.Subalgebra
+
+@[expose] public section
 
 /-!
 # Ascending ring filtrations

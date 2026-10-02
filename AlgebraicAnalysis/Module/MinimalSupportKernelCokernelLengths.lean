@@ -1,6 +1,9 @@
-import AlgebraicAnalysis.Module.EndomorphismKernelSupportOverBase
-import AlgebraicAnalysis.Module.MinimalPrimeFiniteLengthLocalization
-import Mathlib.RingTheory.Support
+module
+public import AlgebraicAnalysis.Module.EndomorphismKernelSupportOverBase
+public import AlgebraicAnalysis.Module.MinimalPrimeFiniteLengthLocalization
+public import Mathlib.RingTheory.Support
+
+@[expose] public section
 
 /-!
 # Finite length of a localized kernel and cokernel

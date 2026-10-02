@@ -1,5 +1,8 @@
-import AlgebraicAnalysis.Module.StableTorsionResidualSupport
-import AlgebraicAnalysis.Module.PrincipalKoszulFiniteTorsion
+module
+public import AlgebraicAnalysis.Module.StableTorsionResidualSupport
+public import AlgebraicAnalysis.Module.PrincipalKoszulFiniteTorsion
+
+@[expose] public section
 
 /-!
 # Principal Koszul positivity after restriction of scalars

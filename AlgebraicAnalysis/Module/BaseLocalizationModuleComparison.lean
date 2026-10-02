@@ -1,5 +1,8 @@
-import Mathlib.RingTheory.Localization.Module
-import Mathlib.RingTheory.Localization.LocalizationLocalization
+module
+public import Mathlib.RingTheory.Localization.Module
+public import Mathlib.RingTheory.Localization.LocalizationLocalization
+
+@[expose] public section
 
 /-!
 # Comparison of base and coefficient localizations

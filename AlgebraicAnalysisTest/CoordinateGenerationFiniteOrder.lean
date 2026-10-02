@@ -1,4 +1,7 @@
-import AlgebraicAnalysis.DifferentialOperators.CoordinateGeneration
+module
+public import AlgebraicAnalysis.DifferentialOperators.CoordinateGeneration
+
+@[expose] public section
 
 /-! Small consumer for the finite-order coordinate-generation variants.
 

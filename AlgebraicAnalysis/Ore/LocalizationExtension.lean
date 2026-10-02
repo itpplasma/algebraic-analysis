@@ -1,5 +1,8 @@
-import AlgebraicAnalysis.Ore.Associativity
-import Mathlib.RingTheory.OreLocalization.Ring
+module
+public import AlgebraicAnalysis.Ore.Associativity
+public import Mathlib.RingTheory.OreLocalization.Ring
+
+@[expose] public section
 
 /-!
 # Localization interface for derivation-Ore extensions
