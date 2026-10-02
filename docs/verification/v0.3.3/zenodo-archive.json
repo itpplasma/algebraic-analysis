@@ -1,0 +1,12 @@
+{
+  "doi": "10.5281/zenodo.23104842",
+  "record": 23104842,
+  "release": "v0.3.3",
+  "commit": "bbbbf3fc358ca8100b158cec4cf47f336ab70163",
+  "archive_sha256": "5b24e295eb3a97884480b1343ba4546585850c0ef0d4d7967e2abaf93abc9eea",
+  "zenodo_checksum": "md5:950dbb583930460c220ad78791a80068",
+  "tracked_files": 168,
+  "mismatches": [],
+  "extra_files": [],
+  "download_url": "https://zenodo.org/api/records/23104842/files/itpplasma/algebraic-analysis-v0.3.3.zip/content"
+}

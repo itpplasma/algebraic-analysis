@@ -67,7 +67,12 @@ layer. The current statement is also invalid over arbitrary fields: an
 independent characteristic-two Weyl-module oracle exhibits the missing
 characteristic-zero boundary.
 
-Latest archived release: **v0.3.2**. It contains the filtered-ring, Hilbert-function and
+Latest archived release: **[v0.3.3](https://doi.org/10.5281/zenodo.23104842)**,
+using Lean 4.35.0-rc3. The archive is the signed release commit
+`bbbbf3fc358ca8100b158cec4cf47f336ab70163`; all 168 archived files match that commit.
+Build and verification evidence is in [docs/verification/v0.3.3](docs/verification/v0.3.3).
+
+The earlier **v0.3.2** release contains the filtered-ring, Hilbert-function and
 Gelfand–Kirillov layer, and the shared `HessianAlgebra` package for polynomial
 self-map calculus. That archive uses the same Lean/Mathlib pins as v0.3.1; the Bernstein
 inequality remains the stated open target of the filtration layer; its
