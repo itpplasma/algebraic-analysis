@@ -164,10 +164,12 @@ without changing the mathematical statements.
   endomorphisms form a division ring and germs R -> C form a uniform section
   module with commuting actions, torsion when C is. `Module.DualSeparation`
   proves the separation criterion and Hom dimension at most one for a
-  critical target and existence of critical quotients; separation over the
-  finite critical types of an arbitrary Noetherian module is open (next:
-  left exactness of germ Hom along a submodule, then induction along
-  `CriticalFiltration`). `Module.TorsionEscape` proves the torsion-bimodule
+  critical target and existence of critical quotients.
+  `Module.DualSeparationGeneral` proves left exactness of germ Hom along a
+  submodule, finite Schur dimension bounded by the critical top length, the
+  finite list of critical types, and separation for arbitrary germ sources
+  over a Noetherian module of finite deviation; oracle in
+  `AlgebraicAnalysisTest/DualSeparationGeneral.lean`. `Module.TorsionEscape` proves the torsion-bimodule
   escape lemma over a simple right Ore domain, the rank lemma and finite
   affine source selection. Oracles in `AlgebraicAnalysisTest/GermSchur.lean`
   and `TorsionEscape.lean`.

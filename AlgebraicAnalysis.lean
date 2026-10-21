@@ -108,6 +108,7 @@ public import AlgebraicAnalysis.LinearAlgebra.ActivatedPencil
 public import AlgebraicAnalysis.Module.GermSchur
 public import AlgebraicAnalysis.Module.DualSeparation
 public import AlgebraicAnalysis.Module.TorsionEscape
+public import AlgebraicAnalysis.Module.DualSeparationGeneral
 
 @[expose] public section
 
