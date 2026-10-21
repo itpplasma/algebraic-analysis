@@ -105,6 +105,9 @@ public import AlgebraicAnalysis.Module.ColonSupport
 public import AlgebraicAnalysis.Ore.Noetherian
 public import AlgebraicAnalysis.LinearAlgebra.DivisionPencil
 public import AlgebraicAnalysis.LinearAlgebra.ActivatedPencil
+public import AlgebraicAnalysis.Module.GermSchur
+public import AlgebraicAnalysis.Module.DualSeparation
+public import AlgebraicAnalysis.Module.TorsionEscape
 
 @[expose] public section
 

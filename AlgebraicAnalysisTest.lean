@@ -25,6 +25,8 @@ public import AlgebraicAnalysisTest.Critical
 public import AlgebraicAnalysisTest.Germ
 public import AlgebraicAnalysisTest.DivisionPencil
 public import AlgebraicAnalysisTest.OreColon
+public import AlgebraicAnalysisTest.GermSchur
+public import AlgebraicAnalysisTest.TorsionEscape
 
 @[expose] public section
 
