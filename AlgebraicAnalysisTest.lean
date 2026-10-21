@@ -27,6 +27,7 @@ public import AlgebraicAnalysisTest.DivisionPencil
 public import AlgebraicAnalysisTest.OreColon
 public import AlgebraicAnalysisTest.GermSchur
 public import AlgebraicAnalysisTest.TorsionEscape
+public import AlgebraicAnalysisTest.DualSeparationGeneral
 
 @[expose] public section
 
