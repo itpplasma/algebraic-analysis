@@ -128,6 +128,30 @@ without changing the mathematical statements.
   independent check is
   `research/bernstein_characteristic_p_oracle.py`.
 
+- `Order.DevLE`, `Module.DevLE` and `Module.Small` define finite
+  Gabriel–Rentschler deviation on order intervals and submodule lattices
+  (`DevLE 0` is Artinian; `Small 0` is subsingleton), with monotonicity,
+  order-isomorphism and linear-equivalence invariance, submodule, quotient,
+  extension and finite-product rules, and the principal-power chain bound in
+  `Module/DeviationOmega.lean`; oracles in `AlgebraicAnalysisTest/Deviation.lean`
+  (finite-dimensional spaces have deviation zero, `ℤ` has deviation one but
+  not zero). Not `Order.krullDim` or commutative `supportDim`.
+- `Ore/Noetherian.lean` proves the right Ore condition for right Noetherian
+  domains and its equivalence with Mathlib's opposite-ring `OreSet`;
+  `Module/ColonSupport.lean` proves the mixed-anchor colon maps and the bound
+  for any class closed under submodules, quotients and extensions, plus the
+  central-parameter inclusions; oracles in `AlgebraicAnalysisTest/OreColon.lean`.
+- `LinearAlgebra/DivisionPencil.lean` extracts `central_eigenvectors_linearIndependent`,
+  `pencil_ker_finite` and `division_pencil_finite` from generalized-stafford-formal
+  46d9c6f (`GeneralizedStafford/DivisionPencil.lean`, Apache-2.0), with the
+  downstream copy still to be removed in that repository's integration wave;
+  `LinearAlgebra/ActivatedPencil.lean` proves the activated pencil
+  (`T ∘ P = 0`, jointly injective `(P, T ∘ Q)` give finitely many bad central
+  parameters) with no characteristic or infinite-field hypothesis; the reversed
+  composition order is refuted in `AlgebraicAnalysisTest/DivisionPencil.lean`.
+  Downstream consumer: the intrinsic Stafford formalization in
+  generalized-stafford-formal.
+
 ## Next valid work
 
 Formalize the repaired characteristic-zero Bernstein theorem, including any

@@ -94,6 +94,13 @@ public import AlgebraicAnalysis.Filtration.RingFiltration
 public import AlgebraicAnalysis.Filtration.GoodFiltration
 public import AlgebraicAnalysis.Filtration.HilbertFunction
 public import AlgebraicAnalysis.Filtration.GKDimension
+public import AlgebraicAnalysis.Order.Deviation
+public import AlgebraicAnalysis.Module.Deviation
+public import AlgebraicAnalysis.Module.DeviationOmega
+public import AlgebraicAnalysis.Module.ColonSupport
+public import AlgebraicAnalysis.Ore.Noetherian
+public import AlgebraicAnalysis.LinearAlgebra.DivisionPencil
+public import AlgebraicAnalysis.LinearAlgebra.ActivatedPencil
 
 @[expose] public section
 
