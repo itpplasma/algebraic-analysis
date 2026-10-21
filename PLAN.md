@@ -136,6 +136,14 @@ without changing the mathematical statements.
   `Module/DeviationOmega.lean`; oracles in `AlgebraicAnalysisTest/Deviation.lean`
   (finite-dimensional spaces have deviation zero, `ℤ` has deviation one but
   not zero). Not `Order.krullDim` or commutative `supportDim`.
+- `Module.Critical` proves critical submodule existence and uniformity;
+  `Module.CriticalFiltration` constructs finite critical filtrations for
+  Noetherian finite-deviation modules and bounds non-small chain factors.
+  `Module.LocSmall` supplies the locally small class, the shared small radical
+  and density calculus; `Module.Germ` supplies additive germs and composition.
+  The germ pair correspondence requires both Noetherian source and target.
+  Concrete oracles are in `AlgebraicAnalysisTest/Critical.lean` and
+  `AlgebraicAnalysisTest/Germ.lean`.
 - `Ore/Noetherian.lean` proves the right Ore condition for right Noetherian
   domains and its equivalence with Mathlib's opposite-ring `OreSet`;
   `Module/ColonSupport.lean` proves the mixed-anchor colon maps and the bound

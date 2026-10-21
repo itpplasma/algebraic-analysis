@@ -21,6 +21,8 @@ public import AlgebraicAnalysisTest.RingTheory.LaurentSeriesMomentPolynomial
 public import AlgebraicAnalysisTest.RingTheory.PowerSeriesPrefixRoot
 public import AlgebraicAnalysisTest.PowerSeriesReverseTrunc
 public import AlgebraicAnalysisTest.Deviation
+public import AlgebraicAnalysisTest.Critical
+public import AlgebraicAnalysisTest.Germ
 public import AlgebraicAnalysisTest.DivisionPencil
 public import AlgebraicAnalysisTest.OreColon
 

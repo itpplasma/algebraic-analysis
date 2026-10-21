@@ -97,6 +97,10 @@ public import AlgebraicAnalysis.Filtration.GKDimension
 public import AlgebraicAnalysis.Order.Deviation
 public import AlgebraicAnalysis.Module.Deviation
 public import AlgebraicAnalysis.Module.DeviationOmega
+public import AlgebraicAnalysis.Module.LocSmall
+public import AlgebraicAnalysis.Module.Critical
+public import AlgebraicAnalysis.Module.CriticalFiltration
+public import AlgebraicAnalysis.Module.Germ
 public import AlgebraicAnalysis.Module.ColonSupport
 public import AlgebraicAnalysis.Ore.Noetherian
 public import AlgebraicAnalysis.LinearAlgebra.DivisionPencil
