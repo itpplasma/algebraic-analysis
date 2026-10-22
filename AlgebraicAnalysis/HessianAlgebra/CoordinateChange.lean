@@ -20,23 +20,30 @@ variable {K : Type*} {σ : Type*} [Field K] [Fintype σ] [DecidableEq σ]
 
 local notation "Poly" => MvPolynomial σ K
 
+/-- Composition of polynomial maps, with `g` substituted into the coordinates of `f`. -/
 def compose (f g : σ → Poly) : σ → Poly :=
   fun i => substitute g (f i)
 
+/-- The polynomial map defined by the matrix `T` with zero translation. -/
 def linear (T : Matrix σ σ K) : σ → Poly := affine T 0
 
+/-- The polynomial map defined by the transpose of `T`. -/
 def transposeLinear (T : Matrix σ σ K) : σ → Poly := linear T.transpose
 
+/-- The identity polynomial map, whose coordinates are the variables. -/
 def identityMap : σ → Poly := X
 
+omit [Fintype σ] [DecidableEq σ] in
 lemma compose_identity_left (f : σ → Poly) : compose identityMap f = f := by
   funext i
   simp [compose, identityMap, substitute]
 
+omit [Fintype σ] [DecidableEq σ] in
 lemma compose_identity_right (f : σ → Poly) : compose f identityMap = f := by
   funext i
   simp [compose, identityMap, substitute]
 
+omit [Fintype σ] [DecidableEq σ] in
 lemma substitute_comp (g h : σ → Poly) (p : Poly) :
     substitute h (substitute g p) = substitute (compose g h) p := by
   induction p using MvPolynomial.induction_on with
@@ -45,6 +52,7 @@ lemma substitute_comp (g h : σ → Poly) (p : Poly) :
   | mul_X p i hp =>
       simp only [map_mul, hp, substitute_X, compose]
 
+omit [Fintype σ] [DecidableEq σ] in
 lemma compose_assoc (f g h : σ → Poly) :
     compose (compose f g) h = compose f (compose g h) := by
   funext i
@@ -85,6 +93,7 @@ lemma transpose_linear_comp_gradient_pullback (f : Poly) (T : Matrix σ σ K) :
   simp only [map_mul, map_C, map_X]
   simp [substitute, compose, gradient, linear, affine, Matrix.transpose_apply, mul_comm]
 
+omit [Fintype σ] [DecidableEq σ] in
 lemma twoSidedInverse_comp {f g f' g' : σ → Poly}
     (hf : TwoSidedInverse f f') (hg : TwoSidedInverse g g') :
     TwoSidedInverse (compose f g) (compose g' f') := by
@@ -108,6 +117,7 @@ lemma twoSidedInverse_comp {f g f' g' : σ → Poly}
     rw [hff]
     simpa [substitute] using hg.compose_reverse i
 
+omit [Fintype σ] [DecidableEq σ] in
 lemma conjugate_map_eq {f g l l' r r' : σ → Poly}
     (hl : TwoSidedInverse l l') (hr : TwoSidedInverse r r')
     (hg : g = compose l (compose f r)) :

@@ -15,7 +15,7 @@ namespace HessianAlgebra
 open MvPolynomial
 open PolynomialMap
 
-variable {K : Type*} {σ : Type*} [Field K] [Fintype σ] [DecidableEq σ]
+variable {K : Type*} {σ : Type*} [Field K] [Fintype σ]
 
 /-- Any predicate on exponent degree that holds on the source support is
 preserved by substitution by degree-one homogeneous polynomials. -/

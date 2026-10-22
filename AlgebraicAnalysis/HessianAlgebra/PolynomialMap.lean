@@ -23,26 +23,34 @@ variable {R : Type*} {σ : Type*} [Field R] [Fintype σ] [DecidableEq σ]
 
 local notation "Poly" => MvPolynomial σ R
 
+/-- The ring homomorphism substituting the coordinates of `g` for the variables. -/
 def substitute (g : σ → Poly) : Poly →+* Poly :=
   MvPolynomial.eval₂Hom (MvPolynomial.C : R →+* Poly) g
 
+/-- Partial differentiation with respect to the variable indexed by `i`. -/
 def partialDerivative (i : σ) : Poly → Poly := fun f => MvPolynomial.pderiv i f
 
+/-- The polynomial map consisting of the partial derivatives of `f`. -/
 def gradient (f : Poly) : σ → Poly := fun i => partialDerivative i f
 
+/-- Polynomial maps whose substitutions compose to the identity in both orders. -/
 structure TwoSidedInverse (f g : σ → Poly) : Prop where
   compose_forward : ∀ i, substitute g (f i) = MvPolynomial.X i
   compose_reverse : ∀ i, substitute f (g i) = MvPolynomial.X i
 
+/-- The assertion that `g` is a two-sided polynomial inverse of the gradient of `f`. -/
 def gradientTwoSidedInverse (f : Poly) (g : σ → Poly) : Prop :=
   TwoSidedInverse (gradient f) g
 
+/-- The polynomial `∑ i, X i * g i - f(g)`, used for the Legendre transform. -/
 def legendrePolynomial (f : Poly) (g : σ → Poly) : Poly :=
   (Finset.univ.sum fun i => MvPolynomial.X i * g i) - substitute g f
 
+/-- The matrix of second partial derivatives of `f`. -/
 def hessian (f : Poly) : σ → σ → Poly :=
   fun i j => partialDerivative i (partialDerivative j f)
 
+omit [Fintype σ] [DecidableEq σ] in
 lemma substitute_X (g : σ → Poly) (i : σ) :
     substitute g (X i) = g i := by
   simp [substitute]
@@ -70,6 +78,7 @@ lemma pderiv_substitute (f : Poly) (g : σ → Poly) (i : σ) :
           simp [pderiv_X_of_ne (Ne.symm hne)]
         · simp
 
+omit [Fintype σ] in
 lemma partial_comm (f : Poly) (i j : σ) :
     partialDerivative i (partialDerivative j f) =
       partialDerivative j (partialDerivative i f) := by

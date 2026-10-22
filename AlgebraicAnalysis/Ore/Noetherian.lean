@@ -46,6 +46,7 @@ private def partialSum (a b : R) : ℕ → Submodule Rᵐᵒᵖ R
   | 0 => ⊥
   | n + 1 => principalRightIdeal a ⊔ (partialSum a b n).map (leftMulLinear b)
 
+omit [IsDomain R] in
 private theorem partialSum_mono (a b : R) : Monotone (partialSum a b) := by
   apply monotone_nat_of_le_succ
   intro n
@@ -53,6 +54,7 @@ private theorem partialSum_mono (a b : R) : Monotone (partialSum a b) := by
   | zero => exact bot_le
   | succ n ih => exact sup_le_sup_left (Submodule.map_mono ih) _
 
+omit [IsDomain R] in
 private theorem pow_mul_mem_partialSum (a b : R) (n : ℕ) :
     b ^ n * a ∈ partialSum a b (n + 1) := by
   induction n with

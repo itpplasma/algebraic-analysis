@@ -107,12 +107,12 @@ theorem matrix_image_mem : e21 ∈ firstIdeal e11 e21 :=
 -- The embedding sends a nonzero first-row class to a nonzero second-row class.
 example : colonEmbedding e11 e21 e22 ((sourceIdeal e11 e21 e22).mkQ e11) =
     (secondIdeal e11 e21 e22).mkQ e21 := by
-  rw [colonEmbedding_mk]
+  rw [Submodule.mkQ_apply, colonEmbedding_mk]
   congr 1
   decide
 
 example : colonEmbedding e11 e21 e22 ((sourceIdeal e11 e21 e22).mkQ e11) ≠ 0 := by
-  rw [colonEmbedding_mk]
+  rw [Submodule.mkQ_apply, colonEmbedding_mk]
   intro hz
   have hm : e21 * e11 * e11 ∈ secondIdeal e11 e21 e22 :=
     (Submodule.Quotient.mk_eq_zero _).mp hz
@@ -134,14 +134,14 @@ example : colonSurjection e11 e21 e21 e22 0 matrix_relation
     ((sourceIdeal e11 e21 e22).mkQ e11) =
     ((refinedIdeal e11 e21 e21).comap (firstIdeal e11 e21).subtype).mkQ
       ⟨e21, matrix_image_mem⟩ := by
-  rw [colonSurjection_mk]
+  rw [Submodule.mkQ_apply, colonSurjection_mk]
   congr 1
   apply Subtype.ext
   decide
 
 example : colonSurjection e11 e21 e21 e22 0 matrix_relation
     ((sourceIdeal e11 e21 e22).mkQ e11) ≠ 0 := by
-  rw [colonSurjection_mk]
+  rw [Submodule.mkQ_apply, colonSurjection_mk]
   intro hz
   have hm := (Submodule.Quotient.mk_eq_zero _).mp hz
   change e21 * e11 * e11 ∈ refinedIdeal e11 e21 e21 at hm

@@ -72,6 +72,7 @@ instance targetPageAddCommGroup (r : ℕ) (p : ℤ) : AddCommGroup (K.TargetPage
   inferInstanceAs (AddCommGroup
     (K.G p ⧸ (K.boundaries r p).comap (K.G p).subtype))
 
+/-- The differential restricted to cycles, with codomain in the required filtration piece. -/
 def restrictedDrop (r : ℕ) (p : ℤ) :
     K.cycles r p →ₗ[k] K.G (p + r) :=
   (K.f.comp (K.cycles r p).subtype).codRestrict (K.G (p + r))

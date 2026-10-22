@@ -182,6 +182,7 @@ def targetPageCast (r : ℕ) {p q : ℤ} (h : p = q) :
   subst q
   rfl
 
+/-- The target operator restricted to the filtration pieces shifted by its drop `d`. -/
 def targetRestrictedAtDrop (r : ℕ) (p : ℤ) :
     K.G (p + r) →ₗ[k] K.G (p - d + r) :=
   (P.g.comp (K.G (p + r)).subtype).codRestrict (K.G (p - d + r)) (by
