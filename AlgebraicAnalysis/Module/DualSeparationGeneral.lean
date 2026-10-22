@@ -136,19 +136,19 @@ theorem comp_subtype_eq_zero_iff [IsNoetherian R M] [IsNoetherian R C]
     exact PartialHom.comp_zero g
 
 /-- Precomposition is linear over the target's germ endomorphism ring. -/
-def precompLinear [IsNoetherian R C] (x : Hom R e N M) :
+def precompLinear (x : Hom R e N M) :
     Hom R e M C →ₗ[End R e C] Hom R e N C where
   toFun f := comp f x
   map_add' f g := add_comp f g x
   map_smul' a f := comp_assoc a f x
 
 /-- Restriction to a submodule as a left Schur-linear map. -/
-def restrictLinear [IsNoetherian R C] (U : Submodule R M) :
+def restrictLinear (U : Submodule R M) :
     Hom R e M C →ₗ[End R e C] Hom R e U C :=
   precompLinear (ofLinearMap U.subtype)
 
 /-- Pullback along the quotient as a left Schur-linear map. -/
-def quotientLinear [IsNoetherian R C] (U : Submodule R M) :
+def quotientLinear (U : Submodule R M) :
     Hom R e (M ⧸ U) C →ₗ[End R e C] Hom R e M C :=
   precompLinear (ofLinearMap U.mkQ)
 
@@ -177,12 +177,12 @@ theorem epic_ofLinearMap_of_surjective (a : N →ₗ[R] M)
   exact small_of_subsingleton e
 
 /-- The first arrow in the left-exact Schur sequence is injective. -/
-theorem quotientLinear_injective [IsNoetherian R C] (U : Submodule R M) :
+theorem quotientLinear_injective (U : Submodule R M) :
     Function.Injective (quotientLinear (C := C) (e := e) U) :=
   fun _ _ h => (epic_ofLinearMap_of_surjective U.mkQ U.mkQ_surjective).right_cancel _ _ h
 
 /-- A linear equivalence of sources induces a Schur-linear equivalence. -/
-def precompEquiv [IsNoetherian R C] (a : M ≃ₗ[R] N) :
+def precompEquiv (a : M ≃ₗ[R] N) :
     Hom R e N C ≃ₗ[End R e C] Hom R e M C where
   __ := precompLinear (ofLinearMap a.toLinearMap)
   invFun f := comp f (ofLinearMap a.symm.toLinearMap)
@@ -195,8 +195,8 @@ def precompEquiv [IsNoetherian R C] (a : M ≃ₗ[R] N) :
     rw [comp_assoc, ← ofLinearMap_comp, a.symm_comp,
       ofLinearMap_id, comp_id]
 
-/-- Germ Hom out of a small Noetherian source vanishes. -/
-theorem subsingleton_of_small [IsNoetherian R M] (hM : Small R e M) :
+/-- Germ Hom out of a small source vanishes. -/
+theorem subsingleton_of_small (hM : Small R e M) :
     Subsingleton (Hom R e M C) := by
   have ht : smallRadical R e M = ⊤ := by
     apply top_unique

@@ -21,9 +21,11 @@ variable {K : Type*} {σ : Type*} [Field K] [Fintype σ] [DecidableEq σ]
 
 local notation "Poly" => MvPolynomial σ K
 
+/-- The polynomial map with coordinates `A * X + b`. -/
 def affine (A : Matrix σ σ K) (b : σ → K) : σ → Poly :=
   fun i => (∑ j, C (A i j) * X j) + C (b i)
 
+/-- The polynomial map `A⁻¹ * (X - b)`, inverse to `affine A b` when `A` is invertible. -/
 def affineInverse (A : Matrix σ σ K) (b : σ → K) : σ → Poly :=
   fun i => ∑ j, C ((A⁻¹) i j) * (X j - C (b j))
 

@@ -112,7 +112,7 @@ def colonEmbedding (d g L : R) :
     (comap_secondIdeal d g L).ge
 
 @[simp] theorem colonEmbedding_mk (d g L s : R) :
-    colonEmbedding d g L ((sourceIdeal d g L).mkQ s) =
+    colonEmbedding d g L (Submodule.Quotient.mk s) =
       (secondIdeal d g L).mkQ (g * d * s) := rfl
 
 /-- The first colon map is an embedding, including when `gd = 0`. -/
@@ -151,7 +151,7 @@ def colonSurjection (d f g L C : R) (h : f * d * L = d * C) :
     (sourceIdeal_le_ker d f g L C h)
 
 @[simp] theorem colonSurjection_mk (d f g L C s : R) (h : f * d * L = d * C) :
-    colonSurjection d f g L C h ((sourceIdeal d g L).mkQ s) =
+    colonSurjection d f g L C h (Submodule.Quotient.mk s) =
       ((refinedIdeal d f g).comap (firstIdeal d f).subtype).mkQ (idealNumerator d f s) := rfl
 
 /-- The second colon map covers `I/J` because the other summand `D` is killed. -/
@@ -162,7 +162,7 @@ theorem colonSurjection_surjective (d f g L C : R) (h : f * d * L = d * C) :
   | _ x =>
     obtain ⟨u, hu, v, ⟨s, rfl⟩, huv⟩ := Submodule.mem_sup.mp x.property
     refine ⟨(sourceIdeal d g L).mkQ s, ?_⟩
-    rw [colonSurjection_mk, Submodule.mkQ_apply, Submodule.Quotient.eq]
+    rw [Submodule.mkQ_apply, colonSurjection_mk, Submodule.mkQ_apply, Submodule.Quotient.eq]
     change f * d * s - x.val ∈ refinedIdeal d f g
     have hx : x.val = u + f * d * s := huv.symm
     rw [hx, show f * d * s - (u + f * d * s) = -u by abel]

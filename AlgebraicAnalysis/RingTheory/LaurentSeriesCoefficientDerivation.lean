@@ -256,7 +256,7 @@ theorem LaurentSeries.residueAtInfinity_apply
     LaurentSeries.residueAtInfinity f = f.coeff 1 := rfl
 
 /-- The residue at infinity of an at-infinity derivative vanishes. -/
-@[simp]
+@[simp↓]
 theorem LaurentSeries.residueAtInfinity_atInfinityDerivative
     {K : Type*} [Field K] (f : LaurentSeries K) :
     LaurentSeries.residueAtInfinity

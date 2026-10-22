@@ -24,6 +24,7 @@ namespace RatFunc
 
 variable (K : Type*) [Field K]
 
+/-- Evaluate a polynomial at the inverse rational-function coordinate `X⁻¹`. -/
 def invertPolynomial : K[X] →+* K⟮X⟯ :=
   Polynomial.eval₂RingHom (algebraMap K K⟮X⟯) (RatFunc.X⁻¹)
 

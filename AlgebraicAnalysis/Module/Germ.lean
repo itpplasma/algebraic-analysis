@@ -231,7 +231,7 @@ theorem add_comm (f g : PartialHom R e M N) : f + g = g + f := by
   change f.val _ + g.val _ = g.val _ + f.val _
   exact _root_.add_comm _ _
 
-@[simp] theorem zero_add (f : PartialHom R e M N) : 0 + f = f := by
+theorem zero_add (f : PartialHom R e M N) : 0 + f = f := by
   induction f using Quotient.inductionOn with | _ f =>
   apply Quotient.sound
   apply Representative.rel_of_eq
@@ -239,9 +239,9 @@ theorem add_comm (f g : PartialHom R e M N) : f + g = g + f := by
   change 0 + f.val _ = f.val _
   exact _root_.zero_add _
 
-@[simp] theorem add_zero (f : PartialHom R e M N) : f + 0 = f := by rw [add_comm, zero_add]
+theorem add_zero (f : PartialHom R e M N) : f + 0 = f := by rw [add_comm, zero_add]
 
-@[simp] theorem neg_add_cancel (f : PartialHom R e M N) : -f + f = 0 := by
+theorem neg_add_cancel (f : PartialHom R e M N) : -f + f = 0 := by
   induction f using Quotient.inductionOn with | _ f =>
   apply Quotient.sound
   apply Representative.rel_of_eq

@@ -23,14 +23,17 @@ namespace FilteredTwoTerm
 
 variable (K : FilteredTwoTerm k M)
 
+/-- The next filtration piece viewed as a submodule of the current cycles. -/
 abbrev sourceDenominator (r : ℕ) (p : ℤ) :
     Submodule k (K.cycles r p) :=
   (K.G (p + 1)).comap (K.cycles r p).subtype
 
+/-- The current boundaries viewed as a submodule of the target filtration piece. -/
 abbrev targetDenominator (r : ℕ) (p : ℤ) :
     Submodule k (K.G p) :=
   (K.boundaries r p).comap (K.G p).subtype
 
+/-- The inclusion of the next cycle submodule into the current one. -/
 def sourceSuccInclusion (r : ℕ) (p : ℤ) :
     K.cycles (r + 1) p →ₗ[k] K.cycles r p :=
   Submodule.inclusion (K.cycles_succ_le r p)

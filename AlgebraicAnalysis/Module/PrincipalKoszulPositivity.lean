@@ -26,6 +26,7 @@ variable {R : Type u} {E : Type v}
 variable [CommRing R]
 variable [AddCommGroup E] [Module R E]
 
+/-- Scalar multiplication by `x` as an endomorphism of `E`. -/
 abbrev scalarEnd (x : R) : E →ₗ[R] E := LinearMap.lsmul R E x
 
 /--

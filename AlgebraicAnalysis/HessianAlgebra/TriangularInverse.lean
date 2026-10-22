@@ -19,8 +19,9 @@ namespace PolynomialMap
 open MvPolynomial
 
 variable {K σ τ : Type*} [Field K]
-variable [Fintype σ] [DecidableEq σ]
+variable [DecidableEq σ]
 
+omit [DecidableEq σ] in
 lemma substitute_rename_of_eq_on (e : τ → σ) (g : σ → MvPolynomial σ K)
     (hfix : ∀ j, g (e j) = X (e j)) (p : MvPolynomial τ K) :
     substitute g (rename e p) = rename e p := by
@@ -42,8 +43,8 @@ lemma substitute_prefix_rename_of_eq_on {n i : ℕ}
     substitute g (rename (Fin.castLE hni) p) = rename (Fin.castLE hni) p := by
   exact substitute_rename_of_eq_on _ g hfix p
 
+omit [DecidableEq σ] in
 lemma substitute_rename_comp (e : τ → σ)
-    [Fintype τ] [DecidableEq τ]
     (f : τ → MvPolynomial τ K) (g : σ → MvPolynomial σ K)
     (hcomp : ∀ j, g (e j) = rename e (f j))
     (p : MvPolynomial τ K) :
@@ -61,6 +62,7 @@ lemma substitute_rename_comp (e : τ → σ)
       rw [rename_X, substitute_X, substitute_X, hcomp]
   exact DFunLike.congr_fun h p
 
+/-- Extend a polynomial map by one variable, leaving the new last coordinate fixed. -/
 def finSuccLift {n : ℕ} (f : Fin n → MvPolynomial (Fin n) K) :
     Fin (n + 1) → MvPolynomial (Fin (n + 1)) K :=
   Fin.lastCases (X (Fin.last n)) (fun i => rename Fin.castSucc (f i))

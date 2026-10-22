@@ -26,35 +26,42 @@ namespace AlgebraicAnalysis
 
 noncomputable section
 
+/-- The rational polynomial ring with one variable for each positive tail coefficient. -/
 abbrev UniversalCoeffPoly := MvPolynomial ℕ ℚ
 
+/-- The power series with zero constant term and coefficient `X (n - 1)` in degree `n > 0`. -/
 def universalCoefficientTail : PowerSeries UniversalCoeffPoly :=
   PowerSeries.mk
     (fun n => if _h : n = 0 then 0 else MvPolynomial.X (n - 1))
 
+/-- The universal binomial series `(1 + u)^(-j/m)` in the coefficient variables. -/
 def universalNegativeFractionalRoot (j m : ℕ) :
     PowerSeries UniversalCoeffPoly :=
   (PowerSeries.binomialSeries UniversalCoeffPoly
       (algebraMap ℚ UniversalCoeffPoly (-((j : ℚ) / (m : ℚ))))).subst
     universalCoefficientTail
 
+/-- The universal negative fractional root multiplied by the Laurent mode of degree `j`. -/
 def universalNegativeFractionalFactor (j m : ℕ) :
     LaurentSeries UniversalCoeffPoly :=
   HahnSeries.single (j : ℤ) 1 *
     HahnSeries.ofPowerSeries ℤ UniversalCoeffPoly
       (universalNegativeFractionalRoot j m)
 
+/-- The universal normalized monic Laurent series `s^(-m) * (1 + u)`. -/
 def universalNormalizedMonicSeries (m : ℕ) :
     LaurentSeries UniversalCoeffPoly :=
   HahnSeries.single (-(m : ℤ)) 1 *
     HahnSeries.ofPowerSeries ℤ UniversalCoeffPoly
       (1 + universalCoefficientTail)
 
+/-- The derivative of the universal monic series in the coordinate `X = s⁻¹`. -/
 def universalAtInfinityDerivative (m : ℕ) :
     LaurentSeries UniversalCoeffPoly :=
   -(HahnSeries.single 2 1 *
     LaurentSeries.derivative ℤ (universalNormalizedMonicSeries m))
 
+/-- The universal at-infinity derivative times the negative fractional factor. -/
 def universalMomentFactor (j m : ℕ) :
     LaurentSeries UniversalCoeffPoly :=
   universalAtInfinityDerivative m * universalNegativeFractionalFactor j m
@@ -101,7 +108,7 @@ private theorem universalNegativeFractionalRoot_map
   simp [f]
 
 private theorem map_ofPowerSeries
-    {K : Type*} [Field K] [CharZero K]
+    {K : Type*} [Field K]
     (f : UniversalCoeffPoly →+* K) (p : PowerSeries UniversalCoeffPoly) :
     (HahnSeries.ofPowerSeries ℤ UniversalCoeffPoly p).map f =
       HahnSeries.ofPowerSeries ℤ K (PowerSeries.map f p) := by
@@ -120,7 +127,7 @@ private theorem map_ofPowerSeries
         simp at ha
 
 private theorem map_derivative
-    {K : Type*} [Field K] [CharZero K]
+    {K : Type*} [Field K]
     (f : UniversalCoeffPoly →+* K) (F : LaurentSeries UniversalCoeffPoly) :
     (LaurentSeries.derivative ℤ F).map f =
       LaurentSeries.derivative ℤ (F.map f) := by
@@ -131,20 +138,20 @@ private theorem map_derivative
   simp
 
 private theorem map_mul
-    {K : Type*} [Field K] [CharZero K]
+    {K : Type*} [Field K]
     (f : UniversalCoeffPoly →+* K)
     (x y : LaurentSeries UniversalCoeffPoly) :
     (x * y).map f = x.map f * y.map f :=
   HahnSeries.map_mul f.toNonUnitalRingHom
 
 private theorem map_neg
-    {K : Type*} [Field K] [CharZero K]
+    {K : Type*} [Field K]
     (f : UniversalCoeffPoly →+* K) (x : LaurentSeries UniversalCoeffPoly) :
     (-x).map f = -x.map f :=
   HahnSeries.map_neg f.toAddMonoidHom
 
 private theorem map_single
-    {K : Type*} [Field K] [CharZero K]
+    {K : Type*} [Field K]
     (f : UniversalCoeffPoly →+* K) {a : ℤ} (r : UniversalCoeffPoly) :
     ((HahnSeries.single a) r).map f = (HahnSeries.single a) (f r) :=
   HahnSeries.map_single f.toZeroHom

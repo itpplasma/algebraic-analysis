@@ -56,7 +56,6 @@ theorem LaurentSeries.residue_apply (f : LaurentSeries K) :
 
 /-- Equation (2): `Res_s d_s H = 0`. The coefficient of `s ^ (-1)` in a formal
 derivative is `Ring.choose 0 1 • f.coeff 0 = 0 • f.coeff 0 = 0`. -/
-@[simp]
 theorem LaurentSeries.residue_derivative (f : LaurentSeries K) :
     LaurentSeries.residue (LaurentSeries.derivative K f) = 0 := by
   rw [LaurentSeries.residue_apply, LaurentSeries.derivative_apply, LaurentSeries.hasseDeriv_coeff]

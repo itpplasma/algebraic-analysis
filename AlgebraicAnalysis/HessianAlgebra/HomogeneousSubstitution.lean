@@ -18,6 +18,7 @@ open PolynomialMap
 
 variable {K : Type*} {σ : Type*} [Field K] [Fintype σ] [DecidableEq σ]
 
+omit [DecidableEq σ] in
 /-- Substitution by degree-one homogeneous polynomials preserves every
 homogeneous component. -/
 theorem homogeneousComponent_substitute (g : σ → MvPolynomial σ K)
