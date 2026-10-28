@@ -1,116 +1,81 @@
 # AlgebraicAnalysis
 
-Reusable Lean foundations for Ore and Weyl algebras, filtered rings and
-modules, algebraic differential operators, characteristic geometry, and
-related exact certificates.
+A Lean 4 library of reusable, application-independent results on Ore and Weyl
+algebras, filtered rings and modules, algebraic differential operators and
+related commutative algebra. It is the shared foundation of the Stafford
+formalizations ([stafford38-formal](https://github.com/itpplasma/stafford38-formal),
+[global-stafford-formal](https://github.com/itpplasma/global-stafford-formal)).
 
-The current source uses Lean **4.35.0-rc3** and official Mathlib revision
-`c55e6e786f49471c72fbddbec5415808896aec1e`. The library, Hessian, and test
-targets pass on these pins; the migration preserves their mathematical
-statements.
+Status: research library; declarations may still move or be renamed.
 
-The repository contains reviewed Ore/PBW/tower foundations, including finite
-right-PBW bases for monic principal Ore quotients and generic right-ideal
-primitives for finite right-Ore intersections and minimal-degree principal
-right ideals. It also contains application-independent Ore-localization,
-localized-rank, split-rank, denominator-torsion, finite-filtration,
-unimodular-splitting, projective-image, and inverse-Euler/Riccati commutator
-primitives. Dependency pins and provenance are recorded in
-`docs/provenance.yaml`.
+## Contents
 
-The module layer also contains the determinant-trick support exclusion for a
-finite module on which a chosen scalar acts surjectively.
+- Ore extensions by a derivation: PBW bases, towers, right division,
+  principal and intersected right ideals, Ore localization.
+- Finite-order differential operators and their localization.
+- Filtered modules: two-term filtered complexes, Schreyer-type equivalence,
+  support, finite length and minimal-prime localization arguments.
+- Filtered rings: associated graded pieces, good filtrations, Hilbert
+  functions and Gelfand-Kirillov dimension (the polynomial ring in `n`
+  variables has GK dimension exactly `n`).
+- `HessianAlgebra`: polynomial self-maps, formal derivatives, affine and
+  triangular inverses, Hessians and homogeneous support.
+- Smaller pieces on Laurent and power series, rational functions, field
+  theory (finite generation of fraction fields) and linear algebra.
 
-The polynomial layer contains the reusable `HessianAlgebra` library for
-polynomial self-maps, formal differentiation, affine and triangular inverses,
-coordinate transport, Hessians, and homogeneous support, together with a
-scheme-theoretic distinguished-axis lemma for homogeneous relations in prime
-ideals. These are generic results with all hypotheses explicit.
+A more detailed tour, with module paths, is in [docs/contents.md](docs/contents.md).
 
-The field-theory layer proves that the fraction field of a finitely generated
-domain is finitely generated as an intermediate field, providing a precise
-finite-generation statement for fraction fields.
+The library contains no `sorry` and no `axiom` declarations. Hypotheses are
+explicit at each theorem. One notable statement is not proved:
+`AlgebraicAnalysis.GKDimension.BernsteinInequality` (in
+`AlgebraicAnalysis/Filtration/GKDimension.lean`) is a `Prop`-valued
+definition stating the Bernstein inequality over fields of characteristic
+zero; it is the open target of the filtration layer and is not used as an
+assumption anywhere.
 
-The package contains generic central-coordinate escape, finite-tuple span, and
-right-coordinate module primitives.
+## Building
 
-The active-coordinate Ore interface is available under
-`AlgebraicAnalysis.OreActiveCoordinate`. It contains definitions and proofs
-for the coordinate and coefficient relations of an Ore extension.
-
-The package also defines neutral target interfaces for stable freeness and
-localization of derivation-Ore extensions. These interfaces contain no axiom;
-their hypotheses remain explicit at each use.
-
-The package also exposes a ring/module-only filtered Schreyer equivalence for
-translating a lower-order right-ideal problem into a source relation. Its
-strictness hypothesis remains explicit.
-
-The package also exposes generic filtered two-term page and action lemmas,
-localization comparisons, support and finite-length arguments, and associated
-polynomial-action primitives. These statements keep finiteness, Noetherian,
-localization, and module hypotheses explicit.
-
-All theorems in the public API have axiom-clean Lean proofs.
-
-The package also contains a filtered-ring layer: ascending ring filtrations
-with their associated graded pieces and order function; good filtrations on
-modules, including existence for finitely generated modules and the comparison
-lemma that any two good filtrations squeeze each other after a bounded shift;
-Hilbert functions of filtrations by finite-dimensional subspaces, with growth
-degree valued in the extended reals and proved invariant under bounded shifts;
-and Gelfand-Kirillov dimension defined from that growth degree. The polynomial
-ring in `n` variables with its total-degree filtration is proved to have
-Gelfand–Kirillov dimension exactly `n`. The Bernstein inequality is stated as a
-named proposition and is deliberately not proved; it is the open target of this
-layer. The current statement is also invalid over arbitrary fields: an
-independent characteristic-two Weyl-module oracle exhibits the missing
-characteristic-zero boundary.
-
-Latest archived release: **[v0.3.3](https://doi.org/10.5281/zenodo.23104842)**,
-using Lean 4.35.0-rc3. The archive is the signed release commit
-`bbbbf3fc358ca8100b158cec4cf47f336ab70163`; all 168 archived files match that commit.
-Build and verification evidence is in [docs/verification/v0.3.3](docs/verification/v0.3.3).
-
-The earlier **v0.3.2** release contains the filtered-ring, Hilbert-function and
-Gelfand–Kirillov layer, and the shared `HessianAlgebra` package for polynomial
-self-map calculus. That archive uses the same Lean/Mathlib pins as v0.3.1; the Bernstein
-inequality remains the stated open target of the filtration layer; its
-definition now makes the required characteristic-zero field boundary explicit,
-but the theorem remains unproved.
-The machine-facing status and next valid work are in [PLAN.md](PLAN.md).
-
-## Literature and source index
-
-**[Literature → proof ingredients → Lean modules](docs/literature.md)** is the
-starting point for tracing the mathematical foundations. It gives full
-citations, source roles, module links, and the distinction between proved
-imports, project constructions, background, and prior art.
-
-**[Ore33]** Øystein Ore, *[Theory of Non-Commutative Polynomials](https://doi.org/10.2307/1968173)*, Annals of Mathematics (2) 34 (1933), no. 3, 480–508. Historical foundation for skew polynomial rings. The library implements the derivation case with explicit coefficient order, rather than all skew-polynomial generality.
-
-**[StacksD]** The Stacks Project Authors, *[Finite order differential operators](https://stacks.math.columbia.edu/tag/09CH)*, The Stacks Project, Section 10.133, tag 09CH (accessed 2026-09-09). Background for the recursive commutator definition and localization of finite-order differential operators; Lean implementations and hypotheses are indexed below.
-
-**[HTT08]** Ryoshi Hotta, Kiyoshi Takeuchi, and Toshiyuki Tanisaki, *[D-Modules, Perverse Sheaves, and Representation Theory](https://doi.org/10.1007/978-0-8176-4523-6)*, Progress in Mathematics 236, Birkhäuser, 2008. Background for differential operators, good filtrations and characteristic varieties (Chapters 1–2). No claim of a line-by-line formalization of this book.
-
-
-## Build
+Requires [elan](https://github.com/leanprover/elan). `lean-toolchain` pins
+`leanprover/lean4:v4.35.0-rc3`; `lakefile.toml` pins Mathlib
+`c55e6e786f49471c72fbddbec5415808896aec1e`.
 
 ```sh
 lake exe cache get
-lake build
-lake test
+lake build          # AlgebraicAnalysis
+lake test           # AlgebraicAnalysisTest
 lake lint
 ```
 
-On macOS hosts where a cached `runLinter` executable predates the host dyld
-format, run the same linter from Lean source:
+To use it from another Lake project, add it as a dependency at a fixed
+revision, as the downstream projects do:
+
+```toml
+[[require]]
+name = "algebraicAnalysis"
+git = "https://github.com/itpplasma/algebraic-analysis.git"
+rev = "<commit>"
+```
+
+On macOS, if a cached `runLinter` executable fails to load, run the linter
+from source instead:
 
 ```sh
 lake env lean --run .lake/packages/batteries/scripts/runLinter.lean AlgebraicAnalysis
 ```
 
-## Release provenance
+## Documentation
 
-The [release history](docs/release-history.md) records exact downstream pins.
-The [Zenodo metadata](.zenodo.json) describes v0.3.0.
+- [docs/contents.md](docs/contents.md): what is in each part of the library.
+- [docs/literature.md](docs/literature.md): literature sources and the Lean
+  modules that implement them.
+- [docs/provenance.yaml](docs/provenance.yaml): origin of extracted
+  declarations and downstream consumers.
+- [docs/release-history.md](docs/release-history.md): releases and the pins
+  used by downstream projects; verification records for v0.3.3 are in
+  [docs/verification/v0.3.3](docs/verification/v0.3.3).
+
+## Citing and license
+
+Citation metadata is in [CITATION.cff](CITATION.cff); the latest archived
+release is v0.3.3 ([10.5281/zenodo.23104842](https://doi.org/10.5281/zenodo.23104842)).
+Licensed under Apache-2.0 ([LICENSE](LICENSE), [NOTICE](NOTICE)).
