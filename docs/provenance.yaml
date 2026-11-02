@@ -1576,4 +1576,94 @@ extractions:
       quotient ring (RightOreLocalization R R⁰) is simple and semisimple, hence
       Artinian and, by Mathlib's Wedderburn-Artin theorem, a matrix ring over a
       division ring. The bridge from lengths over Q to uniform dimension
-      modulo Goldie torsion is not formalized.
+      modulo Goldie torsion is in goldie-rank.
+
+  - id: uniform-dimension
+    source_repository: itpplasma/algebraic-analysis
+    source_revision: native
+    source_path: none (written in this package)
+    target_path: AlgebraicAnalysis/Module/UniformDimension.lean
+    target_namespace: AlgebraicAnalysis.Module
+    declaration_scope: >-
+      UniformDimGE, UniformDimLE, uniformDimGE_zero, UniformDimGE.mono,
+      UniformDimGE.of_linearEquiv, uniformDimGE_congr, UniformDimGE.le_length,
+      uniformDimLE_of_length_le, uniformDimGE_iff_le_length,
+      uniformDimLE_iff_length_le
+    license: Apache-2.0
+    authorship: >-
+      Christopher Albert <albert@tugraz.at>, AI-assisted
+    consumers:
+      - itpplasma/generalized-stafford-formal (Corollary C.3 challenge bridge, planned)
+    depends_on: []
+    notes: >-
+      Uniform dimension as one-sided predicates via iSupIndep families of nonzero
+      submodules (Goodearl-Warfield Chapter 5; McConnell-Robson 2.2.10-2.2.12);
+      for semisimple modules it equals length. Definitionally the UDimGE/UDimLE of
+      the generalized-stafford challenge at Rᵐᵒᵖ. Nothing is new.
+
+  - id: ore-module-localization
+    source_repository: itpplasma/algebraic-analysis
+    source_revision: native
+    source_path: none (written in this package)
+    target_path: AlgebraicAnalysis/Ore/ModuleLocalization.lean
+    target_namespace: AlgebraicAnalysis.OreModule
+    declaration_scope: >-
+      toLocalization, toLocalization_apply, smul_oreDiv_self,
+      toLocalization_eq_zero_iff, oreDiv_eq_zero_iff, localizationMap,
+      localizationMap_oreDiv, localizationMap_toLocalization,
+      localizationMap_comp_apply, localizationMap_injective,
+      localizationMap_surjective, localizationMap_exact, finite,
+      oreDiv_one_smul_eq, eq_zero_of_smul_eq_zero, saturation, mem_saturation,
+      le_saturation, saturation_mono, saturation_inf, saturation_bot,
+      uniformDimGE_of_injective, uniformDimGE_of_essential,
+      uniformDimGE_iff_of_injective
+    license: Apache-2.0
+    authorship: >-
+      Christopher Albert <albert@tugraz.at>, AI-assisted
+    consumers:
+      - AlgebraicAnalysis/RingTheory/Goldie/Rank.lean
+    depends_on: [uniform-dimension]
+    notes: >-
+      Functoriality and exactness (flatness) of Mathlib's Ore localization of
+      modules at a left Ore set, its torsion kernel, finite generation, and the
+      preservation of uniform dimension under an essential embedding into an
+      A[S⁻¹]-module (McConnell-Robson 2.1.16-2.1.17, 2.2.13; Goodearl-Warfield
+      Chapter 10). Nothing is new.
+
+  - id: goldie-rank
+    source_repository: itpplasma/algebraic-analysis
+    source_revision: native
+    source_path: none (written in this package)
+    target_path: >-
+      AlgebraicAnalysis/RingTheory/Goldie/Rank.lean;
+      AlgebraicAnalysis/RingTheory/Goldie/Idempotents.lean
+    target_namespace: AlgebraicAnalysis.Goldie
+    declaration_scope: >-
+      Rank.lean: goldieTorsionPart, FractionModule, toFractionModule, goldieRank,
+      toFractionModule_eq_zero_iff, ker_toFractionModule, mem_goldieTorsionPart_iff,
+      goldieTorsionPart_eq_top_iff, goldieTorsionPart_self, exists_smul_mem_range,
+      quotientToFractionModule, quotientToFractionModule_injective,
+      goldieRank_eq_add_of_exact, goldieRank_le_of_injective,
+      goldieRank_le_of_surjective, goldieRank_quotient_le, goldieRank_submodule_le,
+      goldieRank_congr, goldieRank_prod, goldieRank_pi_fin, goldieRank_eq_zero_iff,
+      goldieRank_op_self, opRegularEquiv, goldieRank_self, goldieRank_le_card_mul,
+      goldieRank_ne_top, goldieRank_self_ne_top, goldieRank_self_pos,
+      uniformDimGE_quotient_iff, uniformDimLE_quotient_iff, uniformDimGE_self_iff,
+      uniformDimLE_self_iff, le_mul_of_uniformDim.
+      Idempotents.lean: exists_completeOrthogonalIdempotents_oppositeQuotientRing,
+      exists_idempotent_denominators.
+    license: Apache-2.0
+    authorship: >-
+      Christopher Albert <albert@tugraz.at>, AI-assisted
+    consumers:
+      - itpplasma/generalized-stafford-formal (Corollary C.3 and its challenge bridge, planned)
+    depends_on: [goldie-quotient-ring, ore-module-localization, uniform-dimension]
+    notes: >-
+      Goldie rank length_Q(M ⊗_R Q) of right modules over a ring with a right Ore
+      set of regular elements: additivity, rank of free modules, vanishing exactly
+      on Goldie-torsion modules; over a simple right Noetherian ring, finiteness
+      and the identification with the uniform dimension of M/t(M) and of R_R
+      (McConnell-Robson 2.2.13, 2.3.6; Goodearl-Warfield Chapters 5, 6, 10).
+      Idempotents.lean: complete orthogonal idempotents E_i of Q with E_i Q simple,
+      a regular common denominator c with E_i c in R and regular t_i with
+      c^{-1} E_i t_i in R (the device of core-theorem.md Lemma 6.4). Nothing is new.

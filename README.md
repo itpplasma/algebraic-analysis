@@ -23,7 +23,8 @@ Status: research library; declarations may still move or be renamed.
 - Goldie theory for simple right Noetherian rings: essential right ideals
   contain regular elements, Goldie torsion, and Goldie's theorem (the
   classical right quotient ring is simple Artinian, a matrix ring over a
-  division ring).
+  division ring), Goldie rank `length_Q(M ⊗_R Q)` with its identification
+  with uniform dimension, and exact Ore localization of modules.
 - Smaller pieces on Laurent and power series, rational functions, field
   theory (finite generation of fraction fields) and linear algebra.
 

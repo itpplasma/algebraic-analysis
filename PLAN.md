@@ -184,9 +184,12 @@ without changing the mathematical statements.
   singular tails, section modules. `QuotientRing`: Goldie's theorem, the
   classical right quotient ring `RightOreLocalization R R⁰` is simple,
   semisimple and Artinian, hence `Mₙ(D)` (Wedderburn–Artin), with finite
-  positive length over itself. Not formalized: length over `Q` of `M ⊗_R Q`
-  versus uniform dimension modulo Goldie torsion (needed for the normalized
-  rank of Corollary C.3). Oracle in `AlgebraicAnalysisTest/RingTheory/Goldie.lean`
+  positive length over itself. `Rank` (with `Ore/ModuleLocalization` and
+  `Module/UniformDimension`): exact Ore localization of modules, Goldie rank
+  `length_Q(M_Q)` and its equality with the uniform dimension of `M/t(M)` and
+  of `R_R`. `Idempotents`: complete orthogonal idempotents of `Q` with common
+  denominators in `R` (C.3 upper-bound device). Oracle in
+  `AlgebraicAnalysisTest/RingTheory/GoldieRank.lean`. Oracle in `AlgebraicAnalysisTest/RingTheory/Goldie.lean`
   (`M₂(ℚ)` hostile control, `ℚ` with Mathlib's commutative Ore structure).
   Downstream generalized-stafford-formal must import these declarations and
   delete its copies; the Goldie affine source selection stays downstream.

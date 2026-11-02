@@ -28,6 +28,7 @@ public import AlgebraicAnalysisTest.OreColon
 public import AlgebraicAnalysisTest.GermSchur
 public import AlgebraicAnalysisTest.TorsionEscape
 public import AlgebraicAnalysisTest.RingTheory.Goldie
+public import AlgebraicAnalysisTest.RingTheory.GoldieRank
 public import AlgebraicAnalysisTest.DualSeparationGeneral
 
 @[expose] public section
