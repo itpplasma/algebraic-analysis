@@ -168,8 +168,16 @@ without changing the mathematical statements.
   which need not be injective. The strict-monotonicity argument of
   `SymbolNoetherian` is unchanged, and `GradedSymbol.toPresentation` recovers the
   isomorphism case. Oracle: `ℚ[X₀,X₁]` presented by its own degree symbol
-  (`AlgebraicAnalysisTest/Filtration/SymbolPresentation.lean`). No filtration of an
-  enveloping algebra is constructed yet.
+  (`AlgebraicAnalysisTest/Filtration/SymbolPresentation.lean`).
+- PBW filtration of enveloping quotients (`Enveloping/PBWFiltration.lean`,
+  `Enveloping/Presentation.lean`). For a Lie algebra `L` over a field and a surjective
+  algebra map `π : U(L) → R`, the spans `Fₙ` of products of at most `n` Lie elements
+  form a `RingFiltration`, and `pbwSymbolPresentation` is a surjective symbol
+  presentation by `MvPolynomial (Fin m) k` with `m = dim L`. Consequences: `R` is
+  Noetherian on both sides and `Module.DevLE` holds with bound `dim L` on both sides.
+  Only the spanning direction of PBW is used (no injectivity claim). Oracle:
+  `AlgebraicAnalysisTest/Enveloping/AbelianPBW.lean` (abelian `k^m`: the PBW
+  filtration equals the total-degree filtration of `k[X]`).
 - `AlgebraicAnalysis.infinite_subring_center` (`RingTheory/InfiniteCenter.lean`):
   a nontrivial algebra over an infinite field has infinite centre (hypothesis `(Z)`).
 - `Module.Critical` proves critical submodule existence and uniformity;

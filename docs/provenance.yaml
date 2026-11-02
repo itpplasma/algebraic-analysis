@@ -1975,3 +1975,51 @@ extractions:
       Bernstein symbol of A_n(k) into k[x, ∂]. No characteristic hypothesis.
       The stafford38-formal Stafford38/Weyl/Domain.lean route is not used and
       that copy is unchanged.
+
+  - id: enveloping-pbw-filtration
+    source_repository: itpplasma/algebraic-analysis
+    source_revision: native
+    source_path: none (written in this package)
+    target_path: AlgebraicAnalysis/Enveloping/PBWFiltration.lean
+    target_namespace: AlgebraicAnalysis.Enveloping
+    declaration_scope: >-
+      gen, wordProd, pbwPiece, pbwFiltration, wordProd_mem_pbwPiece, pbwPiece_mono,
+      mul_mem_pbwPiece, pbwPiece_mul_le, iSup_pbwPiece_eq_top, gen_bracket,
+      wordProd_sub_mem_pbwPiece.
+    license: Apache-2.0
+    authorship: >-
+      Christopher Albert <albert@tugraz.at>, AI-assisted
+    consumers: []
+    depends_on: []
+    notes: >-
+      The PBW filtration F_n = span of products of at most n Lie elements of R, for a
+      surjective algebra map U(L) → R. Only the spanning direction is used; the
+      Poincaré-Birkhoff-Witt theorem is not. The reordering lemma uses the bracket
+      identity [gen x, gen y] = gen [x, y] in F_1. Nothing is imported from the
+      literature; this is standard PBW spanning, proved directly.
+
+  - id: enveloping-surjective-presentation
+    source_repository: itpplasma/algebraic-analysis
+    source_revision: native
+    source_path: none (written in this package)
+    target_path: AlgebraicAnalysis/Enveloping/Presentation.lean
+    target_namespace: AlgebraicAnalysis.Enveloping
+    declaration_scope: >-
+      letters, length_letters, length_letters_eq_weight, count_letters, letters_add_perm,
+      letters_single_perm, coeffLinear, psi, psi_mem_pbwPiece, psi_mul_sub_mem_below,
+      E, gen_basis_mul_E, gen_mul_E, wordProd_mem_E, sym, sym_surjective, sym_mul,
+      pbwSymbolPresentation, ringKrullDim_mvPolynomial_fin,
+      isNoetherian_right_of_surjective, isNoetherianRing_of_surjective,
+      devLE_right_of_surjective, devLE_left_of_surjective.
+    license: Apache-2.0
+    authorship: >-
+      Christopher Albert <albert@tugraz.at>, AI-assisted
+    consumers: []
+    depends_on: [enveloping-pbw-filtration, filtration-surjective-presentation, krull-dimension-deviation]
+    notes: >-
+      Surjective symbol presentation of the PBW filtration by MvPolynomial (Fin m) k,
+      with monomials sent to ordered products of a basis. Gives right and left
+      Noetherianity and deviation at most dim L on both sides of any quotient
+      U(L) / J (as a surjective image R). No injectivity is claimed. Oracle:
+      AlgebraicAnalysisTest/Enveloping/AbelianPBW.lean (abelian k^m, where the PBW
+      filtration equals the total-degree filtration of k[X]).
