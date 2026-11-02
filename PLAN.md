@@ -291,6 +291,17 @@ without changing the mathematical statements.
   (`M₂(ℚ)` hostile control, `ℚ` with Mathlib's commutative Ore structure).
   Downstream generalized-stafford-formal must import these declarations and
   delete its copies; the Goldie affine source selection stays downstream.
+- `RingTheory/Goldie/Splitting.lean` (namespace `AlgebraicAnalysis.Goldie`),
+  extracted from generalized-stafford-formal 61e42ff (section *Auxiliary* of
+  `GeneratorBounds.lean`): `exists_injective_toSpanSingleton` (if
+  `rk(R_R) ≤ rk(M)`, some `p` has `pR ≅ R_R`), `exists_goldieRank_eq_add_quotient`,
+  `eq_top_of_forall_toFractionModule_smul_mem` (the simplicity argument) and
+  `exists_span_fraction_eq_top` (successive choice of spanning fractions);
+  `RingTheory/SimpleArtinian.lean`: `exists_injective_smul_of_length_le`
+  (over a simple Artinian ring, `length A ≤ length X` embeds `A` in `X`).
+  Oracles over `ℚ`, with hostile controls, in
+  `AlgebraicAnalysisTest/RingTheory/GoldieSplitting.lean`. Downstream consumer:
+  Corollary C.3 in generalized-stafford-formal, which deletes its copies.
 
 ## Next valid work
 

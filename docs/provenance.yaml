@@ -2345,3 +2345,43 @@ extractions:
       New, AA-native assembly of stage D3: for a smooth algebra A over a field of
       characteristic zero, D_k(A) is right and left Noetherian with deviation at most 2r
       (r algebra generators); for A a domain it is simple, a domain, with infinite centre.
+
+  - id: goldie-free-cyclic-splitting
+    source_repository: itpplasma/generalized-stafford-formal
+    source_revision: 61e42ff751d92a30b97597fdffbf254aa3a1042d
+    source_path: >-
+      GeneralizedStafford/GeneratorBounds.lean (section Auxiliary, "Auxiliary module
+      theory (to be upstreamed to AlgebraicAnalysis)")
+    target_path: >-
+      AlgebraicAnalysis/RingTheory/SimpleArtinian.lean;
+      AlgebraicAnalysis/RingTheory/Goldie/Splitting.lean
+    target_namespace: AlgebraicAnalysis; AlgebraicAnalysis.Goldie
+    declaration_scope: >-
+      GeneralizedStafford.exists_injective_smul_of_length_le ->
+      AlgebraicAnalysis.exists_injective_smul_of_length_le (SimpleArtinian.lean);
+      GeneralizedStafford.eq_top_of_forall_toFractionModule_smul_mem ->
+      AlgebraicAnalysis.Goldie.eq_top_of_forall_toFractionModule_smul_mem;
+      GeneralizedStafford.exists_injective_toSpanSingleton ->
+      AlgebraicAnalysis.Goldie.exists_injective_toSpanSingleton;
+      GeneralizedStafford.exists_goldieRank_eq_add_quotient ->
+      AlgebraicAnalysis.Goldie.exists_goldieRank_eq_add_quotient;
+      GeneralizedStafford.exists_span_fraction_eq_top ->
+      AlgebraicAnalysis.Goldie.exists_span_fraction_eq_top (Splitting.lean).
+      Names and statements unchanged; only the namespace changes.
+    license: Apache-2.0
+    authorship: >-
+      itpplasma/generalized-stafford-formal contribution (Christopher Albert
+      <albert@tugraz.at>, AI-assisted); source history retained upstream
+    consumers:
+      - >-
+        itpplasma/generalized-stafford-formal, GeneralizedStafford/GeneratorBounds.lean
+        (Corollary C.3: cyclic_of_goldieRank_lt, spanRank_le_of_goldieRank_lt)
+    depends_on: [goldie-rank, goldie-quotient-ring]
+    notes: >-
+      Proof terms retained verbatim; docstrings rewritten without reference to the
+      downstream corollary. Source file SHA-256 at the source revision is
+      4a99d973120e1c0c2a2f12bad10fc87cd475d5f9ac36d1f20c0de007e55b3223. Classical
+      (Wedderburn-Artin, Goldie's theorem; McConnell-Robson 2.3.6); nothing is new.
+      The downstream integration wave deletes the section and imports
+      AlgebraicAnalysis.RingTheory.Goldie.Splitting. Oracles in
+      AlgebraicAnalysisTest/RingTheory/GoldieSplitting.lean.

@@ -16,10 +16,12 @@ public import AlgebraicAnalysis.RingTheory.PowerSeriesPrefixRoot
 public import AlgebraicAnalysis.RingTheory.PowerSeriesReverseTrunc
 public import AlgebraicAnalysis.RingTheory.Goldie.Basic
 public import AlgebraicAnalysis.RingTheory.InfiniteCenter
+public import AlgebraicAnalysis.RingTheory.SimpleArtinian
 public import AlgebraicAnalysis.RingTheory.Goldie.QuotientRing
 public import AlgebraicAnalysis.RingTheory.Goldie.Torsion
 public import AlgebraicAnalysis.RingTheory.Goldie.Rank
 public import AlgebraicAnalysis.RingTheory.Goldie.Idempotents
+public import AlgebraicAnalysis.RingTheory.Goldie.Splitting
 public import AlgebraicAnalysis.Ore.ModuleLocalization
 public import AlgebraicAnalysis.Module.UniformDimension
 public import AlgebraicAnalysis.DifferentialOperators.Basic

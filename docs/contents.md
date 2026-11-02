@@ -96,7 +96,11 @@ lemma for homogeneous relations in prime ideals.
   zero exactly on Goldie-torsion modules, finite for finitely generated `M`),
   and its equality with the uniform dimension of `M/t(M)` and of `R_R`.
   `Idempotents.lean`: complete orthogonal idempotents `Eᵢ` of `Q` with `EᵢQ`
-  simple and common denominators in `R`.
+  simple and common denominators in `R`. `Splitting.lean`: if
+  `rk(R_R) ≤ rk(M)`, some `p ∈ M` has zero annihilator and
+  `rk(M) = rk(R_R) + rk(M/pR)`; for nonzero `e_j` and `rk(M) < n`, elements
+  `m_j e_j` whose fractions span `M_Q`. `RingTheory/SimpleArtinian.lean`: over
+  a simple Artinian ring, `length A ≤ length X` gives an embedding `A ↪ X`.
 - `Module/UniformDimension.lean`: uniform dimension as `iSupIndep` predicates
   `UniformDimGE`, `UniformDimLE`; it is bounded by length and equals length for
   semisimple modules. `Ore/ModuleLocalization.lean`: exactness of Ore
