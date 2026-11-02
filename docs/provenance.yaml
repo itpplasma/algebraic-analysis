@@ -1667,3 +1667,62 @@ extractions:
       Idempotents.lean: complete orthogonal idempotents E_i of Q with E_i Q simple,
       a regular common denominator c with E_i c in R and regular t_i with
       c^{-1} E_i t_i in R (the device of core-theorem.md Lemma 6.4). Nothing is new.
+
+  - id: krull-dimension-deviation
+    source_repository: itpplasma/algebraic-analysis
+    source_revision: native
+    source_path: none (written in this package)
+    target_path: AlgebraicAnalysis/Module/DeviationKrullDim.lean
+    target_namespace: Module
+    declaration_scope: >-
+      devLE_iff_small_factors, small_of_le_annihilator,
+      small_quotient_prime_of_coheight_lt, devLE_of_ringKrullDim_le,
+      devLE_exists_of_ringKrullDim_ne_top
+    license: Apache-2.0
+    authorship: >-
+      Christopher Albert <albert@tugraz.at>, AI-assisted
+    consumers:
+      - AlgebraicAnalysis/Filtration/SymbolNoetherian.lean
+    depends_on: []
+    notes: >-
+      Upper bound of McConnell-Robson 6.4.8: the ideal lattice of a commutative
+      Noetherian ring of Krull dimension at most m has Gabriel-Rentschler
+      deviation at most m. Proof by Mathlib's prime filtration and induction on
+      the coheight of a prime in PrimeSpectrum. Nothing is new.
+
+  - id: filtered-ring-symbol-noetherian
+    source_repository: itpplasma/generalized-stafford-formal
+    source_revision: 7697e11786b4b20e28b6c727650d3cf036232969
+    source_path: GeneralizedStafford/Setting.lean (branch archive/pre-palomar-2026-11-02)
+    target_path: >-
+      AlgebraicAnalysis/Filtration/GradedSymbol.lean;
+      AlgebraicAnalysis/Filtration/SymbolNoetherian.lean
+    target_namespace: AlgebraicAnalysis.RingFiltration
+    declaration_scope: >-
+      GradedSymbol.lean: GradedSymbol, gradedQuotientEquiv, gradedQuotientEquiv_mk,
+      grAt and its algebra (grAt_of_mem, grAt_mem, grAt_sub, grAt_eq_zero_iff,
+      grAt_eq_grAt_iff, grAt_mul, grAt_mul', exists_grAt_eq), degreeLE,
+      mem_degreeLE, mem_degreeLE_of_mem, coe_decompose_mul_eq_sum,
+      degreeLE_mul_le, ofGradedAlgebra, ofGradedAlgebra_F,
+      GradedSymbol.ofGradedAlgebra.
+      SymbolNoetherian.lean: grPiece, grSpan, grSpan_mono, grAt_mem_grSpan,
+      exists_of_mem_grSpan, eq_of_le_of_grSpan_le, strictMono_grSpan,
+      mul_mem_grSpan, mul_mem_grPiece_right, mul_mem_grPiece_left,
+      grIdealRight, grIdealLeft, strictMono_grIdealRight,
+      strictMono_grIdealLeft, isNoetherian_right, isNoetherianRing,
+      devLE_right, devLE_left, devLEOmega_right, devLEOmega_left.
+    license: Apache-2.0
+    authorship: >-
+      Christopher Albert <albert@tugraz.at>, AI-assisted
+    consumers:
+      - itpplasma/generalized-stafford-formal (filtered-rings application of Corollary B, planned)
+    depends_on: [krull-dimension-deviation]
+    notes: >-
+      Adapts the symbol interface FilteredAlgebraData (grAt, grPiece, grIdeal)
+      of the archived Setting.lean to the shared RingFiltration structure,
+      without the domain and Artin-Rees parts. The symbol span is defined for
+      additive subgroups so both sides use one strictness argument. Proves
+      McConnell-Robson 1.6.9 (gr A commutative Noetherian implies A left and
+      right Noetherian) and the deviation bound of 6.5.6 with 6.4.8. The
+      downstream archived declarations are not active on main, so no
+      downstream copy needs removal in this wave. Nothing is new.
