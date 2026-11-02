@@ -20,8 +20,9 @@ right ideals of `A` (`rightIdealOpEquiv`, `leftIdealOpEquiv`). Deviation and
 Noetherianity are order-theoretic, so each right-side statement about `Aᵐᵒᵖ`
 is equivalent to the left-side statement about `A`, and conversely
 (`isNoetherian_right_op_iff`, `devLE_right_op_iff`, `isNoetherianRing_op_iff`,
-`devLE_left_op_iff`). The module `AlgebraicAnalysis.Filtration.SymbolNoetherian`
-uses these to transport its conclusions to the opposite symbol.
+`devLE_left_op_iff`). Applied to the symbol `S.opposite` they give the
+side-exchanged conclusions of `SymbolNoetherian` (`isNoetherianRing_of_opposite_right`
+and the three companions at the end of this file).
 
 ## Main definitions and results
 
