@@ -1727,6 +1727,35 @@ extractions:
       downstream archived declarations are not active on main, so no
       downstream copy needs removal in this wave. Nothing is new.
 
+  - id: filtration-opposite
+    source_repository: itpplasma/algebraic-analysis
+    source_revision: native
+    source_path: none (written in this package)
+    target_path: AlgebraicAnalysis/Filtration/Opposite.lean
+    target_namespace: AlgebraicAnalysis.RingFiltration
+    declaration_scope: >-
+      RingFiltration.opposite, mem_opposite_op_iff, mem_opposite_iff,
+      mem_opposite_below_iff, GradedSymbol.unopPiece, GradedSymbol.opposite,
+      GradedSymbol.grAt_opposite, GradedSymbol.coe_gr_opposite,
+      AlgebraicAnalysis.rightIdealOpEquiv, AlgebraicAnalysis.leftIdealOpEquiv,
+      isNoetherian_right_op_iff, isNoetherianRing_op_iff, devLE_right_op_iff,
+      devLE_left_op_iff, GradedSymbol.isNoetherianRing_of_opposite_right,
+      GradedSymbol.isNoetherian_right_of_opposite_left,
+      GradedSymbol.devLE_left_of_opposite_right,
+      GradedSymbol.devLE_right_of_opposite_left.
+    license: Apache-2.0
+    authorship: >-
+      Christopher Albert <albert@tugraz.at>, AI-assisted
+    consumers: []
+    depends_on: [filtered-ring-symbol-noetherian, krull-dimension-deviation]
+    notes: >-
+      Opposite filtration of Aᵐᵒᵖ and opposite symbol with the same graded
+      algebra G (commutative, so products reverse harmlessly). Right ideals of
+      Aᵐᵒᵖ are identified with left ideals of A (and conversely) by explicit
+      order isomorphisms, so right-side Noetherianity and deviation for Aᵐᵒᵖ are
+      equivalent to the left-side statements for A. Nothing is new; this is the
+      standard opposition argument.
+
   # ----------------------------------------------------------------------
   # Weyl algebra core (APP-3). Source: itpplasma/stafford38-formal at
   # ac20b730fb368786e840320ebf6e62d19bbe29f3 (Apache-2.0). Mechanical

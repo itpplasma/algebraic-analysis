@@ -104,6 +104,7 @@ public import AlgebraicAnalysis.Filtration.GKDimension
 public import AlgebraicAnalysis.Filtration.GradedSymbol
 public import AlgebraicAnalysis.Filtration.SymbolNoetherian
 public import AlgebraicAnalysis.Filtration.SymbolDomain
+public import AlgebraicAnalysis.Filtration.Opposite
 public import AlgebraicAnalysis.Order.Deviation
 public import AlgebraicAnalysis.Module.Deviation
 public import AlgebraicAnalysis.Module.DeviationOmega
