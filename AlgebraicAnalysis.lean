@@ -15,6 +15,7 @@ public import AlgebraicAnalysis.RingTheory.PowerSeriesLaurentSupport
 public import AlgebraicAnalysis.RingTheory.PowerSeriesPrefixRoot
 public import AlgebraicAnalysis.RingTheory.PowerSeriesReverseTrunc
 public import AlgebraicAnalysis.RingTheory.Goldie.Basic
+public import AlgebraicAnalysis.RingTheory.InfiniteCenter
 public import AlgebraicAnalysis.RingTheory.Goldie.QuotientRing
 public import AlgebraicAnalysis.RingTheory.Goldie.Torsion
 public import AlgebraicAnalysis.RingTheory.Goldie.Rank
@@ -104,6 +105,8 @@ public import AlgebraicAnalysis.Filtration.GKDimension
 public import AlgebraicAnalysis.Filtration.GradedSymbol
 public import AlgebraicAnalysis.Filtration.SymbolNoetherian
 public import AlgebraicAnalysis.Filtration.SymbolDomain
+public import AlgebraicAnalysis.Filtration.Opposite
+public import AlgebraicAnalysis.Filtration.SymbolPresentation
 public import AlgebraicAnalysis.Order.Deviation
 public import AlgebraicAnalysis.Module.Deviation
 public import AlgebraicAnalysis.Module.DeviationOmega

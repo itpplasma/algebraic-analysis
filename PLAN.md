@@ -157,6 +157,21 @@ without changing the mathematical statements.
   `AlgebraicAnalysis.Weyl.noZeroDivisors` and the instance
   `AlgebraicAnalysis.Weyl.isDomain` for every field `k` (no characteristic
   hypothesis). Oracles in `AlgebraicAnalysisTest/Weyl.lean`.
+- `RingFiltration.opposite` and `GradedSymbol.opposite` (`Filtration/Opposite.lean`)
+  give the filtration and symbol of `Aᵐᵒᵖ` with the same commutative `G`.
+  `rightIdealOpEquiv` and `leftIdealOpEquiv` identify ideal lattices of `Aᵐᵒᵖ`
+  with those of `A`, so right-side Noetherianity and deviation of `Aᵐᵒᵖ` are the
+  left-side statements for `A` (`isNoetherian_right_op_iff`, `devLE_right_op_iff`,
+  and their companions). Oracle: `ℤᵐᵒᵖ` has right deviation exactly one.
+- `RingFiltration.SymbolPresentation` (`Filtration/SymbolPresentation.lean`)
+  replaces the isomorphism by a surjective multiplicative presentation `G ↠ gr A`,
+  which need not be injective. The strict-monotonicity argument of
+  `SymbolNoetherian` is unchanged, and `GradedSymbol.toPresentation` recovers the
+  isomorphism case. Oracle: `ℚ[X₀,X₁]` presented by its own degree symbol
+  (`AlgebraicAnalysisTest/Filtration/SymbolPresentation.lean`). No filtration of an
+  enveloping algebra is constructed yet.
+- `AlgebraicAnalysis.infinite_subring_center` (`RingTheory/InfiniteCenter.lean`):
+  a nontrivial algebra over an infinite field has infinite centre (hypothesis `(Z)`).
 - `Module.Critical` proves critical submodule existence and uniformity;
   `Module.CriticalFiltration` constructs finite critical filtrations for
   Noetherian finite-deviation modules and bounds non-small chain factors.

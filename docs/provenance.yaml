@@ -1727,6 +1727,81 @@ extractions:
       downstream archived declarations are not active on main, so no
       downstream copy needs removal in this wave. Nothing is new.
 
+  - id: filtration-opposite
+    source_repository: itpplasma/algebraic-analysis
+    source_revision: native
+    source_path: none (written in this package)
+    target_path: AlgebraicAnalysis/Filtration/Opposite.lean
+    target_namespace: AlgebraicAnalysis.RingFiltration
+    declaration_scope: >-
+      RingFiltration.opposite, mem_opposite_op_iff, mem_opposite_iff,
+      mem_opposite_below_iff, GradedSymbol.unopPiece, GradedSymbol.opposite,
+      GradedSymbol.grAt_opposite, GradedSymbol.coe_gr_opposite,
+      AlgebraicAnalysis.rightIdealOpEquiv, AlgebraicAnalysis.leftIdealOpEquiv,
+      isNoetherian_right_op_iff, isNoetherianRing_op_iff, devLE_right_op_iff,
+      devLE_left_op_iff, GradedSymbol.isNoetherianRing_of_opposite_right,
+      GradedSymbol.isNoetherian_right_of_opposite_left,
+      GradedSymbol.devLE_left_of_opposite_right,
+      GradedSymbol.devLE_right_of_opposite_left.
+    license: Apache-2.0
+    authorship: >-
+      Christopher Albert <albert@tugraz.at>, AI-assisted
+    consumers: []
+    depends_on: [filtered-ring-symbol-noetherian, krull-dimension-deviation]
+    notes: >-
+      Opposite filtration of Aᵐᵒᵖ and opposite symbol with the same graded
+      algebra G (commutative, so products reverse harmlessly). Right ideals of
+      Aᵐᵒᵖ are identified with left ideals of A (and conversely) by explicit
+      order isomorphisms, so right-side Noetherianity and deviation for Aᵐᵒᵖ are
+      equivalent to the left-side statements for A. Nothing is new; this is the
+      standard opposition argument.
+
+  - id: infinite-subring-center
+    source_repository: itpplasma/algebraic-analysis
+    source_revision: native
+    source_path: none (written in this package)
+    target_path: AlgebraicAnalysis/RingTheory/InfiniteCenter.lean
+    target_namespace: AlgebraicAnalysis
+    declaration_scope: infinite_subring_center
+    license: Apache-2.0
+    authorship: >-
+      Christopher Albert <albert@tugraz.at>, AI-assisted
+    consumers: []
+    depends_on: []
+    notes: >-
+      A nontrivial algebra over an infinite field has infinite centre, since the
+      structure map from the field is injective with central image. This is the
+      hypothesis (Z) of the filtered-ring statements. Nothing is new.
+
+  - id: filtration-surjective-presentation
+    source_repository: itpplasma/algebraic-analysis
+    source_revision: native
+    source_path: none (written in this package)
+    target_path: AlgebraicAnalysis/Filtration/SymbolPresentation.lean
+    target_namespace: AlgebraicAnalysis.RingFiltration
+    declaration_scope: >-
+      SymbolPresentation (structure), SymbolPresentation.grPiece, mem_grPiece,
+      grSpan, mem_grSpan, grSpan_mono, mem_grSpan_of_mem,
+      mem_grPiece_of_mem_grSpan, eq_of_le_of_grSpan_le, strictMono_grSpan,
+      mul_mem_grSpan, mul_mem_grPiece_right, mul_mem_grPiece_left, grIdealRight,
+      grIdealLeft, mem_grIdealRight, mem_grIdealLeft, strictMono_grIdealRight,
+      strictMono_grIdealLeft, isNoetherian_right, isNoetherianRing, devLE_right,
+      devLE_left, devLEOmega_right, devLEOmega_left,
+      GradedSymbol.toPresentation.
+    license: Apache-2.0
+    authorship: >-
+      Christopher Albert <albert@tugraz.at>, AI-assisted
+    consumers: []
+    depends_on: [filtered-ring-symbol-noetherian, krull-dimension-deviation]
+    notes: >-
+      Generalizes SymbolNoetherian from injective symbol isomorphisms to surjective
+      multiplicative presentations G ↠ gr A, where gr A need not equal G. The
+      strict-monotonicity argument of McConnell-Robson 1.6.9 and 6.5.6 with 6.4.8
+      goes through because equality of classes in Fn/Fn-1 is already a quotient
+      condition. Intended for enveloping algebras (S(g) to gr U(g)), where no PBW
+      theorem is available. Nothing is new; the isomorphism case is recovered by
+      GradedSymbol.toPresentation.
+
   # ----------------------------------------------------------------------
   # Weyl algebra core (APP-3). Source: itpplasma/stafford38-formal at
   # ac20b730fb368786e840320ebf6e62d19bbe29f3 (Apache-2.0). Mechanical
