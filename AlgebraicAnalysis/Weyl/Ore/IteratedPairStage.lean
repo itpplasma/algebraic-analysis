@@ -1,0 +1,96 @@
+module
+public import AlgebraicAnalysis.Weyl.Ore.PairStage
+
+@[expose] public section
+
+/-!
+# Iterated coordinate-momentum pair stages
+
+This file recursively repeats the checked `PairStage` construction over an
+arbitrary coefficient ring.  It records only the resulting tower and the
+canonical data introduced at each successor; it does not identify the tower
+with a presented Weyl algebra.
+-/
+
+namespace AlgebraicAnalysis.Weyl.Ore.IteratedPairStage
+
+open AlgebraicAnalysis.Weyl.Ore.PairStage
+
+noncomputable section
+
+universe u
+
+/-- A type together with the ring structure used at the next Ore stage. -/
+structure RingStage where
+  /-- The underlying type. -/
+  carrier : Type u
+  /-- The ring structure on the underlying type. -/
+  ring : Ring carrier
+
+variable (B : Type u) [Ring B]
+
+/-- The recursively constructed ring data after adjoining `n` Weyl pairs. -/
+def iteratedPairData : Nat → RingStage
+  | 0 => ⟨B, inferInstance⟩
+  | n + 1 =>
+      let previous := iteratedPairData n
+      letI : Ring previous.carrier := previous.ring
+      ⟨PairStage (B := previous.carrier), inferInstance⟩
+
+/-- The ring obtained from `B` after recursively adjoining `n` checked
+coordinate-momentum pairs. -/
+def IteratedPairStage (n : Nat) : Type u :=
+  (iteratedPairData B n).carrier
+
+instance iteratedPairStageRing (n : Nat) : Ring (IteratedPairStage (B := B) n) :=
+  (iteratedPairData B n).ring
+
+/-- The zeroth stage is the original coefficient type. -/
+theorem iteratedPairStage_zero : IteratedPairStage (B := B) 0 = B := rfl
+
+/-- Every successor is definitionally the checked `PairStage` construction
+over its predecessor. -/
+theorem iteratedPairStage_succ (n : Nat) :
+    IteratedPairStage (B := B) (n + 1) =
+      PairStage (B := IteratedPairStage (B := B) n) := rfl
+
+/-- The canonical embedding from stage `n` into stage `n + 1`. -/
+def stageEmbedding (n : Nat) :
+    IteratedPairStage (B := B) n →+* IteratedPairStage (B := B) (n + 1) :=
+  pairCoefficient (B := IteratedPairStage (B := B) n)
+
+/-- The coordinate introduced at the successor of stage `n`. -/
+def stageCoordinate (n : Nat) : IteratedPairStage (B := B) (n + 1) :=
+  pairCoordinate (B := IteratedPairStage (B := B) n)
+
+/-- The momentum introduced at the successor of stage `n`. -/
+def stageMomentum (n : Nat) : IteratedPairStage (B := B) (n + 1) :=
+  pairMomentum (B := IteratedPairStage (B := B) n)
+
+/-- The coordinate introduced at stage `n + 1` commutes with the embedded
+predecessor ring. -/
+theorem stageCoordinate_mul_embedding (n : Nat)
+    (b : IteratedPairStage (B := B) n) :
+    stageCoordinate B n * stageEmbedding B n b =
+      stageEmbedding B n b * stageCoordinate B n :=
+  pairCoordinate_mul_coefficient b
+
+/-- The momentum introduced at stage `n + 1` commutes with the embedded
+predecessor ring. -/
+theorem stageMomentum_mul_embedding (n : Nat)
+    (b : IteratedPairStage (B := B) n) :
+    stageMomentum B n * stageEmbedding B n b =
+      stageEmbedding B n b * stageMomentum B n :=
+  pairMomentum_mul_coefficient b
+
+/-- The generators introduced at stage `n + 1` satisfy the checked Weyl
+relation. -/
+theorem stageMomentum_mul_coordinate (n : Nat) :
+    stageMomentum B n * stageCoordinate B n =
+      stageCoordinate B n * stageMomentum B n + 1 :=
+  pairMomentum_mul_coordinate
+
+
+end
+
+end AlgebraicAnalysis.Weyl.Ore.IteratedPairStage

@@ -1726,3 +1726,156 @@ extractions:
       right Noetherian) and the deviation bound of 6.5.6 with 6.4.8. The
       downstream archived declarations are not active on main, so no
       downstream copy needs removal in this wave. Nothing is new.
+
+  # ----------------------------------------------------------------------
+  # Weyl algebra core (APP-3). Source: itpplasma/stafford38-formal at
+  # ac20b730fb368786e840320ebf6e62d19bbe29f3 (Apache-2.0). Mechanical
+  # transform: `Stafford38.<Module>` and `Stafford38Challenge.*`,
+  # `Stafford38FixedSourceChallenge.*`, `Stafford.*` namespaces become
+  # `AlgebraicAnalysis.Weyl.*` (namespace follows the module path, see
+  # each target file); `Stafford.commutator` and bare `commutator` become
+  # `AlgebraicAnalysis.ringCommutator`; `#print axioms` lines are removed;
+  # `proofs.weyl_symplectic` imports are replaced by `AlgebraicAnalysis.Commutator`.
+  # The stafford38-formal copy stays frozen; it is not changed by this wave.
+  # ----------------------------------------------------------------------
+
+  - id: weyl-presentation
+    source_repository: itpplasma/stafford38-formal
+    source_revision: ac20b730fb368786e840320ebf6e62d19bbe29f3
+    source_path: Stafford38/ChallengeDefinitions.lean (partial) and proofs/weyl_symplectic.lean lines 174-207
+    target_path: AlgebraicAnalysis/Weyl/Presentation.lean
+    target_namespace: AlgebraicAnalysis.Weyl
+    declaration_scope: >-
+      freeWeylRelation, FreeWeyl, freeWeylGenerator, PhaseVar, relation,
+      WeylAlg, generator, oldIndex (and simp lemmas), freeOldMap,
+      freeOrderedMonomial, orderedMonomial, phaseDegree, and the generator
+      commutator freeWeylGenerator_commutator. Not extracted: the challenge
+      statements UniversalStatement and Reduction.Stafford38, the challenge
+      bernsteinPiece and bernsteinDegree, linearCombination, standardForm,
+      IsRightTorsion and the fixed-source challenge statements.
+    license: Apache-2.0
+    authorship: Christopher Albert <albert@tugraz.at>, AI-assisted
+    consumers: [itpplasma/stafford38-formal, itpplasma/generalized-stafford-formal (planned)]
+    depends_on: []
+    notes: >-
+      The bodies are unchanged. AlgebraicAnalysis.Weyl.WeylAlg k n is
+      definitionally Stafford38Challenge.WeylAlg k n (same FreeWeyl relation
+      with Matrix.J), so a statement about one transfers to the other by rfl.
+
+  - id: weyl-symbol
+    source_repository: itpplasma/stafford38-formal
+    source_revision: ac20b730fb368786e840320ebf6e62d19bbe29f3
+    source_path: Stafford38/Characteristic/Polynomial.lean (partial)
+    target_path: AlgebraicAnalysis/Weyl/Symbol.lean
+    target_namespace: AlgebraicAnalysis.Weyl
+    declaration_scope: >-
+      SymbolRing, fibreWeight. Not extracted: poissonBracket, IsPoisson.
+    license: Apache-2.0
+    authorship: Christopher Albert <albert@tugraz.at>, AI-assisted
+    consumers: [itpplasma/stafford38-formal]
+    depends_on: [weyl-presentation]
+    notes: Bodies unchanged.
+
+  - id: weyl-mathlib-compat
+    source_repository: itpplasma/stafford38-formal
+    source_revision: ac20b730fb368786e840320ebf6e62d19bbe29f3
+    source_path: Stafford38/MathlibCompat/MvPolynomialCoeff.lean
+    target_path: AlgebraicAnalysis/Weyl/MvPolynomialCoeff.lean
+    target_namespace: MvPolynomial
+    declaration_scope: all declarations of the source file (coeff abbreviation, coeff_zero_compat)
+    license: Apache-2.0
+    authorship: Christopher Albert <albert@tugraz.at>, AI-assisted
+    consumers: [itpplasma/stafford38-formal]
+    depends_on: []
+    notes: >-
+      A compatibility spelling for `MvPolynomial.coeff m p` used by the Weyl
+      filtration files. Candidate for removal once Mathlib's spelling is used
+      directly; it is kept so the copied proofs are unchanged.
+
+  - id: weyl-ore-tower
+    source_repository: itpplasma/stafford38-formal
+    source_revision: ac20b730fb368786e840320ebf6e62d19bbe29f3
+    source_path: >-
+      Stafford38/Ore/CoordinateStage.lean, ScalarAlgebra.lean, PairStage.lean,
+      PairUniversal.lean, IteratedPairStage.lean, LinearNormalForm.lean
+    target_path: >-
+      AlgebraicAnalysis/Weyl/Ore/CoordinateStage.lean, ScalarAlgebra.lean,
+      PairStage.lean, PairUniversal.lean, IteratedPairStage.lean, LinearNormalForm.lean
+    target_namespace: AlgebraicAnalysis.Weyl.Ore.<module name>
+    declaration_scope: all declarations of the six source files
+    license: Apache-2.0
+    authorship: Christopher Albert <albert@tugraz.at>, AI-assisted
+    consumers: [itpplasma/stafford38-formal]
+    depends_on: [algebraic-analysis Ore.Associativity, Ore.RightPBW]
+    notes: >-
+      The coordinate-momentum pair stages built on the AlgebraicAnalysis
+      NormalOre construction. Checked here: the pair stage is
+      NormalOre (coordinateDerivation over NormalOre zeroDerivation).
+
+  - id: weyl-pbw-presentation-equivalence
+    source_repository: itpplasma/stafford38-formal
+    source_revision: ac20b730fb368786e840320ebf6e62d19bbe29f3
+    source_path: >-
+      Stafford38/Weyl/Universal.lean, IteratedEquivalence.lean, PBW.lean,
+      Filtration.lean, LeadingSymbol.lean, AssociatedGraded.lean,
+      GradedAlgebra.lean, Transposition.lean
+    target_path: >-
+      AlgebraicAnalysis/Weyl/Universal.lean, IteratedEquivalence.lean, PBW.lean,
+      Filtration.lean, LeadingSymbol.lean, AssociatedGraded.lean,
+      GradedAlgebra.lean, Transposition.lean
+    target_namespace: AlgebraicAnalysis.Weyl.<module name>
+    declaration_scope: >-
+      all declarations of the eight source files: the universal property of the
+      presentation, the presentation-to-tower equivalence presentedIteratedEquiv,
+      the PBW basis, the Bernstein and order filtrations, the leading symbol,
+      the associated graded, and the transposition anti-automorphism transpositionEquiv.
+    license: Apache-2.0
+    authorship: Christopher Albert <albert@tugraz.at>, AI-assisted
+    consumers: [itpplasma/stafford38-formal]
+    depends_on: [weyl-presentation, weyl-symbol, weyl-mathlib-compat, weyl-ore-tower]
+    notes: >-
+      Not extracted from stafford38-formal: Weyl/Domain.lean (IsDomain; it
+      needs the Statement and MonicNormalization closure, and no downstream
+      consumer needs it yet), Symplectic, Characteristic, and the proofs
+      directory. The GradedAlgebra namespace is the source's
+      `Stafford38.WeylAssociatedGraded`.
+
+  - id: weyl-bernstein-symbol
+    source_repository: algebraic-analysis (this package)
+    source_revision: new in APP-3
+    source_path: AlgebraicAnalysis/Weyl/BernsteinSymbol.lean
+    target_path: AlgebraicAnalysis/Weyl/BernsteinSymbol.lean
+    target_namespace: AlgebraicAnalysis.Weyl.BernsteinSymbol
+    declaration_scope: filtration, grading, principal_eq_zero_iff, symbol, ringKrullDim_symbolRing_ne_top, isNoetherian_right, devLEOmega_right
+    license: Apache-2.0
+    authorship: Claude (AI-assisted), reviewed by Christopher Albert
+    consumers: [itpplasma/generalized-stafford-formal (Theorem A application, planned)]
+    depends_on: [weyl-pbw-presentation-equivalence, RingFiltration.GradedSymbol, Module.DevLEOmega]
+    notes: >-
+      New. Packages the Bernstein filtration of A_n(k) as a RingFiltration
+      and its principal symbol, a GradedSymbol into k[x, ∂] graded by total
+      degree. Right Noetherianity and Module.DevLEOmega follow from
+      GradedSymbol.isNoetherian_right and devLEOmega_right. The tower route
+      (AlgebraicAnalysis.Ore.derivationOre_rightHilbertBasis) is not used.
+
+  - id: weyl-simplicity
+    source_repository: algebraic-analysis (this package)
+    source_revision: new in APP-3
+    source_path: AlgebraicAnalysis/Weyl/Simplicity.lean
+    target_path: AlgebraicAnalysis/Weyl/Simplicity.lean
+    target_namespace: AlgebraicAnalysis.Weyl.Simplicity
+    declaration_scope: >-
+      eq_zero_of_natCast_mul, eq_zero_of_mul_natCast, coordinateStage_eq_zero_of_mul_natCast,
+      variable_mul_coordinate_comm, pairCoordinate_comm_coefficient,
+      pairMomentum_mul_pairCoordinate, pairMomentum_pow_mul_pairCoordinate,
+      pairCoordinate_comm_normalForm, nontrivial_coordinateStage, nontrivial_pairStage,
+      exists_coordinate_mem, exists_base_mem, isSimpleRing_pairStage,
+      isSimpleRing_iteratedPairStage, isSimpleRing_weylAlg
+    license: Apache-2.0
+    authorship: Claude (AI-assisted), reviewed by Christopher Albert
+    consumers: [itpplasma/generalized-stafford-formal (Theorem A application, planned)]
+    depends_on: [weyl-ore-tower, weyl-pbw-presentation-equivalence]
+    notes: >-
+      New, not a copy. A Dixmier-style proof that the pair stage over a simple
+      k-algebra of characteristic zero is simple, induction over the tower, and
+      transport along presentedIteratedEquiv. No literature theorem is imported.
