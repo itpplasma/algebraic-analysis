@@ -155,6 +155,7 @@ public import AlgebraicAnalysis.DifferentialOperators.LocalizedPolynomialOperato
 public import AlgebraicAnalysis.DifferentialOperators.Localization
 public import AlgebraicAnalysis.DifferentialOperators.SmoothDerivations
 public import AlgebraicAnalysis.DifferentialOperators.ProjectiveFrame
+public import AlgebraicAnalysis.DifferentialOperators.Domain
 
 @[expose] public section
 
