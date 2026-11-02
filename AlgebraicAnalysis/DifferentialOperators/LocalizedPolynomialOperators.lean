@@ -248,7 +248,7 @@ theorem eq_top_of_pderiv_mem (J : Ideal B) (hJ : J ≠ ⊥)
 /-- **`D_k(S⁻¹k[x₁, …, xₙ])` is simple** in characteristic zero, for `0 ∉ S`. -/
 theorem isSimpleRing : IsSimpleRing (DiffOp k B) :=
   have := isDomain_base B hS
-  (isCoordinateFrame S B).isSimpleRing (eq_top_of_pderiv_mem B hS)
+  isSimpleRing_of_derivation fun J hJ hD => eq_top_of_pderiv_mem B hS J hJ fun _ => hD _
 
 /-- **`D_k(S⁻¹k[x₁, …, xₙ])` is a domain** in characteristic zero, for `0 ∉ S`. -/
 theorem isDomain : IsDomain (DiffOp k B) :=

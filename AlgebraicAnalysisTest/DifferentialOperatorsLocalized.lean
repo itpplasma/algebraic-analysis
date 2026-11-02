@@ -223,6 +223,6 @@ example : commutator (commutator (d.toLinearMap * d.toLinearMap) (X 0 : P1)) (X 
 #print axioms LocalizedPolynomialOperators.devLE_left
 #print axioms LocalizedPolynomialOperators.infinite_center
 #print axioms RingFiltration.PolynomialGenerators.gradedSymbol
-#print axioms IsCoordinateFrame.isSimpleRing
+#print axioms isSimpleRing_of_derivation
 
 end AlgebraicAnalysisTest.DifferentialOperatorsLocalized
