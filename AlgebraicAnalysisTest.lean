@@ -23,6 +23,7 @@ public import AlgebraicAnalysisTest.PowerSeriesReverseTrunc
 public import AlgebraicAnalysisTest.Deviation
 public import AlgebraicAnalysisTest.Filtration.SymbolNoetherian
 public import AlgebraicAnalysisTest.Filtration.Opposite
+public import AlgebraicAnalysisTest.RingTheory.InfiniteCenter
 public import AlgebraicAnalysisTest.Critical
 public import AlgebraicAnalysisTest.Germ
 public import AlgebraicAnalysisTest.DivisionPencil

@@ -1756,6 +1756,23 @@ extractions:
       equivalent to the left-side statements for A. Nothing is new; this is the
       standard opposition argument.
 
+  - id: infinite-subring-center
+    source_repository: itpplasma/algebraic-analysis
+    source_revision: native
+    source_path: none (written in this package)
+    target_path: AlgebraicAnalysis/RingTheory/InfiniteCenter.lean
+    target_namespace: AlgebraicAnalysis
+    declaration_scope: infinite_subring_center
+    license: Apache-2.0
+    authorship: >-
+      Christopher Albert <albert@tugraz.at>, AI-assisted
+    consumers: []
+    depends_on: []
+    notes: >-
+      A nontrivial algebra over an infinite field has infinite centre, since the
+      structure map from the field is injective with central image. This is the
+      hypothesis (Z) of the filtered-ring statements. Nothing is new.
+
   # ----------------------------------------------------------------------
   # Weyl algebra core (APP-3). Source: itpplasma/stafford38-formal at
   # ac20b730fb368786e840320ebf6e62d19bbe29f3 (Apache-2.0). Mechanical
