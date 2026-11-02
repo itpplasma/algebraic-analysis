@@ -2208,3 +2208,39 @@ extractions:
       localized-polynomial-derivations); Noetherian with deviation at most 2n on both
       sides in characteristic zero; simple, a domain, with infinite centre when
       S <= nonZeroDivisors. bjork-formal was not used as a source.
+
+  - id: differential-operators-localization-uniqueness
+    source_repository: algebraic-analysis (this package)
+    source_revision: new in DX-2 (branch diffops-local)
+    source_path: AlgebraicAnalysis/DifferentialOperators/Localization.lean
+    target_path: AlgebraicAnalysis/DifferentialOperators/Localization.lean
+    target_namespace: AlgebraicAnalysis.DifferentialOperators
+    declaration_scope: >-
+      eq_zero_of_forall_algebraMap_eq_zero, eq_of_forall_algebraMap_eq.
+    license: Apache-2.0
+    authorship: Claude (AI-assisted), reviewed by Christopher Albert
+    consumers: [D3 localization of differential operators (planned)]
+    depends_on: [differential-operators-order-filtration]
+    notes: >-
+      New, AA-native. Uniqueness half of EGA IV 16.4.14: a finite-order operator on
+      S^-1 A vanishing on A is zero (induction on the order). Existence is open
+      except in order one (localized-polynomial-derivations.extendDerivation).
+
+  - id: smooth-derivations
+    source_repository: algebraic-analysis (this package)
+    source_revision: new in DX-2 (branch diffops-local)
+    source_path: AlgebraicAnalysis/DifferentialOperators/SmoothDerivations.lean
+    target_path: AlgebraicAnalysis/DifferentialOperators/SmoothDerivations.lean
+    target_namespace: AlgebraicAnalysis.DifferentialOperators
+    declaration_scope: >-
+      finite_derivation, projective_derivation, finite_derivation_of_smooth,
+      projective_derivation_of_smooth.
+    license: Apache-2.0
+    authorship: Claude (AI-assisted), reviewed by Christopher Albert
+    consumers: [D3 differential operators on smooth algebras (planned)]
+    depends_on: []
+    notes: >-
+      New, AA-native wrapper of Mathlib: Der_k(A) = Hom_A(Omega, A)
+      (KaehlerDifferential.linearMapEquivDerivation), Module.dual_finite and
+      dual_projective, Algebra.FormallySmooth.projective_kaehlerDifferential and
+      KaehlerDifferential.finite.

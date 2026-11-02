@@ -210,9 +210,14 @@ without changing the mathematical statements.
   `S ≤ nonZeroDivisors` it is simple, a domain, with infinite centre
   (`ringKrullDim_le_of_isLocalization` gives `dim B ≤ n`). Oracles (Laurent
   polynomials, `ℚ(x₀, x₁)`, sharpness of the symbol) in
-  `AlgebraicAnalysisTest/DifferentialOperatorsLocalized.lean`. Open: general smooth
-  `R` (D3): localization of differential operators, étale coordinates on a
-  covering, `Der_k R` projective.
+  `AlgebraicAnalysisTest/DifferentialOperatorsLocalized.lean`. D3 groundwork:
+  `Localization.lean` (finite-order operators on `S⁻¹A` are determined on `A`,
+  `eq_of_forall_algebraMap_eq`) and `SmoothDerivations.lean` (`Der_k A` finitely
+  generated projective for smooth `A`); oracles in
+  `AlgebraicAnalysisTest/DifferentialOperatorsD3.lean`. Open (D3): existence of the
+  extension of an order-`n` operator to `S⁻¹A`, étale coordinates on a Zariski
+  cover of a smooth `A`, and the local-to-global assembly of Noetherian, domain and
+  simplicity.
 - `AlgebraicAnalysis.infinite_subring_center` (`RingTheory/InfiniteCenter.lean`):
   a nontrivial algebra over an infinite field has infinite centre (hypothesis `(Z)`).
 - `Module.Critical` proves critical submodule existence and uniformity;

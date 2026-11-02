@@ -152,6 +152,8 @@ public import AlgebraicAnalysis.DifferentialOperators.CoordinateSymbol
 public import AlgebraicAnalysis.DifferentialOperators.PolynomialOperators
 public import AlgebraicAnalysis.DifferentialOperators.CoordinateSimplicity
 public import AlgebraicAnalysis.DifferentialOperators.LocalizedPolynomialOperators
+public import AlgebraicAnalysis.DifferentialOperators.Localization
+public import AlgebraicAnalysis.DifferentialOperators.SmoothDerivations
 
 @[expose] public section
 
