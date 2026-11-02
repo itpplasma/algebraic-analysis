@@ -136,6 +136,20 @@ without changing the mathematical statements.
   `Module/DeviationOmega.lean`; oracles in `AlgebraicAnalysisTest/Deviation.lean`
   (finite-dimensional spaces have deviation zero, `ℤ` has deviation one but
   not zero). Not `Order.krullDim` or commutative `supportDim`.
+- `Module.devLE_of_ringKrullDim_le` (`Module/DeviationKrullDim.lean`) proves
+  the upper bound of [MR 6.4.8]: a commutative Noetherian ring of Krull
+  dimension at most `m` has ideal-lattice deviation at most `m`, via Mathlib's
+  prime filtration and induction on prime coheight.
+  `RingFiltration.GradedSymbol` (`Filtration/GradedSymbol.lean`) identifies
+  the associated graded ring of a `RingFiltration` with a commutative graded
+  algebra; `Filtration/SymbolNoetherian.lean` proves that `I ↦ gr I` is
+  strictly monotone on right and on left ideals, hence [MR 1.6.9] (left and
+  right Noetherian) and the two-sided deviation bounds `devLE_right`,
+  `devLE_left`, `devLEOmega_right`, `devLEOmega_left`. Oracles in
+  `AlgebraicAnalysisTest/Filtration/SymbolNoetherian.lean` (sharp bound for
+  `ℤ` and `ℚ[X]`, symbol computations in `ℚ[X₀,X₁]`, agreement with Mathlib's
+  Hilbert basis instance). The ring structure of `gr A` itself is not
+  constructed; the hypothesis is the symbol identification.
 - `Module.Critical` proves critical submodule existence and uniformity;
   `Module.CriticalFiltration` constructs finite critical filtrations for
   Noetherian finite-deviation modules and bounds non-small chain factors.

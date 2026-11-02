@@ -101,9 +101,12 @@ public import AlgebraicAnalysis.Filtration.RingFiltration
 public import AlgebraicAnalysis.Filtration.GoodFiltration
 public import AlgebraicAnalysis.Filtration.HilbertFunction
 public import AlgebraicAnalysis.Filtration.GKDimension
+public import AlgebraicAnalysis.Filtration.GradedSymbol
+public import AlgebraicAnalysis.Filtration.SymbolNoetherian
 public import AlgebraicAnalysis.Order.Deviation
 public import AlgebraicAnalysis.Module.Deviation
 public import AlgebraicAnalysis.Module.DeviationOmega
+public import AlgebraicAnalysis.Module.DeviationKrullDim
 public import AlgebraicAnalysis.Module.LocSmall
 public import AlgebraicAnalysis.Module.Critical
 public import AlgebraicAnalysis.Module.CriticalFiltration
