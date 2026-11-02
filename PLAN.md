@@ -150,6 +150,13 @@ without changing the mathematical statements.
   `ℤ` and `ℚ[X]`, symbol computations in `ℚ[X₀,X₁]`, agreement with Mathlib's
   Hilbert basis instance). The ring structure of `gr A` itself is not
   constructed; the hypothesis is the symbol identification.
+  `Filtration/SymbolDomain.lean` proves that a symbol into a ring without zero
+  divisors forces `A` to have none (`GradedSymbol.noZeroDivisors`, via the
+  order function), and `GradedSymbol.isDomain` when `1 ∈ 𝒜 0`;
+  `Weyl/Domain.lean` specializes the Bernstein symbol to
+  `AlgebraicAnalysis.Weyl.noZeroDivisors` and the instance
+  `AlgebraicAnalysis.Weyl.isDomain` for every field `k` (no characteristic
+  hypothesis). Oracles in `AlgebraicAnalysisTest/Weyl.lean`.
 - `Module.Critical` proves critical submodule existence and uniformity;
   `Module.CriticalFiltration` constructs finite critical filtrations for
   Noetherian finite-deviation modules and bounds non-small chain factors.

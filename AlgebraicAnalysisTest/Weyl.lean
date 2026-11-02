@@ -1,6 +1,8 @@
 module
 public import AlgebraicAnalysis.Weyl.Simplicity
 public import AlgebraicAnalysis.Weyl.BernsteinSymbol
+public import AlgebraicAnalysis.Weyl.Domain
+public import Mathlib.Algebra.Field.ZMod
 
 @[expose] public section
 
@@ -15,6 +17,9 @@ Oracles for the Weyl algebra core.
   variables of `MvPolynomial`).
 * Simplicity: a two-sided ideal of `A_1(ℚ)` containing the nonzero element
   `∂` is the whole algebra, the consequence of simplicity used downstream.
+* Domain: `∂ ≠ 0` and `x ≠ 0` follow from `∂ x - x ∂ = 1` alone, so the domain
+  instance gives `∂ x ≠ 0` and left cancellation by `∂`; over `ZMod 2`, where
+  simplicity fails, `A_1` is still a domain.
 -/
 
 namespace AlgebraicAnalysisTest.Weyl
@@ -57,8 +62,57 @@ example (I : TwoSidedIdeal (WeylAlg ℚ 1))
   rw [h, zero_mul, mul_zero, sub_zero] at h1
   exact zero_ne_one h1
 
+/-- `∂ ≠ 0` in `A_1(ℚ)`, from the commutator relation only. -/
+theorem momentum_ne_zero : generator ℚ 1 (.inr 0) ≠ 0 := by
+  intro h
+  have h1 := momentum_mul_coordinate_sub_coordinate_mul
+  rw [h, zero_mul, mul_zero, sub_zero] at h1
+  exact zero_ne_one h1
+
+/-- `x ≠ 0` in `A_1(ℚ)`, from the commutator relation only. -/
+theorem coordinate_ne_zero : generator ℚ 1 (.inl 0) ≠ 0 := by
+  intro h
+  have h1 := momentum_mul_coordinate_sub_coordinate_mul
+  rw [h, zero_mul, mul_zero, sub_zero] at h1
+  exact zero_ne_one h1
+
+/-- The product `∂ x` of `A_1(ℚ)` is nonzero. -/
+theorem momentum_mul_coordinate_ne_zero :
+    generator ℚ 1 (.inr 0) * generator ℚ 1 (.inl 0) ≠ 0 :=
+  mul_ne_zero momentum_ne_zero coordinate_ne_zero
+
+/-- A nonzero product of higher degree: `∂² x³ (x + ∂) ≠ 0` in `A_1(ℚ)`. -/
+example : generator ℚ 1 (.inr 0) ^ 2 * generator ℚ 1 (.inl 0) ^ 3 *
+    (generator ℚ 1 (.inl 0) + generator ℚ 1 (.inr 0)) ≠ 0 := by
+  refine mul_ne_zero (mul_ne_zero (pow_ne_zero _ momentum_ne_zero)
+    (pow_ne_zero _ coordinate_ne_zero)) ?_
+  intro h
+  have h1 : generator ℚ 1 (.inr 0) * (generator ℚ 1 (.inl 0) + generator ℚ 1 (.inr 0)) -
+      (generator ℚ 1 (.inl 0) + generator ℚ 1 (.inr 0)) * generator ℚ 1 (.inr 0) = 1 := by
+    rw [mul_add, add_mul, add_sub_add_right_eq_sub]
+    exact momentum_mul_coordinate_sub_coordinate_mul
+  rw [h, mul_zero, zero_mul, sub_zero] at h1
+  exact zero_ne_one h1
+
+/-- Left cancellation by `∂` in `A_1(ℚ)`. -/
+example (b c : WeylAlg ℚ 1) (h : generator ℚ 1 (.inr 0) * b = generator ℚ 1 (.inr 0) * c) :
+    b = c :=
+  mul_left_cancel₀ momentum_ne_zero h
+
+/-- `A_1(𝔽₂)` is a domain, although it is not simple (`x²` is central). -/
+example : IsDomain (WeylAlg (ZMod 2) 1) :=
+  haveI : Fact (Nat.Prime 2) := ⟨Nat.prime_two⟩
+  inferInstance
+
+/-- The domain statement in the form of the task. -/
+example : NoZeroDivisors (WeylAlg ℚ 2) := noZeroDivisors ℚ 2
+
 #print axioms momentum_mul_coordinate_sub_coordinate_mul
 #print axioms ringKrullDim_symbolRing_one
 #print axioms Simplicity.isSimpleRing_weylAlg
+#print axioms momentum_mul_coordinate_ne_zero
+#print axioms AlgebraicAnalysis.Weyl.noZeroDivisors
+#print axioms AlgebraicAnalysis.Weyl.isDomain
+#print axioms AlgebraicAnalysis.RingFiltration.GradedSymbol.isDomain
 
 end AlgebraicAnalysisTest.Weyl
