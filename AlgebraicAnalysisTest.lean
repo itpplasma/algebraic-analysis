@@ -34,6 +34,7 @@ public import AlgebraicAnalysisTest.GermSchur
 public import AlgebraicAnalysisTest.TorsionEscape
 public import AlgebraicAnalysisTest.RingTheory.Goldie
 public import AlgebraicAnalysisTest.RingTheory.GoldieRank
+public import AlgebraicAnalysisTest.RingTheory.GoldieSplitting
 public import AlgebraicAnalysisTest.DualSeparationGeneral
 public import AlgebraicAnalysisTest.Weyl
 public import AlgebraicAnalysisTest.DifferentialOperatorsPolynomial
