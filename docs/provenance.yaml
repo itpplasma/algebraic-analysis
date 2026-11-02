@@ -1857,3 +1857,25 @@ extractions:
       degree. Right Noetherianity and Module.DevLEOmega follow from
       GradedSymbol.isNoetherian_right and devLEOmega_right. The tower route
       (AlgebraicAnalysis.Ore.derivationOre_rightHilbertBasis) is not used.
+
+  - id: weyl-simplicity
+    source_repository: algebraic-analysis (this package)
+    source_revision: new in APP-3
+    source_path: AlgebraicAnalysis/Weyl/Simplicity.lean
+    target_path: AlgebraicAnalysis/Weyl/Simplicity.lean
+    target_namespace: AlgebraicAnalysis.Weyl.Simplicity
+    declaration_scope: >-
+      eq_zero_of_natCast_mul, eq_zero_of_mul_natCast, coordinateStage_eq_zero_of_mul_natCast,
+      variable_mul_coordinate_comm, pairCoordinate_comm_coefficient,
+      pairMomentum_mul_pairCoordinate, pairMomentum_pow_mul_pairCoordinate,
+      pairCoordinate_comm_normalForm, nontrivial_coordinateStage, nontrivial_pairStage,
+      exists_coordinate_mem, exists_base_mem, isSimpleRing_pairStage,
+      isSimpleRing_iteratedPairStage, isSimpleRing_weylAlg
+    license: Apache-2.0
+    authorship: Claude (AI-assisted), reviewed by Christopher Albert
+    consumers: [itpplasma/generalized-stafford-formal (Theorem A application, planned)]
+    depends_on: [weyl-ore-tower, weyl-pbw-presentation-equivalence]
+    notes: >-
+      New, not a copy. A Dixmier-style proof that the pair stage over a simple
+      k-algebra of characteristic zero is simple, induction over the tower, and
+      transport along presentedIteratedEquiv. No literature theorem is imported.
