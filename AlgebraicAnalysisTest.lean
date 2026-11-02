@@ -36,6 +36,7 @@ public import AlgebraicAnalysisTest.RingTheory.Goldie
 public import AlgebraicAnalysisTest.RingTheory.GoldieRank
 public import AlgebraicAnalysisTest.DualSeparationGeneral
 public import AlgebraicAnalysisTest.Weyl
+public import AlgebraicAnalysisTest.DifferentialOperatorsPolynomial
 
 @[expose] public section
 

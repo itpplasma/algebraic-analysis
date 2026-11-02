@@ -2023,3 +2023,103 @@ extractions:
       U(L) / J (as a surjective image R). No injectivity is claimed. Oracle:
       AlgebraicAnalysisTest/Enveloping/AbelianPBW.lean (abelian k^m, where the PBW
       filtration equals the total-degree filtration of k[X]).
+  - id: filtration-polynomial-presentation
+    source_repository: algebraic-analysis (this package)
+    source_revision: new in DX-1 (branch diffops)
+    source_path: AlgebraicAnalysis/Filtration/PolynomialPresentation.lean
+    target_path: AlgebraicAnalysis/Filtration/PolynomialPresentation.lean
+    target_namespace: AlgebraicAnalysis.RingFiltration
+    declaration_scope: >-
+      GrCommutative, below_le, mul_mem_below_left, mul_mem_below_right, list_prod_mem,
+      list_prod_sub_mem_below_of_perm, polynomialGrading, mem_polynomialGrading,
+      the GradedAlgebra instance on polynomialGrading, monomialList, length_monomialList,
+      monomialList_add_perm, monomialProd, monomialProd_zero, monomialProd_single,
+      polynomialEval, polynomialEval_monomial, monomialProd_mem, polynomialEval_mem,
+      monomial_mul_sub_mem_below, polynomialEval_mul_sub_mem_below, PolynomialGenerators
+      and its namespace (exists_polynomialEval_sub_mem_below, adjoin_eq_top, evalPiece,
+      presentation, presentation_sym, isNoetherian_right, isNoetherianRing,
+      ringKrullDim_le, ringKrullDim_ne_top, devLE_right, devLE_left, devLEOmega_right,
+      devLEOmega_left).
+    license: Apache-2.0
+    authorship: Claude (AI-assisted), reviewed by Christopher Albert
+    consumers: [itpplasma/generalized-stafford-formal (D_k(A) application, planned)]
+    depends_on: [filtration-surjective-presentation, krull-dimension-deviation]
+    notes: >-
+      New, AA-native; not extracted. A filtered algebra with commutative associated
+      graded module, F 0 the image of a commutative A, and generated in degree one by
+      finitely many elements, is presented by A[X_σ] (total degree grading). Uses
+      MvPolynomial.ringKrullDim_of_isNoetherianRing_of_finite. Injectivity of the
+      presentation is not claimed.
+
+  - id: differential-operators-order-filtration
+    source_repository: algebraic-analysis (this package)
+    source_revision: new in DX-1 (branch diffops)
+    source_path: AlgebraicAnalysis/DifferentialOperators/OrderFiltration.lean
+    target_path: AlgebraicAnalysis/DifferentialOperators/OrderFiltration.lean
+    target_namespace: AlgebraicAnalysis.DifferentialOperators
+    declaration_scope: >-
+      commutator_add, commutator_sub, commutator_smul, commutator_nsmul, commutator_sum,
+      commutator_commutator_comm, multiplication_mul, commutator_mul_right,
+      commutator_derivation, multiplication_mem_order_zero, orderBelow (and simp lemmas),
+      orderBelow_le, mem_order_iff_commutator_mem_orderBelow,
+      multiplication_mul_mem_orderBelow, mul_multiplication_mem_orderBelow,
+      mul_sub_mul_mem_orderBelow, derivation_mem_order_one, leibniz_of_mem_order_one,
+      sub_multiplication_mem_order_one, orderOneToDerivation, orderOneToDerivation_apply,
+      eq_multiplication_add_orderOneToDerivation, orderOneEquiv, orderOneEquiv_apply,
+      orderFiltration, mem_orderFiltration_F, mem_orderFiltration_below,
+      orderFiltration_grCommutative.
+    license: Apache-2.0
+    authorship: Claude (AI-assisted), reviewed by Christopher Albert
+    consumers: [itpplasma/generalized-stafford-formal (D_k(A) application, planned)]
+    depends_on: [intrinsic-differential-operators, filtration-polynomial-presentation]
+    notes: >-
+      New, AA-native; not ported from bjork-formal (which works with the adjoin
+      carrier DX and has no order-commutator lemma). Valid for every commutative
+      k-algebra R. Statements follow EGA IV 16.8 and Stacks 09CH.
+
+  - id: differential-operators-coordinate-symbol
+    source_repository: algebraic-analysis (this package)
+    source_revision: new in DX-1 (branch diffops)
+    source_path: AlgebraicAnalysis/DifferentialOperators/CoordinateSymbol.lean
+    target_path: AlgebraicAnalysis/DifferentialOperators/CoordinateSymbol.lean
+    target_namespace: AlgebraicAnalysis.DifferentialOperators
+    declaration_scope: >-
+      commutator_add_right, commutator_algebraMap, commutator_mem_of_adjoin,
+      mem_order_iff_of_adjoin, nsmul_sub_sum_mem_orderBelow, sub_sum_mem_order,
+      multiplicationAlgHom, coe_multiplicationAlgHom, derivationElem, coe_derivationElem,
+      polynomialGenerators, adjoin_eq_top, symbolPresentation, isNoetherian_right,
+      isNoetherianRing, devLE_right, devLE_left, devLEOmega_right, devLEOmega_left.
+    license: Apache-2.0
+    authorship: Claude (AI-assisted), reviewed by Christopher Albert
+    consumers: [itpplasma/generalized-stafford-formal (D_k(A) application, planned)]
+    depends_on: [differential-operators-order-filtration, filtration-polynomial-presentation]
+    notes: >-
+      New, AA-native. Euler identity modulo lower order (m P - sum [P, x_i] d_i has
+      order below m) for algebra generators x_i with dual derivations d_i, in any
+      characteristic; filtered generation in characteristic zero. Independent of
+      CoordinateGeneration.mem_subalgebra_of_coordinates (which has no order
+      bookkeeping); that file is unchanged.
+
+  - id: differential-operators-polynomial
+    source_repository: algebraic-analysis (this package)
+    source_revision: new in DX-1 (branch diffops)
+    source_path: AlgebraicAnalysis/DifferentialOperators/PolynomialOperators.lean
+    target_path: AlgebraicAnalysis/DifferentialOperators/PolynomialOperators.lean
+    target_namespace: AlgebraicAnalysis.DifferentialOperators.PolynomialOperators
+    declaration_scope: >-
+      DiffOp, pderiv_X_eq_ite, pderiv_mul_pderiv_comm, adjoin_range_X', ringKrullDim_le,
+      adjoin_eq_top, isNoetherian_right, isNoetherianRing, devLE_right, devLE_left,
+      devLEOmega_right, devLEOmega_left, weylGenerator, weylGenerator_commutator,
+      fromWeyl, fromWeyl_generator, fromWeyl_surjective, fromWeyl_injective, weylEquiv,
+      weylEquiv_apply, isSimpleRing (instance), isDomain (instance), infinite_center.
+    license: Apache-2.0
+    authorship: Claude (AI-assisted), reviewed by Christopher Albert
+    consumers: [itpplasma/generalized-stafford-formal (D_k(A) application, planned)]
+    depends_on: [differential-operators-coordinate-symbol, weyl-simplicity,
+      filtered-ring-symbol-domain, infinite-subring-center]
+    notes: >-
+      New, AA-native. D_k(k[x_1..x_n]) is the Weyl algebra in characteristic zero:
+      surjectivity from the coordinate generation theorem, injectivity because A_n(k)
+      is simple. Simplicity and the domain property are transported along this
+      isomorphism; Noetherianity and deviation come from the order filtration of D
+      itself. The Stafford38 polynomialDifferentialAction is not used.

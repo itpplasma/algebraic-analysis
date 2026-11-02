@@ -26,7 +26,12 @@ inverse-Euler/Riccati commutator identities.
 
 Grothendieck's finite-order differential operators defined by iterated
 commutators, generation by coordinate derivations, and differential operators
-and derivations on localized polynomial rings.
+and derivations on localized polynomial rings. The order filtration of
+`D_k(R)` (commutators drop the order, first-order operators are
+multiplications plus derivations), the coordinate symbol presentation
+`R[ξ] ↠ gr D_k(R)` with its Noetherian and deviation consequences, and
+`D_k(k[x₁, …, xₙ]) ≅ A_n(k)` in characteristic zero (simple domain, infinite
+centre).
 
 ## Modules (`Module/`)
 
@@ -45,7 +50,9 @@ good filtrations on modules, their existence for finitely generated modules,
 and the bounded-shift comparison of any two good filtrations; Hilbert
 functions of filtrations by finite-dimensional subspaces, with growth degree
 in the extended reals, invariant under bounded shifts; and Gelfand-Kirillov
-dimension. `gkDim_totalDegreeFiltration` shows that the polynomial ring in
+dimension. Symbol presentations of the associated graded module by a
+polynomial ring over the degree-zero part when the associated graded module is
+commutative and generated in degree one. `gkDim_totalDegreeFiltration` shows that the polynomial ring in
 `n` variables with its total-degree filtration has GK dimension `n`.
 
 `GKDimension.BernsteinInequality` states the Bernstein inequality over

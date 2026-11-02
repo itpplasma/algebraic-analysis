@@ -109,6 +109,7 @@ public import AlgebraicAnalysis.Filtration.Opposite
 public import AlgebraicAnalysis.Filtration.SymbolPresentation
 public import AlgebraicAnalysis.Enveloping.PBWFiltration
 public import AlgebraicAnalysis.Enveloping.Presentation
+public import AlgebraicAnalysis.Filtration.PolynomialPresentation
 public import AlgebraicAnalysis.Order.Deviation
 public import AlgebraicAnalysis.Module.Deviation
 public import AlgebraicAnalysis.Module.DeviationOmega
@@ -145,6 +146,9 @@ public import AlgebraicAnalysis.Weyl.Transposition
 public import AlgebraicAnalysis.Weyl.BernsteinSymbol
 public import AlgebraicAnalysis.Weyl.Simplicity
 public import AlgebraicAnalysis.Weyl.Domain
+public import AlgebraicAnalysis.DifferentialOperators.OrderFiltration
+public import AlgebraicAnalysis.DifferentialOperators.CoordinateSymbol
+public import AlgebraicAnalysis.DifferentialOperators.PolynomialOperators
 
 @[expose] public section
 
