@@ -1,11 +1,9 @@
 module
-public import AlgebraicAnalysis.DifferentialOperators.CoordinateSymbol
+public import AlgebraicAnalysis.DifferentialOperators.CoordinateSimplicity
 public import AlgebraicAnalysis.Weyl.Simplicity
-public import AlgebraicAnalysis.Weyl.Domain
 public import AlgebraicAnalysis.Weyl.Universal
-public import AlgebraicAnalysis.RingTheory.InfiniteCenter
 public import Mathlib.Algebra.MvPolynomial.PDeriv
-public import Mathlib.Algebra.CharZero.Infinite
+public import Mathlib.RingTheory.KrullDimension.Field
 public import Mathlib.RingTheory.Derivation.Lie
 
 @[expose] public section
@@ -32,7 +30,8 @@ For a field `k` of characteristic zero, `D = D_k(k[x₁, …, xₙ])`:
 * `PolynomialOperators.weylEquiv : WeylAlg k n ≃ₐ[k] D`, `xᵢ ↦ xᵢ`,
   `∂ᵢ ↦ ∂/∂xᵢ`. Surjectivity is the generation theorem; injectivity holds
   because `A_n(k)` is simple (`Weyl.Simplicity.isSimpleRing_weylAlg`).
-* `PolynomialOperators.isSimpleRing`, `isDomain`, `infinite_center`.
+* `PolynomialOperators.isSimpleRing` (transported from `A_n(k)`), `isDomain`
+  (from the principal symbol, `IsCoordinateFrame.isDomain`), `infinite_center`.
 
 The Noetherian and deviation statements are proved from the order filtration
 of `D` itself, not transported from the Weyl algebra.
@@ -75,6 +74,12 @@ theorem adjoin_range_X' :
     Algebra.adjoin k (Set.range (X : Fin n → MvPolynomial (Fin n) k)) = ⊤ :=
   MvPolynomial.adjoin_range_X
 
+/-- The coordinates and the partial derivatives form a coordinate frame of
+`k[x₁, …, xₙ]`. -/
+theorem isCoordinateFrame :
+    IsCoordinateFrame (X : Fin n → MvPolynomial (Fin n) k) (fun i => pderiv i) :=
+  .of_adjoin_eq_top adjoin_range_X' pderiv_X_eq_ite
+
 /-- The polynomial ring `k[x₁, …, xₙ]` has Krull dimension at most `n`. -/
 theorem ringKrullDim_le : ringKrullDim (MvPolynomial (Fin n) k) ≤ n := by
   rw [MvPolynomial.ringKrullDim_of_isNoetherianRing_of_finite, ringKrullDim_eq_zero_of_field,
@@ -87,31 +92,31 @@ partial derivatives (with `R = k[x]` itself among the generators). -/
 theorem adjoin_eq_top :
     Algebra.adjoin k (Set.range (multiplicationAlgHom k (MvPolynomial (Fin n) k)) ∪
       Set.range fun i : Fin n => derivationElem (pderiv i)) = ⊤ :=
-  DifferentialOperators.adjoin_eq_top adjoin_range_X' pderiv_X_eq_ite
+  isCoordinateFrame.adjoin_eq_top
 
 /-- `D_k(k[x₁, …, xₙ])` is right Noetherian. -/
 theorem isNoetherian_right : IsNoetherian (DiffOp k n)ᵐᵒᵖ (DiffOp k n) :=
-  DifferentialOperators.isNoetherian_right adjoin_range_X' pderiv_X_eq_ite
+  isCoordinateFrame.isNoetherian_right
 
 /-- `D_k(k[x₁, …, xₙ])` is left Noetherian. -/
 theorem isNoetherianRing : IsNoetherianRing (DiffOp k n) :=
-  DifferentialOperators.isNoetherianRing adjoin_range_X' pderiv_X_eq_ite
+  isCoordinateFrame.isNoetherianRing
 
 /-- The right ideals of `D_k(k[x₁, …, xₙ])` have deviation at most `2n`. -/
 theorem devLE_right : Module.DevLE (DiffOp k n)ᵐᵒᵖ (n + n) (DiffOp k n) := by
-  simpa using DifferentialOperators.devLE_right adjoin_range_X' pderiv_X_eq_ite ringKrullDim_le
+  simpa using isCoordinateFrame.devLE_right ringKrullDim_le
 
 /-- The left ideals of `D_k(k[x₁, …, xₙ])` have deviation at most `2n`. -/
 theorem devLE_left : Module.DevLE (DiffOp k n) (n + n) (DiffOp k n) := by
-  simpa using DifferentialOperators.devLE_left adjoin_range_X' pderiv_X_eq_ite ringKrullDim_le
+  simpa using isCoordinateFrame.devLE_left ringKrullDim_le
 
 /-- The right ideals of `D_k(k[x₁, …, xₙ])` have deviation at most omega. -/
 theorem devLEOmega_right : Module.DevLEOmega (DiffOp k n)ᵐᵒᵖ (DiffOp k n) :=
-  DifferentialOperators.devLEOmega_right adjoin_range_X' pderiv_X_eq_ite ringKrullDim_le
+  isCoordinateFrame.devLEOmega_right ringKrullDim_le
 
 /-- The left ideals of `D_k(k[x₁, …, xₙ])` have deviation at most omega. -/
 theorem devLEOmega_left : Module.DevLEOmega (DiffOp k n) (DiffOp k n) :=
-  DifferentialOperators.devLEOmega_left adjoin_range_X' pderiv_X_eq_ite ringKrullDim_le
+  isCoordinateFrame.devLEOmega_left ringKrullDim_le
 
 /-! ## The Weyl algebra -/
 
@@ -180,14 +185,15 @@ noncomputable def weylEquiv : WeylAlg k n ≃ₐ[k] DiffOp k n :=
 instance isSimpleRing : IsSimpleRing (DiffOp k n) :=
   IsSimpleRing.of_ringEquiv (weylEquiv k n).toRingEquiv (Simplicity.isSimpleRing_weylAlg k n)
 
-/-- **`D_k(k[x₁, …, xₙ])` is a domain** in characteristic zero. -/
+/-- **`D_k(k[x₁, …, xₙ])` is a domain** in characteristic zero: its principal
+symbol identifies `gr D` with `k[x][ξ]` (`IsCoordinateFrame.isDomain`). -/
 instance isDomain : IsDomain (DiffOp k n) :=
-  MulEquiv.isDomain (WeylAlg k n) (weylEquiv k n).symm.toRingEquiv.toMulEquiv
+  isCoordinateFrame.isDomain
 
 /-- **`D_k(k[x₁, …, xₙ])` has an infinite centre** in characteristic zero: it
 contains the scalars `k`. -/
 theorem infinite_center : Infinite (Subring.center (DiffOp k n)) :=
   have : Infinite k := CharZero.infinite k
-  infinite_subring_center k (DiffOp k n)
+  DifferentialOperators.infinite_center k _
 
 end AlgebraicAnalysis.DifferentialOperators.PolynomialOperators

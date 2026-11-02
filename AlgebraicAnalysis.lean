@@ -110,6 +110,7 @@ public import AlgebraicAnalysis.Filtration.SymbolPresentation
 public import AlgebraicAnalysis.Enveloping.PBWFiltration
 public import AlgebraicAnalysis.Enveloping.Presentation
 public import AlgebraicAnalysis.Filtration.PolynomialPresentation
+public import AlgebraicAnalysis.Filtration.PolynomialSymbol
 public import AlgebraicAnalysis.Order.Deviation
 public import AlgebraicAnalysis.Module.Deviation
 public import AlgebraicAnalysis.Module.DeviationOmega
@@ -149,6 +150,8 @@ public import AlgebraicAnalysis.Weyl.Domain
 public import AlgebraicAnalysis.DifferentialOperators.OrderFiltration
 public import AlgebraicAnalysis.DifferentialOperators.CoordinateSymbol
 public import AlgebraicAnalysis.DifferentialOperators.PolynomialOperators
+public import AlgebraicAnalysis.DifferentialOperators.CoordinateSimplicity
+public import AlgebraicAnalysis.DifferentialOperators.LocalizedPolynomialOperators
 
 @[expose] public section
 
