@@ -174,6 +174,23 @@ without changing the mathematical statements.
   affine source selection. Oracles in `AlgebraicAnalysisTest/GermSchur.lean`
   and `TorsionEscape.lean`.
 
+- `RingTheory/Goldie/` (namespace `AlgebraicAnalysis.Goldie`) is the
+  authoritative home of Goldie theory for simple right Noetherian rings,
+  extracted from generalized-stafford-formal 7697e11 and extended. `Basic`:
+  vanishing singular ideal, essential right ideals contain regular elements,
+  right Ore condition, and `exists_mem_forall_exists_mul_mem` (every right
+  ideal `I` contains `a` with `I/aR` Goldie-torsion). `Torsion`:
+  `IsGoldieTorsion`, closure, common regular annihilators, escape with
+  singular tails, section modules. `QuotientRing`: Goldie's theorem, the
+  classical right quotient ring `RightOreLocalization R R⁰` is simple,
+  semisimple and Artinian, hence `Mₙ(D)` (Wedderburn–Artin), with finite
+  positive length over itself. Not formalized: length over `Q` of `M ⊗_R Q`
+  versus uniform dimension modulo Goldie torsion (needed for the normalized
+  rank of Corollary C.3). Oracle in `AlgebraicAnalysisTest/RingTheory/Goldie.lean`
+  (`M₂(ℚ)` hostile control, `ℚ` with Mathlib's commutative Ore structure).
+  Downstream generalized-stafford-formal must import these declarations and
+  delete its copies; the Goldie affine source selection stays downstream.
+
 ## Next valid work
 
 Formalize the repaired characteristic-zero Bernstein theorem, including any
