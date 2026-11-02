@@ -1501,3 +1501,79 @@ extractions:
       Mechanical namespace/import rewrite audited against the source section;
       source file SHA-256 is 9a02154fe102930737533688dc81147e253f5a0ca8f66265ee2f68619dd01865.
       The geometric tangent criterion and application-specific consumers remain downstream.
+
+  - id: goldie-simple-right-noetherian
+    source_repository: itpplasma/generalized-stafford-formal
+    source_revision: 7697e11786b4b20e28b6c727650d3cf036232969
+    source_path: >-
+      GeneralizedStafford/Goldie/Basic.lean (whole file);
+      GeneralizedStafford/Goldie/Torsion.lean (sections Closure, Escape, Section);
+      GeneralizedStafford/FixedAnchor/Regular.lean (ideal_quotient_isGoldieTorsion only)
+    target_path: >-
+      AlgebraicAnalysis/RingTheory/Goldie/Basic.lean;
+      AlgebraicAnalysis/RingTheory/Goldie/Torsion.lean
+    target_namespace: AlgebraicAnalysis.Goldie
+    declaration_scope: >-
+      Basic.lean, unchanged names: rightAnn, mem_rightAnn, mem_principalRightIdeal,
+      IsEssential (.mono, .inf, .comap, .exists_ne_zero_mem_inf), not_isEssential_bot,
+      singularIdeal, eq_zero_of_isEssential_rightAnn, IsGood, exists_not_nilpotent_mem,
+      exists_good_mem, exists_mem_rightAnn_eq_bot, isEssential_principal,
+      mem_nonZeroDivisors_of_rightAnn, exists_mem_nonZeroDivisors_of_isEssential,
+      isEssential_of_mem_nonZeroDivisors, exists_right_ore,
+      exists_mem_nonZeroDivisors_finset, exists_mul_mem_of_mem_nonZeroDivisors,
+      op_mem_nonZeroDivisors_iff, nonempty_oreSet_op.
+      Torsion.lean: IsGoldieTorsion (.of_injective, .of_surjective, .isTorsionRight),
+      isGoldieTorsion_of_isTorsionRight, isGoldieTorsion_quotient (unchanged names);
+      exists_common_regular_annihilator -> IsGoldieTorsion.exists_common_regular_annihilator;
+      exists_smul_mul_not_mem_of_goldie -> IsGoldieTorsion.exists_smul_mul_not_mem;
+      exists_injective_right_mul_of_goldie -> IsGoldieTorsion.exists_injective_right_mul;
+      section_isGoldieTorsion -> isGoldieTorsion_section;
+      FixedAnchor.Regular.ideal_quotient_isGoldieTorsion ->
+      isGoldieTorsion_quotient_of_forall_exists_mul_mem.
+      New in this package (no source): isEssential_sup_of_maximal,
+      exists_mem_forall_exists_mul_mem, exists_mem_isGoldieTorsion_quotient.
+    license: Apache-2.0
+    authorship: >-
+      itpplasma/generalized-stafford-formal contribution (Christopher Albert
+      <albert@tugraz.at>, AI-assisted); source history retained upstream
+    consumers:
+      - itpplasma/generalized-stafford-formal
+    depends_on: [module-denominator-torsion]
+    notes: >-
+      Classical Goldie theory (Goldie 1958, 1960; McConnell-Robson 2.3.6, 2.3.10)
+      specialized to simple right Noetherian rings; nothing is new. Proof terms
+      retained apart from the namespace and the renames listed above. The
+      Stafford-specific finite affine source selection
+      (exists_affine_direction_of_goldie, exists_affine_source_of_goldie) and all
+      Theorem A assembly remain downstream. The downstream integration wave must
+      replace GeneralizedStafford/Goldie/Basic.lean and the moved parts of
+      Torsion.lean by imports of this package.
+
+  - id: goldie-quotient-ring
+    source_repository: itpplasma/algebraic-analysis
+    source_revision: native
+    source_path: none (written in this package)
+    target_path: AlgebraicAnalysis/RingTheory/Goldie/QuotientRing.lean
+    target_namespace: AlgebraicAnalysis.Goldie
+    declaration_scope: >-
+      mem_oppositeSubmonoid_nonZeroDivisors, nonempty_oreSet_oppositeSubmonoid,
+      OppositeQuotientRing, QuotientRing, toQuotientRing, toQuotientRing_apply,
+      exists_numerator_mul_eq, numeratorRingHom_injective, isUnit_numeratorRingHom,
+      toQuotientRing_injective, isUnit_toQuotientRing, eq_top_of_forall_inf_eq_bot,
+      exists_isCompl, isSemisimpleRing_oppositeQuotientRing,
+      isSimpleRing_oppositeQuotientRing, isSimpleRing_quotientRing,
+      isSemisimpleRing_quotientRing, isArtinianRing_quotientRing,
+      isArtinianRing_oppositeQuotientRing, length_oppositeQuotientRing_ne_top,
+      length_oppositeQuotientRing_pos, exists_ringEquiv_matrix_divisionRing
+    license: Apache-2.0
+    authorship: >-
+      Christopher Albert <albert@tugraz.at>, AI-assisted
+    consumers:
+      - itpplasma/generalized-stafford-formal (Corollaries C.2 and C.3, planned)
+    depends_on: [goldie-simple-right-noetherian, right-Ore-localization-companion]
+    notes: >-
+      Goldie's theorem for simple right Noetherian rings: the classical right
+      quotient ring (RightOreLocalization R R⁰) is simple and semisimple, hence
+      Artinian and, by Mathlib's Wedderburn-Artin theorem, a matrix ring over a
+      division ring. The bridge from lengths over Q to uniform dimension
+      modulo Goldie torsion is not formalized.

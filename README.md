@@ -20,6 +20,10 @@ Status: research library; declarations may still move or be renamed.
   variables has GK dimension exactly `n`).
 - `HessianAlgebra`: polynomial self-maps, formal derivatives, affine and
   triangular inverses, Hessians and homogeneous support.
+- Goldie theory for simple right Noetherian rings: essential right ideals
+  contain regular elements, Goldie torsion, and Goldie's theorem (the
+  classical right quotient ring is simple Artinian, a matrix ring over a
+  division ring).
 - Smaller pieces on Laurent and power series, rational functions, field
   theory (finite generation of fraction fields) and linear algebra.
 

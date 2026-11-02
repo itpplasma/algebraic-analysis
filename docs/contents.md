@@ -71,6 +71,14 @@ lemma for homogeneous relations in prime ideals.
   moment pairings), rational functions at a point and at infinity, and the
   two-generator identity `1 = d R + F d S` as a ring property, with transport
   along unit-clearing maps and Ore localization (`TwoGeneratorIdentity.lean`).
+- `RingTheory/Goldie/` (namespace `AlgebraicAnalysis.Goldie`): Goldie theory
+  for a simple right Noetherian ring `R`. `Basic.lean`: the singular ideal
+  vanishes, essential right ideals contain regular elements, the right Ore
+  condition, and every right ideal `I` contains `a` with `I/aR`
+  Goldie-torsion. `Torsion.lean`: Goldie-torsion modules, common regular
+  annihilators, escape with singular tails. `QuotientRing.lean`: Goldie's
+  theorem, the classical right quotient ring is simple, semisimple and
+  Artinian, hence a matrix ring over a division ring.
 - `LinearAlgebra/`: division and activated pencils, finite Taylor
   reconstruction.
 - `Order/`, `Combinatorics/`: deviation of posets and a finite floor-sum
