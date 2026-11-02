@@ -1879,3 +1879,24 @@ extractions:
       New, not a copy. A Dixmier-style proof that the pair stage over a simple
       k-algebra of characteristic zero is simple, induction over the tower, and
       transport along presentedIteratedEquiv. No literature theorem is imported.
+
+  - id: filtered-ring-symbol-domain
+    source_repository: algebraic-analysis (this package)
+    source_revision: new in APP-5
+    source_path: AlgebraicAnalysis/Filtration/SymbolDomain.lean; AlgebraicAnalysis/Weyl/Domain.lean
+    target_path: AlgebraicAnalysis/Filtration/SymbolDomain.lean; AlgebraicAnalysis/Weyl/Domain.lean
+    target_namespace: AlgebraicAnalysis.RingFiltration.GradedSymbol; AlgebraicAnalysis.Weyl
+    declaration_scope: >-
+      SymbolDomain.lean: grAt_order_ne_zero, noZeroDivisors, nontrivial, isDomain.
+      Domain.lean: AlgebraicAnalysis.Weyl.noZeroDivisors, AlgebraicAnalysis.Weyl.isDomain (instance).
+    license: Apache-2.0
+    authorship: Claude (AI-assisted), reviewed by Christopher Albert
+    consumers: [itpplasma/generalized-stafford-formal (Theorem A application, planned)]
+    depends_on: [filtered-ring-symbol-noetherian, weyl-bernstein-symbol]
+    notes: >-
+      New, AA-native; not extracted. The standard leading-symbol argument
+      (nonzero elements have nonzero symbol in the degree of their order;
+      symbols multiply) applied to RingFiltration.GradedSymbol, then to the
+      Bernstein symbol of A_n(k) into k[x, ∂]. No characteristic hypothesis.
+      The stafford38-formal Stafford38/Weyl/Domain.lean route is not used and
+      that copy is unchanged.

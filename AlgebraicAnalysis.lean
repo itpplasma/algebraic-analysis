@@ -103,6 +103,7 @@ public import AlgebraicAnalysis.Filtration.HilbertFunction
 public import AlgebraicAnalysis.Filtration.GKDimension
 public import AlgebraicAnalysis.Filtration.GradedSymbol
 public import AlgebraicAnalysis.Filtration.SymbolNoetherian
+public import AlgebraicAnalysis.Filtration.SymbolDomain
 public import AlgebraicAnalysis.Order.Deviation
 public import AlgebraicAnalysis.Module.Deviation
 public import AlgebraicAnalysis.Module.DeviationOmega
@@ -138,6 +139,7 @@ public import AlgebraicAnalysis.Weyl.GradedAlgebra
 public import AlgebraicAnalysis.Weyl.Transposition
 public import AlgebraicAnalysis.Weyl.BernsteinSymbol
 public import AlgebraicAnalysis.Weyl.Simplicity
+public import AlgebraicAnalysis.Weyl.Domain
 
 @[expose] public section
 
