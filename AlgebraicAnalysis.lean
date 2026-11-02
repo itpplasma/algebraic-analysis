@@ -154,6 +154,10 @@ public import AlgebraicAnalysis.DifferentialOperators.CoordinateSimplicity
 public import AlgebraicAnalysis.DifferentialOperators.LocalizedPolynomialOperators
 public import AlgebraicAnalysis.DifferentialOperators.Localization
 public import AlgebraicAnalysis.DifferentialOperators.SmoothDerivations
+public import AlgebraicAnalysis.DifferentialOperators.ProjectiveFrame
+public import AlgebraicAnalysis.DifferentialOperators.Domain
+public import AlgebraicAnalysis.DifferentialOperators.SmoothSimplicity
+public import AlgebraicAnalysis.DifferentialOperators.SmoothOperators
 
 @[expose] public section
 

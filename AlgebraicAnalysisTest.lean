@@ -39,6 +39,7 @@ public import AlgebraicAnalysisTest.Weyl
 public import AlgebraicAnalysisTest.DifferentialOperatorsPolynomial
 public import AlgebraicAnalysisTest.DifferentialOperatorsLocalized
 public import AlgebraicAnalysisTest.DifferentialOperatorsD3
+public import AlgebraicAnalysisTest.DifferentialOperatorsSmooth
 
 @[expose] public section
 
