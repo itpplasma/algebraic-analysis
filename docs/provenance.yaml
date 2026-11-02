@@ -1839,3 +1839,21 @@ extractions:
       consumer needs it yet), Symplectic, Characteristic, and the proofs
       directory. The GradedAlgebra namespace is the source's
       `Stafford38.WeylAssociatedGraded`.
+
+  - id: weyl-bernstein-symbol
+    source_repository: algebraic-analysis (this package)
+    source_revision: new in APP-3
+    source_path: AlgebraicAnalysis/Weyl/BernsteinSymbol.lean
+    target_path: AlgebraicAnalysis/Weyl/BernsteinSymbol.lean
+    target_namespace: AlgebraicAnalysis.Weyl.BernsteinSymbol
+    declaration_scope: filtration, grading, principal_eq_zero_iff, symbol, ringKrullDim_symbolRing_ne_top, isNoetherian_right, devLEOmega_right
+    license: Apache-2.0
+    authorship: Claude (AI-assisted), reviewed by Christopher Albert
+    consumers: [itpplasma/generalized-stafford-formal (Theorem A application, planned)]
+    depends_on: [weyl-pbw-presentation-equivalence, RingFiltration.GradedSymbol, Module.DevLEOmega]
+    notes: >-
+      New. Packages the Bernstein filtration of A_n(k) as a RingFiltration
+      and its principal symbol, a GradedSymbol into k[x, ∂] graded by total
+      degree. Right Noetherianity and Module.DevLEOmega follow from
+      GradedSymbol.isNoetherian_right and devLEOmega_right. The tower route
+      (AlgebraicAnalysis.Ore.derivationOre_rightHilbertBasis) is not used.

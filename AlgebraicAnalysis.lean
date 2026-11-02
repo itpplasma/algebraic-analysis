@@ -136,6 +136,7 @@ public import AlgebraicAnalysis.Weyl.LeadingSymbol
 public import AlgebraicAnalysis.Weyl.AssociatedGraded
 public import AlgebraicAnalysis.Weyl.GradedAlgebra
 public import AlgebraicAnalysis.Weyl.Transposition
+public import AlgebraicAnalysis.Weyl.BernsteinSymbol
 
 @[expose] public section
 
