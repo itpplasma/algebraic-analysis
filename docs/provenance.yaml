@@ -1787,7 +1787,7 @@ extractions:
       grIdealLeft, mem_grIdealRight, mem_grIdealLeft, strictMono_grIdealRight,
       strictMono_grIdealLeft, isNoetherian_right, isNoetherianRing, devLE_right,
       devLE_left, devLEOmega_right, devLEOmega_left,
-      GradedSymbol.toPresentation.
+      GradedSymbol.toPresentation, SymbolPresentation.toGradedSymbol.
     license: Apache-2.0
     authorship: >-
       Christopher Albert <albert@tugraz.at>, AI-assisted
@@ -1800,7 +1800,8 @@ extractions:
       goes through because equality of classes in Fn/Fn-1 is already a quotient
       condition. Intended for enveloping algebras (S(g) to gr U(g)), where no PBW
       theorem is available. Nothing is new; the isomorphism case is recovered by
-      GradedSymbol.toPresentation.
+      GradedSymbol.toPresentation, and conversely an injective presentation is a
+      GradedSymbol (SymbolPresentation.toGradedSymbol, added in DX-2).
 
   # ----------------------------------------------------------------------
   # Weyl algebra core (APP-3). Source: itpplasma/stafford38-formal at
@@ -2079,26 +2080,39 @@ extractions:
 
   - id: differential-operators-coordinate-symbol
     source_repository: algebraic-analysis (this package)
-    source_revision: new in DX-1 (branch diffops)
+    source_revision: new in DX-1 (branch diffops); generalized in DX-2 (branch diffops-local)
     source_path: AlgebraicAnalysis/DifferentialOperators/CoordinateSymbol.lean
     target_path: AlgebraicAnalysis/DifferentialOperators/CoordinateSymbol.lean
     target_namespace: AlgebraicAnalysis.DifferentialOperators
     declaration_scope: >-
-      commutator_add_right, commutator_algebraMap, commutator_mem_of_adjoin,
-      mem_order_iff_of_adjoin, nsmul_sub_sum_mem_orderBelow, sub_sum_mem_order,
-      multiplicationAlgHom, coe_multiplicationAlgHom, derivationElem, coe_derivationElem,
-      polynomialGenerators, adjoin_eq_top, symbolPresentation, isNoetherian_right,
-      isNoetherianRing, devLE_right, devLE_left, devLEOmega_right, devLEOmega_left.
+      commutator_add_right, commutator_algebraMap, commutator_mem_of_exists_mul_eq,
+      commutator_mem_of_adjoin, IsCoordinateFrame (structure),
+      IsCoordinateFrame.of_adjoin_eq_top, IsCoordinateFrame.mem_order_iff,
+      IsCoordinateFrame.mem_order_zero_of_commutator_eq_zero,
+      IsCoordinateFrame.nsmul_sub_sum_mem_orderBelow, multiplicationAlgHom,
+      coe_multiplicationAlgHom, multiplicationAlgHom_injective, derivationElem,
+      coe_derivationElem, Nontrivial instance on algebra, IsCoordinateFrame.sub_sum_mem_order,
+      IsCoordinateFrame.polynomialGenerators, IsCoordinateFrame.adjoin_eq_top,
+      IsCoordinateFrame.symbolPresentation, IsCoordinateFrame.derivationElem_commutator,
+      IsCoordinateFrame.gradedSymbol, IsCoordinateFrame.isDomain,
+      IsCoordinateFrame.isNoetherian_right, IsCoordinateFrame.isNoetherianRing,
+      IsCoordinateFrame.devLE_right, IsCoordinateFrame.devLE_left,
+      IsCoordinateFrame.devLEOmega_right, IsCoordinateFrame.devLEOmega_left.
     license: Apache-2.0
     authorship: Claude (AI-assisted), reviewed by Christopher Albert
     consumers: [itpplasma/generalized-stafford-formal (D_k(A) application, planned)]
-    depends_on: [differential-operators-order-filtration, filtration-polynomial-presentation]
+    depends_on: [differential-operators-order-filtration, filtration-polynomial-presentation,
+      filtration-polynomial-symbol]
     notes: >-
-      New, AA-native. Euler identity modulo lower order (m P - sum [P, x_i] d_i has
-      order below m) for algebra generators x_i with dual derivations d_i, in any
-      characteristic; filtered generation in characteristic zero. Independent of
-      CoordinateGeneration.mem_subalgebra_of_coordinates (which has no order
-      bookkeeping); that file is unchanged.
+      New, AA-native. DX-2 replaced the hypotheses (adjoin = top, dual derivations) by
+      the structure IsCoordinateFrame, whose generation field allows unit denominators
+      (b s = r with r, s in k[x], s a unit), so that localizations are covered; the
+      old root-namespace theorems (isNoetherian_right, devLE_right, ...,
+      mem_order_iff_of_adjoin) were moved to IsCoordinateFrame.* with the same
+      statements up to the bundled hypothesis. Euler identity modulo lower order in any
+      characteristic; filtered generation and the injective principal symbol
+      (gr D_k(R) = R[xi]) in characteristic zero. Independent of
+      CoordinateGeneration.mem_subalgebra_of_coordinates (no order bookkeeping).
 
   - id: differential-operators-polynomial
     source_repository: algebraic-analysis (this package)
@@ -2107,7 +2121,8 @@ extractions:
     target_path: AlgebraicAnalysis/DifferentialOperators/PolynomialOperators.lean
     target_namespace: AlgebraicAnalysis.DifferentialOperators.PolynomialOperators
     declaration_scope: >-
-      DiffOp, pderiv_X_eq_ite, pderiv_mul_pderiv_comm, adjoin_range_X', ringKrullDim_le,
+      DiffOp, pderiv_X_eq_ite, pderiv_mul_pderiv_comm, adjoin_range_X', isCoordinateFrame,
+      ringKrullDim_le,
       adjoin_eq_top, isNoetherian_right, isNoetherianRing, devLE_right, devLE_left,
       devLEOmega_right, devLEOmega_left, weylGenerator, weylGenerator_commutator,
       fromWeyl, fromWeyl_generator, fromWeyl_surjective, fromWeyl_injective, weylEquiv,
@@ -2116,10 +2131,116 @@ extractions:
     authorship: Claude (AI-assisted), reviewed by Christopher Albert
     consumers: [itpplasma/generalized-stafford-formal (D_k(A) application, planned)]
     depends_on: [differential-operators-coordinate-symbol, weyl-simplicity,
-      filtered-ring-symbol-domain, infinite-subring-center]
+      differential-operators-coordinate-simplicity]
     notes: >-
       New, AA-native. D_k(k[x_1..x_n]) is the Weyl algebra in characteristic zero:
       surjectivity from the coordinate generation theorem, injectivity because A_n(k)
       is simple. Simplicity and the domain property are transported along this
       isomorphism; Noetherianity and deviation come from the order filtration of D
-      itself. The Stafford38 polynomialDifferentialAction is not used.
+      itself. The Stafford38 polynomialDifferentialAction is not used. Since DX-2 the
+      domain instance comes from the principal symbol (IsCoordinateFrame.isDomain), not
+      from the Weyl isomorphism.
+
+  - id: filtration-polynomial-symbol
+    source_repository: algebraic-analysis (this package)
+    source_revision: new in DX-2 (branch diffops-local)
+    source_path: AlgebraicAnalysis/Filtration/PolynomialSymbol.lean
+    target_path: AlgebraicAnalysis/Filtration/PolynomialSymbol.lean
+    target_namespace: AlgebraicAnalysis.RingFiltration
+    declaration_scope: >-
+      list_prod_commutator_sub_mem_below, count_monomialList, monomialList_erase_perm,
+      monomialProd_commutator_sub_mem_below,
+      PolynomialGenerators.commutator_polynomialEval_sub_mem_below,
+      PolynomialGenerators.eq_zero_of_polynomialEval_mem_below,
+      PolynomialGenerators.presentation_sym_injective, PolynomialGenerators.gradedSymbol,
+      PolynomialGenerators.isDomain.
+    license: Apache-2.0
+    authorship: Claude (AI-assisted), reviewed by Christopher Albert
+    consumers: [differential-operators-coordinate-symbol]
+    depends_on: [filtration-polynomial-presentation, filtration-surjective-presentation,
+      filtered-ring-symbol-domain]
+    notes: >-
+      New, AA-native; not ported from bjork-formal. A polynomial presentation
+      A[xi] -> gr D with dual coordinates (y_i iota(x_j) - iota(x_j) y_i = delta_ij,
+      iota injective) is injective in characteristic zero: commutation with iota(x_j)
+      acts on symbols as d/dxi_j, then induction on the degree with Mathlib's Euler
+      identity (MvPolynomial.IsHomogeneous.sum_X_mul_pderiv).
+
+  - id: differential-operators-coordinate-simplicity
+    source_repository: algebraic-analysis (this package)
+    source_revision: new in DX-2 (branch diffops-local)
+    source_path: AlgebraicAnalysis/DifferentialOperators/CoordinateSimplicity.lean
+    target_path: AlgebraicAnalysis/DifferentialOperators/CoordinateSimplicity.lean
+    target_namespace: AlgebraicAnalysis.DifferentialOperators
+    declaration_scope: >-
+      IsCoordinateFrame.exists_multiplication_mem, IsCoordinateFrame.isSimpleRing,
+      infinite_center.
+    license: Apache-2.0
+    authorship: Claude (AI-assisted), reviewed by Christopher Albert
+    consumers: [differential-operators-polynomial, differential-operators-localized-polynomial]
+    depends_on: [differential-operators-coordinate-symbol, infinite-subring-center]
+    notes: >-
+      New, AA-native. D_k(R) is simple when R is nontrivial with a coordinate frame and
+      no nonzero proper ideal stable under the coordinate derivations (no characteristic
+      hypothesis in this step). Minimal-order argument with the commutator test.
+
+  - id: differential-operators-localized-polynomial
+    source_repository: algebraic-analysis (this package)
+    source_revision: new in DX-2 (branch diffops-local)
+    source_path: AlgebraicAnalysis/DifferentialOperators/LocalizedPolynomialOperators.lean
+    target_path: AlgebraicAnalysis/DifferentialOperators/LocalizedPolynomialOperators.lean
+    target_namespace: AlgebraicAnalysis.DifferentialOperators.LocalizedPolynomialOperators
+    declaration_scope: >-
+      AlgebraicAnalysis.ringKrullDim_le_of_isLocalization, totalDegree_pderiv_le,
+      eq_C_of_pderiv_eq_zero, DiffOp, coordinate, algebraMap_mem_adjoin, isCoordinateFrame,
+      isNoetherianRing_base, ringKrullDim_le, adjoin_eq_top, isNoetherian_right,
+      isNoetherianRing, devLE_right, devLE_left, devLEOmega_right, devLEOmega_left,
+      isDomain_base, eq_top_of_pderiv_mem, isSimpleRing, isDomain, infinite_center.
+    license: Apache-2.0
+    authorship: Claude (AI-assisted), reviewed by Christopher Albert
+    consumers: [itpplasma/generalized-stafford-formal (D_k(A) application, planned)]
+    depends_on: [differential-operators-coordinate-symbol,
+      differential-operators-coordinate-simplicity, localized-polynomial-derivations,
+      differential-operators-polynomial]
+    notes: >-
+      New, AA-native. B = S^-1 k[x_1..x_n] for any submonoid S (IsLocalization S B):
+      coordinate frame from IsLocalization.surj and localizedPderiv (Stafford38 extraction
+      localized-polynomial-derivations); Noetherian with deviation at most 2n on both
+      sides in characteristic zero; simple, a domain, with infinite centre when
+      S <= nonZeroDivisors. bjork-formal was not used as a source.
+
+  - id: differential-operators-localization-uniqueness
+    source_repository: algebraic-analysis (this package)
+    source_revision: new in DX-2 (branch diffops-local)
+    source_path: AlgebraicAnalysis/DifferentialOperators/Localization.lean
+    target_path: AlgebraicAnalysis/DifferentialOperators/Localization.lean
+    target_namespace: AlgebraicAnalysis.DifferentialOperators
+    declaration_scope: >-
+      eq_zero_of_forall_algebraMap_eq_zero, eq_of_forall_algebraMap_eq.
+    license: Apache-2.0
+    authorship: Claude (AI-assisted), reviewed by Christopher Albert
+    consumers: [D3 localization of differential operators (planned)]
+    depends_on: [differential-operators-order-filtration]
+    notes: >-
+      New, AA-native. Uniqueness half of EGA IV 16.4.14: a finite-order operator on
+      S^-1 A vanishing on A is zero (induction on the order). Existence is open
+      except in order one (localized-polynomial-derivations.extendDerivation).
+
+  - id: smooth-derivations
+    source_repository: algebraic-analysis (this package)
+    source_revision: new in DX-2 (branch diffops-local)
+    source_path: AlgebraicAnalysis/DifferentialOperators/SmoothDerivations.lean
+    target_path: AlgebraicAnalysis/DifferentialOperators/SmoothDerivations.lean
+    target_namespace: AlgebraicAnalysis.DifferentialOperators
+    declaration_scope: >-
+      finite_derivation, projective_derivation, finite_derivation_of_smooth,
+      projective_derivation_of_smooth.
+    license: Apache-2.0
+    authorship: Claude (AI-assisted), reviewed by Christopher Albert
+    consumers: [D3 differential operators on smooth algebras (planned)]
+    depends_on: []
+    notes: >-
+      New, AA-native wrapper of Mathlib: Der_k(A) = Hom_A(Omega, A)
+      (KaehlerDifferential.linearMapEquivDerivation), Module.dual_finite and
+      dual_projective, Algebra.FormallySmooth.projective_kaehlerDifferential and
+      KaehlerDifferential.finite.

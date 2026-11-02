@@ -37,6 +37,8 @@ public import AlgebraicAnalysisTest.RingTheory.GoldieRank
 public import AlgebraicAnalysisTest.DualSeparationGeneral
 public import AlgebraicAnalysisTest.Weyl
 public import AlgebraicAnalysisTest.DifferentialOperatorsPolynomial
+public import AlgebraicAnalysisTest.DifferentialOperatorsLocalized
+public import AlgebraicAnalysisTest.DifferentialOperatorsD3
 
 @[expose] public section
 

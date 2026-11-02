@@ -136,7 +136,7 @@ example : Infinite (Subring.center (DiffOp ℚ 1)) := infinite_center
 #print axioms orderOneEquiv
 #print axioms mul_sub_mul_mem_orderBelow
 #print axioms orderFiltration_grCommutative
-#print axioms DifferentialOperators.polynomialGenerators
+#print axioms DifferentialOperators.IsCoordinateFrame.polynomialGenerators
 #print axioms RingFiltration.PolynomialGenerators.presentation
 #print axioms PolynomialOperators.weylEquiv
 #print axioms PolynomialOperators.isSimpleRing

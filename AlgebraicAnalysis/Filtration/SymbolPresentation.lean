@@ -323,4 +323,40 @@ noncomputable def toPresentation (S : GradedSymbol φ 𝒜) : SymbolPresentation
 
 end RingFiltration.GradedSymbol
 
+namespace RingFiltration.SymbolPresentation
+
+variable {R A G : Type*} [CommRing R] [Ring A] [Algebra R A] [CommRing G] [Algebra R G]
+variable {φ : RingFiltration R A} {𝒜 : ℕ → Submodule R G}
+
+/-- **An injective presentation is a symbol isomorphism.** If every `σₙ` is
+injective, then `gr A ≅ G`: the symbol of `u ∈ Fₙ` is `σₙ⁻¹ [u]`. -/
+noncomputable def toGradedSymbol [GradedAlgebra 𝒜] (P : SymbolPresentation φ 𝒜)
+    (hinj : ∀ n, Function.Injective (P.sym n)) : GradedSymbol φ 𝒜 where
+  gr n := (LinearEquiv.ofBijective (P.sym n) ⟨hinj n, P.sym_surjective n⟩).symm.toLinearMap ∘ₗ
+    (φ.belowInF n).mkQ
+  gr_surjective n := by
+    intro g
+    obtain ⟨z, hz⟩ := Submodule.Quotient.mk_surjective _ (P.sym n g)
+    refine ⟨z, ?_⟩
+    simp only [LinearMap.coe_comp, LinearEquiv.coe_coe, Function.comp_apply, Submodule.mkQ_apply,
+      hz]
+    exact (LinearEquiv.ofBijective (P.sym n) ⟨hinj n, P.sym_surjective n⟩).symm_apply_apply g
+  gr_eq_zero_iff n x := by
+    simp only [LinearMap.coe_comp, LinearEquiv.coe_coe, Function.comp_apply,
+      LinearEquiv.map_eq_zero_iff, Submodule.mkQ_apply, Submodule.Quotient.mk_eq_zero,
+      mem_belowInF]
+  gr_mul i j x y := by
+    set e := fun n => LinearEquiv.ofBijective (P.sym n) ⟨hinj n, P.sym_surjective n⟩
+    have key : ∀ n (z : φ.F n), P.sym n ((e n).symm (Submodule.Quotient.mk z)) =
+        Submodule.Quotient.mk z := fun n z => (e n).apply_symm_apply _
+    let g : 𝒜 (i + j) := ⟨_, SetLike.GradedMul.mul_mem ((e i).symm (Submodule.Quotient.mk x)).2
+      ((e j).symm (Submodule.Quotient.mk y)).2⟩
+    have hg : (e (i + j)).symm (Submodule.Quotient.mk ⟨x * y, φ.mul_mem_add x.2 y.2⟩) = g := by
+      rw [LinearEquiv.symm_apply_eq]
+      change _ = P.sym (i + j) g
+      rw [P.sym_mul i j _ _ g rfl, key, key, gradedMul_mk]
+    exact congrArg Subtype.val hg
+
+end RingFiltration.SymbolPresentation
+
 end AlgebraicAnalysis

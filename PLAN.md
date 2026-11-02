@@ -195,8 +195,29 @@ without changing the mathematical statements.
   `D_k(k[x₁..xₙ])` in characteristic zero is right and left Noetherian with
   deviation at most `2n`, isomorphic to `A_n(k)` (`weylEquiv`), simple, a
   domain, with infinite centre. Oracles in
-  `AlgebraicAnalysisTest/DifferentialOperatorsPolynomial.lean`. Open: localized
-  polynomial rings (D2) and general smooth `R` (D3), including simplicity.
+  `AlgebraicAnalysisTest/DifferentialOperatorsPolynomial.lean`.
+- Coordinate frames and localized polynomial rings (branch `diffops-local`, DX-2).
+  `CoordinateSymbol.lean` now works with `IsCoordinateFrame x D`: coordinates
+  generating `R` up to unit denominators plus dual derivations, so localizations
+  are covered. `Filtration/PolynomialSymbol.lean`: a polynomial presentation with
+  dual coordinates (`[yᵢ, ι xⱼ] = δᵢⱼ`, `ι` injective) is injective in
+  characteristic zero, hence `gr D ≅ A[ξ]` (`PolynomialGenerators.gradedSymbol`) and
+  `D` is a domain when `A` is; applied as `IsCoordinateFrame.gradedSymbol`,
+  `IsCoordinateFrame.isDomain`. `CoordinateSimplicity.lean`: `D_k(R)` is simple if
+  `R` has no nonzero proper ideal stable under the coordinate derivations.
+  `LocalizedPolynomialOperators.lean`: for `B = S⁻¹k[x₁..xₙ]` (char 0) `D_k(B)` is
+  right and left Noetherian with deviation at most `2n` on both sides; for
+  `S ≤ nonZeroDivisors` it is simple, a domain, with infinite centre
+  (`ringKrullDim_le_of_isLocalization` gives `dim B ≤ n`). Oracles (Laurent
+  polynomials, `ℚ(x₀, x₁)`, sharpness of the symbol) in
+  `AlgebraicAnalysisTest/DifferentialOperatorsLocalized.lean`. D3 groundwork:
+  `Localization.lean` (finite-order operators on `S⁻¹A` are determined on `A`,
+  `eq_of_forall_algebraMap_eq`) and `SmoothDerivations.lean` (`Der_k A` finitely
+  generated projective for smooth `A`); oracles in
+  `AlgebraicAnalysisTest/DifferentialOperatorsD3.lean`. Open (D3): existence of the
+  extension of an order-`n` operator to `S⁻¹A`, étale coordinates on a Zariski
+  cover of a smooth `A`, and the local-to-global assembly of Noetherian, domain and
+  simplicity.
 - `AlgebraicAnalysis.infinite_subring_center` (`RingTheory/InfiniteCenter.lean`):
   a nontrivial algebra over an infinite field has infinite centre (hypothesis `(Z)`).
 - `Module.Critical` proves critical submodule existence and uniformity;
