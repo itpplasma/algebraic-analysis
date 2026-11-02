@@ -17,6 +17,10 @@ public import AlgebraicAnalysis.RingTheory.PowerSeriesReverseTrunc
 public import AlgebraicAnalysis.RingTheory.Goldie.Basic
 public import AlgebraicAnalysis.RingTheory.Goldie.QuotientRing
 public import AlgebraicAnalysis.RingTheory.Goldie.Torsion
+public import AlgebraicAnalysis.RingTheory.Goldie.Rank
+public import AlgebraicAnalysis.RingTheory.Goldie.Idempotents
+public import AlgebraicAnalysis.Ore.ModuleLocalization
+public import AlgebraicAnalysis.Module.UniformDimension
 public import AlgebraicAnalysis.DifferentialOperators.Basic
 public import AlgebraicAnalysis.CommutatorRiccati
 public import AlgebraicAnalysis.FieldTheory.FunctionField

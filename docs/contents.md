@@ -78,7 +78,18 @@ lemma for homogeneous relations in prime ideals.
   Goldie-torsion. `Torsion.lean`: Goldie-torsion modules, common regular
   annihilators, escape with singular tails. `QuotientRing.lean`: Goldie's
   theorem, the classical right quotient ring is simple, semisimple and
-  Artinian, hence a matrix ring over a division ring.
+  Artinian, hence a matrix ring over a division ring. `Rank.lean`: the module
+  of fractions `M_Q`, the Goldie-torsion part `t(M)` as the kernel of
+  `M → M_Q`, the Goldie rank `length_Q(M_Q)` (additive, `m · rk R` on `Rᵐ`,
+  zero exactly on Goldie-torsion modules, finite for finitely generated `M`),
+  and its equality with the uniform dimension of `M/t(M)` and of `R_R`.
+  `Idempotents.lean`: complete orthogonal idempotents `Eᵢ` of `Q` with `EᵢQ`
+  simple and common denominators in `R`.
+- `Module/UniformDimension.lean`: uniform dimension as `iSupIndep` predicates
+  `UniformDimGE`, `UniformDimLE`; it is bounded by length and equals length for
+  semisimple modules. `Ore/ModuleLocalization.lean`: exactness of Ore
+  localization of modules, its torsion kernel, and preservation of uniform
+  dimension under essential embeddings into localized modules.
 - `LinearAlgebra/`: division and activated pencils, finite Taylor
   reconstruction.
 - `Order/`, `Combinatorics/`: deviation of posets and a finite floor-sum
