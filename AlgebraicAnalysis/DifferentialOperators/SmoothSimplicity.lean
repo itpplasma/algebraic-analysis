@@ -105,7 +105,7 @@ theorem derivation_algebraMap_eq_pderiv [DecidableEq σ]
     rw [pderiv_X]
     by_cases hij : i = j
     · subst hij; simp
-    · simp [hij, Pi.single_apply, Ne.symm hij]
+    · simp [hij, Ne.symm hij]
   exact Derivation.congr_fun h p
 
 variable [CharZero k] [IsDomain R] [Algebra.QuasiFinite (MvPolynomial σ k) R]

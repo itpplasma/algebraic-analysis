@@ -31,7 +31,12 @@ and derivations on localized polynomial rings. The order filtration of
 multiplications plus derivations), the coordinate symbol presentation
 `R[ξ] ↠ gr D_k(R)` with its Noetherian and deviation consequences, and
 `D_k(k[x₁, …, xₙ]) ≅ A_n(k)` in characteristic zero (simple domain, infinite
-centre).
+centre). Projective frames (`Ω_{R/k}` projective) give `R[ξ] ↠ gr D_k(R)`
+without coordinates; `D_k(R)` is a domain for every domain `R` and simple when
+`R` has no differential ideals. For a smooth algebra `A` in characteristic
+zero, `D_k(A)` is right and left Noetherian with deviation at most twice the
+number of generators, and for a smooth domain it is simple with infinite
+centre (`SmoothOperators`).
 
 ## Modules (`Module/`)
 

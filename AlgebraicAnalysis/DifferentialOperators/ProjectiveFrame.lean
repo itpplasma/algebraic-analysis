@@ -296,6 +296,18 @@ theorem devLE_left {d : ℕ} (hR : ringKrullDim R ≤ d) :
     Module.DevLE (algebra (k := k) (R := R)) (d + Nat.card σ) (algebra (k := k) (R := R)) :=
   hF.polynomialGenerators.devLE_left hR
 
+/-- If `R` has finite Krull dimension, the right ideals of `D_k(R)` have
+deviation at most omega. -/
+theorem devLEOmega_right {d : ℕ} (hR : ringKrullDim R ≤ d) :
+    Module.DevLEOmega (algebra (k := k) (R := R))ᵐᵒᵖ (algebra (k := k) (R := R)) :=
+  hF.polynomialGenerators.devLEOmega_right hR
+
+/-- If `R` has finite Krull dimension, the left ideals of `D_k(R)` have
+deviation at most omega. -/
+theorem devLEOmega_left {d : ℕ} (hR : ringKrullDim R ≤ d) :
+    Module.DevLEOmega (algebra (k := k) (R := R)) (algebra (k := k) (R := R)) :=
+  hF.polynomialGenerators.devLEOmega_left hR
+
 end IsProjectiveFrame
 
 end Presentation
